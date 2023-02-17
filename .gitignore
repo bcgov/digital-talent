@@ -139,6 +139,8 @@ web_modules/
 out
 
 # Nuxt.js build / generate output
+*.tsbuildinfo
+next-env.d.ts
 .nuxt
 dist
 
