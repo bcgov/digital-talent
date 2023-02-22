@@ -1,0 +1,15 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "outDir": "dist",
+    "rootDir": ".",
+    "module": "CommonJS",
+    "moduleResolution": "Node",
+    "lib": ["ES2020"],
+    "target": "ES2019",
+    "resolveJsonModule": true,
+    "noEmitOnError": true
+  },
+  "include": ["./", "./**/*.ts", "./**/*.js", "src/**/*.json"],
+  "exclude": ["node_modules/", "build/", "dist/", ".cache/", ".tmp/", "src/admin/", "**/*.test.*", "src/plugins/**"]
+}

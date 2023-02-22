@@ -416,3 +416,12 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+
+# Strapi
+.env
+license.txt
+exports
+*.cache
+dist
+build
+.strapi-updater.json

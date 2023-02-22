@@ -8,6 +8,17 @@ module.exports = easelint({
     root: true,
     overrides: [
       {
+        // apps/api | Strapi
+        files: ['apps/api/**/*.{js,jsx,ts,tsx}'],
+        rules: {
+          '@typescript-eslint/no-empty-function': 'warn',
+          '@typescript-eslint/no-explicit-any': 'warn',
+          'import/no-default-export': 'off',
+          'no-console': 'warn',
+        },
+      },
+      {
+        // apps/www | Next.js
         files: ['apps/www/**/*.{js,jsx,ts,tsx}'],
         extends: ['plugin:@next/next/recommended'],
         settings: {
