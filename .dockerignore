@@ -1,6 +1,8 @@
+.cache
 .dockerignore
 .git
 .next
+.strapi-updater.json
 build
 dist
 Dockerfile
