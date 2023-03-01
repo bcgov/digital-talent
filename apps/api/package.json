@@ -1,0 +1,25 @@
+{
+  "name": "@bcgov-dt/api",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Digital Talent Attraction & Development API",
+  "license": "Apache-2.0",
+  "author": "Sid McLaughlin <sid.mclaughlin@gov.bc.ca>",
+  "scripts": {
+    "build": "strapi build",
+    "develop": "strapi develop",
+    "start": "strapi start",
+    "strapi": "strapi"
+  },
+  "dependencies": {
+    "@strapi/plugin-i18n": "4.6.2",
+    "@strapi/plugin-users-permissions": "4.6.2",
+    "@strapi/strapi": "4.6.2",
+    "pg": "8.8.0"
+  },
+  "devDependencies": {},
+  "engines": {
+    "node": ">=14.19.1 <=18.x.x",
+    "npm": ">=6.0.0"
+  }
+}

@@ -1,0 +1,12 @@
+.cache
+.dockerignore
+.git
+.next
+.strapi-updater.json
+build
+dist
+Dockerfile
+node_modules
+npm-debug.log
+*.env
+README.md
