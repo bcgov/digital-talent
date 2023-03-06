@@ -2,7 +2,9 @@ name: Build Docker Images
 
 on:
   push:
-    branches: [develop]
+    branches: [main, develop]
+  pull_request:
+    branches: [main, develop]
 
 jobs:
   metadata:
