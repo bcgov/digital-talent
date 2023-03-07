@@ -4,7 +4,7 @@ import Container from './Container';
 
 const LogoNav = () => {
   return (
-    <div className="h-16">
+    <div className="border-b h-16">
       <Container className="h-full flex flex-row gap-x-4 items-center">
         <Image alt="Mountains" className="h-10 w-auto" src={BCLogo} />
         <div className="grow" />
