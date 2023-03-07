@@ -35,6 +35,7 @@ module.exports = easelint({
           '@next/next/no-html-link-for-pages': ['error', 'apps/www/src/pages'],
           'import/no-default-export': 'off',
           'react/react-in-jsx-scope': 'off',
+          'react/require-default-props': 'off',
         },
       },
     ],
