@@ -6,6 +6,7 @@ module.exports = {
       colors: {
         bcgov: {
           blue: {
+            ultralight: '#F5FAFF',
             light: '#38598A',
             DEFAULT: '#003366',
           },
