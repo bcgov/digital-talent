@@ -1,15 +1,18 @@
+import { InferGetServerSidePropsType } from 'next';
 import Link from 'next/link';
+import slugify from 'slugify';
 import Container from '../components/Container';
 import { H1, H2 } from '../components/Heading';
+import { Opportunity } from './api/opportunities';
 
 const daysUntilClose = Math.floor((new Date('10/31/2023').getTime() - new Date().getTime()) / (1000 * 3600 * 24));
 
-function OpportunityCard({ children }: { children?: React.ReactNode }) {
+function OpportunityCard({ opportunity }: { opportunity: Opportunity }) {
   return (
-    <Link href="/opportunities/full-stack-developer">
-      <div className="rounded-md border-2 p-3 bg-white hover:bg-bcgov-blue-ultralight">
+    <Link href={`/opportunities/${slugify(`${opportunity.requisition_id} ${opportunity.title}`).toLowerCase()}`}>
+      <div className="rounded-md border-2 p-3 bg-white hover:bg-bcgov-blue-ultralight hover:cursor-pointer">
         <div className="flex flex-row gap-4">
-          <span className="text-xl font-bold">Full Stack Developer (ISL 27R)</span>
+          <span className="text-xl font-bold">{opportunity.title}</span>
           <div className="grow" />
           <span className="text-md">Closes October 31, 2023 11:59PM Pacific</span>
         </div>
@@ -28,7 +31,9 @@ function OpportunityCard({ children }: { children?: React.ReactNode }) {
               strokeLinejoin="round"
             />
           </svg>
-          <span className="text-md italic">Multiple Ministries</span>
+          <span className="text-md italic">
+            {opportunity.ministries.length > 1 ? 'Multiple Ministries' : opportunity.ministries[0]}
+          </span>
           <div className="grow" />
           <span className="text-md italic">{daysUntilClose} days left</span>
         </div>
@@ -47,25 +52,31 @@ function OpportunityCard({ children }: { children?: React.ReactNode }) {
               strokeLinejoin="round"
             />
           </svg>
-          <span className="text-md italic">Multiple Locations</span>
+          <span className="text-md italic">
+            {opportunity.locations.length > 1 ? 'Multiple Locations' : opportunity.locations[0]}
+          </span>
           <div className="grow" />
         </div>
         <div className="flex flex-row gap-4">
-          <svg
-            className="w-6 h-6"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth={1.5}
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
-          <span className="text-md">Telework available</span>
+          {opportunity.telework_ok && (
+            <>
+              <svg
+                className="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth={1.5}
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+              <span className="text-md">Telework available</span>
+            </>
+          )}
           <div className="grow" />
           <button className="rounded-md bg-bcgov-blue text-white px-4 py-1" type="button">
             Apply
@@ -76,7 +87,7 @@ function OpportunityCard({ children }: { children?: React.ReactNode }) {
   );
 }
 
-export default function Home() {
+export default function Home({ data: { data } }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   return (
     <div>
       <Container>
@@ -128,10 +139,20 @@ export default function Home() {
           </button>
           <br />
         </div>
-        <div className="mt-4">
-          <OpportunityCard />
+        {/* Opportunities */}
+        <div className="flex flex-col my-4 space-y-4">
+          {data.map((opportunity: Opportunity) => (
+            <OpportunityCard key={opportunity.id} opportunity={opportunity} />
+          ))}
         </div>
       </Container>
     </div>
   );
+}
+
+export async function getServerSideProps() {
+  const res = await fetch('http://localhost:3000/api/opportunities');
+  const data = await res.json();
+
+  return { props: { data } };
 }
