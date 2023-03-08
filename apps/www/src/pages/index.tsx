@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import Container from '../components/Container';
 import { H1, H2 } from '../components/Heading';
 
@@ -5,7 +6,7 @@ const daysUntilClose = Math.floor((new Date('10/31/2023').getTime() - new Date()
 
 const OpportunityCard = ({ children }: { children?: React.ReactNode }) => {
   return (
-    <a href="/opportunities/full-stack-developer">
+    <Link href="/opportunities/full-stack-developer">
       <div className="rounded-md border-2 p-3 bg-white hover:bg-bcgov-blue-ultralight">
         <div className="flex flex-row gap-4">
           <span className="text-xl font-bold">Full Stack Developer (ISL 27R)</span>
@@ -71,7 +72,7 @@ const OpportunityCard = ({ children }: { children?: React.ReactNode }) => {
           </button>
         </div>
       </div>
-    </a>
+    </Link>
   );
 };
 
