@@ -3,7 +3,7 @@ import Link from 'next/link';
 import BCLogo from 'public/bc-logo.png';
 import Container from './Container';
 
-const LogoNav = () => {
+function LogoNav() {
   return (
     <div className="border-b h-16">
       <Container className="h-full flex flex-row gap-x-4 items-center">
@@ -14,9 +14,9 @@ const LogoNav = () => {
       </Container>
     </div>
   );
-};
+}
 
-const LinkNav = () => {
+function LinkNav() {
   return (
     <div className="h-12 bg-bcgov-grey-light shadow-inner">
       <Container className="h-full">
@@ -45,15 +45,13 @@ const LinkNav = () => {
       </Container>
     </div>
   );
-};
+}
 
-const NavBar = () => {
+export default function NavBar() {
   return (
     <div>
       <LogoNav />
       <LinkNav />
     </div>
   );
-};
-
-export default NavBar;
+}

@@ -4,7 +4,7 @@ import { H1, H2 } from '../components/Heading';
 
 const daysUntilClose = Math.floor((new Date('10/31/2023').getTime() - new Date().getTime()) / (1000 * 3600 * 24));
 
-const OpportunityCard = ({ children }: { children?: React.ReactNode }) => {
+function OpportunityCard({ children }: { children?: React.ReactNode }) {
   return (
     <Link href="/opportunities/full-stack-developer">
       <div className="rounded-md border-2 p-3 bg-white hover:bg-bcgov-blue-ultralight">
@@ -74,9 +74,9 @@ const OpportunityCard = ({ children }: { children?: React.ReactNode }) => {
       </div>
     </Link>
   );
-};
+}
 
-const Home = () => {
+export default function Home() {
   return (
     <div>
       <Container>
@@ -134,6 +134,4 @@ const Home = () => {
       </Container>
     </div>
   );
-};
-
-export default Home;
+}

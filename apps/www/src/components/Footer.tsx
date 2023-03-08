@@ -1,6 +1,6 @@
 import Container from './Container';
 
-const Footer = () => {
+export default function Footer() {
   return (
     <div className="bg-bcgov-grey-dark text-white shrink-0 min-h-80">
       <Container className="my-20">
@@ -37,6 +37,4 @@ const Footer = () => {
       </Container>
     </div>
   );
-};
-
-export default Footer;
+}
