@@ -46,7 +46,7 @@ export const data: Opportunity[] = [
     telework_ok: true,
   },
   {
-    id: 0,
+    id: 1,
     requisition_id: 92535,
     title: 'Senior Service Designer (IS 27)',
     closes_at: '2023-11-01T07:00:00Z',
@@ -69,7 +69,7 @@ export const data: Opportunity[] = [
     telework_ok: true,
   },
   {
-    id: 0,
+    id: 2,
     requisition_id: 92536,
     title: 'UX Designer (AO 24)',
     closes_at: '2023-11-01T07:00:00Z',
@@ -88,7 +88,7 @@ export const data: Opportunity[] = [
     telework_ok: false,
   },
   {
-    id: 0,
+    id: 3,
     requisition_id: 92537,
     title: 'Senior UX Designer (IS 27)',
     closes_at: '2023-11-01T07:00:00Z',
@@ -111,7 +111,7 @@ export const data: Opportunity[] = [
     telework_ok: true,
   },
   {
-    id: 0,
+    id: 4,
     requisition_id: 92538,
     title: 'Service Designer (IS 24)',
     closes_at: '2023-11-01T07:00:00Z',

@@ -18,7 +18,7 @@ function OpportunityCard({ opportunity }: { opportunity: Opportunity }) {
         </div>
         <div className="flex flex-row gap-4">
           <svg
-            className="w-6 h-6"
+            className="w-6 h-6 shrink-0"
             fill="none"
             stroke="currentColor"
             strokeWidth={1.5}
@@ -39,7 +39,7 @@ function OpportunityCard({ opportunity }: { opportunity: Opportunity }) {
         </div>
         <div className="flex flex-row gap-4">
           <svg
-            className="w-6 h-6"
+            className="w-6 h-6 shrink-0"
             fill="none"
             stroke="currentColor"
             strokeWidth={1.5}
@@ -61,7 +61,7 @@ function OpportunityCard({ opportunity }: { opportunity: Opportunity }) {
           {opportunity.telework_ok && (
             <>
               <svg
-                className="w-6 h-6"
+                className="w-6 h-6 shrink-0"
                 fill="none"
                 stroke="currentColor"
                 strokeWidth={1.5}
@@ -78,7 +78,7 @@ function OpportunityCard({ opportunity }: { opportunity: Opportunity }) {
             </>
           )}
           <div className="grow" />
-          <button className="rounded-md bg-bcgov-blue text-white px-4 py-1" type="button">
+          <button className="rounded-md bg-bcgov-blue hover:bg-bcgov-blue-light text-white px-4 py-1" type="button">
             Apply
           </button>
         </div>
