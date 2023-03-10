@@ -249,12 +249,8 @@ export default function Page({ data: { data } }: InferGetServerSidePropsType<typ
 }
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
-  console.log('context: ', context);
-
   const { slug } = context.params as Record<string, unknown>;
-  console.log('slug: ', slug);
   const requisition = (slug as string).split('-')[0];
-  console.log('requisition: ', requisition);
   const res = await fetch(`http://localhost:3000/api/opportunities/${requisition}`);
   const data: ApiResponse<Opportunity> = await res.json();
 
@@ -263,8 +259,6 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
       notFound: true,
     };
   }
-
-  console.log('data: ', data);
 
   return { props: { data } };
 }
