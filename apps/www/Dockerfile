@@ -13,18 +13,16 @@ COPY --from=deps /tmp/www ./
 COPY ./tsconfig.json ./
 COPY ./apps/www ./apps/www
 ENV NEXT_TELEMETRY_DISABLED 1
-RUN npm install
 RUN npm -w @bcgov-dt/www run build
 
 FROM base AS runner
 WORKDIR /www
-COPY --from=builder /tmp/www/apps/www/public ./public
 COPY --from=builder /tmp/www/apps/www/.next/standalone ./
-COPY --from=builder /tmp/www/apps/www/.next/static ./.next/static
-RUN npm install --omit=dev
+COPY --from=builder /tmp/www/apps/www/public ./apps/www/public
+COPY --from=builder /tmp/www/apps/www/.next/static ./apps/www/.next/static
 
 EXPOSE 3000
 ENV NODE_ENV production
 ENV PORT 3000
 
-CMD ["node", "server.js"]
+CMD ["node", "./apps/www/server.js"]
