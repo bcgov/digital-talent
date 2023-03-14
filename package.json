@@ -19,7 +19,7 @@
     "@next/eslint-plugin-next": "^13.1.6",
     "easelint": "^0.3.0",
     "eslint": "^8.33.0",
-    "eslint-config-next": "^13.1.6",
+    "eslint-config-next": "^13.2.4",
     "eslint-import-resolver-typescript": "^3.5.3",
     "eslint-plugin-import": "^2.27.5",
     "husky": "^8.0.3",
