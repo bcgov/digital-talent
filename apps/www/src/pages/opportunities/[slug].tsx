@@ -291,16 +291,16 @@ export default function Page({ data: { data } }: InferGetServerSidePropsType<typ
                 <li>Azure, AWS or GCP cloud development</li>
                 <li>React Native, Python, Rust, .Net Core or .Net Framework</li>
               </ul>
-              <li>
-                Experience building and/or training
-                <ul className="list-disc ml-4">
-                  <li>
-                    automated testing frameworks (e.g Cypress) or test suites to support a Continuous Deployment
-                    environment
-                  </li>
-                  <li>designing, developing or consuming REST APIs</li>
-                </ul>
-              </li>
+            </li>
+            <li>
+              Experience building and/or training
+              <ul className="list-disc ml-4">
+                <li>
+                  automated testing frameworks (e.g Cypress) or test suites to support a Continuous Deployment
+                  environment
+                </li>
+                <li>designing, developing or consuming REST APIs</li>
+              </ul>
             </li>
           </ul>
         </div>
