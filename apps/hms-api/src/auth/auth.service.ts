@@ -35,7 +35,7 @@ export class AuthService {
 
       await this.cacheManager.set(
         KEYCLOAK_REALM_PUBLIC_KEY,
-        `-----BEGIN PUBLIC KEY-----${response.public_key}-----END PUBLIC KEY-----`,
+        `-----BEGIN PUBLIC KEY-----\n${response.public_key}\n-----END PUBLIC KEY-----`,
         5 * 60 * 1000,
       );
       pk = await this.getKeycloakRealmPublicKeyFromCache();
