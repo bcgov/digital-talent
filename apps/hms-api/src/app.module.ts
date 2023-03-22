@@ -6,10 +6,11 @@ import { AppService } from './app.service';
 import { AuthModule } from './auth/auth.module';
 import { AuthGuard } from './auth/guards/auth.guard';
 import { validate } from './validation/environment.validation';
+import { PrismaService } from './services/prisma/prisma.service';
 
 @Module({
   imports: [CacheModule.register({ isGlobal: true }), ConfigModule.forRoot({ isGlobal: true, validate }), AuthModule],
   controllers: [AppController],
-  providers: [{ provide: APP_GUARD, useClass: AuthGuard }, AppService],
+  providers: [{ provide: APP_GUARD, useClass: AuthGuard }, AppService, PrismaService],
 })
 export class AppModule {}
