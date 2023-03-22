@@ -1,29 +1,40 @@
-import { useState } from 'react';
+import { useAuth } from 'react-oidc-context';
 
 import './App.css';
-import reactLogo from './assets/react.svg';
 
 function App() {
-  const [count, setCount] = useState(0);
+  const auth = useAuth();
+
+  switch (auth.activeNavigator) {
+    case 'signinSilent':
+      return <div>Signing you in...</div>;
+    case 'signoutRedirect':
+      return <div>Signing you out...</div>;
+  }
+
+  if (auth.isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  if (auth.error) {
+    return <div>Oops... {auth.error.message}</div>;
+  }
+
+  if (auth.isAuthenticated) {
+    return (
+      <div>
+        Hello {auth.user?.profile.sub}
+        <button onClick={() => auth.removeUser()} type="button">
+          Log out
+        </button>
+      </div>
+    );
+  }
 
   return (
-    <div className="App">
-      <div>
-        <a href="https://reactjs.org" rel="noreferrer" target="_blank">
-          <img alt="React logo" className="logo react" src={reactLogo} />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)} type="button">
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">Click on the Vite and React logos to learn more</p>
-    </div>
+    <button onClick={() => auth.signinRedirect()} type="button">
+      Log in
+    </button>
   );
 }
 
