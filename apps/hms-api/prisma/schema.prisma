@@ -12,7 +12,7 @@ datasource db {
 
 model User {
   id      String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  idir_id String
+  idir_id String   @unique
   name    String
   roles   String[]
 }
