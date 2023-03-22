@@ -10,7 +10,7 @@ module.exports = easelint({
       {
         // Files which require devDependencies
         //  config files, tests, etc...
-        files: ['*.e2e-spec.ts', '*.spec.ts'],
+        files: ['*.e2e-spec.ts', '*.spec.ts', 'vite.config.ts'],
         rules: {
           'import/no-extraneous-dependencies': 'off',
         },
@@ -38,6 +38,15 @@ module.exports = easelint({
           '@typescript-eslint/explicit-module-boundary-types': 'off',
           '@typescript-eslint/no-explicit-any': 'off',
           'class-methods-use-this': 'off',
+        },
+      },
+      {
+        // apps/hms-www | React
+        files: ['apps/hms-www/**/*.{js,jsx,ts,tsx}'],
+        rules: {
+          '@typescript-eslint/no-shadow': 'off',
+          'import/no-default-export': 'off',
+          'react/react-in-jsx-scope': 'off',
         },
       },
       {
