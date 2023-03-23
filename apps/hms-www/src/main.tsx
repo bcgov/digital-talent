@@ -4,9 +4,9 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { AuthProvider, AuthProviderProps } from 'react-oidc-context';
 import { Provider as ReduxProvider } from 'react-redux';
-import App from './App';
-import './index.css';
+import { RouterProvider } from 'react-router-dom';
 import { store } from './redux/store';
+import { router } from './routes/router';
 
 const oidcConfig: AuthProviderProps = {
   userStore: new WebStorageStateStore({
@@ -21,7 +21,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     <AuthProvider {...oidcConfig} automaticSilentRenew>
       <ReduxProvider store={store}>
-        <App />
+        <RouterProvider router={router} />
       </ReduxProvider>
     </AuthProvider>
   </React.StrictMode>,

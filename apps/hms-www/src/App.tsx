@@ -1,7 +1,5 @@
 import { useAuth } from 'react-oidc-context';
 
-import './App.css';
-
 function App() {
   const auth = useAuth();
 
