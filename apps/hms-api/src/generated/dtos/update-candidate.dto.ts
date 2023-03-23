@@ -1,5 +1,5 @@
+import { ResidencyStatus, CandidateStatus } from '@prisma/client';
 import { ApiProperty } from '@nestjs/swagger';
-import { CandidateStatus, ResidencyStatus } from '@prisma/client';
 
 export class UpdateCandidateDto {
   name?: string;

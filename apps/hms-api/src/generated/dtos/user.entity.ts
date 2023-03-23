@@ -1,4 +1,3 @@
-/* eslint-disable import/no-cycle */
 import { Candidate } from './candidate.entity';
 import { HiringManager } from './hiring-manager.entity';
 

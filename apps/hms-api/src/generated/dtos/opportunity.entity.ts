@@ -1,9 +1,9 @@
 import { OpportunityState } from '@prisma/client';
 import { CandidateOpportunity } from './candidate-opportunity.entity';
-import { Candidate } from './candidate.entity';
-import { DigitalTalentRole } from './digital-talent-role.entity';
 import { OpportunityLocation } from './opportunity-location.entity';
 import { OpportunitySkill } from './opportunity-skill.entity';
+import { Candidate } from './candidate.entity';
+import { DigitalTalentRole } from './digital-talent-role.entity';
 import { Team } from './team.entity';
 
 export class Opportunity {
