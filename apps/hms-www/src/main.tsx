@@ -1,4 +1,5 @@
 /* eslint-disable no-console */
+import 'antd/dist/reset.css';
 import { WebStorageStateStore } from 'oidc-client-ts';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
