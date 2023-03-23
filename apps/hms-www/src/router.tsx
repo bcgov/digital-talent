@@ -1,9 +1,9 @@
 import { createBrowserRouter } from 'react-router-dom';
-import { CandidateContainer } from './candidates';
+import { RouteGuard } from './components/guards/route.guard';
 
 export const router = createBrowserRouter([
   {
     path: '/',
-    element: <CandidateContainer />,
+    element: <RouteGuard />,
   },
 ]);

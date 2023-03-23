@@ -6,7 +6,7 @@ import { AuthProvider, AuthProviderProps } from 'react-oidc-context';
 import { Provider as ReduxProvider } from 'react-redux';
 import { RouterProvider } from 'react-router-dom';
 import { store } from './redux/store';
-import { router } from './routes/router';
+import { router } from './router';
 
 const oidcConfig: AuthProviderProps = {
   userStore: new WebStorageStateStore({
