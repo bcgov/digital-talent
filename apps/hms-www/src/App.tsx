@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { useAuth } from 'react-oidc-context';
 
 import './App.css';

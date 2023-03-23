@@ -11,10 +11,12 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@reduxjs/toolkit": "^1.9.3",
     "oidc-client-ts": "^2.2.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-oidc-context": "^2.2.2"
+    "react-oidc-context": "^2.2.2",
+    "react-redux": "^8.0.5"
   },
   "devDependencies": {
     "@types/react": "^18.0.28",

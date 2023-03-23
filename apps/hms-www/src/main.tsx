@@ -1,9 +1,12 @@
+/* eslint-disable no-console */
 import { WebStorageStateStore } from 'oidc-client-ts';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { AuthProvider, AuthProviderProps } from 'react-oidc-context';
+import { Provider as ReduxProvider } from 'react-redux';
 import App from './App';
 import './index.css';
+import { store } from './redux/store';
 
 const oidcConfig: AuthProviderProps = {
   userStore: new WebStorageStateStore({
@@ -17,7 +20,9 @@ const oidcConfig: AuthProviderProps = {
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     <AuthProvider {...oidcConfig} automaticSilentRenew>
-      <App />
+      <ReduxProvider store={store}>
+        <App />
+      </ReduxProvider>
     </AuthProvider>
   </React.StrictMode>,
 );
