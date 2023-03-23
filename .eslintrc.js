@@ -46,6 +46,7 @@ module.exports = easelint({
         files: ['apps/hms-www/**/*.{js,jsx,ts,tsx}'],
         rules: {
           '@typescript-eslint/no-shadow': 'off',
+          camelcase: 'off',
           'import/no-default-export': 'off',
           'react/react-in-jsx-scope': 'off',
         },
