@@ -14,7 +14,7 @@ CREATE TABLE "user" (
     "name" TEXT NOT NULL,
     "roles" TEXT[],
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updated_at" TIMESTAMP(3) NOT NULL,
+    "updated_at" TIMESTAMP(3),
 
     CONSTRAINT "user_pkey" PRIMARY KEY ("id")
 );
@@ -22,12 +22,10 @@ CREATE TABLE "user" (
 -- CreateTable
 CREATE TABLE "digital_talent_role" (
     "id" UUID NOT NULL DEFAULT gen_random_uuid(),
-    "created_by_id" UUID NOT NULL,
-    "updated_by_id" UUID NOT NULL,
     "name" TEXT NOT NULL,
     "classification" TEXT NOT NULL,
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updated_at" TIMESTAMP(3) NOT NULL,
+    "updated_at" TIMESTAMP(3),
 
     CONSTRAINT "digital_talent_role_pkey" PRIMARY KEY ("id")
 );
@@ -37,7 +35,7 @@ CREATE TABLE "location" (
     "id" UUID NOT NULL DEFAULT gen_random_uuid(),
     "name" TEXT NOT NULL,
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updated_at" TIMESTAMP(3) NOT NULL,
+    "updated_at" TIMESTAMP(3),
 
     CONSTRAINT "location_pkey" PRIMARY KEY ("id")
 );
@@ -48,7 +46,7 @@ CREATE TABLE "ministry" (
     "code" TEXT NOT NULL,
     "name" TEXT NOT NULL,
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updated_at" TIMESTAMP(3) NOT NULL,
+    "updated_at" TIMESTAMP(3),
 
     CONSTRAINT "ministry_pkey" PRIMARY KEY ("id")
 );
@@ -59,7 +57,7 @@ CREATE TABLE "skill" (
     "name" TEXT NOT NULL,
     "min_years_experience" INTEGER NOT NULL,
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updated_at" TIMESTAMP(3) NOT NULL,
+    "updated_at" TIMESTAMP(3),
 
     CONSTRAINT "skill_pkey" PRIMARY KEY ("id")
 );
@@ -82,7 +80,7 @@ CREATE TABLE "candidate" (
     "knowledge_and_abilities" TEXT,
     "links" TEXT[],
     "marketing_qualities" TEXT[],
-    "created_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
+    "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMP(3),
 
     CONSTRAINT "candidate_pkey" PRIMARY KEY ("id")
@@ -94,7 +92,7 @@ CREATE TABLE "candidate_location" (
     "location_id" UUID NOT NULL,
     "rank" INTEGER NOT NULL,
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updated_at" TIMESTAMP(3) NOT NULL,
+    "updated_at" TIMESTAMP(3),
 
     CONSTRAINT "candidate_location_pkey" PRIMARY KEY ("candidate_id","location_id")
 );
@@ -104,7 +102,7 @@ CREATE TABLE "candidate_opportunity" (
     "candidate_id" UUID NOT NULL,
     "opportunity_id" UUID NOT NULL,
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updated_at" TIMESTAMP(3) NOT NULL,
+    "updated_at" TIMESTAMP(3),
 
     CONSTRAINT "candidate_opportunity_pkey" PRIMARY KEY ("candidate_id","opportunity_id")
 );
@@ -114,7 +112,7 @@ CREATE TABLE "candidate_skill" (
     "candidate_id" UUID NOT NULL,
     "skill_id" UUID NOT NULL,
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updated_at" TIMESTAMP(3) NOT NULL,
+    "updated_at" TIMESTAMP(3),
 
     CONSTRAINT "candidate_skill_pkey" PRIMARY KEY ("candidate_id","skill_id")
 );
@@ -125,7 +123,7 @@ CREATE TABLE "hiring_manager" (
     "assigned_to_id" UUID,
     "ministry_id" UUID,
     "name" TEXT,
-    "created_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
+    "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMP(3),
 
     CONSTRAINT "hiring_manager_pkey" PRIMARY KEY ("id")
@@ -137,7 +135,7 @@ CREATE TABLE "team" (
     "name" TEXT,
     "description" TEXT,
     "links" TEXT[],
-    "created_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
+    "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMP(3),
 
     CONSTRAINT "team_pkey" PRIMARY KEY ("id")
@@ -150,7 +148,7 @@ CREATE TABLE "opportunity" (
     "team_id" UUID NOT NULL,
     "state" "OpportunityState" NOT NULL,
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updated_at" TIMESTAMP(3) NOT NULL,
+    "updated_at" TIMESTAMP(3),
 
     CONSTRAINT "opportunity_pkey" PRIMARY KEY ("id")
 );
@@ -160,7 +158,7 @@ CREATE TABLE "opportunity_location" (
     "location_id" UUID NOT NULL,
     "opportunity_id" UUID NOT NULL,
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updated_at" TIMESTAMP(3) NOT NULL,
+    "updated_at" TIMESTAMP(3),
 
     CONSTRAINT "opportunity_location_pkey" PRIMARY KEY ("location_id","opportunity_id")
 );
@@ -171,7 +169,7 @@ CREATE TABLE "opportunity_skill" (
     "skill_id" UUID NOT NULL,
     "is_mandatory" BOOLEAN NOT NULL,
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updated_at" TIMESTAMP(3) NOT NULL,
+    "updated_at" TIMESTAMP(3),
 
     CONSTRAINT "opportunity_skill_pkey" PRIMARY KEY ("opportunity_id","skill_id")
 );
