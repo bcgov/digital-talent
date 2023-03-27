@@ -8,7 +8,7 @@ const baseQuery = fetchBaseQuery({
     );
     if (user) {
       const { access_token } = JSON.parse(user);
-      if (access_token) headers.set('authentication', `Bearer ${access_token}`);
+      if (access_token) headers.set('Authorization', `Bearer ${access_token}`);
     }
 
     return headers;
