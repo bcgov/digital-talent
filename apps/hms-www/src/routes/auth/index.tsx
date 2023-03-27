@@ -2,11 +2,11 @@ import { useAuth } from 'react-oidc-context';
 import { Navigate, Outlet } from 'react-router-dom';
 import { Routes } from '../../router/route.constants';
 
-export const RouteGuard = () => {
+export const AuthRoute = () => {
   const auth = useAuth();
 
-  if (!auth.isAuthenticated && !auth.isLoading) {
-    return <Navigate replace to={Routes.Auth.LOGIN} />;
+  if (auth.isAuthenticated) {
+    return <Navigate replace to={Routes.App.ROOT} />;
   }
 
   return <Outlet />;
