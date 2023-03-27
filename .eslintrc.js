@@ -49,6 +49,7 @@ module.exports = easelint({
           camelcase: 'off',
           'import/no-default-export': 'off',
           'react/react-in-jsx-scope': 'off',
+          'react/require-default-props': 'off',
         },
       },
       {
