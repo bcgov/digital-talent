@@ -18,11 +18,7 @@ export class CandidateController {
 
   @Get()
   async getCandidates() {
-    const data = await this.candidateService.getCandidates();
-    return {
-      count: data[0] ?? 0,
-      data: data[1] ?? [],
-    };
+    return this.candidateService.getCandidates();
   }
 
   @Get(':id')
@@ -32,8 +28,6 @@ export class CandidateController {
 
   @Patch(':id')
   async updateCandidate(@Param('id') id: string, @Body() data: UpdateCandidateDto) {
-    // eslint-disable-next-line no-console
-    console.log('id: ', id);
     return this.candidateService.updateCandidate(id, data);
   }
 
