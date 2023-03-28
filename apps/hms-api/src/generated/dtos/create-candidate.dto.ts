@@ -16,11 +16,9 @@ export class CreateCandidateDto {
 
   num_years_exp?: number;
 
-  @ApiProperty({ enum: ResidencyStatus })
-  residency_status?: ResidencyStatus;
+  @ApiProperty({ enum: ResidencyStatus }) residency_status?: ResidencyStatus;
 
-  @ApiProperty({ enum: CandidateStatus })
-  status?: CandidateStatus;
+  @ApiProperty({ enum: CandidateStatus }) status?: CandidateStatus;
 
   is_contacted?: boolean;
 

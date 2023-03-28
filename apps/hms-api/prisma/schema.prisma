@@ -144,9 +144,6 @@ model Candidate {
   assigned_to_id          String?          @db.Uuid
   /// @DtoCreateOptional
   /// @DtoUpdateOptional
-  opportunity_id          String?          @unique @db.Uuid
-  /// @DtoCreateOptional
-  /// @DtoUpdateOptional
   role_id                 String?          @db.Uuid
   name                    String?
   email_address           String?
@@ -172,7 +169,6 @@ model Candidate {
   skills        CandidateSkill[]
   assigned_to   User?                  @relation(fields: [assigned_to_id], references: [id])
   role          DigitalTalentRole?     @relation(fields: [role_id], references: [id])
-  opportunity   Opportunity?           @relation(fields: [opportunity_id], references: [id])
 
   @@map("candidate")
 }
@@ -305,7 +301,6 @@ model Opportunity {
   candidates CandidateOpportunity[]
   locations  OpportunityLocation[]
   skills     OpportunitySkill[]
-  candidate  Candidate?
   role       DigitalTalentRole      @relation(fields: [role_id], references: [id])
   team       Team                   @relation(fields: [team_id], references: [id])
 

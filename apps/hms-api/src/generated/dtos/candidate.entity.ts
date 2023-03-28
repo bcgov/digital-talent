@@ -1,17 +1,15 @@
 import { ResidencyStatus, CandidateStatus } from '@prisma/client';
+import { ApiProperty } from '@nestjs/swagger';
 import { CandidateLocation } from './candidate-location.entity';
 import { CandidateOpportunity } from './candidate-opportunity.entity';
 import { CandidateSkill } from './candidate-skill.entity';
 import { User } from './user.entity';
 import { DigitalTalentRole } from './digital-talent-role.entity';
-import { Opportunity } from './opportunity.entity';
 
 export class Candidate {
   id: string;
 
   assigned_to_id: string | null;
-
-  opportunity_id: string | null;
 
   role_id: string | null;
 
@@ -27,9 +25,9 @@ export class Candidate {
 
   num_years_exp: number | null;
 
-  residency_status: ResidencyStatus | null;
+  @ApiProperty({ enum: ResidencyStatus }) residency_status: ResidencyStatus | null;
 
-  status: CandidateStatus | null;
+  @ApiProperty({ enum: CandidateStatus }) status: CandidateStatus | null;
 
   is_contacted: boolean | null;
 
@@ -52,6 +50,4 @@ export class Candidate {
   assigned_to?: User | null;
 
   role?: DigitalTalentRole | null;
-
-  opportunity?: Opportunity | null;
 }

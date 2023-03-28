@@ -66,7 +66,6 @@ CREATE TABLE "skill" (
 CREATE TABLE "candidate" (
     "id" UUID NOT NULL DEFAULT gen_random_uuid(),
     "assigned_to_id" UUID,
-    "opportunity_id" UUID,
     "role_id" UUID,
     "name" TEXT,
     "email_address" TEXT,
@@ -177,17 +176,11 @@ CREATE TABLE "opportunity_skill" (
 -- CreateIndex
 CREATE UNIQUE INDEX "user_idir_id_key" ON "user"("idir_id");
 
--- CreateIndex
-CREATE UNIQUE INDEX "candidate_opportunity_id_key" ON "candidate"("opportunity_id");
-
 -- AddForeignKey
 ALTER TABLE "candidate" ADD CONSTRAINT "candidate_assigned_to_id_fkey" FOREIGN KEY ("assigned_to_id") REFERENCES "user"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "candidate" ADD CONSTRAINT "candidate_role_id_fkey" FOREIGN KEY ("role_id") REFERENCES "digital_talent_role"("id") ON DELETE SET NULL ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE "candidate" ADD CONSTRAINT "candidate_opportunity_id_fkey" FOREIGN KEY ("opportunity_id") REFERENCES "opportunity"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "candidate_location" ADD CONSTRAINT "candidate_location_candidate_id_fkey" FOREIGN KEY ("candidate_id") REFERENCES "candidate"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
