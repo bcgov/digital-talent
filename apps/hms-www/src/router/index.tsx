@@ -2,6 +2,7 @@ import { createBrowserRouter } from 'react-router-dom';
 import { RouteGuard } from '../components/guards/route.guard';
 import { AppRoute } from '../routes/app';
 import { CandidateRoute } from '../routes/app/candidate';
+import { CandidateDetailPage } from '../routes/app/candidate/candidate-detail.page';
 import { CandidateListPage } from '../routes/app/candidate/candidate-list.page';
 import { HiringManagerRoute } from '../routes/app/hiring-manager';
 import { HiringManagerListPage } from '../routes/app/hiring-manager/hiring-manager-list.page';
@@ -35,6 +36,14 @@ export const router = createBrowserRouter([
               {
                 path: Routes.App.Candidate.ROOT,
                 element: <CandidateListPage />,
+              },
+              {
+                path: Routes.App.Candidate.CREATE,
+                element: <CandidateDetailPage />,
+              },
+              {
+                path: Routes.App.Candidate.DETAIL(),
+                element: <CandidateDetailPage />,
               },
             ],
           },

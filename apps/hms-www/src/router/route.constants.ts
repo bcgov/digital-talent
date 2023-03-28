@@ -3,6 +3,8 @@ export const Routes = {
     ROOT: '/',
     Candidate: {
       ROOT: '/candidates',
+      CREATE: '/candidates/new',
+      DETAIL: (id?: string) => `/candidates/${id ?? ':id'}`,
     },
     HiringManager: {
       ROOT: '/hiring-managers',

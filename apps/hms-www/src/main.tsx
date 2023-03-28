@@ -1,4 +1,5 @@
 /* eslint-disable no-console */
+import { App } from 'antd';
 import 'antd/dist/reset.css';
 import { WebStorageStateStore } from 'oidc-client-ts';
 import React from 'react';
@@ -22,7 +23,9 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     <AuthProvider {...oidcConfig} automaticSilentRenew>
       <ReduxProvider store={store}>
-        <RouterProvider router={router} />
+        <App>
+          <RouterProvider router={router} />
+        </App>
       </ReduxProvider>
     </AuthProvider>
   </React.StrictMode>,
