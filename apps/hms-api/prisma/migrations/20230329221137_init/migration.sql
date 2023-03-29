@@ -70,7 +70,7 @@ CREATE TABLE "candidate" (
     "name" TEXT,
     "email_address" TEXT,
     "linkedin_url" TEXT,
-    "available_at" TIMESTAMP(3),
+    "available_as_of_date" TEXT,
     "would_relocate" BOOLEAN,
     "num_years_exp" INTEGER,
     "residency_status" "ResidencyStatus",

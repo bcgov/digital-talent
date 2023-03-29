@@ -19,7 +19,7 @@ export class Candidate {
 
   linkedin_url: string | null;
 
-  available_at: Date | null;
+  available_as_of_date: string | null;
 
   would_relocate: boolean | null;
 

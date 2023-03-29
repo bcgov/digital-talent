@@ -10,8 +10,6 @@ export class PicklistController {
 
   @Get(':context')
   async getPicklist(@Param('context') context: string) {
-    // eslint-disable-next-line no-console
-    console.log('context: ', context);
     return this.picklistService.getPicklist(context);
   }
 }

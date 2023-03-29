@@ -148,7 +148,7 @@ model Candidate {
   name                    String?
   email_address           String?
   linkedin_url            String?
-  available_at            DateTime?
+  available_as_of_date    String?
   would_relocate          Boolean?
   num_years_exp           Int?
   residency_status        ResidencyStatus?

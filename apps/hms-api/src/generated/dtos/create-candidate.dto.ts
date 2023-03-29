@@ -10,7 +10,7 @@ export class CreateCandidateDto {
 
   linkedin_url?: string;
 
-  available_at?: Date;
+  available_as_of_date?: string;
 
   would_relocate?: boolean;
 
