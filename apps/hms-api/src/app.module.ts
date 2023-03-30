@@ -8,9 +8,9 @@ import { AuthModule } from './auth/auth.module';
 import { AuthGuard } from './auth/guards/auth.guard';
 import { RoleGuard } from './auth/guards/role.guard';
 import { CandidateModule } from './candidate/candidate.module';
+import { PicklistModule } from './picklist/picklist.module';
 import { PrismaService } from './services/prisma/prisma.service';
 import { validate } from './validation/environment.validation';
-import { PicklistModule } from './picklist/picklist.module';
 
 @Module({
   imports: [

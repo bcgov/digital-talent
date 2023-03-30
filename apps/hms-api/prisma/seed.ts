@@ -2,13 +2,10 @@
 /* eslint-disable no-await-in-loop */
 /* eslint-disable no-restricted-syntax */
 import { PrismaClient } from '@prisma/client';
-import { CreateDigitalTalentRoleDto } from '../src/generated/dtos/create-digital-talent-role.dto';
-import { CreateLocationDto } from '../src/generated/dtos/create-location.dto';
-import { CreateMinistryDto } from '../src/generated/dtos/create-ministry.dto';
 
 const prisma = new PrismaClient();
 
-const locations: CreateLocationDto[] = [
+const locations = [
   { id: '7b86497e-ebc9-49e4-b6e1-7be89e571331', name: '100 Mile House' },
   { id: '88c7bdfe-ba62-4fa0-93d6-d826a47a4887', name: 'Abbotsford' },
   { id: '5635e65c-a765-45a6-a3b8-69640c296c6e', name: 'Agassiz' },
@@ -102,7 +99,7 @@ const locations: CreateLocationDto[] = [
   { id: 'c229203c-5d24-4165-b27f-64f1b83ef529', name: 'Williams Lake' },
 ];
 
-const ministries: CreateMinistryDto[] = [
+const ministries = [
   { id: '9bd3b547-dfc4-4c9f-89df-89c09f802a3f', code: '101', name: 'Agriculture and Food' },
   { id: 'c027f0c5-3f96-44f4-8637-5bb404989a99', code: '87', name: 'Attorney General' },
   { id: '1b916b02-60de-4035-adbf-e05beee10dae', code: '113', name: 'BC Financial Services Authority' },
@@ -156,7 +153,7 @@ const ministries: CreateMinistryDto[] = [
   { id: 'a91f607f-e702-4c88-a026-e6800f4c30cb', code: '116', name: 'Water,Land,ResourceStewardship' },
 ];
 
-const roles: CreateDigitalTalentRoleDto[] = [
+const roles = [
   { id: '7aeea66e-2eaf-489a-8bde-40cf61afaf8c', name: 'Dev Ops Specialist', classification: 'IS 27' },
   { id: '72db9565-f94c-4907-9822-fa8b3e9393ac', name: 'Full Stack Developer Level 1', classification: 'IS 18' },
   { id: '60553785-080b-409c-87e1-36e959364f04', name: 'Full Stack Developer Level 2', classification: 'IS 21' },
