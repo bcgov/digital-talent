@@ -30,8 +30,8 @@ export const CandidateListPage = () => {
       title: '# Years Exp',
     },
     {
-      key: 'available_at',
-      dataIndex: 'available_at',
+      key: 'available_as_of_date',
+      dataIndex: 'available_as_of_date',
       title: 'Available',
     },
     {
