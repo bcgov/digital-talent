@@ -5,20 +5,6 @@ generator client {
   provider = "prisma-client-js"
 }
 
-generator nestjsDto {
-  provider                        = "prisma-generator-nestjs-dto"
-  output                          = "../src/generated/dtos"
-  outputToNestJsResourceStructure = "false"
-  exportRelationModifierClasses   = "true"
-  reExport                        = "false"
-  createDtoPrefix                 = "Create"
-  updateDtoPrefix                 = "Update"
-  dtoSuffix                       = "Dto"
-  entityPrefix                    = ""
-  entitySuffix                    = ""
-  fileNamingStyle                 = "kebab"
-}
-
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
@@ -42,17 +28,11 @@ enum ResidencyStatus {
 }
 
 model User {
-  /// @DtoCreateOptional
-  /// @DtoUpdateHidden
   id         String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   idir_id    String    @unique
   name       String
   roles      String[]
-  /// @DtoCreateHidden
-  /// @DtoUpdateHidden
   created_at DateTime  @default(now())
-  /// @DtoCreateHidden
-  /// @DtoUpdateHidden
   updated_at DateTime? @updatedAt
 
   candidates      Candidate[]
@@ -62,16 +42,10 @@ model User {
 }
 
 model DigitalTalentRole {
-  /// @DtoCreateOptional
-  /// @DtoUpdateHidden
   id             String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   name           String
   classification String
-  /// @DtoCreateHidden
-  /// @DtoUpdateHidden
   created_at     DateTime  @default(now())
-  /// @DtoCreateHidden
-  /// @DtoUpdateHidden
   updated_at     DateTime? @updatedAt
 
   candidates  Candidate[]
@@ -81,15 +55,9 @@ model DigitalTalentRole {
 }
 
 model Location {
-  /// @DtoCreateOptional
-  /// @DtoUpdateHidden
   id         String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   name       String
-  /// @DtoCreateHidden
-  /// @DtoUpdateHidden
   created_at DateTime  @default(now())
-  /// @DtoCreateHidden
-  /// @DtoUpdateHidden
   updated_at DateTime? @updatedAt
 
   candidates    CandidateLocation[]
@@ -99,16 +67,10 @@ model Location {
 }
 
 model Ministry {
-  /// @DtoCreateOptional
-  /// @DtoUpdateHidden
   id         String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   code       String
   name       String
-  /// @DtoCreateHidden
-  /// @DtoUpdateHidden
   created_at DateTime  @default(now())
-  /// @DtoCreateHidden
-  /// @DtoUpdateHidden
   updated_at DateTime? @updatedAt
 
   hiring_managers HiringManager[]
@@ -117,16 +79,10 @@ model Ministry {
 }
 
 model Skill {
-  /// @DtoCreateOptional
-  /// @DtoUpdateHidden
   id                   String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   name                 String
   min_years_experience Int
-  /// @DtoCreateHidden
-  /// @DtoUpdateHidden
   created_at           DateTime  @default(now())
-  /// @DtoCreateHidden
-  /// @DtoUpdateHidden
   updated_at           DateTime? @updatedAt
 
   candidates    CandidateSkill[]
@@ -136,14 +92,8 @@ model Skill {
 }
 
 model Candidate {
-  /// @DtoCreateOptional
-  /// @DtoUpdateHidden
   id                      String           @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  /// @DtoCreateOptional
-  /// @DtoUpdateOptional
   assigned_to_id          String?          @db.Uuid
-  /// @DtoCreateOptional
-  /// @DtoUpdateOptional
   role_id                 String?          @db.Uuid
   name                    String?
   email_address           String?
@@ -157,11 +107,7 @@ model Candidate {
   knowledge_and_abilities String?
   links                   String[]
   marketing_qualities     String[]
-  /// @DtoCreateHidden
-  /// @DtoUpdateHidden
   created_at              DateTime         @default(now())
-  /// @DtoCreateHidden
-  /// @DtoUpdateHidden
   updated_at              DateTime?        @updatedAt
 
   locations     CandidateLocation[]
@@ -174,18 +120,10 @@ model Candidate {
 }
 
 model CandidateLocation {
-  /// @DtoCreateOptional
-  /// @DtoUpdateOptional
   candidate_id String    @db.Uuid
-  /// @DtoCreateOptional
-  /// @DtoUpdateOptional
   location_id  String    @db.Uuid
   rank         Int
-  /// @DtoCreateHidden
-  /// @DtoUpdateHidden
   created_at   DateTime  @default(now())
-  /// @DtoCreateHidden
-  /// @DtoUpdateHidden
   updated_at   DateTime? @updatedAt
 
   candidate Candidate @relation(fields: [candidate_id], references: [id])
@@ -196,17 +134,9 @@ model CandidateLocation {
 }
 
 model CandidateOpportunity {
-  /// @DtoCreateOptional
-  /// @DtoUpdateOptional
   candidate_id   String    @db.Uuid
-  /// @DtoCreateOptional
-  /// @DtoUpdateOptional
   opportunity_id String    @db.Uuid
-  /// @DtoCreateHidden
-  /// @DtoUpdateHidden
   created_at     DateTime  @default(now())
-  /// @DtoCreateHidden
-  /// @DtoUpdateHidden
   updated_at     DateTime? @updatedAt
 
   candidate   Candidate   @relation(fields: [candidate_id], references: [id])
@@ -217,17 +147,9 @@ model CandidateOpportunity {
 }
 
 model CandidateSkill {
-  /// @DtoCreateOptional
-  /// @DtoUpdateOptional
   candidate_id String    @db.Uuid
-  /// @DtoCreateOptional
-  /// @DtoUpdateOptional
   skill_id     String    @db.Uuid
-  /// @DtoCreateHidden
-  /// @DtoUpdateHidden
   created_at   DateTime  @default(now())
-  /// @DtoCreateHidden
-  /// @DtoUpdateHidden
   updated_at   DateTime? @updatedAt
 
   candidate Candidate @relation(fields: [candidate_id], references: [id])
@@ -238,21 +160,11 @@ model CandidateSkill {
 }
 
 model HiringManager {
-  /// @DtoCreateOptional
-  /// @DtoUpdateHidden
   id             String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  /// @DtoCreateOptional
-  /// @DtoUpdateOptional
   assigned_to_id String?   @db.Uuid
-  /// @DtoCreateOptional
-  /// @DtoUpdateOptional
   ministry_id    String?   @db.Uuid
   name           String?
-  /// @DtoCreateHidden
-  /// @DtoUpdateHidden
   created_at     DateTime  @default(now())
-  /// @DtoCreateHidden
-  /// @DtoUpdateHidden
   updated_at     DateTime? @updatedAt
 
   ministry    Ministry? @relation(fields: [ministry_id], references: [id])
@@ -262,17 +174,11 @@ model HiringManager {
 }
 
 model Team {
-  /// @DtoCreateOptional
-  /// @DtoUpdateHidden
   id          String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   name        String?
   description String?
   links       String[]
-  /// @DtoCreateHidden
-  /// @DtoUpdateHidden
   created_at  DateTime  @default(now())
-  /// @DtoCreateHidden
-  /// @DtoUpdateHidden
   updated_at  DateTime? @updatedAt
 
   opportunities Opportunity[]
@@ -281,21 +187,11 @@ model Team {
 }
 
 model Opportunity {
-  /// @DtoCreateOptional
-  /// @DtoUpdateHidden
   id         String           @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  /// @DtoCreateOptional
-  /// @DtoUpdateOptional
   role_id    String           @db.Uuid
-  /// @DtoCreateOptional
-  /// @DtoUpdateOptional
   team_id    String           @db.Uuid
   state      OpportunityState
-  /// @DtoCreateHidden
-  /// @DtoUpdateHidden
   created_at DateTime         @default(now())
-  /// @DtoCreateHidden
-  /// @DtoUpdateHidden
   updated_at DateTime?        @updatedAt
 
   candidates CandidateOpportunity[]
@@ -308,17 +204,9 @@ model Opportunity {
 }
 
 model OpportunityLocation {
-  /// @DtoCreateOptional
-  /// @DtoUpdateOptional
   location_id    String    @db.Uuid
-  /// @DtoCreateOptional
-  /// @DtoUpdateOptional
   opportunity_id String    @db.Uuid
-  /// @DtoCreateHidden
-  /// @DtoUpdateHidden
   created_at     DateTime  @default(now())
-  /// @DtoCreateHidden
-  /// @DtoUpdateHidden
   updated_at     DateTime? @updatedAt
 
   location    Location    @relation(fields: [location_id], references: [id])
@@ -329,18 +217,10 @@ model OpportunityLocation {
 }
 
 model OpportunitySkill {
-  /// @DtoCreateOptional
-  /// @DtoUpdateOptional
   opportunity_id String    @db.Uuid
-  /// @DtoCreateOptional
-  /// @DtoUpdateOptional
   skill_id       String    @db.Uuid
   is_mandatory   Boolean
-  /// @DtoCreateHidden
-  /// @DtoUpdateHidden
   created_at     DateTime  @default(now())
-  /// @DtoCreateHidden
-  /// @DtoUpdateHidden
   updated_at     DateTime? @updatedAt
 
   opportunity Opportunity @relation(fields: [opportunity_id], references: [id])

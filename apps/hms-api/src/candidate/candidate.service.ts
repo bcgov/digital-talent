@@ -3,15 +3,13 @@ import { Candidate } from '@prisma/client';
 import { ApiPagedResponseDto } from '../dtos/api-paged-response.dto';
 import { ApiResponseDto } from '../dtos/api-response.dto';
 import { PageMetaDto } from '../dtos/page-meta.dto';
-import { CreateCandidateDto } from '../generated/dtos/create-candidate.dto';
-import { UpdateCandidateDto } from '../generated/dtos/update-candidate.dto';
 import { PrismaService } from '../services/prisma/prisma.service';
 
 @Injectable()
 export class CandidateService {
   constructor(private readonly prisma: PrismaService) {}
 
-  async createCandidate(data: CreateCandidateDto) {
+  async createCandidate(data: Record<string, any>) {
     try {
       const candidate = await this.prisma.candidate.create({
         data,
@@ -35,7 +33,7 @@ export class CandidateService {
     );
   }
 
-  async updateCandidate(id: string, data: UpdateCandidateDto) {
+  async updateCandidate(id: string, data: Record<string, any>) {
     await this.getCandidate(id);
 
     const candidate = await this.prisma.candidate.update({
