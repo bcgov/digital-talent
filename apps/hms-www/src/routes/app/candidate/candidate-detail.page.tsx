@@ -209,7 +209,7 @@ export const CandidateDetailPage = () => {
                     control={control}
                     inputProps={{ mode: 'multiple' }}
                     label="Preferred Locations"
-                    name="locations"
+                    name="location_ids"
                   />
                 </Col>
               </Row>
