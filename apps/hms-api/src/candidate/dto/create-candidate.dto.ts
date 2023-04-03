@@ -69,10 +69,15 @@ export class CreateCandidateDto {
   @ApiProperty()
   @IsOptional()
   @IsString({ each: true })
-  links: string[];
+  links?: string[];
 
   @ApiProperty()
   @IsOptional()
   @IsString({ each: true })
-  marketing_qualities: string[];
+  marketing_qualities?: string[];
+
+  @ApiProperty()
+  @IsOptional()
+  @IsString({ each: true })
+  location_ids?: string[];
 }

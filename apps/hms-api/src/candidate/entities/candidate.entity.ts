@@ -48,6 +48,9 @@ export class CandidateEntity implements Candidate {
   marketing_qualities: string[];
 
   @ApiProperty()
+  location_ids: string[];
+
+  @ApiProperty()
   created_at: Date;
 
   @ApiProperty({ nullable: true })

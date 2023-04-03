@@ -8,6 +8,13 @@ module.exports = easelint({
     root: true,
     overrides: [
       {
+        // All Files
+        files: ['*.{js,jsx,ts,tsx}'],
+        rules: {
+          camelcase: 'off',
+        },
+      },
+      {
         // Files which require devDependencies
         //  config files, tests, etc...
         files: ['*.e2e-spec.ts', '*.spec.ts', 'vite.config.ts'],
@@ -46,7 +53,6 @@ module.exports = easelint({
         files: ['apps/hms-www/**/*.{js,jsx,ts,tsx}'],
         rules: {
           '@typescript-eslint/no-shadow': 'off',
-          camelcase: 'off',
           'import/no-default-export': 'off',
           'react/react-in-jsx-scope': 'off',
           'react/require-default-props': 'off',

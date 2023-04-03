@@ -1,4 +1,6 @@
-import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
+/* eslint-disable no-console */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { ApiPagedResponseDto } from '../dtos/api-paged-response.dto';
 import { ApiResponseDto } from '../dtos/api-response.dto';
 import { PageMetaDto } from '../dtos/page-meta.dto';
@@ -11,46 +13,102 @@ import { CandidateEntity } from './entities/candidate.entity';
 export class CandidateService {
   constructor(private readonly prisma: PrismaService) {}
 
-  async create(createCandidateDto: CreateCandidateDto) {
-    try {
-      const candidate = await this.prisma.candidate.create({
-        data: createCandidateDto,
-      });
+  async create({ location_ids, ...data }: CreateCandidateDto) {
+    const { locations, ...restCandidate } = await this.prisma.candidate.create({
+      data: {
+        ...data,
+        ...(location_ids && {
+          locations: {
+            createMany: {
+              data: (location_ids ?? []).map((location_id) => ({ location_id, rank: 0 })),
+            },
+          },
+        }),
+      },
+      include: {
+        locations: {
+          select: {
+            location_id: true,
+          },
+        },
+      },
+    });
 
-      return new ApiResponseDto<CandidateEntity>(candidate);
-    } catch (error) {
-      throw new BadRequestException();
-    }
+    return new ApiResponseDto<CandidateEntity>({
+      ...restCandidate,
+      location_ids: locations.map((l) => l.location_id),
+    });
   }
 
   async findAll() {
-    const resultsWithCount = await this.prisma.$transaction([
-      this.prisma.candidate.findMany(),
+    const [candidates, count] = await this.prisma.$transaction([
+      this.prisma.candidate.findMany({
+        include: {
+          locations: {
+            select: {
+              location_id: true,
+            },
+          },
+        },
+      }),
       this.prisma.candidate.count(),
     ]);
 
     return new ApiPagedResponseDto<CandidateEntity>(
-      resultsWithCount[0],
-      new PageMetaDto({ itemCount: resultsWithCount[1], options: {} }),
+      candidates.map(({ locations, ...restCandidate }) => ({
+        ...restCandidate,
+        location_ids: locations.map((l) => l.location_id),
+      })),
+      new PageMetaDto({ itemCount: count, options: {} }),
     );
   }
 
   async findOne(id: string) {
-    const candidate = await this.prisma.candidate.findUnique({ where: { id } });
+    const candidate = await this.prisma.candidate.findUnique({
+      where: { id },
+      include: { locations: { select: { location_id: true } } },
+    });
     if (!candidate) throw new NotFoundException();
 
-    return new ApiResponseDto<CandidateEntity>(candidate);
+    const { locations, ...restCandidate } = candidate;
+
+    return new ApiResponseDto<CandidateEntity>({
+      ...restCandidate,
+      location_ids: locations.map((l) => l.location_id),
+    });
   }
 
-  async update(id: string, updateCandidateDto: UpdateCandidateDto) {
+  async update(id: string, { location_ids, ...data }: UpdateCandidateDto) {
     await this.findOne(id);
 
     const candidate = await this.prisma.candidate.update({
       where: { id },
-      data: updateCandidateDto,
+      data: {
+        ...data,
+        ...(location_ids && {
+          locations: {
+            deleteMany: {},
+            createMany: {
+              data: (location_ids ?? []).map((location_id) => ({ location_id, rank: 0 })),
+            },
+          },
+        }),
+      },
+      include: {
+        locations: {
+          select: {
+            location_id: true,
+          },
+        },
+      },
     });
 
-    return new ApiResponseDto<CandidateEntity>(candidate);
+    const { locations, ...restCandidate } = candidate;
+
+    return new ApiResponseDto<CandidateEntity>({
+      ...restCandidate,
+      location_ids: locations.map((l) => l.location_id),
+    });
   }
 
   remove(id: string) {
