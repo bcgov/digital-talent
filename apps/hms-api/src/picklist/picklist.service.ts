@@ -1,79 +1,144 @@
+/* eslint-disable no-console */
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { ApiPagedResponseDto } from '../dtos/api-paged-response.dto';
-import { PageMetaDto } from '../dtos/page-meta.dto';
+import { SkillCategory } from '@prisma/client';
 import { PrismaService } from '../services/prisma/prisma.service';
 
-enum ContextMapKeys {
-  'digital-talent-roles' = 'digital-talent-roles',
-  locations = 'locations',
-  ministries = 'ministries',
+export interface PicklistOption {
+  label: string;
+  value: string;
 }
 
-interface ContextMapValues {
-  name: string;
-  select: Record<string, boolean>;
-  mapFields: Record<string, string>;
-  orderBy: Record<string, 'asc' | 'desc'>[];
+export interface GroupedPicklist {
+  label: string;
+  options: PicklistOption[];
 }
 
-type ContextMap = {
-  [key in ContextMapKeys]: ContextMapValues;
-};
+export type Picklist = PicklistOption[] | GroupedPicklist[];
+
+export type PicklistScope = 'digital-talent-roles' | 'locations' | 'ministries' | 'skills';
 
 @Injectable()
 export class PicklistService {
   constructor(private readonly prismaService: PrismaService) {}
 
-  private contextMap: ContextMap = {
-    'digital-talent-roles': {
-      name: 'digitalTalentRole',
-      select: { id: true, name: true },
-      mapFields: { label: 'name', value: 'id' },
-      orderBy: [
-        {
-          name: 'asc',
-        },
-      ],
-    },
-    locations: {
-      name: 'location',
-      select: { id: true, name: true },
-      mapFields: { label: 'name', value: 'id' },
-      orderBy: [
-        {
-          name: 'asc',
-        },
-      ],
-    },
-    ministries: {
-      name: 'ministry',
-      select: { id: true, name: true },
-      mapFields: { label: 'name', value: 'id' },
-      orderBy: [
-        {
-          name: 'asc',
-        },
-      ],
-    },
-  };
+  scopes: PicklistScope[] = ['digital-talent-roles', 'locations', 'ministries', 'skills'];
 
-  async getPicklist(context: string) {
-    if (!Object.keys(this.contextMap).includes(context)) {
-      throw new NotFoundException();
+  findOne(id: PicklistScope) {
+    switch (id) {
+      case 'digital-talent-roles': {
+        return this.findDigitalTalentRolePicklist();
+      }
+      case 'locations': {
+        return this.findLocationPicklist();
+      }
+      case 'ministries': {
+        return this.findMinistriesPicklist();
+      }
+      case 'skills': {
+        return this.findSkillsPicklist();
+      }
+      default: {
+        throw new NotFoundException();
+      }
     }
+  }
 
-    const scope: ContextMapValues = this.contextMap[context];
-
+  async findDigitalTalentRolePicklist(): Promise<[number, PicklistOption[]]> {
     const [count, data] = await this.prismaService.$transaction([
-      this.prismaService[scope.name].count(),
-      this.prismaService[scope.name].findMany({
-        select: scope.select,
-        orderBy: scope.orderBy,
+      this.prismaService.digitalTalentRole.count(),
+      this.prismaService.digitalTalentRole.findMany({
+        select: { id: true, name: true },
+        orderBy: [
+          {
+            name: 'asc',
+          },
+        ],
       }),
     ]);
 
-    const mappedData = data.map((d) => ({ label: d[scope.mapFields.label], value: d[scope.mapFields.value] }));
+    const picklist: Picklist = data.map(({ id, name }) => ({ label: name, value: id }));
 
-    return new ApiPagedResponseDto(mappedData, new PageMetaDto({ itemCount: count, options: {} }));
+    return [count, picklist];
+  }
+
+  async findLocationPicklist(): Promise<[number, PicklistOption[]]> {
+    const [count, data] = await this.prismaService.$transaction([
+      this.prismaService.location.count(),
+      this.prismaService.location.findMany({
+        select: { id: true, name: true },
+        orderBy: [
+          {
+            name: 'asc',
+          },
+        ],
+      }),
+    ]);
+
+    const picklist: Picklist = data.map(({ id, name }) => ({ label: name, value: id }));
+
+    return [count, picklist];
+  }
+
+  async findMinistriesPicklist(): Promise<[number, PicklistOption[]]> {
+    const [count, data] = await this.prismaService.$transaction([
+      this.prismaService.ministry.count(),
+      this.prismaService.ministry.findMany({
+        select: { id: true, name: true },
+        orderBy: [
+          {
+            name: 'asc',
+          },
+        ],
+      }),
+    ]);
+
+    const picklist: Picklist = data.map(({ id, name }) => ({ label: name, value: id }));
+
+    return [count, picklist];
+  }
+
+  async findSkillsPicklist(): Promise<[number, GroupedPicklist[]]> {
+    const [count, data] = await this.prismaService.$transaction([
+      this.prismaService.skill.count(),
+      this.prismaService.skill.findMany({
+        select: { id: true, name: true, category: true, num_years_experience: true },
+        orderBy: [
+          {
+            category: 'asc',
+          },
+          {
+            name: 'asc',
+          },
+          {
+            num_years_experience: 'asc',
+          },
+        ],
+      }),
+    ]);
+
+    const skillCategories: SkillCategory[] = [
+      'CLOUD_PLATFORMS',
+      'CONCEPTS',
+      'DATABASES',
+      'FRAMEWORKS_AND_TECHNOLOGIES',
+      'OPERATING_SYSTEMS',
+      'PROGRAMMING_LANGUAGES',
+      'TOOLS',
+    ];
+
+    const picklist = skillCategories.map((category) => ({
+      label: category
+        .split('_')
+        .map((word) => `${word[0].toUpperCase()}${word.substring(1).toLowerCase()}`)
+        .join(' '),
+      options: data
+        .filter((d) => d.category === category)
+        .map(({ id, name, num_years_experience }) => ({
+          label: `${name} (${num_years_experience}+ years)`,
+          value: id,
+        })),
+    })) as GroupedPicklist[];
+
+    return [count, picklist];
   }
 }

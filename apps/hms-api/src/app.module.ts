@@ -1,7 +1,6 @@
 import { CacheModule, Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { APP_GUARD } from '@nestjs/core';
-import { ApiV0Module } from './api/v0/api-v0.module';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { AuthModule } from './auth/auth.module';
@@ -18,7 +17,6 @@ import { validate } from './validation/environment.validation';
     ConfigModule.forRoot({ isGlobal: true, validate }),
     AuthModule,
     CandidateModule,
-    ApiV0Module,
     PicklistModule,
   ],
   controllers: [AppController],

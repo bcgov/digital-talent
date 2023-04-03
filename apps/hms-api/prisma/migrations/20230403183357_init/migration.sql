@@ -7,6 +7,9 @@ CREATE TYPE "OpportunityState" AS ENUM ('OPEN', 'CLOSED');
 -- CreateEnum
 CREATE TYPE "ResidencyStatus" AS ENUM ('CITIZEN', 'PR', 'PR_WIP', 'PERMIT', 'INELIGIBLE');
 
+-- CreateEnum
+CREATE TYPE "SkillCategory" AS ENUM ('CLOUD_PLATFORMS', 'CONCEPTS', 'DATABASES', 'FRAMEWORKS_AND_TECHNOLOGIES', 'OPERATING_SYSTEMS', 'PROGRAMMING_LANGUAGES', 'TOOLS');
+
 -- CreateTable
 CREATE TABLE "user" (
     "id" UUID NOT NULL DEFAULT gen_random_uuid(),
@@ -54,8 +57,9 @@ CREATE TABLE "ministry" (
 -- CreateTable
 CREATE TABLE "skill" (
     "id" UUID NOT NULL DEFAULT gen_random_uuid(),
+    "category" "SkillCategory" NOT NULL,
     "name" TEXT NOT NULL,
-    "min_years_experience" INTEGER NOT NULL,
+    "num_years_experience" INTEGER NOT NULL,
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMP(3),
 

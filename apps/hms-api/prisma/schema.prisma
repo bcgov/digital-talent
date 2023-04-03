@@ -27,6 +27,16 @@ enum ResidencyStatus {
   INELIGIBLE
 }
 
+enum SkillCategory {
+  CLOUD_PLATFORMS
+  CONCEPTS
+  DATABASES
+  FRAMEWORKS_AND_TECHNOLOGIES
+  OPERATING_SYSTEMS
+  PROGRAMMING_LANGUAGES
+  TOOLS
+}
+
 model User {
   id         String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   idir_id    String    @unique
@@ -79,11 +89,12 @@ model Ministry {
 }
 
 model Skill {
-  id                   String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  id                   String        @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  category             SkillCategory
   name                 String
-  min_years_experience Int
-  created_at           DateTime  @default(now())
-  updated_at           DateTime? @updatedAt
+  num_years_experience Int
+  created_at           DateTime      @default(now())
+  updated_at           DateTime?     @updatedAt
 
   candidates    CandidateSkill[]
   opportunities OpportunitySkill[]
