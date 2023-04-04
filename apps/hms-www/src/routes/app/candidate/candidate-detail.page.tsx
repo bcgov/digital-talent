@@ -69,6 +69,8 @@ export const CandidateDetailPage = () => {
         });
       }
 
+      console.log('isError: ', isError);
+
       if (isError) {
         notification.open({
           key: requestId,
@@ -80,11 +82,13 @@ export const CandidateDetailPage = () => {
   }, [updateResult]);
 
   useEffect(() => {
-    notification.open({
-      key: 'error',
-      message: error,
-      type: 'error',
-    });
+    if (error != null) {
+      notification.open({
+        key: 'error',
+        message: error,
+        type: 'error',
+      });
+    }
   }, [error]);
 
   useEffect(() => {
@@ -92,6 +96,7 @@ export const CandidateDetailPage = () => {
       if (isUUID(params.id, 4)) {
         trigger(params.id);
       } else {
+        console.log('setError');
         setError(404);
       }
     }
