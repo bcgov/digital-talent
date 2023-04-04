@@ -4,6 +4,9 @@ import { api } from './api';
 
 export const candidatesApi = api.injectEndpoints({
   endpoints: (builder) => ({
+    createCandidate: builder.mutation<ApiResponse, Record<string, any>>({
+      query: (data) => ({ url: `v0/candidates`, method: 'POST', body: data }),
+    }),
     getCandidates: builder.query<ApiPagedResponse, void>({
       query: () => ({ url: 'v0/candidates' }),
     }),
@@ -24,6 +27,7 @@ export const candidatesApi = api.injectEndpoints({
 });
 
 export const {
+  useCreateCandidateMutation,
   useGetCandidatesQuery,
   useLazyGetCandidatesQuery,
   useGetCandidateQuery,
@@ -32,5 +36,5 @@ export const {
 } = candidatesApi;
 
 export const {
-  endpoints: { getCandidates, getCandidate, updateCandidate },
+  endpoints: { createCandidate, getCandidates, getCandidate, updateCandidate },
 } = candidatesApi;

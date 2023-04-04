@@ -1,12 +1,12 @@
+/* eslint-disable no-console */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable no-nested-ternary */
-/* eslint-disable no-console */
 import { Button, Card, Col, notification, Row, Space, Typography } from 'antd';
 import { isUUID } from 'class-validator';
 import dayjs from 'dayjs';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { FloatApiSelect } from '../../../components/common/form/float-api-select.component';
 import { FloatInputArray } from '../../../components/common/form/float-array-input.component';
 import { FloatBooleanSelect } from '../../../components/common/form/float-boolean-select.component';
@@ -14,7 +14,12 @@ import { FloatDatePicker } from '../../../components/common/form/float-datepicke
 import { FloatInputNumber } from '../../../components/common/form/float-input-number.component';
 import { FloatInput } from '../../../components/common/form/float-input.component';
 import { FloatSelect } from '../../../components/common/form/float-select.component';
-import { useLazyGetCandidateQuery, useUpdateCandidateMutation } from '../../../redux/services/candidate';
+import {
+  useCreateCandidateMutation,
+  useLazyGetCandidateQuery,
+  useUpdateCandidateMutation,
+} from '../../../redux/services/candidate';
+import { Routes } from '../../../router/route.constants';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const serialize = (data: Record<string, any>) => {
@@ -23,7 +28,7 @@ const serialize = (data: Record<string, any>) => {
 
   const delta = {
     assigned_to_id: assigned_to_id == null ? null : assigned_to_id,
-    available_as_of_date: dayjs(available_as_of_date).format('YYYY-MM-DD'),
+    available_as_of_date: available_as_of_date != null ? dayjs(available_as_of_date).format('YYYY-MM-DD') : null,
     is_contacted: is_contacted === 'true' ? true : is_contacted === 'false' ? false : null,
     residency_status: residency_status == null ? null : residency_status,
     status: status == null ? null : status,
@@ -51,25 +56,27 @@ const deserialize = (data: Record<string, any>) => {
 export const CandidateDetailPage = () => {
   const { Title } = Typography;
   const params = useParams();
-  const [error, setError] = useState<number | undefined>(undefined);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [data, setData] = useState<Record<string, any>>();
   const [trigger, result] = useLazyGetCandidateQuery();
+  const [createCandidate, createResult] = useCreateCandidateMutation();
   const [updateCandidate, updateResult] = useUpdateCandidateMutation();
+  const navigate = useNavigate();
 
   useEffect(() => {
-    const { requestId, isUninitialized, isLoading, isSuccess, isError } = updateResult;
+    const { requestId, isUninitialized, isLoading, isSuccess, isError } = params.id ? updateResult : createResult;
 
     if (!isUninitialized && !isLoading) {
       if (isSuccess) {
         notification.open({
           key: requestId,
-          message: 'Candidate Updated',
+          message: `Candidate ${params.id ? 'Updated' : 'Created'}`,
           type: 'success',
         });
+        if (params.id == null) {
+          navigate(Routes.App.Candidate.ROOT);
+        }
       }
-
-      console.log('isError: ', isError);
 
       if (isError) {
         notification.open({
@@ -79,28 +86,23 @@ export const CandidateDetailPage = () => {
         });
       }
     }
-  }, [updateResult]);
+  }, [createResult, navigate, params.id, updateResult]);
 
   useEffect(() => {
-    if (error != null) {
-      notification.open({
-        key: 'error',
-        message: error,
-        type: 'error',
-      });
-    }
-  }, [error]);
-
-  useEffect(() => {
+    // This runs when the page is accessed with candidates/:id
     if (params.id) {
       if (isUUID(params.id, 4)) {
         trigger(params.id);
       } else {
-        console.log('setError');
-        setError(404);
+        notification.open({
+          key: 'error',
+          message: 'Could not find the associated candidate',
+          type: 'error',
+        });
+        navigate(Routes.App.Candidate.ROOT);
       }
     }
-  }, [trigger, params]);
+  }, [navigate, trigger, params]);
 
   useEffect(() => {
     if (result.data) {
@@ -115,7 +117,13 @@ export const CandidateDetailPage = () => {
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const onSubmit = async (data: Record<string, any>) => {
-    await updateCandidate(serialize(data));
+    if (params?.id) {
+      // Update existing record
+      await updateCandidate(serialize(data));
+    } else {
+      // Create a new record
+      await createCandidate(serialize(data));
+    }
   };
 
   return (

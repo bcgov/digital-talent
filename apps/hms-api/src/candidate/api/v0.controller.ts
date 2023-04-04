@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { Body, Controller, Delete, Get, Param, Patch, Post, Put, UsePipes, ValidationPipe } from '@nestjs/common';
 import { CandidateLocationService } from '../candidate-location.service';
 import { CandidateService } from '../candidate.service';

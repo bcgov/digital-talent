@@ -1,5 +1,5 @@
-import { IconExternalLink } from '@tabler/icons-react';
-import { Button, Space, Table, Typography } from 'antd';
+import { IconExternalLink, IconPlus } from '@tabler/icons-react';
+import { Button, Col, Row, Space, Table, Typography } from 'antd';
 import { ColumnsType } from 'antd/es/table';
 import { Link } from 'react-router-dom';
 import { useGetCandidatesQuery } from '../../../redux/services/candidate';
@@ -91,7 +91,21 @@ export const CandidateListPage = () => {
 
   return (
     <>
-      <Title>Candidates</Title>
+      <Row>
+        <Col flex="1">
+          <Title>Candidates</Title>
+        </Col>
+        <Col>
+          <Link to={Routes.App.Candidate.CREATE}>
+            <Button type="primary">
+              <Space direction="horizontal" size="small">
+                <IconPlus size={12} />
+                New Candidate
+              </Space>
+            </Button>
+          </Link>
+        </Col>
+      </Row>
       <Table columns={columns} dataSource={data?.data} loading={isLoading} scroll={{ x: 1000 }} size="small" />
     </>
   );
