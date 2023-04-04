@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.3",
+    "@tabler/icons-react": "^2.13.2",
     "antd": "^5.3.2",
     "class-validator": "^0.14.0",
     "dayjs": "^1.11.7",

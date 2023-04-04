@@ -1,4 +1,5 @@
-import { Button, Table, Typography } from 'antd';
+import { IconExternalLink } from '@tabler/icons-react';
+import { Button, Space, Table, Typography } from 'antd';
 import { ColumnsType } from 'antd/es/table';
 import { Link } from 'react-router-dom';
 import { useGetCandidatesQuery } from '../../../redux/services/candidate';
@@ -23,6 +24,23 @@ export const CandidateListPage = () => {
       key: 'linkedin_url',
       dataIndex: 'linkedin_url',
       title: 'LinkedIn',
+      render: (value) => {
+        try {
+          const url = new URL(value);
+          return (
+            <a href={url.href} rel="noreferrer" target="_blank">
+              <Button>
+                <Space size="small">
+                  <IconExternalLink size={12} />
+                  Open
+                </Space>
+              </Button>
+            </a>
+          );
+        } catch (error) {
+          return '';
+        }
+      },
     },
     {
       key: 'num_years_exp',
