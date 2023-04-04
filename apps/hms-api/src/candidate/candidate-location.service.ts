@@ -23,7 +23,6 @@ export class CandidateLocationService {
   }
 
   async update(id: string, data: UpdateCandidateLocationDto[]) {
-    console.log('data: ', data);
     const flatData = data.map((d) => d.location_id);
 
     await this.prisma.$transaction([

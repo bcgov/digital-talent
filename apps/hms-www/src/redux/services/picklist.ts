@@ -14,13 +14,7 @@ export type PicklistArgs = {
 export const picklistsApi = api.injectEndpoints({
   endpoints: (builder) => ({
     getPicklist: builder.query<ApiPagedResponse, PicklistArgs>({
-      query: (args) => {
-        console.log('args: ', args);
-        const str = `v0/picklists/${args.scope}${args.filter ? `?${qs.stringify(args.filter)}` : ''}`;
-        console.log('str: ', str);
-
-        return str;
-      },
+      query: (args) => `v0/picklists/${args.scope}${args.filter ? `?${qs.stringify(args.filter)}` : ''}`,
     }),
   }),
 });

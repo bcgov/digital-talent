@@ -29,8 +29,6 @@ const serialize = (data: Record<string, any>) => {
     ...rest,
   };
 
-  console.log('delta: ', delta);
-
   return delta;
 };
 
