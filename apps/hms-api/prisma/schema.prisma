@@ -176,41 +176,48 @@ model HiringManager {
   assigned_to_id String?   @db.Uuid
   ministry_id    String?   @db.Uuid
   name           String?
+  email          String?
   created_at     DateTime  @default(now())
   updated_at     DateTime? @updatedAt
 
-  ministry    Ministry? @relation(fields: [ministry_id], references: [id])
-  assigned_to User?     @relation(fields: [assigned_to_id], references: [id])
+  opportunities Opportunity[]
+  teams         Team[]
+  ministry      Ministry?     @relation(fields: [ministry_id], references: [id])
+  assigned_to   User?         @relation(fields: [assigned_to_id], references: [id])
 
   @@map("hiring_manager")
 }
 
 model Team {
-  id          String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  name        String?
-  description String?
-  links       String[]
-  created_at  DateTime  @default(now())
-  updated_at  DateTime? @updatedAt
+  id                String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  hiring_manager_id String    @db.Uuid
+  name              String?
+  description       String?
+  links             String[]
+  created_at        DateTime  @default(now())
+  updated_at        DateTime? @updatedAt
 
-  opportunities Opportunity[]
+  opportunities  Opportunity[]
+  hiring_manager HiringManager @relation(fields: [hiring_manager_id], references: [id])
 
   @@map("team")
 }
 
 model Opportunity {
-  id         String           @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  role_id    String           @db.Uuid
-  team_id    String           @db.Uuid
-  state      OpportunityState
-  created_at DateTime         @default(now())
-  updated_at DateTime?        @updatedAt
+  id                String           @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  hiring_manager_id String           @db.Uuid
+  role_id           String           @db.Uuid
+  team_id           String           @db.Uuid
+  state             OpportunityState
+  created_at        DateTime         @default(now())
+  updated_at        DateTime?        @updatedAt
 
-  candidates CandidateOpportunity[]
-  locations  OpportunityLocation[]
-  skills     OpportunitySkill[]
-  role       DigitalTalentRole      @relation(fields: [role_id], references: [id])
-  team       Team                   @relation(fields: [team_id], references: [id])
+  candidates     CandidateOpportunity[]
+  locations      OpportunityLocation[]
+  skills         OpportunitySkill[]
+  hiring_manager HiringManager          @relation(fields: [hiring_manager_id], references: [id])
+  role           DigitalTalentRole      @relation(fields: [role_id], references: [id])
+  team           Team                   @relation(fields: [team_id], references: [id])
 
   @@map("opportunity")
 }

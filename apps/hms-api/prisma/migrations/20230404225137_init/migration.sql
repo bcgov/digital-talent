@@ -127,6 +127,7 @@ CREATE TABLE "hiring_manager" (
     "assigned_to_id" UUID,
     "ministry_id" UUID,
     "name" TEXT,
+    "email" TEXT,
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMP(3),
 
@@ -136,6 +137,7 @@ CREATE TABLE "hiring_manager" (
 -- CreateTable
 CREATE TABLE "team" (
     "id" UUID NOT NULL DEFAULT gen_random_uuid(),
+    "hiring_manager_id" UUID NOT NULL,
     "name" TEXT,
     "description" TEXT,
     "links" TEXT[],
@@ -148,6 +150,7 @@ CREATE TABLE "team" (
 -- CreateTable
 CREATE TABLE "opportunity" (
     "id" UUID NOT NULL DEFAULT gen_random_uuid(),
+    "hiring_manager_id" UUID NOT NULL,
     "role_id" UUID NOT NULL,
     "team_id" UUID NOT NULL,
     "state" "OpportunityState" NOT NULL,
@@ -210,6 +213,12 @@ ALTER TABLE "hiring_manager" ADD CONSTRAINT "hiring_manager_ministry_id_fkey" FO
 
 -- AddForeignKey
 ALTER TABLE "hiring_manager" ADD CONSTRAINT "hiring_manager_assigned_to_id_fkey" FOREIGN KEY ("assigned_to_id") REFERENCES "user"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "team" ADD CONSTRAINT "team_hiring_manager_id_fkey" FOREIGN KEY ("hiring_manager_id") REFERENCES "hiring_manager"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "opportunity" ADD CONSTRAINT "opportunity_hiring_manager_id_fkey" FOREIGN KEY ("hiring_manager_id") REFERENCES "hiring_manager"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "opportunity" ADD CONSTRAINT "opportunity_role_id_fkey" FOREIGN KEY ("role_id") REFERENCES "digital_talent_role"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
