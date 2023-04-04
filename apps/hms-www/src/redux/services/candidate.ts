@@ -6,12 +6,20 @@ export const candidatesApi = api.injectEndpoints({
   endpoints: (builder) => ({
     createCandidate: builder.mutation<ApiResponse, Record<string, any>>({
       query: (data) => ({ url: `v0/candidates`, method: 'POST', body: data }),
+      invalidatesTags: [{ type: 'Candidates', id: 'LIST' }],
     }),
     getCandidates: builder.query<ApiPagedResponse, void>({
       query: () => ({ url: 'v0/candidates' }),
+      providesTags: (result) => {
+        return [
+          ...(result?.data ?? []).map(({ id }) => ({ type: 'Candidates', id: id as string } as const)),
+          { type: 'Candidates' as const, id: 'LIST' },
+        ];
+      },
     }),
     getCandidate: builder.query<ApiResponse, string>({
       query: (id) => `v0/candidates/${id}`,
+      providesTags: (_result, _error, id) => [{ type: 'Candidates', id }],
     }),
     updateCandidate: builder.mutation<ApiResponse, Record<string, any>>({
       query: (data) => {
@@ -22,6 +30,7 @@ export const candidatesApi = api.injectEndpoints({
           body,
         };
       },
+      invalidatesTags: [{ type: 'Candidates', id: 'LIST' }],
     }),
   }),
 });
