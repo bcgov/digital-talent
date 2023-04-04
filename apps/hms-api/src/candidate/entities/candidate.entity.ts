@@ -38,8 +38,8 @@ export class CandidateEntity implements Candidate {
   @ApiProperty({ nullable: true })
   is_contacted: boolean | null;
 
-  @ApiProperty({ nullable: true })
-  knowledge_and_abilities: string | null;
+  @ApiProperty()
+  knowledge_and_abilities: string[];
 
   @ApiProperty()
   links: string[];

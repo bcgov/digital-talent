@@ -260,9 +260,43 @@ export const CandidateDetailPage = () => {
               Links
             </Title>
             <Row gutter={[8, 8]}>
-              <Col md={12} xs={24}>
+              <Col xs={24}>
                 <Card size="small">
                   <FloatInputArray control={control} inputProps={{ size: 'small' }} label="Link" name="links" />
+                </Card>
+              </Col>
+            </Row>
+          </div>
+          <div>
+            <Title level={2} style={{ fontSize: '20px' }}>
+              Knowledge and Abilities
+            </Title>
+            <Row gutter={[8, 8]}>
+              <Col xs={24}>
+                <Card size="small">
+                  <FloatInputArray
+                    control={control}
+                    inputProps={{ size: 'small' }}
+                    label="Knowledge/Ability"
+                    name="knowledge_and_abilities"
+                  />
+                </Card>
+              </Col>
+            </Row>
+          </div>
+          <div>
+            <Title level={2} style={{ fontSize: '20px' }}>
+              Marketing Qualities
+            </Title>
+            <Row gutter={[8, 8]}>
+              <Col xs={24}>
+                <Card size="small">
+                  <FloatInputArray
+                    control={control}
+                    inputProps={{ size: 'small' }}
+                    label="Marketing Quality"
+                    name="marketing_qualities"
+                  />
                 </Card>
               </Col>
             </Row>

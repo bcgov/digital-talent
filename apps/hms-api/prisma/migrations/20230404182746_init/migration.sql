@@ -80,7 +80,7 @@ CREATE TABLE "candidate" (
     "residency_status" "ResidencyStatus",
     "status" "CandidateStatus",
     "is_contacted" BOOLEAN,
-    "knowledge_and_abilities" TEXT,
+    "knowledge_and_abilities" TEXT[],
     "links" TEXT[],
     "marketing_qualities" TEXT[],
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,

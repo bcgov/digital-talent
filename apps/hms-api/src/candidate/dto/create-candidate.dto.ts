@@ -61,10 +61,10 @@ export class CreateCandidateDto {
   @IsBoolean()
   is_contacted?: boolean | null;
 
-  @ApiProperty({ required: false, nullable: true })
+  @ApiProperty()
   @IsOptional()
-  @IsString()
-  knowledge_and_abilities?: string | null;
+  @IsString({ each: true })
+  knowledge_and_abilities?: string[];
 
   @ApiProperty()
   @IsOptional()

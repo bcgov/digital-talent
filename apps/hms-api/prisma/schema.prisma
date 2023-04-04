@@ -115,7 +115,7 @@ model Candidate {
   residency_status        ResidencyStatus?
   status                  CandidateStatus?
   is_contacted            Boolean?
-  knowledge_and_abilities String?
+  knowledge_and_abilities String[]
   links                   String[]
   marketing_qualities     String[]
   created_at              DateTime         @default(now())
