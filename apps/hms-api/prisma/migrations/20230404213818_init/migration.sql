@@ -15,6 +15,7 @@ CREATE TABLE "user" (
     "id" UUID NOT NULL DEFAULT gen_random_uuid(),
     "idir_id" TEXT NOT NULL,
     "name" TEXT NOT NULL,
+    "email" TEXT NOT NULL,
     "roles" TEXT[],
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMP(3),

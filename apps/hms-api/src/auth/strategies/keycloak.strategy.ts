@@ -28,11 +28,13 @@ export class KeycloakStrategy extends PassportStrategy(Strategy, 'keycloak') {
       },
       update: {
         name: data.name,
+        email: data.email,
         roles: data.client_roles,
       },
       create: {
         idir_id: data.preferred_username,
         name: data.name,
+        email: data.email,
         roles: data.client_roles,
       },
     });
