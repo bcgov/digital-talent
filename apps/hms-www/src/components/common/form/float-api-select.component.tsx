@@ -1,13 +1,15 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { DefaultOptionType } from 'antd/es/select';
-import { PicklistContext, useGetPicklistQuery } from '../../../redux/services/picklist';
+import { PicklistScope, useGetPicklistQuery } from '../../../redux/services/picklist';
 import { FloatSelect, FloatSelectProps } from './float-select.component';
 
 export interface FloatApiSelectProps extends FloatSelectProps {
-  context: PicklistContext;
+  scope: PicklistScope;
+  filter?: Record<string, any>;
 }
 
-export const FloatApiSelect = ({ control, name, label, inputProps, context }: FloatApiSelectProps) => {
-  const { data, isLoading } = useGetPicklistQuery(context);
+export const FloatApiSelect = ({ control, name, label, inputProps, scope, filter }: FloatApiSelectProps) => {
+  const { data, isLoading } = useGetPicklistQuery({ scope, filter });
 
   return (
     <FloatSelect

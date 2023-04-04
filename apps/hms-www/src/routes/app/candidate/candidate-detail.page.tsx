@@ -115,13 +115,38 @@ export const CandidateDetailPage = () => {
 
   return (
     <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
-      <Title>Candidate Detail</Title>
       <form onSubmit={handleSubmit(onSubmit)}>
+        <Row>
+          <Col md={12} xs={24}>
+            <Title>Candidate Detail</Title>
+          </Col>
+          <Col md={12} xs={24}>
+            <FloatApiSelect
+              control={control}
+              label="Assigned To"
+              name="assigned_to_id"
+              scope="users"
+              filter={{
+                filter: {
+                  roles: {
+                    $in: ['dtad-team'],
+                  },
+                },
+              }}
+              inputProps={{
+                filterOption: (input, option) => {
+                  return (option?.label as string).toLowerCase().includes(input.toLowerCase());
+                },
+              }}
+            />
+          </Col>
+        </Row>
         <Space direction="vertical" size="small" style={{ width: '100%' }}>
           <div>
             <Title level={2} style={{ fontSize: '20px' }}>
               General Information
             </Title>
+
             <Card size="small">
               <Row gutter={[8, 8]}>
                 <Col md={6} xs={24}>
@@ -202,23 +227,23 @@ export const CandidateDetailPage = () => {
             <Card size="small">
               <Row gutter={[8, 8]}>
                 <Col md={6} xs={24}>
-                  <FloatApiSelect context="digital-talent-roles" control={control} label="Role" name="role_id" />
+                  <FloatApiSelect control={control} label="Role" name="role_id" scope="digital-talent-roles" />
                 </Col>
                 <Col xs={24}>
                   <FloatApiSelect
-                    context="locations"
                     control={control}
                     inputProps={{ mode: 'multiple' }}
                     label="Preferred Locations"
                     name="location_ids"
+                    scope="locations"
                   />
                 </Col>
                 <Col xs={24}>
                   <FloatApiSelect
-                    context="skills"
                     control={control}
                     label="Skills"
                     name="skill_ids"
+                    scope="skills"
                     inputProps={{
                       filterOption: (input, option) => {
                         return (option?.label as string).toLowerCase().includes(input.toLowerCase());

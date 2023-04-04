@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { SkillCategory } from '@prisma/client';
 import { PrismaService } from '../services/prisma/prisma.service';
 
@@ -12,35 +12,11 @@ export interface GroupedPicklist extends PicklistOption {
   options: PicklistOption[];
 }
 
-export type Picklist = PicklistOption[] | GroupedPicklist[];
-
-export type PicklistScope = 'digital-talent-roles' | 'locations' | 'ministries' | 'skills';
+export type PicklistType = PicklistOption[] | GroupedPicklist[];
 
 @Injectable()
 export class PicklistService {
   constructor(private readonly prismaService: PrismaService) {}
-
-  scopes: PicklistScope[] = ['digital-talent-roles', 'locations', 'ministries', 'skills'];
-
-  findOne(id: PicklistScope) {
-    switch (id) {
-      case 'digital-talent-roles': {
-        return this.findDigitalTalentRolePicklist();
-      }
-      case 'locations': {
-        return this.findLocationPicklist();
-      }
-      case 'ministries': {
-        return this.findMinistriesPicklist();
-      }
-      case 'skills': {
-        return this.findSkillsPicklist();
-      }
-      default: {
-        throw new NotFoundException();
-      }
-    }
-  }
 
   async findDigitalTalentRolePicklist(): Promise<[number, PicklistOption[]]> {
     const [count, data] = await this.prismaService.$transaction([
@@ -55,7 +31,7 @@ export class PicklistService {
       }),
     ]);
 
-    const picklist: Picklist = data.map(({ id, name }) => ({ label: name, value: id }));
+    const picklist: PicklistType = data.map(({ id, name }) => ({ label: name, value: id }));
 
     return [count, picklist];
   }
@@ -73,7 +49,7 @@ export class PicklistService {
       }),
     ]);
 
-    const picklist: Picklist = data.map(({ id, name }) => ({ label: name, value: id }));
+    const picklist: PicklistType = data.map(({ id, name }) => ({ label: name, value: id }));
 
     return [count, picklist];
   }
@@ -91,7 +67,7 @@ export class PicklistService {
       }),
     ]);
 
-    const picklist: Picklist = data.map(({ id, name }) => ({ label: name, value: id }));
+    const picklist: PicklistType = data.map(({ id, name }) => ({ label: name, value: id }));
 
     return [count, picklist];
   }
@@ -138,6 +114,36 @@ export class PicklistService {
           value: id,
         })),
     })) as GroupedPicklist[];
+
+    return [count, picklist];
+  }
+
+  async findUsersPicklist(filter: Record<string, any>): Promise<[number, GroupedPicklist[]]> {
+    const [count, data] = await this.prismaService.$transaction([
+      this.prismaService.user.count(),
+      this.prismaService.user.findMany({
+        select: { id: true, name: true, roles: true },
+        orderBy: [
+          {
+            name: 'asc',
+          },
+        ],
+        where: {
+          ...(filter.roles?.$in && { roles: { hasSome: filter.roles?.$in } }),
+        },
+      }),
+    ]);
+
+    const roles = filter.roles?.$in ?? ['admin', 'dtad-team', 'user'];
+
+    const picklist = roles.map((role) => ({
+      label: role
+        .split('-')
+        .map((word) => `${word[0].toUpperCase()}${word.substring(1).toLowerCase()}`)
+        .join(' '),
+      value: role,
+      options: data.filter((d) => d.roles.includes(role)).map(({ id, name }) => ({ label: name, value: id })),
+    }));
 
     return [count, picklist];
   }
