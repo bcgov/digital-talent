@@ -18,9 +18,11 @@ import { useLazyGetCandidateQuery, useUpdateCandidateMutation } from '../../../r
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const serialize = (data: Record<string, any>) => {
-  const { available_as_of_date, is_contacted, residency_status, status, would_relocate, ...rest } = data;
+  const { assigned_to_id, available_as_of_date, is_contacted, residency_status, status, would_relocate, ...rest } =
+    data;
 
   const delta = {
+    assigned_to_id: assigned_to_id == null ? null : assigned_to_id,
     available_as_of_date: dayjs(available_as_of_date).format('YYYY-MM-DD'),
     is_contacted: is_contacted === 'true' ? true : is_contacted === 'false' ? false : null,
     residency_status: residency_status == null ? null : residency_status,
