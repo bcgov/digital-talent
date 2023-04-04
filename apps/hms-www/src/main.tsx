@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import { App } from 'antd';
+import { App, notification } from 'antd';
 import 'antd/dist/reset.css';
 import { WebStorageStateStore } from 'oidc-client-ts';
 import React from 'react';
@@ -18,6 +18,10 @@ const oidcConfig: AuthProviderProps = {
   client_id: import.meta.env.VITE_KEYCLOAK_CLIENT_ID,
   redirect_uri: import.meta.env.VITE_KEYCLOAK_REDIRECT_URL,
 };
+
+notification.config({
+  placement: 'bottomRight',
+});
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
