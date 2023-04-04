@@ -8,8 +8,7 @@ export interface PicklistOption {
   value: string;
 }
 
-export interface GroupedPicklist {
-  label: string;
+export interface GroupedPicklist extends PicklistOption {
   options: PicklistOption[];
 }
 
@@ -131,6 +130,7 @@ export class PicklistService {
         .split('_')
         .map((word) => `${word[0].toUpperCase()}${word.substring(1).toLowerCase()}`)
         .join(' '),
+      value: category,
       options: data
         .filter((d) => d.category === category)
         .map(({ id, name, num_years_experience }) => ({

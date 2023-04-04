@@ -13,14 +13,21 @@ import { CandidateEntity } from './entities/candidate.entity';
 export class CandidateService {
   constructor(private readonly prisma: PrismaService) {}
 
-  async create({ location_ids, ...data }: CreateCandidateDto) {
-    const { locations, ...restCandidate } = await this.prisma.candidate.create({
+  async create({ location_ids, skill_ids, ...data }: CreateCandidateDto) {
+    const { locations, skills, ...restCandidate } = await this.prisma.candidate.create({
       data: {
         ...data,
         ...(location_ids && {
           locations: {
             createMany: {
               data: (location_ids ?? []).map((location_id) => ({ location_id, rank: 0 })),
+            },
+          },
+        }),
+        ...(skill_ids && {
+          skills: {
+            createMany: {
+              data: (skill_ids ?? []).map((skill_id) => ({ skill_id })),
             },
           },
         }),
@@ -31,12 +38,18 @@ export class CandidateService {
             location_id: true,
           },
         },
+        skills: {
+          select: {
+            skill_id: true,
+          },
+        },
       },
     });
 
     return new ApiResponseDto<CandidateEntity>({
       ...restCandidate,
       location_ids: locations.map((l) => l.location_id),
+      skill_ids: skills.map((s) => s.skill_id),
     });
   }
 
@@ -49,15 +62,21 @@ export class CandidateService {
               location_id: true,
             },
           },
+          skills: {
+            select: {
+              skill_id: true,
+            },
+          },
         },
       }),
       this.prisma.candidate.count(),
     ]);
 
     return new ApiPagedResponseDto<CandidateEntity>(
-      candidates.map(({ locations, ...restCandidate }) => ({
+      candidates.map(({ locations, skills, ...restCandidate }) => ({
         ...restCandidate,
         location_ids: locations.map((l) => l.location_id),
+        skill_ids: skills.map((s) => s.skill_id),
       })),
       new PageMetaDto({ itemCount: count, options: {} }),
     );
@@ -66,19 +85,19 @@ export class CandidateService {
   async findOne(id: string) {
     const candidate = await this.prisma.candidate.findUnique({
       where: { id },
-      include: { locations: { select: { location_id: true } } },
+      include: { locations: { select: { location_id: true } }, skills: { select: { skill_id: true } } },
     });
     if (!candidate) throw new NotFoundException();
-
-    const { locations, ...restCandidate } = candidate;
+    const { locations, skills, ...restCandidate } = candidate;
 
     return new ApiResponseDto<CandidateEntity>({
       ...restCandidate,
       location_ids: locations.map((l) => l.location_id),
+      skill_ids: skills.map((s) => s.skill_id),
     });
   }
 
-  async update(id: string, { location_ids, ...data }: UpdateCandidateDto) {
+  async update(id: string, { location_ids, skill_ids, ...data }: UpdateCandidateDto) {
     await this.findOne(id);
 
     const candidate = await this.prisma.candidate.update({
@@ -93,6 +112,14 @@ export class CandidateService {
             },
           },
         }),
+        ...(skill_ids && {
+          skills: {
+            deleteMany: {},
+            createMany: {
+              data: (skill_ids ?? []).map((skill_id) => ({ skill_id })),
+            },
+          },
+        }),
       },
       include: {
         locations: {
@@ -100,14 +127,20 @@ export class CandidateService {
             location_id: true,
           },
         },
+        skills: {
+          select: {
+            skill_id: true,
+          },
+        },
       },
     });
 
-    const { locations, ...restCandidate } = candidate;
+    const { locations, skills, ...restCandidate } = candidate;
 
     return new ApiResponseDto<CandidateEntity>({
       ...restCandidate,
       location_ids: locations.map((l) => l.location_id),
+      skill_ids: skills.map((s) => s.skill_id),
     });
   }
 

@@ -1,8 +1,9 @@
-import { useGetPicklistQuery } from '../../../redux/services/picklist';
+import { DefaultOptionType } from 'antd/es/select';
+import { PicklistContext, useGetPicklistQuery } from '../../../redux/services/picklist';
 import { FloatSelect, FloatSelectProps } from './float-select.component';
 
 export interface FloatApiSelectProps extends FloatSelectProps {
-  context: 'digital-talent-roles' | 'locations' | 'ministries';
+  context: PicklistContext;
 }
 
 export const FloatApiSelect = ({ control, name, label, inputProps, context }: FloatApiSelectProps) => {
@@ -17,7 +18,7 @@ export const FloatApiSelect = ({ control, name, label, inputProps, context }: Fl
       inputProps={{
         allowClear: true,
         loading: isLoading,
-        options: (data?.data ?? []) as { label: string; value: string }[],
+        options: (data?.data ?? []) as DefaultOptionType[],
         ...inputProps,
       }}
     />

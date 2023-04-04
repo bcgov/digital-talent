@@ -51,6 +51,9 @@ export class CandidateEntity implements Candidate {
   location_ids: string[];
 
   @ApiProperty()
+  skill_ids: string[];
+
+  @ApiProperty()
   created_at: Date;
 
   @ApiProperty({ nullable: true })

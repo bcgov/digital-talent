@@ -80,4 +80,9 @@ export class CreateCandidateDto {
   @IsOptional()
   @IsString({ each: true })
   location_ids?: string[];
+
+  @ApiProperty()
+  @IsOptional()
+  @IsString({ each: true })
+  skill_ids?: string[];
 }

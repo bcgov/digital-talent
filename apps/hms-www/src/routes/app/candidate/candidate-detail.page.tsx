@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable no-nested-ternary */
 /* eslint-disable no-console */
 import { Button, Card, Col, notification, Row, Space, Typography } from 'antd';
@@ -121,7 +122,7 @@ export const CandidateDetailPage = () => {
             <Title level={2} style={{ fontSize: '20px' }}>
               General Information
             </Title>
-            <Card>
+            <Card size="small">
               <Row gutter={[8, 8]}>
                 <Col md={6} xs={24}>
                   <FloatInput control={control} label="Name" name="name" />
@@ -203,13 +204,27 @@ export const CandidateDetailPage = () => {
                 <Col md={6} xs={24}>
                   <FloatApiSelect context="digital-talent-roles" control={control} label="Role" name="role_id" />
                 </Col>
-                <Col md={12} xs={24}>
+                <Col xs={24}>
                   <FloatApiSelect
                     context="locations"
                     control={control}
                     inputProps={{ mode: 'multiple' }}
                     label="Preferred Locations"
                     name="location_ids"
+                  />
+                </Col>
+                <Col xs={24}>
+                  <FloatApiSelect
+                    context="skills"
+                    control={control}
+                    label="Skills"
+                    name="skill_ids"
+                    inputProps={{
+                      filterOption: (input, option) => {
+                        return (option?.label as string).toLowerCase().includes(input.toLowerCase());
+                      },
+                      mode: 'multiple',
+                    }}
                   />
                 </Col>
               </Row>

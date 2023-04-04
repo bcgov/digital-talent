@@ -1,7 +1,7 @@
 import { ApiPagedResponse } from '../interfaces/api.interface';
 import { api } from './api';
 
-type PicklistContext = 'digital-talent-roles' | 'locations' | 'ministries';
+export type PicklistContext = 'digital-talent-roles' | 'locations' | 'ministries' | 'skills';
 
 export const picklistsApi = api.injectEndpoints({
   endpoints: (builder) => ({
