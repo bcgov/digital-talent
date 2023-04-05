@@ -18,6 +18,24 @@ export type PicklistType = PicklistOption[] | GroupedPicklist[];
 export class PicklistService {
   constructor(private readonly prismaService: PrismaService) {}
 
+  async findCandidatePicklist(): Promise<[number, PicklistOption[]]> {
+    const [count, data] = await this.prismaService.$transaction([
+      this.prismaService.candidate.count(),
+      this.prismaService.candidate.findMany({
+        select: { id: true, name: true },
+        orderBy: [
+          {
+            name: 'asc',
+          },
+        ],
+      }),
+    ]);
+
+    const picklist: PicklistType = data.map(({ id, name }) => ({ label: name, value: id }));
+
+    return [count, picklist];
+  }
+
   async findDigitalTalentRolePicklist(): Promise<[number, PicklistOption[]]> {
     const [count, data] = await this.prismaService.$transaction([
       this.prismaService.digitalTalentRole.count(),

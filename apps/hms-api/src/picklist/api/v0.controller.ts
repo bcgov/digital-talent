@@ -20,6 +20,12 @@ export class PicklistApiV0Controller {
     );
   };
 
+  @Get('candidates')
+  async getCandidatesPicklist() {
+    const [count, data] = await this.picklistService.findCandidatePicklist();
+    return this.formatPicklistData(count, data);
+  }
+
   @Get('digital-talent-roles')
   async getDigitalTalentRolesPicklist() {
     const [count, data] = await this.picklistService.findDigitalTalentRolePicklist();
