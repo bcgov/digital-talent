@@ -181,7 +181,6 @@ model HiringManager {
   updated_at     DateTime? @updatedAt
 
   opportunities Opportunity[]
-  teams         Team[]
   ministry      Ministry?     @relation(fields: [ministry_id], references: [id])
   assigned_to   User?         @relation(fields: [assigned_to_id], references: [id])
 
@@ -189,16 +188,15 @@ model HiringManager {
 }
 
 model Team {
-  id                String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  hiring_manager_id String    @db.Uuid
-  name              String?
-  description       String?
-  links             String[]
-  created_at        DateTime  @default(now())
-  updated_at        DateTime? @updatedAt
+  id             String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  opportunity_id String    @unique @db.Uuid
+  name           String?
+  description    String?
+  links          String[]
+  created_at     DateTime  @default(now())
+  updated_at     DateTime? @updatedAt
 
-  opportunities  Opportunity[]
-  hiring_manager HiringManager @relation(fields: [hiring_manager_id], references: [id])
+  opportunity Opportunity @relation(fields: [opportunity_id], references: [id])
 
   @@map("team")
 }
@@ -207,7 +205,6 @@ model Opportunity {
   id                String           @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   hiring_manager_id String           @db.Uuid
   role_id           String           @db.Uuid
-  team_id           String           @db.Uuid
   state             OpportunityState
   created_at        DateTime         @default(now())
   updated_at        DateTime?        @updatedAt
@@ -217,7 +214,7 @@ model Opportunity {
   skills         OpportunitySkill[]
   hiring_manager HiringManager          @relation(fields: [hiring_manager_id], references: [id])
   role           DigitalTalentRole      @relation(fields: [role_id], references: [id])
-  team           Team                   @relation(fields: [team_id], references: [id])
+  team           Team?
 
   @@map("opportunity")
 }

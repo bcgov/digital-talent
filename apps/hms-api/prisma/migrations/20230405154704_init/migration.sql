@@ -137,7 +137,7 @@ CREATE TABLE "hiring_manager" (
 -- CreateTable
 CREATE TABLE "team" (
     "id" UUID NOT NULL DEFAULT gen_random_uuid(),
-    "hiring_manager_id" UUID NOT NULL,
+    "opportunity_id" UUID NOT NULL,
     "name" TEXT,
     "description" TEXT,
     "links" TEXT[],
@@ -152,7 +152,6 @@ CREATE TABLE "opportunity" (
     "id" UUID NOT NULL DEFAULT gen_random_uuid(),
     "hiring_manager_id" UUID NOT NULL,
     "role_id" UUID NOT NULL,
-    "team_id" UUID NOT NULL,
     "state" "OpportunityState" NOT NULL,
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMP(3),
@@ -183,6 +182,9 @@ CREATE TABLE "opportunity_skill" (
 
 -- CreateIndex
 CREATE UNIQUE INDEX "user_idir_id_key" ON "user"("idir_id");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "team_opportunity_id_key" ON "team"("opportunity_id");
 
 -- AddForeignKey
 ALTER TABLE "candidate" ADD CONSTRAINT "candidate_assigned_to_id_fkey" FOREIGN KEY ("assigned_to_id") REFERENCES "user"("id") ON DELETE SET NULL ON UPDATE CASCADE;
@@ -215,16 +217,13 @@ ALTER TABLE "hiring_manager" ADD CONSTRAINT "hiring_manager_ministry_id_fkey" FO
 ALTER TABLE "hiring_manager" ADD CONSTRAINT "hiring_manager_assigned_to_id_fkey" FOREIGN KEY ("assigned_to_id") REFERENCES "user"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "team" ADD CONSTRAINT "team_hiring_manager_id_fkey" FOREIGN KEY ("hiring_manager_id") REFERENCES "hiring_manager"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "team" ADD CONSTRAINT "team_opportunity_id_fkey" FOREIGN KEY ("opportunity_id") REFERENCES "opportunity"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "opportunity" ADD CONSTRAINT "opportunity_hiring_manager_id_fkey" FOREIGN KEY ("hiring_manager_id") REFERENCES "hiring_manager"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "opportunity" ADD CONSTRAINT "opportunity_role_id_fkey" FOREIGN KEY ("role_id") REFERENCES "digital_talent_role"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE "opportunity" ADD CONSTRAINT "opportunity_team_id_fkey" FOREIGN KEY ("team_id") REFERENCES "team"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "opportunity_location" ADD CONSTRAINT "opportunity_location_location_id_fkey" FOREIGN KEY ("location_id") REFERENCES "location"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
