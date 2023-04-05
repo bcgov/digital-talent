@@ -7,6 +7,9 @@ import { CandidateListPage } from '../routes/app/candidate/candidate-list.page';
 import { HiringManagerRoute } from '../routes/app/hiring-manager';
 import { HiringManagerDetailPage } from '../routes/app/hiring-manager/hiring-manager-detail.page';
 import { HiringManagerListPage } from '../routes/app/hiring-manager/hiring-manager-list.page';
+import { OpportunityRoute } from '../routes/app/opportunity';
+import { OpportunityDetailPage } from '../routes/app/opportunity/opportunity-detail.page';
+import { OpportunityListPage } from '../routes/app/opportunity/opportunity-list.page';
 import { AuthRoute } from '../routes/auth';
 import { LoginPage } from '../routes/auth/login.page';
 import { Routes } from './route.constants';
@@ -63,6 +66,24 @@ export const router = createBrowserRouter([
               {
                 path: Routes.App.HiringManager.DETAIL(),
                 element: <HiringManagerDetailPage />,
+              },
+            ],
+          },
+          {
+            path: Routes.App.Opportunity.ROOT,
+            element: <OpportunityRoute />,
+            children: [
+              {
+                path: Routes.App.Opportunity.ROOT,
+                element: <OpportunityListPage />,
+              },
+              {
+                path: Routes.App.Opportunity.CREATE,
+                element: <OpportunityDetailPage />,
+              },
+              {
+                path: Routes.App.Opportunity.DETAIL(),
+                element: <OpportunityDetailPage />,
               },
             ],
           },

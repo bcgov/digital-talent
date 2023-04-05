@@ -4,53 +4,6 @@ import { useAuth } from 'react-oidc-context';
 import { Link, NavLink } from 'react-router-dom';
 import BCLogo from '../../../assets/bc-logo.png';
 
-// const items: MenuProps['items'] = [
-//   {
-//     key: '1',
-//     type: 'group',
-//     label: 'Group title',
-//     children: [
-//       {
-//         key: '1-1',
-//         label: '1st menu item',
-//       },
-//       {
-//         key: '1-2',
-//         label: '2nd menu item',
-//       },
-//     ],
-//   },
-//   {
-//     key: '2',
-//     label: 'sub menu',
-//     children: [
-//       {
-//         key: '2-1',
-//         label: '3rd menu item',
-//       },
-//       {
-//         key: '2-2',
-//         label: '4th menu item',
-//       },
-//     ],
-//   },
-//   {
-//     key: '3',
-//     label: 'disabled sub menu',
-//     disabled: true,
-//     children: [
-//       {
-//         key: '3-1',
-//         label: '5d menu item',
-//       },
-//       {
-//         key: '3-2',
-//         label: '6th menu item',
-//       },
-//     ],
-//   },
-// ];
-
 export const Header = () => {
   const auth = useAuth();
 
@@ -94,6 +47,9 @@ export const Header = () => {
           </NavLink>
           <NavLink to="/hiring-managers">
             <Button type="link">Hiring Managers</Button>
+          </NavLink>
+          <NavLink to="/opportunities">
+            <Button type="link">Opportunities</Button>
           </NavLink>
           {/* Account Menu */}
           <Dropdown menu={{ items, onClick }} trigger={['click']}>
