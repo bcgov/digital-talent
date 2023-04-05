@@ -26,6 +26,12 @@ export class PicklistApiV0Controller {
     return this.formatPicklistData(count, data);
   }
 
+  @Get('hiring-managers')
+  async getHiringManagersPicklist() {
+    const [count, data] = await this.picklistService.findHiringManagerPicklist();
+    return this.formatPicklistData(count, data);
+  }
+
   @Get('locations')
   async getLocationsPicklist() {
     const [count, data] = await this.picklistService.findLocationPicklist();

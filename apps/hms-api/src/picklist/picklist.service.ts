@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import { Injectable } from '@nestjs/common';
-import { SkillCategory } from '@prisma/client';
+import { Prisma, SkillCategory } from '@prisma/client';
 import { PrismaService } from '../services/prisma/prisma.service';
 
 export interface PicklistOption {
@@ -22,6 +22,24 @@ export class PicklistService {
     const [count, data] = await this.prismaService.$transaction([
       this.prismaService.digitalTalentRole.count(),
       this.prismaService.digitalTalentRole.findMany({
+        select: { id: true, name: true },
+        orderBy: [
+          {
+            name: 'asc',
+          },
+        ],
+      }),
+    ]);
+
+    const picklist: PicklistType = data.map(({ id, name }) => ({ label: name, value: id }));
+
+    return [count, picklist];
+  }
+
+  async findHiringManagerPicklist(): Promise<[number, PicklistOption[]]> {
+    const [count, data] = await this.prismaService.$transaction([
+      this.prismaService.hiringManager.count(),
+      this.prismaService.hiringManager.findMany({
         select: { id: true, name: true },
         orderBy: [
           {
@@ -119,8 +137,14 @@ export class PicklistService {
   }
 
   async findUsersPicklist(filter: Record<string, any>): Promise<[number, GroupedPicklist[]]> {
+    const where: Prisma.UserWhereInput = {
+      ...(filter.roles?.$in && { roles: { hasSome: filter.roles?.$in } }),
+    };
+
     const [count, data] = await this.prismaService.$transaction([
-      this.prismaService.user.count(),
+      this.prismaService.user.count({
+        where,
+      }),
       this.prismaService.user.findMany({
         select: { id: true, name: true, roles: true },
         orderBy: [
@@ -128,9 +152,7 @@ export class PicklistService {
             name: 'asc',
           },
         ],
-        where: {
-          ...(filter.roles?.$in && { roles: { hasSome: filter.roles?.$in } }),
-        },
+        where,
       }),
     ]);
 
