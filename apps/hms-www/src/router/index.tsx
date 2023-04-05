@@ -5,6 +5,7 @@ import { CandidateRoute } from '../routes/app/candidate';
 import { CandidateDetailPage } from '../routes/app/candidate/candidate-detail.page';
 import { CandidateListPage } from '../routes/app/candidate/candidate-list.page';
 import { HiringManagerRoute } from '../routes/app/hiring-manager';
+import { HiringManagerDetailPage } from '../routes/app/hiring-manager/hiring-manager-detail.page';
 import { HiringManagerListPage } from '../routes/app/hiring-manager/hiring-manager-list.page';
 import { AuthRoute } from '../routes/auth';
 import { LoginPage } from '../routes/auth/login.page';
@@ -54,6 +55,14 @@ export const router = createBrowserRouter([
               {
                 path: Routes.App.HiringManager.ROOT,
                 element: <HiringManagerListPage />,
+              },
+              {
+                path: Routes.App.HiringManager.CREATE,
+                element: <HiringManagerDetailPage />,
+              },
+              {
+                path: Routes.App.HiringManager.DETAIL(),
+                element: <HiringManagerDetailPage />,
               },
             ],
           },

@@ -8,6 +8,8 @@ export const Routes = {
     },
     HiringManager: {
       ROOT: '/hiring-managers',
+      CREATE: '/hiring-managers/new',
+      DETAIL: (id?: string) => `/hiring-managers/${id ?? ':id'}`,
     },
   },
   Auth: {

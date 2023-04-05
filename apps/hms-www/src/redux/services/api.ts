@@ -20,7 +20,7 @@ const baseQueryWithRetry = retry(baseQuery, { maxRetries: 6 });
 export const api = createApi({
   reducerPath: 'api',
   baseQuery: baseQueryWithRetry,
-  tagTypes: ['Candidates'],
+  tagTypes: ['Candidates', 'Hiring Managers'],
 
   // Endpoints are injected from adjacent files
   endpoints: () => ({}),
