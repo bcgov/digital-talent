@@ -26,7 +26,7 @@ export class CreateOpportunityDto {
   @IsOptional()
   @IsNumber({ maxDecimalPlaces: 0 })
   @Min(0)
-  @Max(13)
+  @Max(12)
   duration?: number | null;
 
   @ApiProperty({ required: false, nullable: true })

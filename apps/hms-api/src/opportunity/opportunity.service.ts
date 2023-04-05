@@ -8,6 +8,8 @@ export class OpportunityService {
   constructor(private readonly prisma: PrismaService) {}
 
   async create({ candidate_ids, location_ids, required_skill_ids, optional_skill_ids, ...data }: CreateOpportunityDto) {
+    const filteredOptionalSkillIds = optional_skill_ids.filter((v) => !required_skill_ids.includes(v));
+
     const { candidates, locations, skills, ...restOpportunity } = await this.prisma.opportunity.create({
       data: {
         ...data,
@@ -30,7 +32,7 @@ export class OpportunityService {
             createMany: {
               data: [
                 ...required_skill_ids.map((id) => ({ skill_id: id, is_mandatory: true })),
-                ...optional_skill_ids.map((id) => ({ skill_id: id, is_mandatory: false })),
+                ...filteredOptionalSkillIds.map((id) => ({ skill_id: id, is_mandatory: false })),
               ],
             },
           },
@@ -141,6 +143,7 @@ export class OpportunityService {
     { candidate_ids, location_ids, optional_skill_ids, required_skill_ids, ...data }: UpdateOpportunityDto,
   ) {
     await this.findOne(id);
+    const filteredOptionalSkillIds = optional_skill_ids.filter((v) => !required_skill_ids.includes(v));
 
     const { candidates, locations, skills, ...restOpportunity } = await this.prisma.opportunity.update({
       where: { id },
@@ -148,6 +151,7 @@ export class OpportunityService {
         ...data,
         ...(candidate_ids && {
           candidates: {
+            deleteMany: {},
             createMany: {
               data: candidate_ids.map((id) => ({ candidate_id: id })),
             },
@@ -155,6 +159,7 @@ export class OpportunityService {
         }),
         ...(location_ids && {
           locations: {
+            deleteMany: {},
             createMany: {
               data: location_ids.map((id) => ({ location_id: id })),
             },
@@ -162,10 +167,11 @@ export class OpportunityService {
         }),
         ...((required_skill_ids || optional_skill_ids) && {
           skills: {
+            deleteMany: {},
             createMany: {
               data: [
                 ...required_skill_ids.map((id) => ({ skill_id: id, is_mandatory: true })),
-                ...optional_skill_ids.map((id) => ({ skill_id: id, is_mandatory: false })),
+                ...filteredOptionalSkillIds.map((id) => ({ skill_id: id, is_mandatory: false })),
               ],
             },
           },
