@@ -151,8 +151,10 @@ CREATE TABLE "team" (
 CREATE TABLE "opportunity" (
     "id" UUID NOT NULL DEFAULT gen_random_uuid(),
     "hiring_manager_id" UUID NOT NULL,
-    "role_id" UUID NOT NULL,
-    "state" "OpportunityState" NOT NULL,
+    "role_id" UUID,
+    "available_as_of_date" TEXT,
+    "duration" INTEGER,
+    "state" "OpportunityState",
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMP(3),
 
@@ -223,7 +225,7 @@ ALTER TABLE "team" ADD CONSTRAINT "team_opportunity_id_fkey" FOREIGN KEY ("oppor
 ALTER TABLE "opportunity" ADD CONSTRAINT "opportunity_hiring_manager_id_fkey" FOREIGN KEY ("hiring_manager_id") REFERENCES "hiring_manager"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "opportunity" ADD CONSTRAINT "opportunity_role_id_fkey" FOREIGN KEY ("role_id") REFERENCES "digital_talent_role"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "opportunity" ADD CONSTRAINT "opportunity_role_id_fkey" FOREIGN KEY ("role_id") REFERENCES "digital_talent_role"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "opportunity_location" ADD CONSTRAINT "opportunity_location_location_id_fkey" FOREIGN KEY ("location_id") REFERENCES "location"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

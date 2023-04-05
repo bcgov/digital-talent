@@ -202,18 +202,20 @@ model Team {
 }
 
 model Opportunity {
-  id                String           @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  hiring_manager_id String           @db.Uuid
-  role_id           String           @db.Uuid
-  state             OpportunityState
-  created_at        DateTime         @default(now())
-  updated_at        DateTime?        @updatedAt
+  id                   String            @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  hiring_manager_id    String            @db.Uuid
+  role_id              String?           @db.Uuid
+  available_as_of_date String?
+  duration             Int?
+  state                OpportunityState?
+  created_at           DateTime          @default(now())
+  updated_at           DateTime?         @updatedAt
 
   candidates     CandidateOpportunity[]
   locations      OpportunityLocation[]
   skills         OpportunitySkill[]
   hiring_manager HiringManager          @relation(fields: [hiring_manager_id], references: [id])
-  role           DigitalTalentRole      @relation(fields: [role_id], references: [id])
+  role           DigitalTalentRole?     @relation(fields: [role_id], references: [id])
   team           Team?
 
   @@map("opportunity")

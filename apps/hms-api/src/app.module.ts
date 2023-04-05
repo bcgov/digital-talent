@@ -8,6 +8,7 @@ import { AuthGuard } from './auth/guards/auth.guard';
 import { RoleGuard } from './auth/guards/role.guard';
 import { CandidateModule } from './candidate/candidate.module';
 import { HiringManagerModule } from './hiring-manager/hiring-manager.module';
+import { OpportunityModule } from './opportunity/opportunity.module';
 import { PicklistModule } from './picklist/picklist.module';
 import { PrismaService } from './services/prisma/prisma.service';
 import { validate } from './validation/environment.validation';
@@ -19,6 +20,7 @@ import { validate } from './validation/environment.validation';
     AuthModule,
     CandidateModule,
     HiringManagerModule,
+    OpportunityModule,
     PicklistModule,
   ],
   controllers: [AppController],

@@ -11,6 +11,7 @@ module.exports = easelint({
         // All Files
         files: ['*.{js,jsx,ts,tsx}'],
         rules: {
+          '@typescript-eslint/no-shadow': 'off',
           camelcase: 'off',
         },
       },
