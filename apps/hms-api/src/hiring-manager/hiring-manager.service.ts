@@ -8,40 +8,85 @@ export class HiringManagerService {
   constructor(private readonly prisma: PrismaService) {}
 
   async create(createHiringManagerDto: CreateHiringManagerDto) {
-    const hiringManager = await this.prisma.hiringManager.create({
+    const { opportunities, ...hiringManager } = await this.prisma.hiringManager.create({
       data: createHiringManagerDto,
+      include: {
+        opportunities: {
+          select: {
+            id: true,
+          },
+        },
+      },
     });
 
-    return hiringManager;
+    return {
+      ...hiringManager,
+      opportunity_ids: opportunities.map((o) => o.id),
+    };
   }
 
   async findAll() {
-    const data = await this.prisma.$transaction([
-      this.prisma.hiringManager.findMany(),
+    const [hiringManagers, count] = await this.prisma.$transaction([
+      this.prisma.hiringManager.findMany({
+        include: {
+          opportunities: {
+            select: {
+              id: true,
+            },
+          },
+        },
+      }),
       this.prisma.hiringManager.count(),
     ]);
 
-    return data;
+    return [
+      hiringManagers.map(({ opportunities, ...restHiringManager }) => ({
+        ...restHiringManager,
+        opportunity_ids: opportunities.map((o) => o.id),
+      })),
+      count,
+    ];
   }
 
   async findOne(id: string) {
     const hiringManager = await this.prisma.hiringManager.findUnique({
       where: { id },
+      include: {
+        opportunities: {
+          select: {
+            id: true,
+          },
+        },
+      },
     });
     if (!hiringManager) throw new NotFoundException();
+    const { opportunities, ...restHiringManager } = hiringManager;
 
-    return hiringManager;
+    return {
+      ...restHiringManager,
+      opportunity_ids: opportunities.map((o) => o.id),
+    };
   }
 
   async update(id: string, updateHiringManagerDto: UpdateHiringManagerDto) {
     await this.findOne(id);
 
-    const hiringManager = await this.prisma.hiringManager.update({
+    const { opportunities, ...hiringManager } = await this.prisma.hiringManager.update({
       where: { id },
       data: updateHiringManagerDto,
+      include: {
+        opportunities: {
+          select: {
+            id: true,
+          },
+        },
+      },
     });
 
-    return hiringManager;
+    return {
+      ...hiringManager,
+      opportunity_ids: opportunities.map((o) => o.id),
+    };
   }
 
   remove(id: string) {
