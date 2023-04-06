@@ -3,7 +3,13 @@ import qs from 'qs';
 import { ApiPagedResponse } from '../interfaces/api.interface';
 import { api } from './api';
 
-export type PicklistScope = 'digital-talent-roles' | 'locations' | 'ministries' | 'skills' | 'users';
+export type PicklistScope =
+  | 'digital-talent-roles'
+  | 'hiring-managers'
+  | 'locations'
+  | 'ministries'
+  | 'skills'
+  | 'users';
 
 export type PicklistArgs = {
   scope: PicklistScope;
