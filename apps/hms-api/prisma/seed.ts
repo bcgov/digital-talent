@@ -155,10 +155,10 @@ const ministries = [
 
 const roles = [
   { id: '7aeea66e-2eaf-489a-8bde-40cf61afaf8c', name: 'Dev Ops Specialist', classification: 'IS 27' },
-  { id: '72db9565-f94c-4907-9822-fa8b3e9393ac', name: 'Full Stack Developer Level 1', classification: 'IS 18' },
-  { id: '60553785-080b-409c-87e1-36e959364f04', name: 'Full Stack Developer Level 2', classification: 'IS 21' },
-  { id: '1db6e3dc-492d-4af6-bfa4-941a7df69b73', name: 'Full Stack Developer Level 3', classification: 'IS 24' },
-  { id: '324b2b66-a52d-43ca-9297-446521bc21c6', name: 'Full Stack Developer Level 4', classification: 'IS 27' },
+  { id: '72db9565-f94c-4907-9822-fa8b3e9393ac', name: 'Full Stack Developer', classification: 'IS 18' },
+  { id: '60553785-080b-409c-87e1-36e959364f04', name: 'Full Stack Developer', classification: 'IS 21' },
+  { id: '1db6e3dc-492d-4af6-bfa4-941a7df69b73', name: 'Full Stack Developer', classification: 'IS 24' },
+  { id: '324b2b66-a52d-43ca-9297-446521bc21c6', name: 'Full Stack Developer', classification: 'IS 27' },
   { id: '7ae3e73c-884c-4071-8e1b-b8a571d10605', name: 'Full Stack Developer', classification: 'IS 30' },
   { id: '3b7a4f29-10fd-4561-bbe7-2adcc1678e35', name: 'Senior Product Manager', classification: 'Band 3' },
   { id: 'd1f5bf06-afa8-45cc-a3a6-9e1db10a3cee', name: 'Product Manager', classification: 'IS 30' },

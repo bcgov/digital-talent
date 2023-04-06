@@ -40,7 +40,7 @@ export class PicklistService {
     const [count, data] = await this.prismaService.$transaction([
       this.prismaService.digitalTalentRole.count(),
       this.prismaService.digitalTalentRole.findMany({
-        select: { id: true, name: true },
+        select: { id: true, name: true, classification: true },
         orderBy: [
           {
             name: 'asc',
@@ -49,7 +49,21 @@ export class PicklistService {
       }),
     ]);
 
-    const picklist: PicklistType = data.map(({ id, name }) => ({ label: name, value: id }));
+    const picklist: PicklistType = data.map(({ id, name, classification }) => ({
+      label: `${name} (${classification})`,
+      value: id,
+    }));
+
+    // The values aren't necessarily in order after the map.  Not sure why, so sorting the array for now.
+    picklist.sort((a, b) => {
+      if (a.label < b.label) {
+        return -1;
+      }
+      if (a.label > b.label) {
+        return 1;
+      }
+      return 0;
+    });
 
     return [count, picklist];
   }
