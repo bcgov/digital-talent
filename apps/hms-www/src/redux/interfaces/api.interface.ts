@@ -8,5 +8,5 @@ export interface ApiPagedResponse<T = Record<string, unknown>> {
 }
 
 export interface PageMeta {
-  count: number;
+  itemCount: number;
 }
