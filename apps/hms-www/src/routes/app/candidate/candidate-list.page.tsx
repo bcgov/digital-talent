@@ -1,9 +1,11 @@
+/* eslint-disable no-console */
 import { IconExternalLink, IconPlus } from '@tabler/icons-react';
 import { Button, Col, Row, Space, Table, Typography } from 'antd';
 import { ColumnsType } from 'antd/es/table';
 import { Link } from 'react-router-dom';
 import { useGetCandidatesQuery } from '../../../redux/services/candidate';
 import { Routes } from '../../../router/route.constants';
+import { boolToYesNo } from '../../../utils/bool-to-yes-no.util';
 
 export const CandidateListPage = () => {
   const { Title } = Typography;
@@ -56,6 +58,7 @@ export const CandidateListPage = () => {
       key: 'would_relocate',
       dataIndex: 'would_relocate',
       title: 'Would Relocate',
+      render: (value) => <span>{boolToYesNo(value)}</span>,
     },
     {
       key: 'residency_status',
@@ -71,6 +74,7 @@ export const CandidateListPage = () => {
       key: 'is_contacted',
       dataIndex: 'is_contacted',
       title: 'Contacted?',
+      render: (value) => <span>{boolToYesNo(value)}</span>,
     },
     {
       key: 'actions',
