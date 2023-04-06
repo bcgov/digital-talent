@@ -1,6 +1,7 @@
 import { createBrowserRouter } from 'react-router-dom';
 import { RouteGuard } from '../components/guards/route.guard';
 import { AppRoute } from '../routes/app';
+import { AppPage } from '../routes/app/app.page';
 import { CandidateRoute } from '../routes/app/candidate';
 import { CandidateDetailPage } from '../routes/app/candidate/candidate-detail.page';
 import { CandidateListPage } from '../routes/app/candidate/candidate-list.page';
@@ -33,6 +34,10 @@ export const router = createBrowserRouter([
         path: Routes.App.ROOT,
         element: <AppRoute />,
         children: [
+          {
+            path: Routes.App.ROOT,
+            element: <AppPage />,
+          },
           {
             path: Routes.App.Candidate.ROOT,
             element: <CandidateRoute />,
