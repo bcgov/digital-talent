@@ -16,8 +16,14 @@ import {
 import { Routes } from '../../../router/route.constants';
 
 const serialize = ({ available_as_of_date, ...data }: Record<string, any>) => {
+  const serializedData: Record<string, any> = {};
+
+  Object.keys(data).forEach((key) => {
+    data[key] === undefined ? (serializedData[key] = null) : (serializedData[key] = data[key]);
+  });
+
   return {
-    ...data,
+    ...serializedData,
     available_as_of_date: available_as_of_date != null ? dayjs(available_as_of_date).format('YYYY-MM-DD') : null,
   };
 };

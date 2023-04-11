@@ -12,17 +12,36 @@ export const AppPage = () => {
     <Row gutter={[8, 8]}>
       <Col span={8}>
         <Card bordered loading={candidatesIsLoading} size="small">
-          <Statistic title="Candidates" value={candidatesData?.meta.itemCount ?? 0} />
+          <Statistic
+            title="Candidates"
+            value={
+              candidatesData && candidatesData.meta && candidatesData.meta.itemCount ? candidatesData.meta.itemCount : 0
+            }
+          />
         </Card>
       </Col>
       <Col span={8}>
         <Card bordered loading={hiringManagersIsLoading} size="small">
-          <Statistic title="Hiring Managers" value={hiringManagersData?.meta.itemCount ?? 0} />
+          <Statistic
+            title="Hiring Managers"
+            value={
+              hiringManagersData && hiringManagersData.meta && hiringManagersData.meta.itemCount
+                ? hiringManagersData.meta.itemCount
+                : 0
+            }
+          />
         </Card>
       </Col>
       <Col span={8}>
         <Card bordered loading={opportunitiesIsLoading} size="small">
-          <Statistic title="Opportunities" value={opportunitiesData?.meta.itemCount ?? 0} />
+          <Statistic
+            title="Opportunities"
+            value={
+              opportunitiesData && opportunitiesData.meta && opportunitiesData.meta.itemCount
+                ? opportunitiesData.meta.itemCount
+                : 0
+            }
+          />
         </Card>
       </Col>
     </Row>
