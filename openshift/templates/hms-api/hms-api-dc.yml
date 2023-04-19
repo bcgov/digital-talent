@@ -1,0 +1,45 @@
+---
+kind: Template
+apiVersion: template.openshift.io/v1
+parameters:
+  - name: NAMESPACE
+    displayName: Namespace
+    required: true
+  - name: DOCKER_IMAGE_TAG
+    displayName: Docker Image Tag
+    description: 'The tag to pull, eg: develop-latest'
+    required: true
+objects:
+  - kind: DeploymentConfig
+    apiVersion: apps.openshift.io/v1
+    metadata:
+      name: hms-api
+      namespace: ${NAMESPACE}
+    spec:
+      replicas: 1
+      selector:
+        name: hms-api
+      triggers:
+        - type: ConfigChange
+        - type: ImageChange
+          imageChangeParams:
+            automatic: true
+            containerNames:
+              - hms-api
+            from:
+              kind: ImageStreamTag
+              name: hms-api:${DOCKER_IMAGE_TAG}
+              namespace: ${NAMESPACE}
+      strategy:
+        type: Rolling
+      template:
+        metadata:
+          labels:
+            name: hms-api
+        spec:
+          containers:
+            - name: hms-api
+              image: ''
+              ports:
+                - containerPort: 3000
+                  protocol: TCP
