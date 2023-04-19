@@ -22,10 +22,12 @@ jobs:
         with:
           base: ${{ github.ref }}
           filters: |
-            api:
-              - 'apps/api/**'
-            www:
-              - 'apps/www/**'
+            # api:
+            #   - 'apps/api/**'
+            'hms-api':
+              - 'apps/hms-api/**'
+            # www:
+            #   - 'apps/www/**'
       - name: Get Short SHA
         id: get-short-sha
         run: echo "sha=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT

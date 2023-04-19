@@ -8,6 +8,22 @@ module.exports = easelint({
     root: true,
     overrides: [
       {
+        // All Files
+        files: ['*.{js,jsx,ts,tsx}'],
+        rules: {
+          '@typescript-eslint/no-shadow': 'off',
+          camelcase: 'off',
+        },
+      },
+      {
+        // Files which require devDependencies
+        //  config files, tests, etc...
+        files: ['*.e2e-spec.ts', '*.spec.ts', 'vite.config.ts'],
+        rules: {
+          'import/no-extraneous-dependencies': 'off',
+        },
+      },
+      {
         // apps/api | Strapi
         files: ['apps/api/**/*.{js,jsx,ts,tsx}'],
         rules: {
@@ -15,6 +31,32 @@ module.exports = easelint({
           '@typescript-eslint/no-explicit-any': 'warn',
           'import/no-default-export': 'off',
           'no-console': 'warn',
+        },
+      },
+      {
+        // apps/hms-api | NestJS
+        files: ['apps/hms-api/**/*.{js,jsx,ts,tsx}'],
+        env: {
+          node: true,
+          jest: true,
+        },
+        rules: {
+          '@typescript-eslint/interface-name-prefix': 'off',
+          '@typescript-eslint/explicit-function-return-type': 'off',
+          '@typescript-eslint/explicit-module-boundary-types': 'off',
+          '@typescript-eslint/no-explicit-any': 'off',
+          'class-methods-use-this': 'off',
+          'import/no-cycle': 'off',
+        },
+      },
+      {
+        // apps/hms-www | React
+        files: ['apps/hms-www/**/*.{js,jsx,ts,tsx}'],
+        rules: {
+          '@typescript-eslint/no-shadow': 'off',
+          'import/no-default-export': 'off',
+          'react/react-in-jsx-scope': 'off',
+          'react/require-default-props': 'off',
         },
       },
       {
