@@ -221,7 +221,7 @@ export default function Page({ data: { data } }: InferGetServerSidePropsType<typ
             In order to be considered for this position, your application must clearly demonstrate how you meet the
             education and experience as outlined below:
           </span>
-          <div className="flex flex-row gap-4 my-4 items-stretch justify-items-stretch">
+          <div className="flex flex-col sm:flex-row gap-4 my-4 items-stretch justify-items-stretch">
             <div className="border flex-1 p-2">
               <span>
                 A <span className="font-bold">degree</span> in Computer Science, Computer or Software Engineering or
@@ -232,7 +232,7 @@ export default function Page({ data: { data } }: InferGetServerSidePropsType<typ
                 minimum of <span className="fond-bold">3</span> years of *related experience
               </span>
             </div>
-            <div className="font-bold my-auto">OR</div>
+            <div className="font-bold my-auto text-center">OR</div>
             <div className="border flex-1 p-2">
               <span>
                 A <span className="font-bold">diploma</span> in Computer Science, Computer or Software Engineering or
@@ -243,7 +243,7 @@ export default function Page({ data: { data } }: InferGetServerSidePropsType<typ
                 minimum of <span className="fond-bold">4</span> years of *related experience
               </span>
             </div>
-            <div className="font-bold my-auto">OR</div>
+            <div className="font-bold my-auto text-center">OR</div>
             <div className="border flex-1 p-2">
               <span>
                 A <span className="font-bold">comparable certification(s)</span> in Computer Science, Computer or
