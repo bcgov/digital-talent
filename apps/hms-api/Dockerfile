@@ -1,4 +1,5 @@
 FROM node:18-alpine AS base
+USER node
 
 FROM base AS deps
 WORKDIR /tmp/hms-api
