@@ -23,7 +23,6 @@ COPY --chown=node:node --from=builder /tmp/hms-api/apps/hms-api/package.json ./a
 COPY --chown=node:node --from=builder /tmp/hms-api/apps/hms-api/dist ./apps/hms-api/dist/
 COPY --chown=node:node --from=builder /tmp/hms-api/apps/hms-api/prisma ./apps/hms-api/prisma/
 RUN chmod -R 775 /hms-api
-RUN chmod -R node:root /hms-api
 RUN npm install --omit=dev
 
 EXPOSE 3000
