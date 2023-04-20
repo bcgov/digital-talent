@@ -22,6 +22,7 @@ COPY --chown=node:node --from=builder /tmp/hms-api/package*.json ./
 COPY --chown=node:node --from=builder /tmp/hms-api/apps/hms-api/package.json ./apps/hms-api/
 COPY --chown=node:node --from=builder /tmp/hms-api/apps/hms-api/dist ./apps/hms-api/dist/
 COPY --chown=node:node --from=builder /tmp/hms-api/apps/hms-api/prisma ./apps/hms-api/prisma/
+RUN chown -R node:node /hms-api/apps/hms-api/.npm-cache
 RUN npm install --omit=dev
 
 EXPOSE 3000
