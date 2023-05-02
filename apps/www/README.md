@@ -1,4 +1,4 @@
-# Digital Talent Attraction & Development Website
+# Digital Talent Website
 
 ## License
 

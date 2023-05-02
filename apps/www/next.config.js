@@ -1,6 +1,15 @@
+const path = require('path');
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  reactStrictMode: true,
+  eslint: {
+    // eslint is configured at the root of the monorepo
+    ignoreDuringBuilds: true,
+  },
+  experimental: {
+    appDir: true,
+    outputFileTracingRoot: path.join(__dirname, '../../'),
+  },
   output: 'standalone',
 };
 
