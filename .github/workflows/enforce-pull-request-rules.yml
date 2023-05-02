@@ -12,8 +12,3 @@ jobs:
         run: |
           echo "Error: You can only merge to `main` from `develop`."
           exit 1
-      - name: Check Pull Requests Against `develop`
-        if: github.base_ref == 'develop' && github.head_ref == 'main'
-        run: |
-          echo "Error: You can't merge to `develop` from `main`."
-          exit 1

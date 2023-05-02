@@ -1,4 +1,13 @@
-# Inspired by https://www.toptal.com/developers/gitignore/api/linux,macos,node,react,reactnative,visualstudiocode,windows
+# Inspired by https://www.toptal.com/developers/gitignore/api/certificates,linux,macos,node,react,reactnative,visualstudiocode,windows
+
+### certificates ###
+*.pem
+*.key
+*.crt
+*.cer
+*.csr
+*.der
+*.priv
 
 ### Linux ###
 *~
@@ -139,6 +148,8 @@ web_modules/
 out
 
 # Nuxt.js build / generate output
+*.tsbuildinfo
+next-env.d.ts
 .nuxt
 dist
 
@@ -373,7 +384,7 @@ google-services.json
 *.hprof
 
 ### VisualStudioCode ###
-.vscode/*
+**/.vscode/*
 
 # Local History for Visual Studio Code
 .history/
@@ -414,3 +425,12 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+
+# Strapi
+.env
+license.txt
+exports
+*.cache
+dist
+build
+.strapi-updater.json

@@ -1,0 +1,27 @@
+# Run the following command to (re)generate a CSR
+# openssl req \
+#   -new \
+#   -sha256 \
+#   -nodes \
+#   -out talent.digital.gov.bc.ca.csr \
+#   -newkey rsa:2048 \
+#   -keyout talent.digital.gov.bc.ca.key \
+#   -config <(cat csr-details.txt)
+#
+# Inspect the resulting CSR using the following command:
+#   openssl req -in talent.digital.gov.bc.ca.csr -noout -text
+
+[req]
+default_bits=2048
+default_md=sha256
+distinguished_name=dn
+prompt=no
+
+[dn]
+C=CA
+ST=British Columbia
+L=Victoria
+O=Government of the Province of British Columbia
+OU=Citizens' Services
+CN=talent.digital.gov.bc.ca
+emailAddress=sid.mclaughlin@gov.bc.ca

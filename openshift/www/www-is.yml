@@ -1,0 +1,31 @@
+---
+kind: Template
+apiVersion: template.openshift.io/v1
+parameters:
+  - name: NAMESPACE
+    displayName: Namespace
+    required: true
+  - name: DOCKER_IMAGE_URL
+    displayName: Docker Image URL
+    description: 'URL of the Docker Image, eg: artifacts.developer.gov.bc.ca/tf15-images/www'
+    required: true
+  - name: DOCKER_IMAGE_TAG
+    displayName: Docker Image Tag
+    description: 'The tag to pull, eg: develop-latest'
+    required: true
+objects:
+  - kind: ImageStream
+    apiVersion: image.openshift.io/v1
+    metadata:
+      name: www
+      namespace: ${NAMESPACE}
+    spec:
+      tags:
+        - name: ${DOCKER_IMAGE_TAG}
+          from:
+            kind: DockerImage
+            name: ${DOCKER_IMAGE_URL}:${DOCKER_IMAGE_TAG}
+          importPolicy:
+            scheduled: true
+          referencePolicy:
+            type: Source
