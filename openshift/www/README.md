@@ -18,7 +18,6 @@
 
    oc process -f ./www-np-s.yml \
    -p NAMESPACE=<NAMESPACE> \
-   -p URL=<URL> \
    | oc apply -f -
    ```
 
