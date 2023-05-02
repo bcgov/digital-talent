@@ -384,7 +384,7 @@ google-services.json
 *.hprof
 
 ### VisualStudioCode ###
-.vscode/*
+**/.vscode/*
 
 # Local History for Visual Studio Code
 .history/
