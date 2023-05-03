@@ -1,9 +1,10 @@
 const { fontFamily } = require('tailwindcss/defaultTheme');
 const tailwindAnimate = require('tailwindcss-animate');
+const typography = require('@tailwindcss/typography');
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ['./src/app/**/*.{js,ts,jsx,tsx,mdx}'],
+  content: ['./src/**/*.{js,ts,jsx,tsx,mdx}'],
   darkMode: ['class'],
   theme: {
     container: {
@@ -75,5 +76,5 @@ module.exports = {
       },
     },
   },
-  plugins: [tailwindAnimate],
+  plugins: [tailwindAnimate, typography],
 };

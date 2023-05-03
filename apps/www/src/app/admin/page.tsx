@@ -5,7 +5,7 @@ import { AuthProvider } from '../../components/auth.provider';
 
 function Page() {
   return (
-    <main className="flex min-h-screen items-center justify-center">
+    <main className="flex min-h-full items-center justify-center">
       <div className="grid grid-cols-1">
         <div className="my-auto">
           <h1 className="text-4xl font-medium">Admin Page</h1>
