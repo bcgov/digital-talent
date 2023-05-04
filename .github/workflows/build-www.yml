@@ -32,6 +32,8 @@ jobs:
     needs: metadata
     if: ${{ needs.metadata.outputs.changed-apps != '[]' && needs.metadata.outputs.changed-apps != '' }}
     runs-on: ubuntu-20.04
+    environment:
+      name: ${{ github.ref_name == 'main' && prod || dev }}
     strategy:
       matrix:
         app: ${{ fromJSON(needs.metadata.outputs.changed-apps) }}
@@ -75,3 +77,9 @@ jobs:
           push: true
           tags: ${{ steps.docker-metadata.outputs.tags }}
           labels: ${{ steps.docker-metadata.outputs.labels }}
+          build-args: |
+            NEXTAUTH_SECRET=${{ secrets.NEXTAUTH_SECRET }}
+            NEXTAUTH_URL=${{ secrets.NEXTAUTH_URL }}
+            KEYCLOAK_CLIENT_ID=${{ secrets.KEYCLOAK_CLIENT_ID }}
+            KEYCLOAK_CLIENT_SECRET=${{ secrets.KEYCLOAK_CLIENT_SECRET }}
+            KEYCLOAK_ISSUER=${{ secrets.KEYCLOAK_ISSUER }}
