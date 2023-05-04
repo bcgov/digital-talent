@@ -3,5 +3,5 @@ interface Props {
 }
 
 export default function Content({ children }: Props) {
-  return <main className="flex-grow my-4">{children}</main>;
+  return <main className="flex-grow my-4 mr-4">{children}</main>;
 }

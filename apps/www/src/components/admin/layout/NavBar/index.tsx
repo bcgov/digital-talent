@@ -19,7 +19,7 @@ export interface NavBarProps {
 
 export default function NavBar({ links }: NavBarProps) {
   return (
-    <div className="max-h-screen bg-gray-50 flex flex-col w-20 z-50">
+    <div className="max-h-screen bg-gray-50 flex flex-col w-20 z-50 shadow-[0_0_2px_0_rgba(0,0,0,0.15)]">
       <div className="flex h-16 shrink-0 items-center justify-center font-extrabold">DT</div>
       <Separator className="mb-4" />
       <nav className="flex-grow overflow-y-auto">
