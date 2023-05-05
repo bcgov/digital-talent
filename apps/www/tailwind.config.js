@@ -49,6 +49,18 @@ module.exports = {
           DEFAULT: 'hsl(var(--card))',
           foreground: 'hsl(var(--card-foreground))',
         },
+        bcgov: {
+          blue: {
+            dark: '#003366',
+            medium: '#38598A',
+          },
+          gold: {
+            DEFAULT: '#FCBA19',
+          },
+          gray: {
+            dark: '#313131',
+          },
+        },
       },
       borderRadius: {
         lg: `var(--radius)`,
