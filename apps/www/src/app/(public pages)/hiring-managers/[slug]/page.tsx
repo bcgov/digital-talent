@@ -3,6 +3,7 @@ import { promises as fs } from 'fs';
 import { glob } from 'glob';
 import matter from 'gray-matter';
 import { Metadata } from 'next';
+import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import path from 'path';
 import React from 'react';
@@ -66,7 +67,12 @@ export default async function Page({ params }: PageProps) {
         description="Submit your position details to the team to join the next cross ministry hiring."
         title="Ready to join?"
       >
-        <Button variant="call-to-action">Get Started</Button>
+        <Link
+          href="https://submit.digital.gov.bc.ca/app/form/submit?f=a6ca83a2-71a3-4b4b-9acc-0b7f5723dede"
+          target="_blank"
+        >
+          <Button variant="call-to-action">Get Started</Button>
+        </Link>
       </CallToAction>
     </>
   );
