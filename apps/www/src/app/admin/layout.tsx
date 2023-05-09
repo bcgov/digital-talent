@@ -1,9 +1,9 @@
 'use client';
 
 import { UsersIcon } from 'lucide-react';
-import Content from '../../components/admin/layout/Content';
-import Footer from '../../components/admin/layout/Footer';
-import NavBar, { NavBarLinks } from '../../components/admin/layout/NavBar';
+import Content from '../../common/components/admin/layout/Content';
+import Footer from '../../common/components/admin/layout/Footer';
+import NavBar, { NavBarLinks } from '../../common/components/admin/layout/NavBar';
 
 const links: NavBarLinks = [
   {

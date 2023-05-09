@@ -4,7 +4,7 @@ const typography = require('@tailwindcss/typography');
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ['./src/**/*.{js,ts,jsx,tsx,mdx}'],
+  content: ['./src/**/*.{js,ts,jsx,tsx,md}'],
   darkMode: ['class'],
   theme: {
     container: {
@@ -71,6 +71,7 @@ module.exports = {
         sans: [`var(--font-noto-sans-display)`, ...fontFamily.sans],
         serif: ['var(--font-noto-serif-display)', ...fontFamily.serif],
         mono: ['var(--font-noto-sans-mono)', ...fontFamily.mono],
+        montserrat: ['var(--font-montserrat)'],
       },
       keyframes: {
         'accordion-down': {
