@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import NextAuth, { AuthOptions } from 'next-auth';
 import KeycloakProvider from 'next-auth/providers/keycloak';
 import { guidToUuid } from '../../../common/utils/guid-to-uuid.util';

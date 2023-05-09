@@ -4,7 +4,7 @@ const typography = require('@tailwindcss/typography');
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ['./src/**/*.{js,ts,jsx,tsx,mdx}'],
+  content: ['./src/**/*.{js,ts,jsx,tsx,md}'],
   darkMode: ['class'],
   theme: {
     container: {
@@ -49,6 +49,18 @@ module.exports = {
           DEFAULT: 'hsl(var(--card))',
           foreground: 'hsl(var(--card-foreground))',
         },
+        bcgov: {
+          blue: {
+            dark: '#003366',
+            medium: '#38598A',
+          },
+          gold: {
+            DEFAULT: '#FCBA19',
+          },
+          gray: {
+            dark: '#313131',
+          },
+        },
       },
       borderRadius: {
         lg: `var(--radius)`,
@@ -59,6 +71,7 @@ module.exports = {
         sans: [`var(--font-noto-sans-display)`, ...fontFamily.sans],
         serif: ['var(--font-noto-serif-display)', ...fontFamily.serif],
         mono: ['var(--font-noto-sans-mono)', ...fontFamily.mono],
+        montserrat: ['var(--font-montserrat)'],
       },
       keyframes: {
         'accordion-down': {

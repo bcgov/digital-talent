@@ -5,9 +5,9 @@
 import { createColumnHelper } from '@tanstack/react-table';
 import { CheckIcon, XIcon } from 'lucide-react';
 import { useMemo } from 'react';
-import { Badge } from '../../../components/ui/badge';
-import { HoverCard, HoverCardContent, HoverCardTrigger } from '../../../components/ui/hover-card';
-import Table from '../../../components/ui/Table';
+import { Badge } from '../../../common/components/ui/badge';
+import { HoverCard, HoverCardContent, HoverCardTrigger } from '../../../common/components/ui/hover-card';
+import Table from '../../../common/components/ui/Table';
 import { Candidate, candidateData } from './data';
 
 export default function Page() {

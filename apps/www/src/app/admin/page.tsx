@@ -1,7 +1,7 @@
 'use client';
 
 import { signOut } from 'next-auth/react';
-import { AuthProvider } from '../../components/auth.provider';
+import { AuthProvider } from '../../common/components/auth.provider';
 
 function Page() {
   return (
