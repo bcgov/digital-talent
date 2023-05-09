@@ -5,7 +5,7 @@ import Header from '../../../../common/components/public/layout/Header';
 
 export default function PublicLayout({ children }: PropsWithChildren) {
   return (
-    <div className="flex flex-col h-screen">
+    <div className="flex flex-col h-screen w-full">
       <Header />
       <Content>{children}</Content>
       <Footer />
