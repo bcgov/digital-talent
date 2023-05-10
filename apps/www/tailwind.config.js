@@ -53,6 +53,7 @@ module.exports = {
           blue: {
             dark: '#003366',
             medium: '#38598A',
+            light: '#F5F9FF',
           },
           gold: {
             DEFAULT: '#FCBA19',
