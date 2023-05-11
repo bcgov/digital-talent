@@ -16,33 +16,33 @@ export default function Heading({ id, children, level }: any) {
       );
     case 2:
       return (
-        <h1 className="text-2xl font-semibold" {...(id && { id })}>
+        <h2 className="text-2xl font-semibold" {...(id && { id })}>
           {children}
-        </h1>
+        </h2>
       );
     case 3:
       return (
-        <h1 className="text-xl font-semibold" {...(id && { id })}>
+        <h3 className="text-xl font-semibold" {...(id && { id })}>
           {children}
-        </h1>
+        </h3>
       );
     case 4:
       return (
-        <h1 className="text-lg font-semibold" {...(id && { id })}>
+        <h4 className="text-lg font-semibold" {...(id && { id })}>
           {children}
-        </h1>
+        </h4>
       );
     case 5:
       return (
-        <h1 className="text-base font-semibold" {...(id && { id })}>
+        <h5 className="text-base font-semibold" {...(id && { id })}>
           {children}
-        </h1>
+        </h5>
       );
     case 6:
       return (
-        <h1 className="text-sm font-semibold" {...(id && { id })}>
+        <h6 className="text-sm font-semibold" {...(id && { id })}>
           {children}
-        </h1>
+        </h6>
       );
     default:
       return (
