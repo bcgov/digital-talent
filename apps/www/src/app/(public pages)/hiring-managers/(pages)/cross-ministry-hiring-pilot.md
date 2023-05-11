@@ -32,7 +32,7 @@ The Digital Talent Attraction & Development (DTAD) team supports the following j
 
 - User Experience Designer (IS 24-27)
 
-- Users Experience Researcher (AO 24-27)
+- User Experience Researcher (AO 24-27)
 
 CMHP only hires for full-time permanent positions at this time.
 
