@@ -65,7 +65,7 @@ export default async function Page({ params }: PageProps) {
       <HeroTitle title={title} />
       <div className="container mx-auto mt-4">
         <div className="flex gap-4">
-          <div className="shrink-0 w-72">
+          <div className="hidden md:block shrink-0 w-72">
             <PageNav headings={headings} />
           </div>
           <div className="prose max-w-none">{Markdoc.renderers.react(content, React, { components })}</div>
