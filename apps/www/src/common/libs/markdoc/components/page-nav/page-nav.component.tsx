@@ -13,7 +13,7 @@ export type PageNavProps = {
 export default function PageNav({ headings }: PageNavProps) {
   const filtered = headings.filter((h) => h.id != null && [1, 2, 3].includes(h.level));
 
-  const [active, setActive] = useState(headings.length > 0 ? headings[0].id : '');
+  const [active, setActive] = useState('');
 
   useEffect(() => {
     const handleScroll = () => {
@@ -25,10 +25,10 @@ export default function PageNav({ headings }: PageNavProps) {
       }
     };
 
-    document.addEventListener('scroll', handleScroll);
+    document.getElementById('content-wrapper')?.addEventListener('scroll', handleScroll);
 
     return () => {
-      document.removeEventListener('scroll', handleScroll);
+      document.getElementById('content-wrapper')?.removeEventListener('scroll', handleScroll);
     };
   }, [active, filtered]);
 
@@ -44,8 +44,17 @@ export default function PageNav({ headings }: PageNavProps) {
 
   const pathname = usePathname();
 
+  useEffect(() => {
+    const activeId: string = headings.length > 0 ? headings[0].id : '';
+
+    // If anchor is set, navigate to correct heading
+    if (window.location.hash) document.getElementById(window.location.hash.replace('#', ''))?.scrollIntoView();
+
+    setActive(activeId);
+  }, [headings]);
+
   return (
-    <ul className="list-none list-inside sticky top-14">
+    <ul className="list-none list-inside sticky top-4">
       {filtered.map((heading) => {
         const href = `#${heading.id}`;
         // const active = typeof window !== 'undefined' && window.location.hash === href;

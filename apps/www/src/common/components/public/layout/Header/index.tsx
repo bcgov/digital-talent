@@ -5,7 +5,7 @@ export default function Header() {
   return (
     <header>
       {/* Top Header */}
-      <div className="bg-white border-b drop-shadow flex flex-row h-12 fixed w-full">
+      <div className="bg-white border-b drop-shadow flex flex-row h-12 fixed w-screen z-50">
         <div className="container mx-auto my-auto flex flex-row gap-2">
           <div>
             <Link href="/hiring-managers/cross-ministry-hiring-pilot" title="Home">
