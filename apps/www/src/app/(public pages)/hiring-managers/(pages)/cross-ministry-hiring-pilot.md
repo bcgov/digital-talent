@@ -16,7 +16,7 @@ Our team is passionate about delivering a better service, which will ultimately 
 
 In order to attract and retain candidates, as well as meet the hiring practices of BC gov, hiring teams are required to verify they meet all the requirements to hire digital talent.
 
-## Positions we hire for
+## Positions we hire for {% #positions-we-hire-for %}
 
 The Digital Talent Attraction & Development (DTAD) team supports the following job profiles:
 
@@ -30,9 +30,9 @@ The Digital Talent Attraction & Development (DTAD) team supports the following j
 
 - Site Reliability Specialist (IS 27-30)
 
-- Users Experience Researcher (AO 24-27)
-
 - User Experience Designer (IS 24-27)
+
+- Users Experience Researcher (AO 24-27)
 
 CMHP only hires for full-time permanent positions at this time.
 
@@ -42,7 +42,7 @@ You can reach out to digital.talent@gov.bc.ca to see what your other options are
 
 # How it works {% #how-it-works %}
 
-## Overall process
+## Overall process {% #overall-process %}
 
 {% icon-list %}
 
@@ -88,7 +88,7 @@ An eligibility list is established for every competition we run. Taking into acc
 
 {% /icon-list %}
 
-## What the Digital Talent team will do
+## What the Digital Talent team will do {% #what-the-digital-talent-team-will-do %}
 
 We've partnered with PSA to find ways to streamline the hiring process
 
@@ -132,13 +132,13 @@ We've partnered with PSA to find ways to streamline the hiring process
 
 {% /icon-list %}
 
-## Matching candidates & opportunities
+## Matching candidates & opportunities {% #matching-candidates-and-opportunities %}
 
 _To Do_
 
-# Get started
+# Get started {% #get-started %}
 
-## Are you ready to join a Digital Talent competition?
+## Are you ready to join a Digital Talent competition? {% #are-you-ready-to-join-a-digital-talent-competition %}
 
 On this page you’ll find detailed information about the requirements, expected commitments, and submission form.
 
@@ -176,7 +176,7 @@ _Example Image_
 
 {% /icon-list %}
 
-## Hiring manager time commitments
+## Hiring manager time commitments {% #hiring-manager-time-commitments %}
 
 We have 2 involvement options for hiring managers:
 
