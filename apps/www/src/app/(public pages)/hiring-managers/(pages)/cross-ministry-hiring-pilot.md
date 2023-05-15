@@ -46,7 +46,7 @@ You can reach out to digital.talent@gov.bc.ca to see what your other options are
 
 {% icon-list %}
 
-{% icon-list-item icon="Hash" text="Join an upcoming competition" %}
+{% icon-list-item icon="1" iconColor="white" iconBgColor="bcgov-blue-dark" text="Join an upcoming competition" %}
 
 If you meet all the [hiring requirements](), you can join an upcoming competition for a role.
 
@@ -54,31 +54,31 @@ If you meet all the [hiring requirements](), you can join an upcoming competitio
 - [See upcoming competitions & sign up for notifications]()
 
 {% /icon-list-item %}
-{% icon-list-item icon="Hash" text="We will create a job posting" %}
+{% icon-list-item icon="2" iconColor="white" iconBgColor="bcgov-blue-dark" text="We will create a job posting" %}
 
 We will meet with all the hiring managers to understand their hiring preference. We will draft a user-friendly easy to read posting about the role with information about all the opportunities.
 
 {% /icon-list-item %}
-{% icon-list-item icon="Hash" text="Candidates apply (positions are open for 3 weeks)" %}
+{% icon-list-item icon="3" iconColor="white" iconBgColor="bcgov-blue-dark" text="Candidates apply (positions are open for 3 weeks)" %}
 
 Our team of CITZ and PSA staff help with recruiting, publishing the job post, and answering questions as they come in to make sure we attract as many qualified candidates as possible.
 
 {% /icon-list-item %}
-{% icon-list-item icon="Hash" text="Evaluate and interview candidates" %}
+{% icon-list-item icon="4" iconColor="white" iconBgColor="bcgov-blue-dark" text="Evaluate and interview candidates" %}
 
 Hires go through the same meritorious process as other BC gov candidates: screening, assessment, interviews, and reference checks. We have tailored the information we ask to reduce friction for applying, while still giving the hiring team enough information to make the decision efficiently.
 
 - [Time commitment for hiring managers]()
 
 {% /icon-list-item %}
-{% icon-list-item icon="Hash" text="We match candidates to opportunities" %}
+{% icon-list-item icon="5" iconColor="white" iconBgColor="bcgov-blue-dark" text="We match candidates to opportunities" %}
 
 We have a candidate-driven process to create the best experience we can for new hires. Once ranked, candidates are made offers based on their location and team preferences.
 
 - [Learn more about the match-making process]()
 
 {% /icon-list-item %}
-{% icon-list-item icon="Hash" text="Offers are sent out" %}
+{% icon-list-item icon="6" iconColor="white" iconBgColor="bcgov-blue-dark" text="Offers are sent out" %}
 
 An eligibility list is established for every competition we run. Taking into account scores, years of service, and preferences, we will send out offers. When there are more candidates than opportunities, those eligibility lists are made available to other hiring teams.
 
@@ -96,12 +96,12 @@ We've partnered with PSA to find ways to streamline the hiring process
 
 {% icon-list %}
 
-{% icon-list-item color="#2E8540" icon="CheckCircle2" text="Create a new position number" /%}
-{% icon-list-item color="#2E8540" icon="CheckCircle2" text="Grant approval of Digital Talent Job Profiles" /%}
-{% icon-list-item color="#2E8540" icon="CheckCircle2" text="Submit hiring and requisition requests" /%}
-{% icon-list-item color="#2E8540" icon="CheckCircle2" text="Develop job postings that highlight your program area, the position’s team, and the opportunities available" /%}
-{% icon-list-item color="#2E8540" icon="CheckCircle2" text="Create clear, concise, and comprehensive questionnaires" /%}
-{% icon-list-item color="#2E8540" icon="CheckCircle2" text="Provide broad promotion and marketing strategies" /%}
+{% icon-list-item icon="CheckCircle2" iconColor="green-500" text="Create a new position number" /%}
+{% icon-list-item icon="CheckCircle2" iconColor="green-500" text="Grant approval of Digital Talent Job Profiles" /%}
+{% icon-list-item icon="CheckCircle2" iconColor="green-500" text="Submit hiring and requisition requests" /%}
+{% icon-list-item icon="CheckCircle2" iconColor="green-500" text="Develop job postings that highlight your program area, the position’s team, and the opportunities available" /%}
+{% icon-list-item icon="CheckCircle2" iconColor="green-500" text="Create clear, concise, and comprehensive questionnaires" /%}
+{% icon-list-item icon="CheckCircle2" iconColor="green-500" text="Provide broad promotion and marketing strategies" /%}
 
 {% /icon-list %}
 
@@ -109,26 +109,26 @@ We've partnered with PSA to find ways to streamline the hiring process
 
 {% icon-list %}
 
-{% icon-list-item color="#2E8540" icon="CheckCircle2" text="Redaction dentifying information such as names, email, current ministry, and location to remove bias and support a more and equitable process" /%}
-{% icon-list-item color="#2E8540" icon="CheckCircle2" text="Provide quality skill testing assessments and intuitive marking guides" /%}
-{% icon-list-item color="#2E8540" icon="CheckCircle2" text="Develop interview questions that reflect the behavioral competencies of your posting" /%}
-{% icon-list-item color="#2E8540" icon="CheckCircle2" text="Participate in screening of applicants" /%}
-{% icon-list-item color="#2E8540" icon="CheckCircle2" text="Provide timely communications with applicants and hiring managers" /%}
-{% icon-list-item color="#2E8540" icon="CheckCircle2" text="Facilitate/Participate on hiring panels" /%}
-{% icon-list-item color="#2E8540" icon="CheckCircle2" text="Conduct candidate reference checks" /%}
-{% icon-list-item color="#2E8540" icon="CheckCircle2" text="Draft Offer letters" /%}
-{% icon-list-item color="#2E8540" icon="CheckCircle2" text=Work with hiring managers to draft and process preliminary onboarding documents" /%}
-{% icon-list-item color="#2E8540" icon="CheckCircle2" text="Provide full documentation of hiring decisions to the PSA /%}
-{% icon-list-item color="#2E8540" icon="CheckCircle2" text="Provide full documentation of hiring decisions to the PSA" /%}
-{% icon-list-item color="#2E8540" icon="CheckCircle2" text="Provide candidate feedback" /%}
+{% icon-list-item icon="CheckCircle2" iconColor="green-500" text="Redaction dentifying information such as names, email, current ministry, and location to remove bias and support a more and equitable process" /%}
+{% icon-list-item icon="CheckCircle2" iconColor="green-500" text="Provide quality skill testing assessments and intuitive marking guides" /%}
+{% icon-list-item icon="CheckCircle2" iconColor="green-500" text="Develop interview questions that reflect the behavioral competencies of your posting" /%}
+{% icon-list-item icon="CheckCircle2" iconColor="green-500" text="Participate in screening of applicants" /%}
+{% icon-list-item icon="CheckCircle2" iconColor="green-500" text="Provide timely communications with applicants and hiring managers" /%}
+{% icon-list-item icon="CheckCircle2" iconColor="green-500" text="Facilitate/Participate on hiring panels" /%}
+{% icon-list-item icon="CheckCircle2" iconColor="green-500" text="Conduct candidate reference checks" /%}
+{% icon-list-item icon="CheckCircle2" iconColor="green-500" text="Draft Offer letters" /%}
+{% icon-list-item icon="CheckCircle2" iconColor="green-500" text=Work with hiring managers to draft and process preliminary onboarding documents" /%}
+{% icon-list-item icon="CheckCircle2" iconColor="green-500" text="Provide full documentation of hiring decisions to the PSA /%}
+{% icon-list-item icon="CheckCircle2" iconColor="green-500" text="Provide full documentation of hiring decisions to the PSA" /%}
+{% icon-list-item icon="CheckCircle2" iconColor="green-500" text="Provide candidate feedback" /%}
 
 {% /icon-list %}
 
 **Overall experience**
 {% icon-list %}
 
-{% icon-list-item color="#2E8540" icon="CheckCircle2" text="Conduct candidate surveys to improve the hiring process for candidates" /%}
-{% icon-list-item color="#2E8540" icon="CheckCircle2" text="Solicit feedback and conduct workshops with hiring managers to inform service improvements from the internal process side" /%}
+{% icon-list-item icon="CheckCircle2" iconColor="green-500" text="Conduct candidate surveys to improve the hiring process for candidates" /%}
+{% icon-list-item icon="CheckCircle2" iconColor="green-500" text="Solicit feedback and conduct workshops with hiring managers to inform service improvements from the internal process side" /%}
 
 {% /icon-list %}
 
@@ -146,20 +146,20 @@ In order to attract and retain candidates, as well as meet the hiring practices 
 
 {% icon-list %}
 
-{% icon-list-item icon="Verified" text="Be approved to hire" %}
+{% icon-list-item icon="Verified" iconBgColor="bcgov-gold-light" text="Be approved to hire" %}
 
 - Approval from your [supervisor]
 - Deputy minister designate to hire
 
 {% /icon-list-item %}
 
-{% icon-list-item icon="Files" text="Have your required hiring documents" %}
+{% icon-list-item icon="Files" iconBgColor="bcgov-gold-light" text="Have your required hiring documents" %}
 
 Your organization chart showing reporting relationship
 
 {% /icon-list-item %}
 
-{% icon-list-item icon="ClipboardCheck" text="Meet the organization requirements of the job profile" %}
+{% icon-list-item icon="ClipboardCheck" iconBgColor="bcgov-gold-light" text="Meet the organization requirements of the job profile" %}
 
 Specific [job profiles]() have context that must be met by the hiring team. The context is described in a blue box on the job profile document.
 
@@ -167,7 +167,7 @@ _Example Image_
 
 {% /icon-list-item %}
 
-{% icon-list-item icon="ClipboardSignature" text="Fill and return the following documents" %}
+{% icon-list-item icon="ClipboardSignature" iconBgColor="bcgov-gold-light" text="Fill and return the following documents" %}
 
 - [Digital Talent Attraction & Development Terms of Service]()
 - [Public Service Act Part 3 -- Appointments to the public service]()
@@ -193,9 +193,9 @@ Allows you to have input on the initial posting and indicate your preferences on
 
 {% icon-list %}
 
-{% icon-list-item color="#2E8540" icon="CheckCircle2" text="Can access the eligibility list of the competition" /%}
-{% icon-list-item color="#2E8540" icon="CheckCircle2" text="Review and approve job posting draft, job profile, and questionnaire" /%}
-{% icon-list-item color="#2E8540" icon="CheckCircle2" text="Provide candidate preference by reviewing _successful_ candidates' information (resumes, assessments, and interview panel notes)" /%}
+{% icon-list-item icon="CheckCircle2" iconColor="green-500" text="Can access the eligibility list of the competition" /%}
+{% icon-list-item icon="CheckCircle2" iconColor="green-500" text="Review and approve job posting draft, job profile, and questionnaire" /%}
+{% icon-list-item icon="CheckCircle2" iconColor="green-500" text="Provide candidate preference by reviewing _successful_ candidates' information (resumes, assessments, and interview panel notes)" /%}
 
 {% /icon-list %}
 
@@ -203,8 +203,8 @@ Allows you to have input on the initial posting and indicate your preferences on
 
 {% icon-list %}
 
-{% icon-list-item color="#38598A" icon="Clock" text="1-hour consultation meeting to review, approve, and provide suggested edits in an initial consultation meeting for the Job posting drafts, Job Profiles and Questionnaires" /%}
-{% icon-list-item color="#38598A" icon="Clock" text="48-hour turn around time for reviewing successful candidate information and informing the Digital Talent team rank your preferred candidates. Candidate information you’ll have to review includes redacted resumes, assessments, and interview panel notes." /%}
+{% icon-list-item icon="Clock" iconColor="bcgov-blue" text="1-hour consultation meeting to review, approve, and provide suggested edits in an initial consultation meeting for the Job posting drafts, Job Profiles and Questionnaires" /%}
+{% icon-list-item icon="Clock" iconColor="bcgov-blue" text="48-hour turn around time for reviewing successful candidate information and informing the Digital Talent team rank your preferred candidates. Candidate information you’ll have to review includes redacted resumes, assessments, and interview panel notes." /%}
 
 {% /icon-list %}
 
@@ -218,16 +218,16 @@ You are able to provide input on the job posting and assess candidates along the
 
 {% icon-list %}
 
-{% icon-list-item color="#2E8540" icon="CheckCircle2" text="Can access the eligibility list of the competition" /%}
-{% icon-list-item color="#2E8540" icon="CheckCircle2" text="Review and approve job posting draft, job profile, and questionnaire" /%}
-{% icon-list-item color="#2E8540" icon="CheckCircle2" text="Review and screen candidates " /%}
-{% icon-list-item color="#2E8540" icon="CheckCircle2" text="Provide input on drafts of assessments" /%}
-{% icon-list-item color="#2E8540" icon="CheckCircle2" text="Score assessments" /%}
-{% icon-list-item color="#2E8540" icon="CheckCircle2" text="Must commit to at least 3 consecutive days for panel interview time with minimal other appointments" /%}
-{% icon-list-item color="#2E8540" icon="CheckCircle2" text="Ensure CMHP hiring panel speaking notes are read by panel chair following all candidate interviews" /%}
-{% icon-list-item color="#2E8540" icon="CheckCircle2" text="Attend comprehensive consensus panel with other members" /%}
-{% icon-list-item color="#2E8540" icon="CheckCircle2" text="Rank candidates" /%}
-{% icon-list-item color="#2E8540" icon="CheckCircle2" text="Participate in reference checks" /%}
+{% icon-list-item icon="CheckCircle2" iconColor="green-500" text="Can access the eligibility list of the competition" /%}
+{% icon-list-item icon="CheckCircle2" iconColor="green-500" text="Review and approve job posting draft, job profile, and questionnaire" /%}
+{% icon-list-item icon="CheckCircle2" iconColor="green-500" text="Review and screen candidates " /%}
+{% icon-list-item icon="CheckCircle2" iconColor="green-500" text="Provide input on drafts of assessments" /%}
+{% icon-list-item icon="CheckCircle2" iconColor="green-500" text="Score assessments" /%}
+{% icon-list-item icon="CheckCircle2" iconColor="green-500" text="Must commit to at least 3 consecutive days for panel interview time with minimal other appointments" /%}
+{% icon-list-item icon="CheckCircle2" iconColor="green-500" text="Ensure CMHP hiring panel speaking notes are read by panel chair following all candidate interviews" /%}
+{% icon-list-item icon="CheckCircle2" iconColor="green-500" text="Attend comprehensive consensus panel with other members" /%}
+{% icon-list-item icon="CheckCircle2" iconColor="green-500" text="Rank candidates" /%}
+{% icon-list-item icon="CheckCircle2" iconColor="green-500" text="Participate in reference checks" /%}
 
 {% /icon-list %}
 
@@ -237,11 +237,11 @@ In order to stay competitive with candidates who might be receiving offers, we e
 
 {% icon-list %}
 
-{% icon-list-item color="#38598A" icon="Clock" text="Approximately 4.5 hours of consensus meetings with other hiring managers and the DTAD team" /%}
-{% icon-list-item color="#38598A" icon="Clock" text="3-day turnaround time for reviewing and screening candidates" /%}
-{% icon-list-item color="#38598A" icon="Clock" text="48-hour turnaround time for reviewing drafts of assessments and providing suggestions" /%}
-{% icon-list-item color="#38598A" icon="Clock" text="48-hour turnaround time for marking assessments. Potential additional time required for co-grading assessments" /%}
-{% icon-list-item color="#38598A" icon="Clock" text="Commit to at least 3 consecutive days for panel interview time with minimal other appointments" /%}
+{% icon-list-item icon="Clock" iconColor="bcgov-blue" text="Approximately 4.5 hours of consensus meetings with other hiring managers and the DTAD team" /%}
+{% icon-list-item icon="Clock" iconColor="bcgov-blue" text="3-day turnaround time for reviewing and screening candidates" /%}
+{% icon-list-item icon="Clock" iconColor="bcgov-blue" text="48-hour turnaround time for reviewing drafts of assessments and providing suggestions" /%}
+{% icon-list-item icon="Clock" iconColor="bcgov-blue" text="48-hour turnaround time for marking assessments. Potential additional time required for co-grading assessments" /%}
+{% icon-list-item icon="Clock" iconColor="bcgov-blue" text="Commit to at least 3 consecutive days for panel interview time with minimal other appointments" /%}
 
 {% /icon-list %}
 
