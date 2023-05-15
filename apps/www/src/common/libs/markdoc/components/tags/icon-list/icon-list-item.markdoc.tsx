@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import * as lucideIcons from 'lucide-react';
 import { LucideIcon } from 'lucide-react';
+import { cn } from '../../../../../utils/cn.util';
 
 type IconListItemProps = {
   color: string;
@@ -24,9 +25,11 @@ export default function IconListItem({
   return (
     <li className="flex flex-row gap-2">
       <div
-        className={`${iconBgColor ? `bg-${iconBgColor}` : 'bg-transparent'} ${
-          iconColor ? `text-${iconColor}` : 'text-primary'
-        } flex h-8 rounded-[50%] shrink-0 w-8`}
+        className={cn(
+          iconBgColor ? `${iconBgColor}` : 'bg-transparent',
+          iconColor ? `${iconColor}` : 'text-primary',
+          'flex h-8 rounded-[50%] shrink-0 w-8',
+        )}
       >
         <div className="mx-auto my-auto">{Icon ? <Icon /> : icon}</div>
       </div>
