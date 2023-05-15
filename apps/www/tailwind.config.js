@@ -52,11 +52,12 @@ module.exports = {
         bcgov: {
           blue: {
             dark: '#003366',
-            medium: '#38598A',
+            DEFAULT: '#38598A',
             light: '#F5F9FF',
           },
           gold: {
             DEFAULT: '#FCBA19',
+            light: '#FCEDCA',
           },
           gray: {
             dark: '#313131',

@@ -38,6 +38,12 @@ const config: Config = {
         icon: {
           type: String,
         },
+        iconBgColor: {
+          type: String,
+        },
+        iconColor: {
+          type: String,
+        },
         text: {
           type: String,
         },
