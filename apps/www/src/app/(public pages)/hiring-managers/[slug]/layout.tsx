@@ -7,13 +7,8 @@ export default function PublicLayout({ children }: PropsWithChildren) {
   return (
     <div className="h-screen">
       <Header />
-      <div
-        className="fixed flex flex-col h-[calc(100vh-theme(space.12))] overflow-y-auto !scroll-smooth top-12 w-screen"
-        id="content-wrapper"
-      >
-        <div className="grow">{children}</div>
-        <Footer />
-      </div>
+      <div className="grow pt-12">{children}</div>
+      <Footer />
     </div>
   );
 }

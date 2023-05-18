@@ -10,45 +10,52 @@ export default function Heading({ id, children, level }: any) {
   switch (level) {
     case 1:
       return (
-        <h1 className="mt-0 text-3xl font-semibold" {...(id && { id })}>
-          {children}
-        </h1>
+        <>
+          {id && <div className="block relative -top-16" id={id} />}
+          <h1 className="mt-0 text-3xl font-semibold">{children}</h1>
+        </>
       );
     case 2:
       return (
-        <h2 className="mt-0 text-2xl font-semibold" {...(id && { id })}>
-          {children}
-        </h2>
+        <>
+          {id && <div className="block relative -top-16" id={id} />}
+          <h2 className="mt-0 text-2xl font-semibold">{children}</h2>
+        </>
       );
     case 3:
       return (
-        <h3 className="mt-0 text-xl font-semibold" {...(id && { id })}>
-          {children}
-        </h3>
+        <>
+          {id && <div className="block relative -top-16" id={id} />}
+          <h3 className="mt-0 text-xl font-semibold">{children}</h3>
+        </>
       );
     case 4:
       return (
-        <h4 className="mt-0 text-lg font-semibold" {...(id && { id })}>
-          {children}
-        </h4>
+        <>
+          {id && <div className="block relative -top-16" id={id} />}
+          <h4 className="mt-0 text-lg font-semibold">{children}</h4>
+        </>
       );
     case 5:
       return (
-        <h5 className="mt-0 text-base font-semibold" {...(id && { id })}>
-          {children}
-        </h5>
+        <>
+          {id && <div className="block relative -top-16" id={id} />}
+          <h5 className="mt-0 text-base font-semibold">{children}</h5>
+        </>
       );
     case 6:
       return (
-        <h6 className="mt-0 text-sm font-semibold" {...(id && { id })}>
-          {children}
-        </h6>
+        <>
+          {id && <div className="block relative -top-16" id={id} />}
+          <h6 className="mt-0 text-sm font-semibold">{children}</h6>
+        </>
       );
     default:
       return (
-        <div className="text-base font-semidbold" {...(id && { id })}>
-          {children}
-        </div>
+        <>
+          {id && <div className="block relative -top-16" id={id} />}
+          <div className="text-base font-semidbold">{children}</div>
+        </>
       );
   }
 }
