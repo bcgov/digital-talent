@@ -8,8 +8,8 @@ import { notFound } from 'next/navigation';
 import path from 'path';
 import React from 'react';
 import { Button } from '../../../../common/components/ui/button';
+import HeroTitle from '../../../../common/components/ui/hero/hero.component';
 import CallToAction from '../../../../common/libs/markdoc/components/call-to-action/call-to-action.component';
-import HeroTitle from '../../../../common/libs/markdoc/components/hero/hero.component';
 import PageNav from '../../../../common/libs/markdoc/components/page-nav/page-nav.component';
 import { components, config } from '../../../../common/libs/markdoc/markdoc.config';
 import { extractHeadings } from '../../../../common/libs/markdoc/utils/extract-headings.util';
@@ -62,7 +62,7 @@ export default async function Page({ params }: PageProps) {
 
   return (
     <>
-      <HeroTitle title={title} />
+      <HeroTitle title={title} variant="dark" />
       <div className="container mx-auto mt-4">
         <div className="flex gap-4">
           <div className="hidden md:block shrink-0 w-72">
