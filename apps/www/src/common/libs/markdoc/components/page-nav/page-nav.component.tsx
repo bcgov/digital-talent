@@ -25,10 +25,10 @@ export default function PageNav({ headings }: PageNavProps) {
       }
     };
 
-    document.getElementById('content-wrapper')?.addEventListener('scroll', handleScroll);
+    document.addEventListener('scroll', handleScroll);
 
     return () => {
-      document.getElementById('content-wrapper')?.removeEventListener('scroll', handleScroll);
+      document.removeEventListener('scroll', handleScroll);
     };
   }, [active, filtered]);
 
@@ -54,7 +54,7 @@ export default function PageNav({ headings }: PageNavProps) {
   }, [headings]);
 
   return (
-    <ul className="list-none list-inside sticky top-4">
+    <ul className="list-none list-inside sticky top-16">
       {filtered.map((heading) => {
         const href = `#${heading.id}`;
         // const active = typeof window !== 'undefined' && window.location.hash === href;

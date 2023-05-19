@@ -3,13 +3,11 @@ import { promises as fs } from 'fs';
 import { glob } from 'glob';
 import matter from 'gray-matter';
 import { Metadata } from 'next';
-import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import path from 'path';
 import React from 'react';
-import { Button } from '../../../../common/components/ui/button';
-import CallToAction from '../../../../common/libs/markdoc/components/call-to-action/call-to-action.component';
-import HeroTitle from '../../../../common/libs/markdoc/components/hero/hero.component';
+import CallToAction from '../../../../common/components/ui/call-to-action/call-to-action.component';
+import HeroTitle from '../../../../common/components/ui/hero/hero.component';
 import PageNav from '../../../../common/libs/markdoc/components/page-nav/page-nav.component';
 import { components, config } from '../../../../common/libs/markdoc/markdoc.config';
 import { extractHeadings } from '../../../../common/libs/markdoc/utils/extract-headings.util';
@@ -62,7 +60,7 @@ export default async function Page({ params }: PageProps) {
 
   return (
     <>
-      <HeroTitle title={title} />
+      <HeroTitle title={title} variant="dark" />
       <div className="container mx-auto mt-4">
         <div className="flex gap-4">
           <div className="hidden md:block shrink-0 w-72">
@@ -74,14 +72,11 @@ export default async function Page({ params }: PageProps) {
       <CallToAction
         description="Submit your position details to the team to join the next cross ministry hiring."
         title="Ready to join?"
-      >
-        <Link
-          href="https://submit.digital.gov.bc.ca/app/form/submit?f=a6ca83a2-71a3-4b4b-9acc-0b7f5723dede"
-          target="_blank"
-        >
-          <Button variant="call-to-action">Get Started</Button>
-        </Link>
-      </CallToAction>
+        button={{
+          text: 'Get Started',
+          href: 'https://submit.digital.gov.bc.ca/app/form/submit?f=a6ca83a2-71a3-4b4b-9acc-0b7f5723dede',
+        }}
+      />
     </>
   );
 }

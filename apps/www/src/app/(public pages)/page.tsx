@@ -1,23 +1,32 @@
-import Image from 'next/image';
+import SplitCallToAction from '../../common/components/ui/call-to-action/split-call-to-action.component';
+import Hero from '../../common/components/ui/hero/hero.component';
 
 export default function Home() {
   return (
-    <main className="flex h-screen items-center justify-center">
-      <div className="grid grid-cols-2">
-        <div>
-          <Image
-            priority
-            alt="Government of British Columbia Logo"
-            height={50}
-            src="/bc-logo.png"
-            style={{ width: 200, height: 50 }}
-            width={200}
-          />
-        </div>
-        <div className="my-auto">
-          <h1 className="text-4xl font-medium">Digital Talent</h1>
-        </div>
-      </div>
-    </main>
+    <>
+      <Hero
+        description="Learn about Roles & Opportunities in the BC Public Service"
+        title="Digital Talent in the BC Public Service"
+        variant="light"
+      />
+      <SplitCallToAction
+        primary={{
+          title: 'Cross-Ministry Hiring',
+          description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+          button: {
+            text: 'Get Started',
+            href: '/hiring-managers/cross-ministry-hiring-pilot',
+          },
+        }}
+        secondary={{
+          title: 'Request a Digital Talent Job Profile',
+          description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+          button: {
+            text: 'Request a Job Profile',
+            href: 'https://submit.digital.gov.bc.ca/app/form/submit?f=a6ca83a2-71a3-4b4b-9acc-0b7f5723dede',
+          },
+        }}
+      />
+    </>
   );
 }
