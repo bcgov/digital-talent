@@ -1,6 +1,6 @@
 'use client';
 
-import { UsersIcon } from 'lucide-react';
+import { PencilIcon, UsersIcon } from 'lucide-react';
 import Content from '../../common/components/admin/layout/Content';
 import Footer from '../../common/components/admin/layout/Footer';
 import NavBar, { NavBarLinks } from '../../common/components/admin/layout/NavBar';
@@ -10,6 +10,11 @@ const links: NavBarLinks = [
     text: 'Candidates',
     href: '/admin/candidates',
     icon: <UsersIcon />,
+  },
+  {
+    text: 'Markdoc',
+    href: '/admin/markdoc',
+    icon: <PencilIcon />,
   },
 ];
 

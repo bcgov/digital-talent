@@ -43,10 +43,10 @@ async function getMarkdownContent(slug: string | undefined) {
 
   const headmatter = matter(source);
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const { title, type } = headmatter.data;
+  const { title, navigation } = headmatter.data;
   const ast = Markdoc.parse(source);
   const content = Markdoc.transform(ast, config);
-  return { content, title };
+  return { content, navigation, title };
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
@@ -55,7 +55,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 }
 
 export default async function Page({ params }: PageProps) {
-  const { content, title } = await getMarkdownContent(params.slug);
+  const { content, navigation, title } = await getMarkdownContent(params.slug);
   const headings = extractHeadings(content);
 
   return (
@@ -63,9 +63,11 @@ export default async function Page({ params }: PageProps) {
       <HeroTitle title={title} variant="dark" />
       <div className="container mx-auto mt-4">
         <div className="flex gap-4">
-          <div className="hidden md:block shrink-0 w-72">
-            <PageNav headings={headings} />
-          </div>
+          {navigation != null && (
+            <div className="hidden md:block shrink-0 w-72">
+              <PageNav headings={headings} />
+            </div>
+          )}
           <div className="prose max-w-none">{Markdoc.renderers.react(content, React, { components })}</div>
         </div>
       </div>

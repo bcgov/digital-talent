@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import { Montserrat, Noto_Sans_Display, Noto_Sans_Mono, Noto_Serif_Display } from 'next/font/google';
 import './globals.css';
 
-const montserrat = Montserrat({ subsets: ['latin'], variable: '--font-montserrat' });
+const montserrat = Montserrat({ subsets: ['latin'], variable: '--font-montserrat', weight: 'variable' });
 const notoSans = Noto_Sans_Display({ subsets: ['latin'], variable: '--font-noto-sans-display', weight: 'variable' });
 const notoSansMono = Noto_Sans_Mono({ subsets: ['latin'], variable: '--font-noto-sans-mono', weight: 'variable' });
 const notoSerif = Noto_Serif_Display({

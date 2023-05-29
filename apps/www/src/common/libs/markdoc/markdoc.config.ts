@@ -1,4 +1,5 @@
-import { Config } from '@markdoc/markdoc';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { Config, nodes } from '@markdoc/markdoc';
 import Heading from './components/nodes/heading.markdoc';
 import Paragraph from './components/nodes/paragraph.markdoc';
 import Card from './components/tags/card/card.markdoc';
@@ -20,6 +21,10 @@ const config: Config = {
   tags: {
     card: {
       render: 'Card',
+    },
+    fence: {
+      render: 'Card',
+      attributes: nodes.fence.attributes,
     },
     'icon-list': {
       render: 'IconList',
