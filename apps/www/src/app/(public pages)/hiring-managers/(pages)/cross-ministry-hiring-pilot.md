@@ -1,5 +1,6 @@
 ---
 title: Cross-Ministry Hiring Pilot (CMHP)
+navigation: true
 ---
 
 # Overview {% #overview %}

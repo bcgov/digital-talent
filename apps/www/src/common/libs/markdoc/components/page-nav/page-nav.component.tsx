@@ -4,13 +4,14 @@
 'use client';
 
 import { usePathname } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { RefObject, useEffect, useState } from 'react';
 
 export type PageNavProps = {
   headings: Record<string, any>[];
+  parentRef?: RefObject<HTMLDivElement>;
 };
 
-export default function PageNav({ headings }: PageNavProps) {
+export default function PageNav({ headings, parentRef }: PageNavProps) {
   const filtered = headings.filter((h) => h.id != null && [1, 2, 3].includes(h.level));
 
   const [active, setActive] = useState('');
@@ -25,12 +26,17 @@ export default function PageNav({ headings }: PageNavProps) {
       }
     };
 
-    document.addEventListener('scroll', handleScroll);
+    const currentParent: HTMLDivElement | undefined = parentRef && parentRef.current ? parentRef.current : undefined;
+    currentParent
+      ? currentParent.addEventListener('scroll', handleScroll)
+      : document.addEventListener('scroll', handleScroll);
 
     return () => {
-      document.removeEventListener('scroll', handleScroll);
+      currentParent
+        ? currentParent.removeEventListener('scroll', handleScroll)
+        : document.removeEventListener('scroll', handleScroll);
     };
-  }, [active, filtered]);
+  }, [active, filtered, parentRef]);
 
   const isElementInViewport = (el: HTMLElement | null) => {
     const rect = el?.getBoundingClientRect();

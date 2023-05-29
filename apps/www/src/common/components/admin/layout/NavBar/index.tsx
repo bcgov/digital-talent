@@ -26,7 +26,7 @@ export default function NavBar({ links }: NavBarProps) {
         <ul className="flex flex-col items-center">
           {links.map((link) => {
             return (
-              <Link href="/admin" key={link.href}>
+              <Link href={link.href} key={link.href}>
                 <Button
                   className="w-full p3 text-sm font-semibold leading-6 border-gray-500 gray-500 bg-gray-50 hover:text-white hover:bg-gray-500"
                   title={link.text}
