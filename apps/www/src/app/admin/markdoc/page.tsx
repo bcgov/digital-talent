@@ -5,8 +5,8 @@
 import Markdoc, { RenderableTreeNode } from '@markdoc/markdoc';
 import matter from 'gray-matter';
 import React, { createRef, useEffect, useState } from 'react';
+import Heading from '../../../common/components/ui/heading.component';
 import HeroTitle from '../../../common/components/ui/hero/hero.component';
-import Heading from '../../../common/libs/markdoc/components/nodes/heading.markdoc';
 import PageNav from '../../../common/libs/markdoc/components/page-nav/page-nav.component';
 import { components, config } from '../../../common/libs/markdoc/markdoc.config';
 

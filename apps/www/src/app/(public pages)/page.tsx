@@ -1,7 +1,7 @@
 import SplitCallToAction from '../../common/components/ui/call-to-action/split-call-to-action.component';
 import Hero from '../../common/components/ui/hero/hero.component';
 
-export default function Home() {
+export default function Page() {
   return (
     <>
       <Hero
@@ -15,7 +15,7 @@ export default function Home() {
           description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
           button: {
             text: 'Get Started',
-            href: '/hiring-managers/cross-ministry-hiring-pilot',
+            href: '/hiring-managers/cross-ministry-hiring',
           },
         }}
         secondary={{

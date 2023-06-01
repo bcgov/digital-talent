@@ -6,11 +6,11 @@ import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import path from 'path';
 import React from 'react';
-import CallToAction from '../../../../common/components/ui/call-to-action/call-to-action.component';
-import HeroTitle from '../../../../common/components/ui/hero/hero.component';
-import PageNav from '../../../../common/libs/markdoc/components/page-nav/page-nav.component';
-import { components, config } from '../../../../common/libs/markdoc/markdoc.config';
-import { extractHeadings } from '../../../../common/libs/markdoc/utils/extract-headings.util';
+import CallToAction from '../../../../../common/components/ui/call-to-action/call-to-action.component';
+import HeroTitle from '../../../../../common/components/ui/hero/hero.component';
+import PageNav from '../../../../../common/libs/markdoc/components/page-nav/page-nav.component';
+import { components, config } from '../../../../../common/libs/markdoc/markdoc.config';
+import { extractHeadings } from '../../../../../common/libs/markdoc/utils/extract-headings.util';
 
 type Params = {
   slug: string;
@@ -20,7 +20,7 @@ type PageProps = {
   params: Params;
 };
 
-const PAGES_DIR = 'src/app/(public pages)/hiring-managers/(pages)';
+const PAGES_DIR = 'src/app/(public pages)/hiring-managers/learn/(pages)';
 const PAGES_PATH = path.join(process.cwd(), PAGES_DIR);
 
 export async function generateStaticParams() {
