@@ -24,11 +24,11 @@ The diversity of these lands shapes our team members and impacts the foundation 
 
 Across Provincial Government from November 2021 – December 2022, we: 
 
-- Completed 16 competitions 
-- Interviewed 175 Candidates 
-- Had 584 Applicants
-    - 490 External to B.C. Government
-    - 94 Internal to B.C. Government
+- Completed sixteen competitions 
+- Interviewed one hundred and seventy five candidates 
+- Had five hundred and eighty four Applicants
+    - four hundred and ninety external to B.C. Government
+    - ninety four internal to B.C. Government
 
 We are passionate about delivering a better service, so the BC Public Service continues and scales employing brilliant workers. Our team currently offers both hiring and consulting services. We work with Hiring Managers to ensure they get the digital talent they need and ensure digital talent is placed in organizations that are ready for agile ways of working.   
 
