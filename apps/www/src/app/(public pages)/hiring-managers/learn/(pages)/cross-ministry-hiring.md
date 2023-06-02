@@ -13,7 +13,7 @@ Consider the benefits of CMH in the infographic below:
 
 ![Infographic depicting how the Cross-Ministry Hiring Pilot beneifts Hiring Managers, Candidates, and the wider BC Public Service](https://raw.githubusercontent.com/bcgov/digital-talent/feature/markdown-content/packages/markdown-content/CMHP%20Content/20230503%20-%20CMHP%20overview.PNG)
 
-## Positions We Hire For {% #positions-we-hire-for %}
+## Positions we hire For {% #positions-we-hire-for %}
 
 We offer hiring services for: 
 
@@ -28,7 +28,7 @@ We offer hiring services for:
 The [salary look up tool](https://www2.gov.bc.ca/gov/content/careers-myhr/all-employees/pay-benefits/salaries/salarylookuptool) helps with forecasting and budgeting for these classifications.
 
 
-# CMH Process {% #how-it-works %}
+# CMH process {% #how-it-works %}
 
 {% icon-list %}
 
