@@ -1,6 +1,6 @@
 ---
 title: About the Digital Talent Attraction and Development Team
-description: The Digital Talent Attraction and Development team hires digital talent across BC Government. Learn more about the team and how they help hiring managers throughout BC Government. 
+description: Learn more about the team and how they help hiring managers fill their vacant BC Government jobs. 
 ---
 
 On April 6th, 2023, the Digital Office released [BC Government's Digital Plan](https://www2.gov.bc.ca/assets/gov/data/digital-government/digital-plan.pdf). One of many items reported on are hiring barriers:
@@ -23,11 +23,11 @@ The diversity of these lands shapes our team members and impacts the foundation 
 
 Across Provincial Government from November 2021 – December 2022, we: 
 
-- Completed sixteen (16) competitions 
-- Interviewed one hundred and seventy five (175) candidates 
-- Had five hundred and eighty four (584) Applicants
-    - four hundred and ninety (490) external to B.C. Government
-    - ninety four (94) internal to B.C. Government
+- Completed 16 competitions 
+- Interviewed 175 candidates 
+- Had 584 Applicants
+    - 490 external to B.C. Government
+    - 94 internal to B.C. Government
 
 We are passionate about delivering a better service, so the BC Public Service continues and scales employing brilliant workers. Our team currently offers both hiring and consulting services. We work with Hiring Managers to ensure they get the digital talent they need and ensure digital talent is placed in organizations that are ready for agile ways of working.   
 
