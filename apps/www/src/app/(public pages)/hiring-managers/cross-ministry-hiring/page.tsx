@@ -36,7 +36,7 @@ export default function Page() {
               </li>
               <li>
                 <Link
-                  href="/"
+                  href="/hiring-managers/learn/about-digital-talent"
                   className="text-blue-500
                 "
                 >
