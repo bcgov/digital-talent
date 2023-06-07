@@ -7,7 +7,7 @@ export default function PublicLayout({ children }: PropsWithChildren) {
   return (
     <div className="flex flex-col h-screen">
       <Header />
-      <div className="grow pt-12">{children}</div>
+      <div className="grow pt-20">{children}</div>
       <Footer />
     </div>
   );

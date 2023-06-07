@@ -60,7 +60,7 @@ export default function PageNav({ headings, parentRef }: PageNavProps) {
   }, [headings]);
 
   return (
-    <ul className="list-none list-inside sticky top-16">
+    <ul className="list-none list-inside sticky top-24">
       {filtered.map((heading) => {
         const href = `#${heading.id}`;
         // const active = typeof window !== 'undefined' && window.location.hash === href;
