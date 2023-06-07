@@ -12,7 +12,7 @@ export default function Page() {
       <SplitCallToAction
         primary={{
           title: 'Cross-Ministry Hiring',
-          description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+          description: 'As a hiring manager, find guidance here to set your team up for successful outcomes.',
           button: {
             text: 'Get Started',
             href: '/hiring-managers/cross-ministry-hiring',
@@ -20,7 +20,7 @@ export default function Page() {
         }}
         secondary={{
           title: 'Request a Digital Talent Job Profile',
-          description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+          description: 'As a hiring manager, get a job profile that suits your vacancy.',
           button: {
             text: 'Request a Job Profile',
             href: 'https://submit.digital.gov.bc.ca/app/form/submit?f=a6ca83a2-71a3-4b4b-9acc-0b7f5723dede',
