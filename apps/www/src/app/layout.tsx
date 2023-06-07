@@ -1,24 +1,12 @@
 import { Metadata } from 'next';
-import localFont from 'next/font/local';
+import { Montserrat, Noto_Sans_Display, Noto_Sans_Mono, Noto_Serif_Display } from 'next/font/google';
 import './globals.css';
 
-const montserrat = localFont({
-  src: '../common/fonts/Montserrat-VariableFont_wght.ttf',
-  variable: '--font-montserrat',
-  weight: 'variable',
-});
-const notoSans = localFont({
-  src: '../common/fonts/NotoSansDisplay-VariableFont_wdth,wght.ttf',
-  variable: '--font-noto-sans-display',
-  weight: 'variable',
-});
-const notoSansMono = localFont({
-  src: '../common/fonts/NotoSansMono-VariableFont_wdth,wght.ttf',
-  variable: '--font-noto-sans-mono',
-  weight: 'variable',
-});
-const notoSerif = localFont({
-  src: '../common/fonts/NotoSerifDisplay-VariableFont_wdth,wght.ttf',
+const montserrat = Montserrat({ subsets: ['latin'], variable: '--font-montserrat', weight: 'variable' });
+const notoSans = Noto_Sans_Display({ subsets: ['latin'], variable: '--font-noto-sans-display', weight: 'variable' });
+const notoSansMono = Noto_Sans_Mono({ subsets: ['latin'], variable: '--font-noto-sans-mono', weight: 'variable' });
+const notoSerif = Noto_Serif_Display({
+  subsets: ['latin'],
   variable: '--font-noto-serif-display',
   weight: 'variable',
 });
