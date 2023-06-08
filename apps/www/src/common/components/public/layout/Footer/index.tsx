@@ -22,7 +22,7 @@ export default function Footer() {
             <Link className="underline" href="/hiring-managers/cross-ministry-hiring">
               Cross-Ministry Hiring
             </Link>
-            <Link className="underline" href="/hiring-managers/learn/about-digital-talent">
+            <Link className="underline" href="/learn/hiring-managers/about-digital-talent">
               About Digital Talent
             </Link>
             <a

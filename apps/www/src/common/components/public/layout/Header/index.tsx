@@ -48,7 +48,7 @@ function Navigation() {
             </NavigationMenuItem>
             {/* About Digital Talent */}
             <NavigationMenuItem>
-              <Link legacyBehavior passHref href="/hiring-managers/learn/about-digital-talent">
+              <Link legacyBehavior passHref href="/learn/hiring-managers/about-digital-talent">
                 <NavigationMenuLink className={navigationMenuTriggerStyle()}>About us</NavigationMenuLink>
               </Link>
             </NavigationMenuItem>
@@ -103,7 +103,7 @@ function Navigation() {
                           </Link>
                         </li>
                         <li className="ml-4 py-2 border-b">
-                          <Link className="w-full" href="/hiring-managers/learn/about-digital-talent">
+                          <Link className="w-full" href="/learn/hiring-managers/about-digital-talent">
                             <SheetClose>
                               <div className="font-semibold select-none text-xl container px-auto">
                                 About Digital Talent

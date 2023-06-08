@@ -26,7 +26,7 @@ export default function Page() {
             <ul>
               <li>
                 <Link
-                  href="/hiring-managers/learn/cross-ministry-hiring"
+                  href="/learn/hiring-managers/cross-ministry-hiring"
                   className="text-blue-500
                 "
                 >
@@ -36,7 +36,7 @@ export default function Page() {
               </li>
               <li>
                 <Link
-                  href="/hiring-managers/learn/about-digital-talent"
+                  href="/learn/hiring-managers/about-digital-talent"
                   className="text-blue-500
                 "
                 >
