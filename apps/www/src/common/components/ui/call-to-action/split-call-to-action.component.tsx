@@ -34,7 +34,7 @@ export default function SplitCallToAction({ primary, secondary }: SplitCallToAct
               <h1 className="font-bold text-4xl">{secondary.title}</h1>
               <span className="font-normal">{secondary.description}</span>
               <Link href={secondary.button.href} target={secondary.button.href.startsWith('http') ? '_blank' : '_self'}>
-                <Button className="w-full" variant="outline">
+                <Button className="w-full border" variant="ghost">
                   {secondary.button.text}
                 </Button>
               </Link>
