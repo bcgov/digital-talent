@@ -2,14 +2,11 @@
 
 import { Info, Menu } from 'lucide-react';
 import Link from 'next/link';
-import { ListItem } from '../../../ui/list-item.component';
 import {
   NavigationMenu,
-  NavigationMenuContent,
   NavigationMenuItem,
   NavigationMenuLink,
   NavigationMenuList,
-  NavigationMenuTrigger,
   navigationMenuTriggerStyle,
 } from '../../../ui/navigation-menu.component';
 import {
@@ -37,14 +34,9 @@ function Navigation() {
             </NavigationMenuItem>
             {/* Digital Hiring Options */}
             <NavigationMenuItem>
-              <NavigationMenuTrigger>Digital hiring options</NavigationMenuTrigger>
-              <NavigationMenuContent>
-                <ul className="p-4 md:w-[400px] lg:w-[500px]">
-                  <ListItem href="/hiring-managers/cross-ministry-hiring" title="Cross-Ministry Hiring">
-                    As a hiring manager, find guidance here to set your team up for successful outcomes.
-                  </ListItem>
-                </ul>
-              </NavigationMenuContent>
+              <Link legacyBehavior passHref href="/hiring-managers/cross-ministry-hiring">
+                <NavigationMenuLink className={navigationMenuTriggerStyle()}>Cross-ministry hiring</NavigationMenuLink>
+              </Link>
             </NavigationMenuItem>
             {/* About Digital Talent */}
             <NavigationMenuItem>
@@ -126,7 +118,7 @@ function Navigation() {
 
 export default function Header() {
   return (
-    <header className="h-16 fixed w-screen z-50">
+    <header className="h-16 fixed w-full z-50">
       {/* Beta Bar */}
       <div className="bg-yellow-400 h-8 text-xs sm:text-sm text-bcgov-blue-dark">
         <div className="container flex flex-row h-full gap-8">

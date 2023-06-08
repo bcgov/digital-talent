@@ -37,7 +37,7 @@ export default function Footer() {
         </div>
       </div>
       {/* Bottom Navigation */}
-      <div className="bg-white flex flex-row w-screen">
+      <div className="bg-white flex flex-row w-full">
         <div className=" container grid grid-cols-1 md:grid-cols-6 gap-4 my-auto py-4 text-sm text-center">
           <div className="font-semibold my-auto shrink-0">
             <a href="https://digital.gov.bc.ca">DIGITAL.GOV.BC.CA</a>
