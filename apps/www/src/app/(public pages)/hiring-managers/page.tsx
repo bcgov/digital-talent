@@ -1,5 +1,5 @@
-import SplitCallToAction from '../../common/components/ui/call-to-action/split-call-to-action.component';
-import Hero from '../../common/components/ui/hero/hero.component';
+import SplitCallToAction from '../../../common/components/ui/call-to-action/split-call-to-action.component';
+import Hero from '../../../common/components/ui/hero/hero.component';
 
 export default function Page() {
   return (
