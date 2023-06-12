@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Config, nodes } from '@markdoc/markdoc';
-import Card from '../../components/ui/card.component';
+import { Card } from '../../components/ui/card.component';
 import Heading from '../../components/ui/heading.component';
 import Paragraph from './components/nodes/paragraph.markdoc';
 import { IconList, IconListItem } from './components/tags/icon-list';

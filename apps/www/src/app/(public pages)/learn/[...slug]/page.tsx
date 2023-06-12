@@ -1,37 +1,42 @@
+/* eslint-disable no-console */
 import Markdoc from '@markdoc/markdoc';
 import { promises as fs } from 'fs';
 import { glob } from 'glob';
 import matter from 'gray-matter';
-import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import path from 'path';
 import React from 'react';
-import CallToAction from '../../../../../common/components/ui/call-to-action/call-to-action.component';
-import HeroTitle from '../../../../../common/components/ui/hero/hero.component';
-import PageNav from '../../../../../common/libs/markdoc/components/page-nav/page-nav.component';
-import { components, config } from '../../../../../common/libs/markdoc/markdoc.config';
-import { extractHeadings } from '../../../../../common/libs/markdoc/utils/extract-headings.util';
+import CallToAction from '../../../../common/components/ui/call-to-action/call-to-action.component';
+import HeroTitle from '../../../../common/components/ui/hero/hero.component';
+import PageNav from '../../../../common/libs/markdoc/components/page-nav/page-nav.component';
+import { components, config } from '../../../../common/libs/markdoc/markdoc.config';
+import { extractHeadings } from '../../../../common/libs/markdoc/utils/extract-headings.util';
 
 type Params = {
-  slug: string;
+  slug: string[];
 };
 
 type PageProps = {
   params: Params;
 };
 
-const PAGES_DIR = 'src/app/(public pages)/hiring-managers/learn/(pages)';
+const PAGES_DIR = 'src/app/(public pages)/learn';
 const PAGES_PATH = path.join(process.cwd(), PAGES_DIR);
 
 export async function generateStaticParams() {
   const pagesPath = await glob(path.join(PAGES_PATH, '**/*.md'));
-  return pagesPath.map((pagePath) => {
-    return { slug: path.basename(pagePath, path.extname(pagePath)) };
+
+  const paths = pagesPath.map((pagePath) => {
+    const url = pagePath.replace(`${PAGES_PATH}/`, '').replace('.md', '');
+
+    return { slug: url.split('/') };
   });
+
+  return paths;
 }
 
-async function getMarkdownContent(slug: string | undefined) {
-  const pagePath = path.join(PAGES_PATH, `${slug}.md`);
+async function getMarkdownContent(slug: string[]) {
+  const pagePath = `${path.join(PAGES_PATH, ...slug)}.md`;
   let source: string;
 
   // If pagePath does not exist, return
@@ -47,11 +52,6 @@ async function getMarkdownContent(slug: string | undefined) {
   const ast = Markdoc.parse(source);
   const content = Markdoc.transform(ast, config);
   return { content, navigation, title };
-}
-
-export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-  const { title } = await getMarkdownContent(params.slug);
-  return { title };
 }
 
 export default async function Page({ params }: PageProps) {

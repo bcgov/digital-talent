@@ -1,5 +1,7 @@
 import dayjs from 'dayjs';
-import Card from '../../card.component';
+// import Card from '../../card.component';
+
+import { Card } from '../../card.component';
 
 type Competition = {
   id: string;
@@ -17,7 +19,7 @@ type CompetitionCardProps = {
 function CompetitionCard({ competition }: CompetitionCardProps) {
   return (
     <a href={competition.form_url} rel="noreferrer" target="_blank">
-      <Card className="hover:ring-1 ring-bcgov-blue-dark hover:shadow-lg">
+      <Card className="hover:ring-1 ring-bcgov-blue-dark hover:shadow-lg p-4">
         <div className="grid grid-cols-1 md:grid-cols-2">
           <div className="flex flex-col gap-2">
             <span className="font-bold text-bcgov-blue-dark">{competition.classification}</span>
