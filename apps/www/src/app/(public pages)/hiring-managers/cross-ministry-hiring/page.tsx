@@ -25,11 +25,7 @@ export default function Page() {
             </p>
             <ul>
               <li>
-                <Link
-                  href="/learn/hiring-managers/cross-ministry-hiring"
-                  className="text-blue-500
-                "
-                >
+                <Link className="text-blue-500" href="/learn/hiring-managers/cross-ministry-hiring">
                   Cross-Ministry Hiring
                 </Link>
                 , including expectations for Hiring Managers
