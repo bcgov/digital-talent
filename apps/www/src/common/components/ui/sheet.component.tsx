@@ -15,13 +15,14 @@ const SheetClose = SheetPrimitive.Close;
 const portalVariants = cva('fixed inset-0 z-50 flex', {
   variants: {
     position: {
+      static: '',
       top: 'items-start',
       bottom: 'items-end',
       left: 'justify-start',
       right: 'justify-end',
     },
   },
-  defaultVariants: { position: 'right' },
+  defaultVariants: { position: 'static' },
 });
 
 interface SheetPortalProps extends SheetPrimitive.DialogPortalProps, VariantProps<typeof portalVariants> {}
@@ -51,6 +52,7 @@ SheetOverlay.displayName = SheetPrimitive.Overlay.displayName;
 const sheetVariants = cva('fixed z-50 scale-100 gap-4 bg-background p-6 opacity-100 shadow-lg border', {
   variants: {
     position: {
+      static: 'h-full w-full',
       top: 'animate-in slide-in-from-top w-full duration-300',
       bottom: 'animate-in slide-in-from-bottom w-full duration-300',
       left: 'animate-in slide-in-from-left h-full duration-300',
@@ -128,7 +130,7 @@ const sheetVariants = cva('fixed z-50 scale-100 gap-4 bg-background p-6 opacity-
     },
   ],
   defaultVariants: {
-    position: 'right',
+    position: 'static',
     size: 'default',
   },
 });

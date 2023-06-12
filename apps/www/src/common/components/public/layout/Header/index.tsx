@@ -74,7 +74,7 @@ function Navigation() {
                     </NavigationMenuLink>
                   </NavigationMenuItem>
                 </SheetTrigger>
-                <SheetContent className="px-0" position="top" size="full">
+                <SheetContent className="px-0" position="static" size="full">
                   <SheetHeader>
                     <SheetDescription className="mt-2 text-bcgov-blue-dark text-left">
                       <ul>
