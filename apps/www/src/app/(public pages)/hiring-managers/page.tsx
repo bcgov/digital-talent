@@ -169,7 +169,7 @@ export default function Page() {
             <Heading className="mb-4" level={2}>
               Welcome! We look forward to working with you
             </Heading>
-            <div className="font-thin grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="flex flex-col gap-4">
                 <p>
                   Welcome to the new home for the DTAD team where you can learn about hiring options, join pilot
