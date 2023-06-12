@@ -4,6 +4,8 @@ description: British Columbia, public sector jobs, BC Government, hiring service
 navigation: true
 ---
 
+# Overview {% #overview %}
+
 In the BC Public Service, Hiring Managers run job competitions for one job profile. Resources are rarely shared. This leads to many requests to the Public Service Agency (PSA) for support. This creates a bottleneck because there are more requests than PSA workers. The hiring process becomes difficult to manage and takes longer than expected. This leads to candidates finding employment with other companies.
 
 Our Cross-Ministry Hiring (CMH) uses one job posting to fill positions across the BC Public Service. Hiring Managers have full support because our team, the Digital Talent Attraction and Development Team (DTAD), manages the hiring process. After the competition ends, we create an Eligibility List of qualified candidates. This list becomes the source for filling other positions.
