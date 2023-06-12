@@ -1,4 +1,5 @@
 import { Mailbox } from 'lucide-react';
+import { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import aboutDtadImage from '../../../common/components/hiring-managers/svgs/about-dtad.svg';
@@ -7,6 +8,11 @@ import learnAboutOurServicesImage from '../../../common/components/hiring-manage
 import { Card, CardContent, CardHeader } from '../../../common/components/ui/card.component';
 import Heading from '../../../common/components/ui/heading.component';
 import Hero from '../../../common/components/ui/hero/hero.component';
+import { wrapTitle } from '../../../common/utils/wrap-title.util';
+
+export const metadata: Metadata = {
+  title: wrapTitle('Hiring Managers'),
+};
 
 export default function Page() {
   return (

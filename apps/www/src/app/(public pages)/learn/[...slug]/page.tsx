@@ -3,6 +3,7 @@ import Markdoc from '@markdoc/markdoc';
 import { promises as fs } from 'fs';
 import { glob } from 'glob';
 import matter from 'gray-matter';
+import Head from 'next/head';
 import { notFound } from 'next/navigation';
 import path from 'path';
 import React from 'react';
@@ -11,6 +12,7 @@ import HeroTitle from '../../../../common/components/ui/hero/hero.component';
 import PageNav from '../../../../common/libs/markdoc/components/page-nav/page-nav.component';
 import { components, config } from '../../../../common/libs/markdoc/markdoc.config';
 import { extractHeadings } from '../../../../common/libs/markdoc/utils/extract-headings.util';
+import { wrapTitle } from '../../../../common/utils/wrap-title.util';
 
 type Params = {
   slug: string[];
@@ -33,6 +35,14 @@ export async function generateStaticParams() {
   });
 
   return paths;
+}
+
+export async function generateMetadata({ params }: PageProps) {
+  const { title } = await getMarkdownContent(params.slug);
+
+  return {
+    title: wrapTitle(title),
+  };
 }
 
 async function getMarkdownContent(slug: string[]) {
@@ -60,6 +70,9 @@ export default async function Page({ params }: PageProps) {
 
   return (
     <>
+      <Head>
+        <title>{title}</title>
+      </Head>
       <HeroTitle title={title} variant="dark" />
       <div className="container mx-auto mt-4">
         <div className="flex gap-4">
