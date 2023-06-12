@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 import { Montserrat, Noto_Sans_Display, Noto_Sans_Mono, Noto_Serif_Display } from 'next/font/google';
+import { wrapTitle } from '../common/utils/wrap-title.util';
 import './globals.css';
 
 const montserrat = Montserrat({ subsets: ['latin'], variable: '--font-montserrat', weight: 'variable' });
@@ -12,7 +13,7 @@ const notoSerif = Noto_Serif_Display({
 });
 
 export const metadata: Metadata = {
-  title: 'Digital Talent - Province of British Columbia',
+  title: wrapTitle('Digital Talent'),
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

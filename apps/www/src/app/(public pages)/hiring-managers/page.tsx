@@ -1,4 +1,5 @@
 import { Mailbox } from 'lucide-react';
+import { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import aboutDtadImage from '../../../common/components/hiring-managers/svgs/about-dtad.svg';
@@ -7,6 +8,11 @@ import learnAboutOurServicesImage from '../../../common/components/hiring-manage
 import { Card, CardContent, CardHeader } from '../../../common/components/ui/card.component';
 import Heading from '../../../common/components/ui/heading.component';
 import Hero from '../../../common/components/ui/hero/hero.component';
+import { wrapTitle } from '../../../common/utils/wrap-title.util';
+
+export const metadata: Metadata = {
+  title: wrapTitle('Hiring Managers'),
+};
 
 export default function Page() {
   return (
@@ -169,7 +175,7 @@ export default function Page() {
             <Heading className="mb-4" level={2}>
               Welcome! We look forward to working with you
             </Heading>
-            <div className="font-thin grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="flex flex-col gap-4">
                 <p>
                   Welcome to the new home for the DTAD team where you can learn about hiring options, join pilot

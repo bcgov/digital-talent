@@ -1,7 +1,13 @@
+import { Metadata } from 'next';
 import Link from 'next/link';
 import Heading from '../../../../common/components/ui/heading.component';
 import Hero from '../../../../common/components/ui/hero/hero.component';
 import CompetitionList from '../../../../common/components/ui/hiring-manager/competition-list/competition-list.component';
+import { wrapTitle } from '../../../../common/utils/wrap-title.util';
+
+export const metadata: Metadata = {
+  title: wrapTitle('Sign Up for Cross-Ministry Hiring'),
+};
 
 export default function Page() {
   return (
