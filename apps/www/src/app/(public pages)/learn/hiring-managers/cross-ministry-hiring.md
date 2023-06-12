@@ -1,7 +1,10 @@
 ---
 title: Overview of Cross-Ministry Hiring
 description: British Columbia, public sector jobs, BC Government, hiring services, CMH process
+navigation: true
 ---
+
+# Overview {% #overview %}
 
 In the BC Public Service, Hiring Managers run job competitions for one job profile. Resources are rarely shared. This leads to many requests to the Public Service Agency (PSA) for support. This creates a bottleneck because there are more requests than PSA workers. The hiring process becomes difficult to manage and takes longer than expected. This leads to candidates finding employment with other companies.
 
