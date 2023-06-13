@@ -16,19 +16,6 @@ Consider the benefits of CMH in the infographic below:
 
 ![Infographic depicting how the Cross-Ministry Hiring Pilot beneifts Hiring Managers, Candidates, and the wider BC Public Service](https://raw.githubusercontent.com/bcgov/digital-talent/feature/markdown-content/packages/markdown-content/CMHP%20Content/20230503%20-%20CMHP%20overview.PNG)
 
-## Positions we hire For {% #positions-we-hire-for %}
-
-We offer hiring services for:
-
-- Developers (Information Systems 18 to 30)
-- Dev Ops Specialists (Information Systems 27)
-- Product Manager (Information Systems 30, and Band 3)
-- Scrum Master (Information Systems 24 and 27)
-- Site Reliability Specialist (Information Systems 27 and 30)
-- User Experience Designer (Information Systems 24 and 27)
-- Users Experience Researcher (Administration Officer 24 and 27)
-
-The [salary look up tool](https://www2.gov.bc.ca/gov/content/careers-myhr/all-employees/pay-benefits/salaries/salarylookuptool) helps with forecasting and budgeting for these classifications.
 
 # CMH process {% #how-it-works %}
 
@@ -77,9 +64,6 @@ The [salary look up tool](https://www2.gov.bc.ca/gov/content/careers-myhr/all-em
 
 {% /icon-list %}
 
-## Matching candidates & opportunities {% #matching-candidates-and-opportunities %}
-
-_To Do_
 
 ## Hiring manager time commitments {% #hiring-manager-time-commitments %}
 
