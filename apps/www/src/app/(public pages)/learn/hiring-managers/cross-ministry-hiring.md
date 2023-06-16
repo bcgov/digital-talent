@@ -4,8 +4,6 @@ description: British Columbia, public sector jobs, BC Government, hiring service
 navigation: true
 ---
 
-# Overview {% #overview %}
-
 Our Cross-Ministry Hiring (CMH) uses 1 job posting to fill positions across the BC Public Service. Hiring Managers have full support because our team, the Digital Talent Attraction and Development Team (DTAD), manages the hiring process. After the competition ends, we create an Eligibility List of qualified candidates. This list becomes the source for filling other positions.
 
 
@@ -13,9 +11,12 @@ Our Cross-Ministry Hiring (CMH) uses 1 job posting to fill positions across the 
 
 Before we start the process, hiring managers must verify they meet CMH requirements. They help us attract and retain top candidates, and meet BC Government’s policies. Once we have what we need, we can move faster through the process. 
 
-{% icon-list-item icon="badge-check" iconColor="text-black-500" text="Have approval to hire" /%}
+{% icon-list %}
+{% icon-list-item icon="Badge-Check" iconColor="text-black-500" text="Have approval to hire" %}
+{% /icon-list-item %}
 
-# CMH process {% #how-it-works %}
+
+# Cross-Ministry Hiring process {% #how-it-works %}
 
 {% icon-list %}
 
