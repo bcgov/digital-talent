@@ -67,7 +67,6 @@ Before we start the process, hiring managers must verify they meet CMH requireme
 We have a candidate-driven matchmaking process. Candidates are presented with offers, based on their preferred location, and hiring managers applied preferred skillset in competition ranked order.
 
 
-
 ## Hiring manager time commitments {% #hiring-manager-time-commitments %}
 
 We have 2 options for hiring managers:
@@ -96,11 +95,11 @@ This option gives hiring managers, or designates, opportunities to take in every
 {% icon-list %}
 
 {% icon-list-item icon="CheckCircle2" iconColor="text-green-500" text="Attend a consensus meeting to review and approve the job posting, job profile and screening questionnaire." /%}
-{% icon-list-item icon="CheckCircle2" iconColor="text-green-500" text="Review and screen candidates within **3** days of receiving the QST report." /%}
+{% icon-list-item icon="CheckCircle2" iconColor="text-green-500" text="Review and screen candidates within 3 days of receiving the QST report." /%}
 {% icon-list-item icon="CheckCircle2" iconColor="text-green-500" text="Attend consensus meeting for final decision on screened candidates." /%}
 {% icon-list-item icon="CheckCircle2" iconColor="text-green-500" text="Review and approve drafts of technical assessments." /%}
 {% icon-list-item icon="CheckCircle2" iconColor="text-green-500" text="Score assessments." /%}
-{% icon-list-item icon="CheckCircle2" iconColor="text-green-500" text="**3** consecutive days for panel interviews." /%}
+{% icon-list-item icon="CheckCircle2" iconColor="text-green-500" text="3 consecutive days for panel interviews." /%}
 {% icon-list-item icon="CheckCircle2" iconColor="text-green-500" text="Conduct reference checks for successful candidates." /%}
 {% icon-list-item icon="CheckCircle2" iconColor="text-green-500" text="Attend meeting for collective candidate scoring with panel members." /%}
 {% icon-list-item icon="CheckCircle2" iconColor="text-green-500" text="Attend meeting for candidate ranking debrief." /%}
