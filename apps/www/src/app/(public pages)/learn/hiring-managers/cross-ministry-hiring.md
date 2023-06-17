@@ -6,7 +6,7 @@ navigation: true
 
 Our Cross-Ministry Hiring (CMH) uses 1 job posting to fill positions across the BC Public Service. Hiring Managers have full support because our team, the Digital Talent Attraction and Development Team (DTAD), manages the hiring process. After the competition ends, we create an Eligibility List of qualified candidates. This list becomes the source for filling other positions.
 
-[infographic of benefits](https://github.com/bcgov/digital-talent/blob/feature/markdown-content/packages/markdown-content/CMHP%20Content/20230503%20-%20CMHP%20overview.PNG)
+![infographic of CMH benefits]([https://github.com/bcgov/digital-talent/blob/feature/markdown-content/packages/markdown-content/CMHP%20Content/20230503%20-%20CMHP%20overview.PNG](https://github.com/bcgov/digital-talent/blob/feature/markdown-content/packages/markdown-content/CMHP%20Content/20230616%20-%20Benefits%20CMH.png).
 
 
 # Requirements for joining a Cross-Ministry Hiring competition  {% #Requirements-for-CMH %}
@@ -17,7 +17,8 @@ Before we start the process, hiring managers must verify they meet CMH requireme
 
 {% icon-list-item icon="badgecheck" text="Have approval to hire" /%}
 {% icon-list-item icon="files" text="Have required hiring documents" /%}
-{% icon-list-item icon="clipboard-signature" text="Agree to our [Service Agreement]()" /%}
+{% icon-list-item icon="clipboard-signature" text="Agree to our [Service Agreement](https://bcgov.sharepoint.com/:w:/r/teams/00109-DigitalTalentAttractionandDevelopmentTeam/Shared%20Documents/Digital%20Talent%20Attraction%20and%20Development%20Team/20230704%20-%20Cross-Ministry%20Hiring%20-%20Service%20Agreement.docx?d=w3e18227237d340eb90d54e7ff354971e&csf=1&web=1&e=AHRiWf)" /%}
+
 
 {% /icon-list %}
 
@@ -70,7 +71,9 @@ Before we start the process, hiring managers must verify they meet CMH requireme
 
 ## Matching candidates and Opportunities manager time commitments {% #hiring-manager-time-commitments %}
 
-We have a candidate-driven matchmaking process. Candidates are presented with offers, based on their preferred location, and hiring managers applied preferred skillset in competition ranked order.
+We have a candidate-driven matching process. Candidates are presented with offers, based on their preferred location, and hiring managers applied preferred skillset in competition ranked order.
+
+![Candidate matching infographic](https://github.com/bcgov/digital-talent/blob/feature/markdown-content/packages/markdown-content/CMHP%20Content/20230616%20-%20Candidates.PNG)
 
 
 ## Hiring manager time commitments {% #hiring-manager-time-commitments %}
