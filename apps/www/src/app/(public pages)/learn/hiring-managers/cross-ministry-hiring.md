@@ -4,7 +4,8 @@ description: British Columbia, public sector jobs, BC Government, hiring service
 navigation: true
 ---
 
-# Overview {% #overview %}
+Our Cross-Ministry Hiring (CMH) uses 1 job posting to fill positions across the BC Public Service. Hiring Managers have full support because our team, the Digital Talent Attraction and Development Team (DTAD), manages the hiring process. After the competition ends, we create an Eligibility List of qualified candidates. This list becomes the source for filling other positions.
+
 
 Our Cross-Ministry Hiring (CMH) uses 1 job posting to fill positions across the BC Public Service. Hiring Managers have full support because our team, the Digital Talent Attraction and Development Team (DTAD), manages the hiring process. After the competition ends, we create an Eligibility List of qualified candidates. This list becomes the source for filling other positions.
 
@@ -57,6 +58,7 @@ Across BC Gov:
 
 Before we start the process, hiring managers must verify they meet CMH requirements. They help us attract and retain top candidates, and meet BC Government’s policies. Once we have what we need, we can move faster through the process.
 
+
 {% icon-list %}
 
 {% icon-list-item
@@ -102,6 +104,7 @@ Join an upcoming competition
 - Sign up for upcoming competitions.
 
 {% /icon-list-item %}
+
 {% icon-list-item icon="2" iconColor="text-white" iconBgColor="bg-bcgov-blue-dark" %}
 
 We create a job posting
@@ -124,6 +127,7 @@ Asses and interview candidates
 
 - Use a meritious process to choose candidates by screening, technically assessing, interviewing and checking references
 
+
 - We outlined the ['time commitment for hiring managers'](/learn/hiring-managers/cross-ministry-hiring/#hm-time-commitment-minimal-involvement)
 
 {% /icon-list-item %}
@@ -142,11 +146,14 @@ Offers
 
 - We send offers to candidates
 - If there are more candidates than vacant positions, we open our Eligibility List to other hiring managers
-- [Learn about DTAD team eligibility lists.](/learn/hiring-managers/cross-ministry-hiring)
+
+- [Learn about DTAD team eligibility lists.]()
+
 
 {% /icon-list-item %}
 
 {% /icon-list %}
+
 
 ## Matching candidates and opportunities {% #matching-candidates-and-opportunities %}
 
@@ -163,6 +170,7 @@ Consider the benefits of CMH:
 - Research-based, user-friendly materials
 
 {% /div %}
+
 
 ## Hiring manager time commitments {% #hiring-manager-time-commitments %}
 
