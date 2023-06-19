@@ -1,9 +1,9 @@
 import { Metadata } from 'next';
+import Link from '../../../../common/components/link.component';
 import { Button } from '../../../../common/components/ui/button';
 import Heading from '../../../../common/components/ui/heading.component';
 import Hero from '../../../../common/components/ui/hero/hero.component';
 import { Icon } from '../../../../common/components/ui/icon.component';
-import SmartLink from '../../../../common/libs/markdoc/components/nodes/smart-link.markdoc';
 import { wrapTitle } from '../../../../common/utils/wrap-title.util';
 
 export const metadata: Metadata = {
@@ -72,11 +72,11 @@ export default function Page() {
               </div>
             </div>
           </div>
-          <SmartLink href="https://www2.gov.bc.ca/gov/content/careers-myhr/hiring-managers">
+          <Link href="https://www2.gov.bc.ca/gov/content/careers-myhr/hiring-managers">
             <Button className="text-lg w-full md:w-72" variant="outline">
               Hiring resources
             </Button>
-          </SmartLink>
+          </Link>
         </div>
         <div className="bg-bcgov-blue-light py-4">
           <div className="container flex flex-col gap-4 mx-auto">
@@ -110,11 +110,11 @@ export default function Page() {
                 <div className="grow">DTAD handles administrative processes</div>
               </div>
             </div>
-            <SmartLink href="/learn/hiring-managers/cross-ministry-hiring">
+            <Link href="/learn/hiring-managers/cross-ministry-hiring">
               <Button className="text-lg w-full md:w-72" variant="call-to-action">
                 <span className="text-bold">Cross-Ministry Hiring overview</span>
               </Button>
-            </SmartLink>
+            </Link>
           </div>
         </div>
         <div className="container flex flex-col gap-4 mx-auto">

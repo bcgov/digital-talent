@@ -1,8 +1,8 @@
 import { Metadata } from 'next';
+import Link from '../../../../common/components/link.component';
 import Heading from '../../../../common/components/ui/heading.component';
 import Hero from '../../../../common/components/ui/hero/hero.component';
 import CompetitionList from '../../../../common/components/ui/hiring-manager/competition-list/competition-list.component';
-import SmartLink from '../../../../common/libs/markdoc/components/nodes/smart-link.markdoc';
 import { IconList, IconListItem } from '../../../../common/libs/markdoc/components/tags/icon-list';
 import { wrapTitle } from '../../../../common/utils/wrap-title.util';
 
@@ -20,9 +20,9 @@ export default function Page() {
           <p>
             Select a competition below to start our intake form. Hiring managers should be ready to sign our{' '}
             <span className="text-blue-500 underline">
-              <SmartLink href="https://bcgov.sharepoint.com/:w:/r/teams/00109-DigitalTalentAttractionandDevelopmentTeam/Shared%20Documents/Digital%20Talent%20Attraction%20and%20Development%20Team/20230704%20-%20Cross-Ministry%20Hiring%20-%20Service%20Agreement.docx?d=w3e18227237d340eb90d54e7ff354971e&csf=1&web=1&e=AHRiWf">
+              <Link href="https://bcgov.sharepoint.com/:w:/r/teams/00109-DigitalTalentAttractionandDevelopmentTeam/Shared%20Documents/Digital%20Talent%20Attraction%20and%20Development%20Team/20230704%20-%20Cross-Ministry%20Hiring%20-%20Service%20Agreement.docx?d=w3e18227237d340eb90d54e7ff354971e&csf=1&web=1&e=AHRiWf">
                 Service Agreement
-              </SmartLink>
+              </Link>
             </span>
             .
           </p>
@@ -35,15 +35,15 @@ export default function Page() {
               <li className="flex flex-row gap-2">
                 <span className="text-bcgov-blue-dark">→</span>
                 <span>
-                  <SmartLink href="/learn/hiring-managers/cross-ministry-hiring">Cross-Ministry Hiring</SmartLink>.
-                  Great source of information for hiring managers new to CMH.
+                  <Link href="/learn/hiring-managers/cross-ministry-hiring">Cross-Ministry Hiring</Link>. Great source
+                  of information for hiring managers new to CMH.
                 </span>
               </li>
               <li className="flex flex-row gap-2">
                 <span className="text-bcgov-blue-dark">→</span>
                 <span>
-                  <SmartLink href="/learn/hiring-managers/about-digital-talent">About our team</SmartLink>. Learn about
-                  our team and our passion.
+                  <Link href="/learn/hiring-managers/about-digital-talent">About our team</Link>. Learn about our team
+                  and our passion.
                 </span>
               </li>
             </ul>
@@ -61,9 +61,9 @@ export default function Page() {
             <p>
               The{' '}
               <span className="text-blue-500 underline">
-                <SmartLink href="https://www2.gov.bc.ca/gov/content/careers-myhr/all-employees/pay-benefits/salaries/salarylookuptool">
+                <Link href="https://www2.gov.bc.ca/gov/content/careers-myhr/all-employees/pay-benefits/salaries/salarylookuptool">
                   salary look up tool
-                </SmartLink>
+                </Link>
               </span>{' '}
               helps with forecasting and budgeting for these classifications.
             </p>

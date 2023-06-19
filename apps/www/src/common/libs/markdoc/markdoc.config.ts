@@ -1,9 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Config, nodes } from '@markdoc/markdoc';
+import Link from '../../components/link.component';
+import { Button } from '../../components/ui/button';
 import MDHeading from './components/nodes/md-heading.markdoc';
 
 import Paragraph from './components/nodes/paragraph.markdoc';
-import SmartLink from './components/nodes/smart-link.markdoc';
 import MDCallToAction from './components/tags/call-to-action/md-call-to-action.markdoc';
 import Card from './components/tags/card/card.markdoc';
 import { IconList, IconListItem } from './components/tags/icon-list';
@@ -20,7 +21,7 @@ const config: Config = {
       },
     },
     link: {
-      render: 'SmartLink',
+      render: 'Link',
       attributes: {
         href: { type: String },
         title: { type: String },
@@ -37,6 +38,14 @@ const config: Config = {
     },
   },
   tags: {
+    button: {
+      render: 'Button',
+      attributes: {
+        variant: {
+          type: String,
+        },
+      },
+    },
     'call-to-action': {
       render: 'CallToAction',
       attributes: {
@@ -101,10 +110,11 @@ const config: Config = {
 };
 
 const components = {
+  Button,
   CallToAction: MDCallToAction,
   Card,
   Heading: MDHeading,
-  SmartLink,
+  Link,
   IconList,
   IconListItem,
   Quote,

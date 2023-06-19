@@ -6,7 +6,9 @@ navigation: true
 
 Our Cross-Ministry Hiring (CMH) uses 1 job posting to fill positions across the BC Public Service. Hiring Managers have full support because our team, the Digital Talent Attraction and Development Team (DTAD), manages the hiring process. After the competition ends, we create an Eligibility List of qualified candidates. This list becomes the source for filling other positions.
 
-![infographic of CMH benefits](https://github.com/bcgov/digital-talent/blob/feature/markdown-content/packages/markdown-content/CMHP%20Content/20230616%20-%20Benefits%20CMH.png).
+![infographic of CMH benefits](https://github.com/bcgov/digital-talent/blob/feature/markdown-content/packages/markdown-content/CMHP%20Content/20230616%20-%20Benefits%20CMH.png)
+
+[{% button %}See current competitions{% /button %}](/hiring-managers/cross-ministry-hiring)
 
 # Requirements for joining a Cross-Ministry Hiring competition {% #Requirements-for-CMH %}
 
@@ -81,7 +83,7 @@ Asses and interview candidates
 
 - Use a meritious process to choose candidates by screening, technically assessing, interviewing and checking references
 
-- We outlined the ['time commitment for hiring managers'](#hm-time-commitment-minimal-involvement)
+- We outlined the ['time commitment for hiring managers'](/learn/hiring-managers/cross-ministry-hiring/#hm-time-commitment-minimal-involvement)
 
 {% /icon-list-item %}
 {% icon-list-item icon="5" iconColor="text-white" iconBgColor="bg-bcgov-blue-dark" %}
@@ -99,7 +101,7 @@ Offers
 
 - We send offers to candidates
 - If there are more candidates than vacant positions, we open our Eligibility List to other hiring managers
-- [Learn about DTAD team eligibility lists.]()
+- [Learn about DTAD team eligibility lists.](/learn/hiring-managers/cross-ministry-hiring)
 
 {% /icon-list-item %}
 
