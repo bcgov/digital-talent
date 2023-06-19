@@ -3,5 +3,5 @@ type ParagraphProps = {
 };
 
 export default function Pararaph({ children }: ParagraphProps) {
-  return <div className="text-base pb-2">{children}</div>;
+  return <div className="text-base m-0">{children}</div>;
 }

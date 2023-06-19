@@ -4,6 +4,7 @@ import MDHeading from './components/nodes/md-heading.markdoc';
 
 import Paragraph from './components/nodes/paragraph.markdoc';
 import SmartLink from './components/nodes/smart-link.markdoc';
+import MDCallToAction from './components/tags/call-to-action/md-call-to-action.markdoc';
 import Card from './components/tags/card/card.markdoc';
 import { IconList, IconListItem } from './components/tags/icon-list';
 import Quote from './components/tags/quote/quote.markdoc';
@@ -36,6 +37,23 @@ const config: Config = {
     },
   },
   tags: {
+    'call-to-action': {
+      render: 'CallToAction',
+      attributes: {
+        title: {
+          type: String,
+        },
+        description: {
+          type: String,
+        },
+        action_text: {
+          type: String,
+        },
+        action_href: {
+          type: String,
+        },
+      },
+    },
     card: {
       render: 'Card',
     },
@@ -86,6 +104,7 @@ const config: Config = {
 };
 
 const components = {
+  CallToAction: MDCallToAction,
   Card,
   Heading: MDHeading,
   SmartLink,
