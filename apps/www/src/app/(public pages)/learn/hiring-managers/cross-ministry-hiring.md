@@ -4,16 +4,22 @@ description: British Columbia, public sector jobs, BC Government, hiring service
 navigation: true
 ---
 
+# Overview {% #overview %}
+
 Our Cross-Ministry Hiring (CMH) uses 1 job posting to fill positions across the BC Public Service. Hiring Managers have full support because our team, the Digital Talent Attraction and Development Team (DTAD), manages the hiring process. After the competition ends, we create an Eligibility List of qualified candidates. This list becomes the source for filling other positions.
 
-{% div className="bg-bcgov-gold-light my-4 p-4" %}
+{% div className="bg-bcgov-gold-extralight my-4 p-4" %}
 
-{% div className="font-bold text-xl mb-4" %}Consider the benefits of CMH:{% /div %}
+{% div className="font-bold text-xl mb-4" %}
+Consider the benefits of CMH:
+{% /div %}
 
 {% div className="grid grid-cols-1 lg:grid-cols-3" %}
 
 {% div %}
-{% div className="font-bold text-sm" %}Consider the benefits of CMH:{% /div %}
+{% div className="font-bold text-sm" %}
+For hiring managers
+{% /div %}
 
 - Expedited recruitment process
 - Administrative support
@@ -22,7 +28,9 @@ Our Cross-Ministry Hiring (CMH) uses 1 job posting to fill positions across the 
 {% /div %}
 
 {% div %}
-{% div className="font-bold text-sm" %}For Candidates:{% /div %}
+{% div className="font-bold text-sm" %}
+For Candidates:
+{% /div %}
 
 - Apply once for multiple opportunities
 - Candidate location and team preferences matched as closely as possible
@@ -30,7 +38,9 @@ Our Cross-Ministry Hiring (CMH) uses 1 job posting to fill positions across the 
 {% /div %}
 
 {% div %}
-{% div className="font-bold text-sm" %}Across BC Gov:{% /div %}
+{% div className="font-bold text-sm" %}
+Across BC Gov:
+{% /div %}
 
 - Leverage qualified candidates through eligibility lists
 - Increased knowledge retention, aligning with the Digital Plan
@@ -146,8 +156,9 @@ We have a candidate-driven matching process. Candidates are presented with offer
 
 {% div className="my-4 p-4" %}
 
-{% div %}
-{% div className="font-bold text-sm" %}Consider the benefits of CMH:{% /div %}
+{% div className="font-bold text-sm" %}
+Consider the benefits of CMH:
+{% /div %}
 
 - Expedited recruitment process
 - Administrative support
