@@ -73,59 +73,23 @@ export default function Page() {
           <Heading level={2}>Cross-Ministry Hiring process</Heading>
           <div className="font-bold">
             <IconList>
-              <IconListItem
-                color="#FFFFFF"
-                icon="1"
-                iconBgColor="bg-bcgov-blue-dark"
-                iconColor="text-white"
-                text="Join an upcoming competition"
-              >
-                {' '}
+              <IconListItem color="#FFFFFF" icon="1" iconBgColor="bg-bcgov-blue-dark" iconColor="text-white">
+                Join an upcoming competition
               </IconListItem>
-              <IconListItem
-                color="#FFFFFF"
-                icon="2"
-                iconBgColor="bg-bcgov-blue-dark"
-                iconColor="text-white"
-                text="We create a job posting"
-              >
-                {' '}
+              <IconListItem color="#FFFFFF" icon="2" iconBgColor="bg-bcgov-blue-dark" iconColor="text-white">
+                We create a job posting
               </IconListItem>
-              <IconListItem
-                color="#FFFFFF"
-                icon="3"
-                iconBgColor="bg-bcgov-blue-dark"
-                iconColor="text-white"
-                text="Candidates apply"
-              >
-                {' '}
+              <IconListItem color="#FFFFFF" icon="3" iconBgColor="bg-bcgov-blue-dark" iconColor="text-white">
+                Candidates apply
               </IconListItem>
-              <IconListItem
-                color="#FFFFFF"
-                icon="4"
-                iconBgColor="bg-bcgov-blue-dark"
-                iconColor="text-white"
-                text="Assess and interview candidates"
-              >
-                {' '}
+              <IconListItem color="#FFFFFF" icon="4" iconBgColor="bg-bcgov-blue-dark" iconColor="text-white">
+                Assess and interview candidates
               </IconListItem>
-              <IconListItem
-                color="#FFFFFF"
-                icon="5"
-                iconBgColor="bg-bcgov-blue-dark"
-                iconColor="text-white"
-                text="We match candidates to opportunities"
-              >
-                {' '}
+              <IconListItem color="#FFFFFF" icon="5" iconBgColor="bg-bcgov-blue-dark" iconColor="text-white">
+                We match candidates to opportunities
               </IconListItem>
-              <IconListItem
-                color="#FFFFFF"
-                icon="6"
-                iconBgColor="bg-bcgov-blue-dark"
-                iconColor="text-white"
-                text="Offers"
-              >
-                {' '}
+              <IconListItem color="#FFFFFF" icon="6" iconBgColor="bg-bcgov-blue-dark" iconColor="text-white">
+                Offers
               </IconListItem>
             </IconList>
           </div>
