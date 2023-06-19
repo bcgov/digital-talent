@@ -6,7 +6,6 @@ navigation: true
 
 Our Cross-Ministry Hiring (CMH) uses 1 job posting to fill positions across the BC Public Service. Hiring Managers have full support because our team, the Digital Talent Attraction and Development Team (DTAD), manages the hiring process. After the competition ends, we create an Eligibility List of qualified candidates. This list becomes the source for filling other positions.
 
-
 Our Cross-Ministry Hiring (CMH) uses 1 job posting to fill positions across the BC Public Service. Hiring Managers have full support because our team, the Digital Talent Attraction and Development Team (DTAD), manages the hiring process. After the competition ends, we create an Eligibility List of qualified candidates. This list becomes the source for filling other positions.
 
 {% div className="bg-bcgov-gold-extralight my-4 p-4" %}
@@ -57,7 +56,6 @@ Across BC Gov:
 # Requirements for joining a Cross-Ministry Hiring competition {% #Requirements-for-CMH %}
 
 Before we start the process, hiring managers must verify they meet CMH requirements. They help us attract and retain top candidates, and meet BC Government’s policies. Once we have what we need, we can move faster through the process.
-
 
 {% icon-list %}
 
@@ -127,7 +125,6 @@ Asses and interview candidates
 
 - Use a meritious process to choose candidates by screening, technically assessing, interviewing and checking references
 
-
 - We outlined the ['time commitment for hiring managers'](/learn/hiring-managers/cross-ministry-hiring/#hm-time-commitment-minimal-involvement)
 
 {% /icon-list-item %}
@@ -149,11 +146,9 @@ Offers
 
 - [Learn about DTAD team eligibility lists.]()
 
-
 {% /icon-list-item %}
 
 {% /icon-list %}
-
 
 ## Matching candidates and opportunities {% #matching-candidates-and-opportunities %}
 
@@ -162,15 +157,14 @@ We have a candidate-driven matching process. Candidates are presented with offer
 {% div className="my-4 p-4" %}
 
 {% div className="font-bold text-sm" %}
-Consider the benefits of CMH:
+We collect:
 {% /div %}
 
-- Expedited recruitment process
-- Administrative support
-- Research-based, user-friendly materials
+- candidate's {% span className="font-bold" %} work location {% /span %} preference
+- candidate's {% span className="font-bold" %} opportunity {% /span %} preference (the team they'd like to work on)
+- hiring manager's {% span className="font-bold" %} skill set {% /span %} preferences
 
 {% /div %}
-
 
 ## Hiring manager time commitments {% #hiring-manager-time-commitments %}
 
