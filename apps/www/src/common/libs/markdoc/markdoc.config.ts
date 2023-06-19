@@ -7,8 +7,10 @@ import MDHeading from './components/nodes/md-heading.markdoc';
 import Paragraph from './components/nodes/paragraph.markdoc';
 import MDCallToAction from './components/tags/call-to-action/md-call-to-action.markdoc';
 import Card from './components/tags/card/card.markdoc';
+import Div from './components/tags/div/div.markdoc';
 import { IconList, IconListItem } from './components/tags/icon-list';
 import Quote from './components/tags/quote/quote.markdoc';
+import Span from './components/tags/span/span.markdoc';
 
 const config: Config = {
   nodes: {
@@ -66,6 +68,14 @@ const config: Config = {
     card: {
       render: 'Card',
     },
+    div: {
+      render: 'Div',
+      attributes: {
+        className: {
+          type: String,
+        },
+      },
+    },
     fence: {
       render: 'Card',
       attributes: nodes.fence.attributes,
@@ -106,6 +116,14 @@ const config: Config = {
         },
       },
     },
+    span: {
+      render: 'Span',
+      attributes: {
+        className: {
+          type: String,
+        },
+      },
+    },
   },
 };
 
@@ -113,12 +131,14 @@ const components = {
   Button,
   CallToAction: MDCallToAction,
   Card,
+  Div,
   Heading: MDHeading,
   Link,
   IconList,
   IconListItem,
   Quote,
   Paragraph,
+  Span,
 };
 
 export { components, config };

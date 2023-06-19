@@ -6,7 +6,40 @@ navigation: true
 
 Our Cross-Ministry Hiring (CMH) uses 1 job posting to fill positions across the BC Public Service. Hiring Managers have full support because our team, the Digital Talent Attraction and Development Team (DTAD), manages the hiring process. After the competition ends, we create an Eligibility List of qualified candidates. This list becomes the source for filling other positions.
 
-![infographic of CMH benefits](https://github.com/bcgov/digital-talent/blob/feature/markdown-content/packages/markdown-content/CMHP%20Content/20230616%20-%20Benefits%20CMH.png)
+{% div className="bg-bcgov-gold-light my-4 p-4" %}
+
+{% div className="font-bold text-xl mb-4" %}Consider the benefits of CMH:{% /div %}
+
+{% div className="grid grid-cols-1 lg:grid-cols-3" %}
+
+{% div %}
+{% div className="font-bold text-sm" %}Consider the benefits of CMH:{% /div %}
+
+- Expedited recruitment process
+- Administrative support
+- Research-based, user-friendly materials
+
+{% /div %}
+
+{% div %}
+{% div className="font-bold text-sm" %}For Candidates:{% /div %}
+
+- Apply once for multiple opportunities
+- Candidate location and team preferences matched as closely as possible
+
+{% /div %}
+
+{% div %}
+{% div className="font-bold text-sm" %}Across BC Gov:{% /div %}
+
+- Leverage qualified candidates through eligibility lists
+- Increased knowledge retention, aligning with the Digital Plan
+
+{% /div %}
+
+{% /div %}
+
+{% /div %}
 
 [{% button %}See current competitions{% /button %}](/hiring-managers/cross-ministry-hiring)
 
@@ -111,7 +144,16 @@ Offers
 
 We have a candidate-driven matching process. Candidates are presented with offers, based on their preferred location, and hiring managers applied preferred skillset in competition ranked order.
 
-![Candidate matching infographic](https://github.com/bcgov/digital-talent/blob/feature/markdown-content/packages/markdown-content/CMHP%20Content/20230616%20-%20Candidates.PNG)
+{% div className="my-4 p-4" %}
+
+{% div %}
+{% div className="font-bold text-sm" %}Consider the benefits of CMH:{% /div %}
+
+- Expedited recruitment process
+- Administrative support
+- Research-based, user-friendly materials
+
+{% /div %}
 
 ## Hiring manager time commitments {% #hiring-manager-time-commitments %}
 

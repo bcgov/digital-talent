@@ -1,9 +1,13 @@
 import { Metadata } from 'next';
+import Image from 'next/image';
+import learnAboutOurServicesImage from '../../../../common/components/hiring-managers/svgs/learn-about-our-services.svg';
 import Link from '../../../../common/components/link.component';
+import { Card, CardContent, CardHeader } from '../../../../common/components/ui/card.component';
 import Heading from '../../../../common/components/ui/heading.component';
 import Hero from '../../../../common/components/ui/hero/hero.component';
 import CompetitionList from '../../../../common/components/ui/hiring-manager/competition-list/competition-list.component';
 import { IconList, IconListItem } from '../../../../common/libs/markdoc/components/tags/icon-list';
+
 import { wrapTitle } from '../../../../common/utils/wrap-title.util';
 
 export const metadata: Metadata = {
@@ -71,69 +75,127 @@ export default function Page() {
         </div>
         <div className="container mx-auto mb-4">
           <Heading level={2}>Cross-Ministry Hiring process</Heading>
-          <div className="font-bold">
-            <IconList>
-              <IconListItem color="#FFFFFF" icon="1" iconBgColor="bg-bcgov-blue-dark" iconColor="text-white">
-                Join an upcoming competition
-              </IconListItem>
-              <IconListItem color="#FFFFFF" icon="2" iconBgColor="bg-bcgov-blue-dark" iconColor="text-white">
-                We create a job posting
-              </IconListItem>
-              <IconListItem color="#FFFFFF" icon="3" iconBgColor="bg-bcgov-blue-dark" iconColor="text-white">
-                Candidates apply
-              </IconListItem>
-              <IconListItem color="#FFFFFF" icon="4" iconBgColor="bg-bcgov-blue-dark" iconColor="text-white">
-                Assess and interview candidates
-              </IconListItem>
-              <IconListItem color="#FFFFFF" icon="5" iconBgColor="bg-bcgov-blue-dark" iconColor="text-white">
-                We match candidates to opportunities
-              </IconListItem>
-              <IconListItem color="#FFFFFF" icon="6" iconBgColor="bg-bcgov-blue-dark" iconColor="text-white">
-                Offers
-              </IconListItem>
-            </IconList>
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-4">
+            <div className="col-span-12 md:col-span-8">
+              <IconList>
+                <div className="flex flex-col gap-4 py-4">
+                  <IconListItem color="#FFFFFF" icon="1" iconBgColor="bg-bcgov-blue-dark" iconColor="text-white">
+                    Join an upcoming competition
+                  </IconListItem>
+                  <IconListItem color="#FFFFFF" icon="2" iconBgColor="bg-bcgov-blue-dark" iconColor="text-white">
+                    We create a job posting
+                  </IconListItem>
+                  <IconListItem color="#FFFFFF" icon="3" iconBgColor="bg-bcgov-blue-dark" iconColor="text-white">
+                    Candidates apply
+                  </IconListItem>
+                  <IconListItem color="#FFFFFF" icon="4" iconBgColor="bg-bcgov-blue-dark" iconColor="text-white">
+                    Assess and interview candidates
+                  </IconListItem>
+                  <IconListItem color="#FFFFFF" icon="5" iconBgColor="bg-bcgov-blue-dark" iconColor="text-white">
+                    We match candidates to opportunities
+                  </IconListItem>
+                  <IconListItem color="#FFFFFF" icon="6" iconBgColor="bg-bcgov-blue-dark" iconColor="text-white">
+                    Offers
+                  </IconListItem>
+                </div>
+              </IconList>
+            </div>
+            <div className="col-span-12 md:col-span-4">
+              <div className="hidden md:flex">
+                <Link href="/learn/hiring-managers/cross-ministry-hiring">
+                  <Card className="h-full shadow-[0_0.25rem_0_0_rgba(0,0,0,0.1)] hover:ring-1 hover:ring-bcgov-blue-dark hover:shadow-lg ">
+                    <CardHeader className="px-8 py-2">
+                      <Image
+                        priority
+                        alt="Learn about our services"
+                        className="mx-auto"
+                        src={learnAboutOurServicesImage}
+                      />
+                    </CardHeader>
+                    <CardContent className="h-fill">
+                      <div className="my-auto">
+                        <h2 className="text-2xl">Learn about our services</h2>
+                        <hr className="bg-bcgov-blue-dark h-1 w-4 my-2" />
+                        <span>More about how we run cross-ministry hiring for digital talent</span>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </Link>
+              </div>
+              <div className="flex md:hidden">
+                <Link href="/learn/hiring-managers/cross-ministry-hiring">
+                  <Card className="h-full shadow-[0_0.25rem_0_0_rgba(0,0,0,0.1)] hover:ring-1 hover:ring-bcgov-blue-dark hover:shadow-lg">
+                    <div className="flex flex-row gap-4 h-full">
+                      <div className="flex w-1/3">
+                        <Image
+                          priority
+                          alt="Learn about our services"
+                          className="mx-auto my-auto p-2 gap-1.5"
+                          src={learnAboutOurServicesImage}
+                        />
+                      </div>
+                      <CardContent className="flex w-2/3 pl-0 pr-2 py-2">
+                        <div className="mx-auto">
+                          <h2 className="text-2xl">Learn about our services</h2>
+                          <hr className="bg-bcgov-blue-dark h-1 w-4 my-2" />
+                          <span>More about how we run cross-ministry hiring for digital talent</span>
+                        </div>
+                      </CardContent>
+                    </div>
+                  </Card>
+                </Link>
+              </div>
+            </div>
           </div>
+          {/* <div className="flex flex-row">
+            <div className="font-bold w-2/3">
+              <IconList>
+                <div className="flex flex-col gap-4 py-4">
+                  <IconListItem color="#FFFFFF" icon="1" iconBgColor="bg-bcgov-blue-dark" iconColor="text-white">
+                    Join an upcoming competition
+                  </IconListItem>
+                  <IconListItem color="#FFFFFF" icon="2" iconBgColor="bg-bcgov-blue-dark" iconColor="text-white">
+                    We create a job posting
+                  </IconListItem>
+                  <IconListItem color="#FFFFFF" icon="3" iconBgColor="bg-bcgov-blue-dark" iconColor="text-white">
+                    Candidates apply
+                  </IconListItem>
+                  <IconListItem color="#FFFFFF" icon="4" iconBgColor="bg-bcgov-blue-dark" iconColor="text-white">
+                    Assess and interview candidates
+                  </IconListItem>
+                  <IconListItem color="#FFFFFF" icon="5" iconBgColor="bg-bcgov-blue-dark" iconColor="text-white">
+                    We match candidates to opportunities
+                  </IconListItem>
+                  <IconListItem color="#FFFFFF" icon="6" iconBgColor="bg-bcgov-blue-dark" iconColor="text-white">
+                    Offers
+                  </IconListItem>
+                </div>
+              </IconList>
+            </div>
+            <div className="w-1/3 md:hidden">
+              <Link href="/hiring-managers/cross-ministry-hiring">
+                <Card className="h-full shadow-[0_0.25rem_0_0_rgba(0,0,0,0.1)] hover:ring-1 hover:ring-bcgov-blue-dark hover:shadow-lg ">
+                  <CardHeader className="px-8 py-2">
+                    <Image
+                      priority
+                      alt="Join a cross-ministry hiring competition"
+                      className="mx-auto"
+                      src={learnAboutOurServicesImage}
+                    />
+                  </CardHeader>
+                  <CardContent className="h-fill">
+                    <div className="my-auto">
+                      <h2 className="text-2xl">Join a cross-ministry hiring competition</h2>
+                      <hr className="bg-bcgov-blue-dark h-1 w-4 my-2" />
+                      <span>View and sign up for current cross-ministry hiring competitions</span>
+                    </div>
+                  </CardContent>
+                </Card>
+              </Link>
+            </div>
+          </div> */}
         </div>
       </div>
     </>
-    // <>
-    //   <Hero title="Sign Up for Cross-Ministry Hiring" variant="light" />
-    //   <div className="container mx-auto flex flex-col gap-4 mb-4">
-    //     <Heading className="text-bcgov-gray-dark my-8" level={1}>
-    //       Which hiring are you interested in joining?
-    //     </Heading>
-
-    //     <CompetitionList />
-    //   </div>
-    //   <div className="p-4 bg-bcgov-blue-light">
-    //     <div className="container mx-auto">
-    //       <span className="font-bold">Don't see what you're looking for?</span>
-    //       <div className="prose max-w-none">
-    //         <p>
-    //           This form is for those interested in joining Cross-Ministry Hiring only.
-    //           <br />
-    //           Many questions can be answered on this website, like:
-    //         </p>
-    //         <ul>
-    //           <li>
-    //             <Link className="text-blue-500" href="/learn/hiring-managers/cross-ministry-hiring">
-    //               Cross-Ministry Hiring
-    //             </Link>
-    //             , including expectations for Hiring Managers
-    //           </li>
-    //           <li>
-    //             <Link
-    //               href="/learn/hiring-managers/about-digital-talent"
-    //               className="text-blue-500
-    //             "
-    //             >
-    //               About our team
-    //             </Link>
-    //           </li>
-    //         </ul>
-    //       </div>
-    //     </div>
-    //   </div>
-    // </>
   );
 }
