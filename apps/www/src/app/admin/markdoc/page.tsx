@@ -61,7 +61,7 @@ export default function Page() {
           />
         </div>
         <div className="overflow-y-auto !scroll-smooth" ref={markdownRendererRef}>
-          {markdoc && markdoc.title && <HeroTitle title={markdoc.title} variant="dark" />}
+          {markdoc && markdoc.title && <HeroTitle title={markdoc.title} variant="section-heading" />}
           <div className="container mx-auto mt-4">
             <div className="flex gap-4">
               {markdoc && markdoc.navigation === true && (
@@ -77,61 +77,5 @@ export default function Page() {
         </div>
       </div>
     </div>
-
-    // <div className="flex flex-col gap-4 h-full">
-    //   <Heading level={1}>Markdoc Previewer</Heading>
-    //   <div className="flex-1 border border-red-500 h-full max-h-full overflow-y-hidden">
-    //     <div className="border border-green-500 gap-2 grid grid-cols-2 h-full">
-    //       <div>
-    //         <textarea
-    //           className="w-full border border-bcgov-blue-dark p-2 h-full"
-    //           onChange={(e) => setValue(e.target.value)}
-    //           style={{ resize: 'none' }}
-    //           value={value}
-    //         />
-    //       </div>
-    //       <div className="border block border-orange-500 h-[calc(100%-2rem)]">
-    //         {markdoc && markdoc.title && <HeroTitle title={markdoc.title} variant="dark" />}
-    //         <div className="container mx-auto mt-4">
-    //           <div className="flex gap-4">
-    //             <div className="hidden md:block shrink-0 w-72">
-    //               <PageNav headings={headings} />
-    //             </div>
-    //             <div className="prose max-w-none">
-    //               {markdoc && Markdoc.renderers.react(markdoc.content, React, { components })}
-    //             </div>
-    //           </div>
-    //         </div>
-    //       </div>
-    //     </div>
-    //   </div>
-
-    // <div className="border border-red-500 h-full">
-    //     <div className="border border-green-500 gap-2 grid grid-cols-2 h-full">
-    //       <div>
-    //         <textarea
-    //           className="w-full border border-bcgov-blue-dark p-2"
-    //           onChange={(e) => setValue(e.target.value)}
-    //           value={value}
-    //         />
-    //       </div>
-    //       <div className="border border-bcgov-blue-dark p-2 h-[100%]">
-    //         <div className="flex gap-4">
-    //           <div className="hidden md:block shrink-0 w-72">
-    //             <PageNav headings={headings} />
-    //           </div>
-    //           <div className="max-w-none h-[100%] prose block border border-purple-500">
-    //             {markdoc && Markdoc.renderers.react(markdoc.content, React, { components })}
-    //           </div>
-    //         </div>
-    //       </div>
-    //     </div>
-    //   </div>
-    // </div>
-    // <div className="h-screen">
-    //   <Heading level={1}>Markdoc Previewer</Heading>
-    //   <br />
-
-    // </div>
   );
 }
