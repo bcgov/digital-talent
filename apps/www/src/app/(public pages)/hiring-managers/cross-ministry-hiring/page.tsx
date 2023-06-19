@@ -19,7 +19,12 @@ export default function Page() {
           <Heading level={2}>Sign up for one of our upcoming competitions.</Heading>
           <p>
             Select a competition below to start our intake form. Hiring managers should be ready to sign our{' '}
-            <span className="text-blue-500 underline">Service Agreement</span>.
+            <span className="text-blue-500 underline">
+              <SmartLink href="https://bcgov.sharepoint.com/:w:/r/teams/00109-DigitalTalentAttractionandDevelopmentTeam/Shared%20Documents/Digital%20Talent%20Attraction%20and%20Development%20Team/20230704%20-%20Cross-Ministry%20Hiring%20-%20Service%20Agreement.docx?d=w3e18227237d340eb90d54e7ff354971e&csf=1&web=1&e=AHRiWf">
+                Service Agreement
+              </SmartLink>
+            </span>
+            .
           </p>
           <CompetitionList />
         </div>
