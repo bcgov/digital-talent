@@ -84,9 +84,6 @@ const config: Config = {
         iconColor: {
           type: String,
         },
-        text: {
-          type: String,
-        },
         description: {
           type: String,
         },

@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import Markdoc from '@markdoc/markdoc';
 import * as lucideIcons from 'lucide-react';
 import { LucideIcon } from 'lucide-react';
 import React from 'react';
@@ -10,7 +9,6 @@ type IconListItemProps = {
   icon: number | string;
   iconBgColor?: string;
   iconColor?: string;
-  text: string;
   children?: React.ReactNode;
 };
 export default function IconListItem({
@@ -18,7 +16,6 @@ export default function IconListItem({
   icon,
   iconColor,
   iconBgColor = 'bg-transparent',
-  text,
   children,
 }: IconListItemProps) {
   const icons = lucideIcons as unknown as Record<string, any>;
@@ -37,18 +34,11 @@ export default function IconListItem({
       </div>
       {children ? (
         <div className="flex flex-col gap-2">
-          <span className="font-semibold leading-8 text-lg not-prose">
-            {Markdoc.renderers.react(Markdoc.transform(Markdoc.parse(text)), React)}
-            {/* {text} */}
-          </span>
           <div>{children}</div>
         </div>
       ) : (
         <div className="flex flex-col gap-2">
-          <span className="leading-8 not-prose">
-            {Markdoc.renderers.react(Markdoc.transform(Markdoc.parse(text)), React)}
-          </span>
-          {/* <span className="leading-8">{text}</span> */}
+          <div>{children}</div>
         </div>
       )}
     </li>
