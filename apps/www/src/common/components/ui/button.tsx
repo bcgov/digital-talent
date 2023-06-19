@@ -11,7 +11,7 @@ const buttonVariants = cva(
         default: 'bg-bcgov-blue-dark text-primary-foreground hover:bg-bcgov-blue-dark/90',
         'call-to-action': 'bg-bcgov-gold text-black hover:bg-bcgov-gold/90',
         destructive: 'bg-destructive text-destructive-foreground hover:bg-destructive/90',
-        outline: 'border border-bcgov-blue-dark text-bcgov-blue-dark hover:bg-accent hover:text-accent-foreground',
+        outline: 'border-2 border-bcgov-blue-dark text-bcgov-blue-dark hover:bg-accent hover:text-accent-foreground',
         secondary: 'bg-secondary text-secondary-foreground hover:bg-secondary/80',
         ghost: 'hover:bg-accent hover:text-accent-foreground',
         link: 'underline-offset-4 hover:underline text-primary',

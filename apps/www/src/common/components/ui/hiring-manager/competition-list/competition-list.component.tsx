@@ -17,7 +17,7 @@ type CompetitionCardProps = {
 };
 
 function CompetitionCard({ competition }: CompetitionCardProps) {
-  return (
+  return competition.form_url !== '/' ? (
     <a href={competition.form_url} rel="noreferrer" target="_blank">
       <Card className="hover:ring-1 ring-bcgov-blue-dark hover:shadow-lg p-4">
         <div className="grid grid-cols-1 md:grid-cols-2">
@@ -36,13 +36,28 @@ function CompetitionCard({ competition }: CompetitionCardProps) {
         </div>
       </Card>
     </a>
+  ) : (
+    <Card className="ring-bcgov-blue-dark p-4">
+      <div className="grid grid-cols-1 md:grid-cols-2">
+        <div className="flex flex-col gap-2">
+          <span className="font-bold text-bcgov-blue-dark">{competition.classification}</span>
+          <span>{`REQ ${competition.requisition}`}</span>
+          <span>Posting Date: {dayjs(competition.application_submission_period[0]).format('MMM D, YYYY')}</span>
+        </div>
+        <div className="py-2 md:py-0 text-start md:text-end my-0 md:my-auto">
+          Deadline to join:
+          <br />
+          <span className="font-bold">{dayjs(competition.opportunity_submission_period[1]).format('MMM D, YYYY')}</span>
+        </div>
+      </div>
+    </Card>
   );
 }
 
 const data: Competition[] = [
   {
     id: '0',
-    form_url: '/',
+    form_url: 'https://submit.digital.gov.bc.ca/app/form/submit?f=25b4aed3-fb14-495f-9c13-36e48e6f196a',
     classification: 'Full Stack Developer (IS 27)',
     requisition: '1234',
     opportunity_submission_period: ['2023-06-01T16:00:00Z', '2023-06-13T06:59:59.999Z'],
@@ -60,12 +75,10 @@ const data: Competition[] = [
 
 export default function CompetitionList() {
   return (
-    <div className="flex flex-col gap-4">
-      <div className="flex flex-col gap-2 text-lg">
-        {data.map((d) => (
-          <CompetitionCard competition={d} key={d.id} />
-        ))}
-      </div>
+    <div className="flex flex-col gap-4 text-lg">
+      {data.map((d) => (
+        <CompetitionCard competition={d} key={d.id} />
+      ))}
     </div>
   );
 }

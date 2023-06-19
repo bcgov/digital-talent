@@ -1,17 +1,29 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Config, nodes } from '@markdoc/markdoc';
+import Link from '../../components/link.component';
+import { Button } from '../../components/ui/button';
+import MDHeading from './components/nodes/md-heading.markdoc';
 
-import Heading from '../../components/ui/heading.component';
 import Paragraph from './components/nodes/paragraph.markdoc';
-import SmartLink from './components/nodes/smart-link.markdoc';
+import MDCallToAction from './components/tags/call-to-action/md-call-to-action.markdoc';
 import Card from './components/tags/card/card.markdoc';
+import Div from './components/tags/div/div.markdoc';
 import { IconList, IconListItem } from './components/tags/icon-list';
 import Quote from './components/tags/quote/quote.markdoc';
+import Span from './components/tags/span/span.markdoc';
 
 const config: Config = {
   nodes: {
+    blockquote: {
+      render: 'Quote',
+      attributes: {
+        text: {
+          type: String,
+        },
+      },
+    },
     link: {
-      render: 'SmartLink',
+      render: 'Link',
       attributes: {
         href: { type: String },
         title: { type: String },
@@ -28,8 +40,41 @@ const config: Config = {
     },
   },
   tags: {
+    button: {
+      render: 'Button',
+      attributes: {
+        variant: {
+          type: String,
+        },
+      },
+    },
+    'call-to-action': {
+      render: 'CallToAction',
+      attributes: {
+        title: {
+          type: String,
+        },
+        description: {
+          type: String,
+        },
+        action_text: {
+          type: String,
+        },
+        action_href: {
+          type: String,
+        },
+      },
+    },
     card: {
       render: 'Card',
+    },
+    div: {
+      render: 'Div',
+      attributes: {
+        className: {
+          type: String,
+        },
+      },
     },
     fence: {
       render: 'Card',
@@ -58,9 +103,6 @@ const config: Config = {
         iconColor: {
           type: String,
         },
-        text: {
-          type: String,
-        },
         description: {
           type: String,
         },
@@ -74,17 +116,29 @@ const config: Config = {
         },
       },
     },
+    span: {
+      render: 'Span',
+      attributes: {
+        className: {
+          type: String,
+        },
+      },
+    },
   },
 };
 
 const components = {
+  Button,
+  CallToAction: MDCallToAction,
   Card,
-  Heading,
-  SmartLink,
+  Div,
+  Heading: MDHeading,
+  Link,
   IconList,
   IconListItem,
   Quote,
   Paragraph,
+  Span,
 };
 
 export { components, config };

@@ -14,7 +14,7 @@ export interface CallToActionProps {
 
 export default function CallToAction({ description, title, button }: CallToActionProps) {
   return description ? (
-    <div className="bg-bcgov-blue-dark  text-white py-12 w-full flex flex-col">
+    <div className="bg-bcgov-blue-dark  text-white py-8 w-full flex flex-col">
       {title && <div className="container font-bold mx-auto mb-4 text-4xl">{title}</div>}
       {description && <div className="container mx-auto text-lg">{description}</div>}
       {button != null && (
@@ -28,7 +28,7 @@ export default function CallToAction({ description, title, button }: CallToActio
       )}
     </div>
   ) : (
-    <div className="bg-bcgov-blue-dark font-bold text-6xl text-white py-12 w-full flex flex-col">
+    <div className="bg-bcgov-blue-dark font-bold text-6xl text-white py-8 w-full flex flex-col">
       {title && <div className="container mx-auto">{title}</div>}
     </div>
   );

@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import * as lucideIcons from 'lucide-react';
 import { LucideIcon } from 'lucide-react';
+import React from 'react';
 import { cn } from '../../../../../utils/cn.util';
 
 type IconListItemProps = {
@@ -8,7 +9,6 @@ type IconListItemProps = {
   icon: number | string;
   iconBgColor?: string;
   iconColor?: string;
-  text: string;
   children?: React.ReactNode;
 };
 export default function IconListItem({
@@ -16,7 +16,6 @@ export default function IconListItem({
   icon,
   iconColor,
   iconBgColor = 'bg-transparent',
-  text,
   children,
 }: IconListItemProps) {
   const icons = lucideIcons as unknown as Record<string, any>;
@@ -35,12 +34,11 @@ export default function IconListItem({
       </div>
       {children ? (
         <div className="flex flex-col gap-2">
-          <span className="font-semibold leading-8 text-lg">{text}</span>
           <div>{children}</div>
         </div>
       ) : (
         <div className="flex flex-col gap-2">
-          <span className="leading-8">{text}</span>
+          <div>{children}</div>
         </div>
       )}
     </li>

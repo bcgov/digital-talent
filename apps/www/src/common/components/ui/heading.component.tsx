@@ -1,60 +1,123 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
+
+import { cn } from '../../utils/cn.util';
+
 /* eslint-disable @typescript-eslint/no-explicit-any */
-type HeadingProps = {
+export type HeadingProps = {
   id?: string;
   children: string;
   level: number;
+  variant?: 'markdoc-heading' | 'section-heading';
 } & React.HTMLAttributes<HTMLDivElement>;
 
-export default function Heading({ id, children, className, level }: HeadingProps) {
+export default function Heading({ id, children, className, level, variant }: HeadingProps) {
   switch (level) {
     case 1:
       return (
         <>
           {id && <div className="block relative -top-20" id={id} />}
-          <h1 className={`mt-0 text-3xl font-semibold ${className || ''}`}>{children}</h1>
+          <h1
+            className={cn(
+              `mt-0`,
+              variant === 'markdoc-heading' ? 'text-3xl' : 'text-6xl',
+              `font-bold`,
+              variant === 'section-heading' ? 'text-bcgov-blue-dark' : 'text-black',
+              className && className,
+            )}
+          >
+            {children}
+          </h1>
+          {variant === 'section-heading' && <hr className="bg-bcgov-blue-dark h-2 w-16 my-2" />}
         </>
       );
     case 2:
       return (
         <>
           {id && <div className="block relative -top-20" id={id} />}
-          <h2 className={`mt-0 text-2xl font-semibold ${className || ''}`}>{children}</h2>
+          <h2
+            className={cn(
+              `mt-0`,
+              variant === 'markdoc-heading' ? 'text-2xl' : 'text-[2.6rem]',
+              `font-bold`,
+              variant === 'section-heading' ? 'text-bcgov-blue-dark' : 'text-black',
+              className && className,
+            )}
+          >
+            {children}
+          </h2>
         </>
       );
     case 3:
       return (
         <>
           {id && <div className="block relative -top-20" id={id} />}
-          <h3 className={`mt-0 text-xl font-semibold ${className || ''}`}>{children}</h3>
+          <h3
+            className={cn(
+              `mt-0`,
+              variant === 'markdoc-heading' ? 'text-xl' : 'text-[1.8rem]',
+              `font-bold`,
+              variant === 'section-heading' ? 'text-bcgov-blue-dark' : 'text-black',
+              className && className,
+            )}
+          >
+            {children}
+          </h3>
         </>
       );
     case 4:
       return (
         <>
           {id && <div className="block relative -top-20" id={id} />}
-          <h4 className={`mt-0 text-lg font-semibold ${className || ''}`}>{children}</h4>
+          <h4
+            className={cn(
+              `mt-0`,
+              variant === 'markdoc-heading' ? 'text-lg' : 'text-3xl',
+              `font-semibold`,
+              variant === 'section-heading' ? 'text-bcgov-blue-dark' : 'text-black',
+              className && className,
+            )}
+          >
+            {children}
+          </h4>
         </>
       );
     case 5:
       return (
         <>
           {id && <div className="block relative -top-20" id={id} />}
-          <h5 className={`mt-0 text-base font-semibold ${className || ''}`}>{children}</h5>
+          <h5
+            className={`mt-0 text-2xl font-semibold${
+              variant === 'section-heading' ? 'text-bcgov-blue-dark' : 'text-black'
+            } ${className || ''}`}
+          >
+            {children}
+          </h5>
         </>
       );
     case 6:
       return (
         <>
           {id && <div className="block relative -top-20" id={id} />}
-          <h6 className={`mt-0 text-sm font-semibold ${className || ''}`}>{children}</h6>
+          <h6
+            className={`mt-0 text-xl font-semibold${
+              variant === 'section-heading' ? 'text-bcgov-blue-dark' : 'text-black'
+            } ${className || ''}`}
+          >
+            {children}
+          </h6>
         </>
       );
     default:
       return (
         <>
           {id && <div className="block relative -top-20" id={id} />}
-          <div className={`text-base font-semidbold ${className || ''}`}>{children}</div>
+          <div
+            className={`text-base font-semidbold${
+              variant === 'section-heading' ? 'text-bcgov-blue-dark' : 'text-black'
+            } ${className || ''}`}
+          >
+            {children}
+          </div>
         </>
       );
   }

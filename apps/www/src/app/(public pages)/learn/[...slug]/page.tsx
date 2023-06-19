@@ -7,7 +7,6 @@ import Head from 'next/head';
 import { notFound } from 'next/navigation';
 import path from 'path';
 import React from 'react';
-import CallToAction from '../../../../common/components/ui/call-to-action/call-to-action.component';
 import HeroTitle from '../../../../common/components/ui/hero/hero.component';
 import PageNav from '../../../../common/libs/markdoc/components/page-nav/page-nav.component';
 import { components, config } from '../../../../common/libs/markdoc/markdoc.config';
@@ -73,7 +72,7 @@ export default async function Page({ params }: PageProps) {
       <Head>
         <title>{title}</title>
       </Head>
-      <HeroTitle title={title} variant="dark" />
+      <HeroTitle title={title} variant="section-heading" />
       <div className="container mx-auto mt-4">
         <div className="flex gap-4">
           {navigation != null && (
@@ -84,14 +83,6 @@ export default async function Page({ params }: PageProps) {
           <div className="prose max-w-none">{Markdoc.renderers.react(content, React, { components })}</div>
         </div>
       </div>
-      <CallToAction
-        description="Submit your position details to the team to join the next cross ministry hiring."
-        title="Ready to join?"
-        button={{
-          text: 'Get Started',
-          href: 'https://submit.digital.gov.bc.ca/app/form/submit?f=a6ca83a2-71a3-4b4b-9acc-0b7f5723dede',
-        }}
-      />
     </>
   );
 }
