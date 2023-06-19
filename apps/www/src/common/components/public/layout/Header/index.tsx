@@ -38,12 +38,6 @@ function Navigation() {
                 <NavigationMenuLink className={navigationMenuTriggerStyle()}>Hiring Options</NavigationMenuLink>
               </Link>
             </NavigationMenuItem>
-            {/* Cross-Ministry Hiring */}
-            <NavigationMenuItem>
-              <Link legacyBehavior passHref href="/hiring-managers/cross-ministry-hiring">
-                <NavigationMenuLink className={navigationMenuTriggerStyle()}>Cross-ministry hiring</NavigationMenuLink>
-              </Link>
-            </NavigationMenuItem>
             {/* About Digital Talent */}
             <NavigationMenuItem>
               <Link legacyBehavior passHref href="/learn/hiring-managers/about-digital-talent">
