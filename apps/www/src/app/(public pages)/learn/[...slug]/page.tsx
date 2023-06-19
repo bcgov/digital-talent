@@ -73,7 +73,7 @@ export default async function Page({ params }: PageProps) {
       <Head>
         <title>{title}</title>
       </Head>
-      <HeroTitle title={title} variant="dark" />
+      <HeroTitle title={title} variant="section-heading" />
       <div className="container mx-auto mt-4">
         <div className="flex gap-4">
           {navigation != null && (

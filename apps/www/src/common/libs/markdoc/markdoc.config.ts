@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Config, nodes } from '@markdoc/markdoc';
+import MDHeading from './components/nodes/md-heading.markdoc';
 
-import Heading from '../../components/ui/heading.component';
 import Paragraph from './components/nodes/paragraph.markdoc';
 import SmartLink from './components/nodes/smart-link.markdoc';
 import Card from './components/tags/card/card.markdoc';
@@ -10,6 +10,14 @@ import Quote from './components/tags/quote/quote.markdoc';
 
 const config: Config = {
   nodes: {
+    blockquote: {
+      render: 'Quote',
+      attributes: {
+        text: {
+          type: String,
+        },
+      },
+    },
     link: {
       render: 'SmartLink',
       attributes: {
@@ -79,7 +87,7 @@ const config: Config = {
 
 const components = {
   Card,
-  Heading,
+  Heading: MDHeading,
   SmartLink,
   IconList,
   IconListItem,

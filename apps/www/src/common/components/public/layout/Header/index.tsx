@@ -32,7 +32,13 @@ function Navigation() {
                 </NavigationMenuLink>
               </Link>
             </NavigationMenuItem>
-            {/* Digital Hiring Options */}
+            {/* Hiring Options */}
+            <NavigationMenuItem>
+              <Link legacyBehavior passHref href="/hiring-managers/hiring-options">
+                <NavigationMenuLink className={navigationMenuTriggerStyle()}>Hiring Options</NavigationMenuLink>
+              </Link>
+            </NavigationMenuItem>
+            {/* Cross-Ministry Hiring */}
             <NavigationMenuItem>
               <Link legacyBehavior passHref href="/hiring-managers/cross-ministry-hiring">
                 <NavigationMenuLink className={navigationMenuTriggerStyle()}>Cross-ministry hiring</NavigationMenuLink>
@@ -82,6 +88,13 @@ function Navigation() {
                           <Link className="w-full" href="/">
                             <SheetClose>
                               <div className="font-semibold select-none text-xl container px-auto">Digital Talent</div>
+                            </SheetClose>
+                          </Link>
+                        </li>
+                        <li className="ml-4 py-2 border-b">
+                          <Link className="w-full" href="/hiring-managers/hiring-options">
+                            <SheetClose>
+                              <div className="font-semibold select-none text-xl container px-auto">Hiring Options</div>
                             </SheetClose>
                           </Link>
                         </li>

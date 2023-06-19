@@ -21,7 +21,6 @@ export default function Page() {
       <Hero
         description="Supporting agile teams through hiring digital talent services"
         title="Digital talent at BC gov"
-        variant="light"
       />
       <div className="flex flex-col gap-8">
         {/* Card Grid */}
