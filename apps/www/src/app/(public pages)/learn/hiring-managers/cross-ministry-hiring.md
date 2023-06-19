@@ -81,8 +81,6 @@ Agree to our [Service Agreement](https://bcgov.sharepoint.com/:w:/r/teams/00109-
 
 {% /icon-list-item %}
 
-# CMH process {% #how-it-works %}
-
 {% /icon-list %}
 
 {%  call-to-action
@@ -150,7 +148,7 @@ Offers
 
 {% /icon-list %}
 
-## Matching candidates and Opportunities manager time commitments {% #hiring-manager-time-commitments %}
+## Matching candidates and opportunities {% #matching-candidates-and-opportunities %}
 
 We have a candidate-driven matching process. Candidates are presented with offers, based on their preferred location, and hiring managers applied preferred skillset in competition ranked order.
 
