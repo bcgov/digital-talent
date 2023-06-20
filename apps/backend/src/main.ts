@@ -9,6 +9,6 @@ async function bootstrap() {
   app.useLogger(app.get(Logger));
   app.useGlobalPipes(new ValidationPipe({ skipMissingProperties: false, transform: true, whitelist: true }));
 
-  await app.listen(3000);
+  await app.listen(4000);
 }
 bootstrap();

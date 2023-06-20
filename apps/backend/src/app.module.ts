@@ -1,14 +1,24 @@
+import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
+import { CacheModule } from '@nestjs/cache-manager';
 import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import { APP_GUARD } from '@nestjs/core';
+import { GraphQLModule } from '@nestjs/graphql';
+import { Request } from 'express';
 import { LoggerModule } from 'nestjs-pino';
 import { v4 as uuidv4 } from 'uuid';
 import { AppConfigDto } from './dtos/app-config.dto';
 import { RequestIdMiddleware } from './middleware/request-id.middleware';
+import { AuthModule } from './modules/auth/auth.module';
+import { AuthGuard } from './modules/auth/guards/auth.guard';
+import { RoleGuard } from './modules/auth/guards/role.guard';
 import { EventStoreModule } from './modules/event-store/event-store.module';
+import { UserModule } from './modules/user/user.module';
 import { validateAppConfig } from './utils/validate-app-config.util';
 
 @Module({
   imports: [
+    CacheModule.register({ isGlobal: true }),
     ConfigModule.forRoot({ isGlobal: true, validate: validateAppConfig }),
     EventStoreModule,
     LoggerModule.forRootAsync({
@@ -32,6 +42,23 @@ import { validateAppConfig } from './utils/validate-app-config.util';
         };
       },
     }),
+
+    GraphQLModule.forRoot<ApolloDriverConfig>({
+      driver: ApolloDriver,
+      autoSchemaFile: true,
+      context: ({ req }) => ({ req } as { req: Request }),
+      resolvers: {
+        // Range: GraphQLRange,
+        // UUID: GraphQLUUID,
+      },
+      // sortSchema: true,
+    }),
+    AuthModule,
+    UserModule,
+  ],
+  providers: [
+    { provide: APP_GUARD, useClass: AuthGuard },
+    { provide: APP_GUARD, useClass: RoleGuard },
   ],
 })
 export class AppModule implements NestModule {
