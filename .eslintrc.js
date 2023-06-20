@@ -19,6 +19,8 @@ module.exports = easelint({
         // All Javascript, React, TypeScript files
         files: ['*.{js,jsx,ts,tsx}'],
         rules: {
+          '@typescript-eslint/no-explicit-any': 'off',
+          '@typescript-eslint/no-shadow': 'off',
           camelcase: 'off',
           'import/no-default-export': 'off',
           'class-methods-use-this': 'off',

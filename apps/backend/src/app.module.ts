@@ -4,11 +4,13 @@ import { LoggerModule } from 'nestjs-pino';
 import { v4 as uuidv4 } from 'uuid';
 import { AppConfigDto } from './dtos/app-config.dto';
 import { RequestIdMiddleware } from './middleware/request-id.middleware';
+import { EventStoreModule } from './modules/event-store/event-store.module';
 import { validateAppConfig } from './utils/validate-app-config.util';
 
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true, validate: validateAppConfig }),
+    EventStoreModule,
     LoggerModule.forRootAsync({
       inject: [ConfigService],
       useFactory: async (config: ConfigService<AppConfigDto, true>) => {
