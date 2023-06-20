@@ -8,6 +8,14 @@ module.exports = easelint({
     root: true,
     overrides: [
       {
+        // Files which require devDependencies
+        //  config files, tests, etc...
+        files: ['*.e2e-spec.ts', '*.spec.ts', 'vite.config.ts'],
+        rules: {
+          'import/no-extraneous-dependencies': 'off',
+        },
+      },
+      {
         // All Javascript, React, TypeScript files
         files: ['*.{js,jsx,ts,tsx}'],
         rules: {
@@ -16,6 +24,25 @@ module.exports = easelint({
           'class-methods-use-this': 'off',
           'no-restricted-syntax': 'off',
           'no-continue': 'off',
+        },
+      },
+      {
+        // api | Nest.js
+        files: ['apps/api/**/*.{js,jsx,ts,tsx}'],
+        settings: {
+          'import/resolver': {
+            typescript: {
+              project: 'apps/api/tsconfig.json',
+            },
+          },
+        },
+        rules: {
+          '@typescript-eslint/interface-name-prefix': 'off',
+          '@typescript-eslint/explicit-function-return-type': 'off',
+          '@typescript-eslint/explicit-module-boundary-types': 'off',
+          '@typescript-eslint/no-explicit-any': 'off',
+          'class-methods-use-this': 'off',
+          'import/no-cycle': 'off',
         },
       },
       {
