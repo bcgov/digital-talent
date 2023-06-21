@@ -31,6 +31,7 @@ describe('diff', () => {
           name: 'user',
         },
       ],
+      strings: ['a', 'b'],
     };
 
     describe('only the updated name is provided', () => {
@@ -82,6 +83,16 @@ describe('diff', () => {
         });
 
         expect(delta).toEqual({ salary: [10, 100] });
+      });
+    });
+
+    describe('a single item is removed from a string array', () => {
+      it('should return an object with the updated values', () => {
+        const delta = diff(existing, {
+          strings: ['a'],
+        });
+
+        expect(delta).toEqual({ strings: ['a'] });
       });
     });
 

@@ -51,34 +51,11 @@ export const diff = (lhs, rhs) => {
     return r;
   }
 
+  // Simple check test array equality
+  // If arrays are _not_ equal, return the new array
   if (Array.isArray(r) && Array.isArray(l)) {
-    // If empty array, return it
-    if (r.length === 0) return r;
-
-    const deletedValues = l.reduce((acc, item, index) => {
-      return hasOwnProperty(r, index) ? acc.concat(item) : acc.concat(undefined);
-    }, []);
-
-    const result = r.reduce((acc, rightItem, index) => {
-      if (!hasOwnProperty(deletedValues, index)) {
-        return acc.concat(rightItem);
-      }
-
-      const leftItem = l[index];
-      const difference = diff(rightItem, leftItem);
-
-      if (isObject(difference) && isEmpty(difference) && !isDate(difference)) {
-        delete acc[index];
-        return acc; // return no diff
-      }
-
-      return acc
-        .slice(0, index)
-        .concat(rightItem)
-        .concat(acc.slice(index + 1)); // return updated key
-    }, deletedValues);
-
-    return result.filter((n) => n).length === 0 ? undefined : [...r];
+    if (JSON.stringify(r) === JSON.stringify(l)) return undefined;
+    return r;
   }
 
   const delta = Object.keys(r).reduce((acc, key) => {
