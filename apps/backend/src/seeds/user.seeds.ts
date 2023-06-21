@@ -10,6 +10,6 @@ const syncSeeds: SyncUserInput[] = [
   },
 ];
 
-const syncEvents = syncSeeds.map((seed) => new SyncUserCommand(seed, { created_by: SYSTEM_USER_ID }));
+const syncCommands = syncSeeds.map((seed) => new SyncUserCommand(seed, { created_by: SYSTEM_USER_ID }));
 
-export default [...syncEvents];
+export default [...syncCommands];
