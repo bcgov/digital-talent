@@ -21,6 +21,15 @@ import { validateAppConfig } from './utils/validate-app-config.util';
     CacheModule.register({ isGlobal: true }),
     ConfigModule.forRoot({ isGlobal: true, validate: validateAppConfig }),
     EventStoreModule,
+    GraphQLModule.forRoot<ApolloDriverConfig>({
+      driver: ApolloDriver,
+      autoSchemaFile: true,
+      context: ({ req }) => ({ req } as { req: Request }),
+      resolvers: {
+        // Range: GraphQLRange,
+        // UUID: GraphQLUUID,
+      },
+    }),
     LoggerModule.forRootAsync({
       inject: [ConfigService],
       useFactory: async (config: ConfigService<AppConfigDto, true>) => {
@@ -41,17 +50,6 @@ import { validateAppConfig } from './utils/validate-app-config.util';
           },
         };
       },
-    }),
-
-    GraphQLModule.forRoot<ApolloDriverConfig>({
-      driver: ApolloDriver,
-      autoSchemaFile: true,
-      context: ({ req }) => ({ req } as { req: Request }),
-      resolvers: {
-        // Range: GraphQLRange,
-        // UUID: GraphQLUUID,
-      },
-      // sortSchema: true,
     }),
     AuthModule,
     UserModule,
