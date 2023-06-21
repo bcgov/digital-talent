@@ -22,10 +22,10 @@ export function evolve(state: UserState, event: UserEvent): UserState {
       return {
         exists: true,
         data: {
+          ...(state.exists === true && { ...state.data }),
           ...data,
-          created_by: metadata.created_by,
           created_at: new Date(state.exists === false ? metadata.created_at : state.data.created_at),
-          ...(state.exists !== false && { updated_at: new Date(metadata.created_at) }),
+          created_by: metadata.created_by,
         },
       };
     }
