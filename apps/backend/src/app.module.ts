@@ -12,6 +12,7 @@ import { RequestIdMiddleware } from './middleware/request-id.middleware';
 import { AuthModule } from './modules/auth/auth.module';
 import { AuthGuard } from './modules/auth/guards/auth.guard';
 import { RoleGuard } from './modules/auth/guards/role.guard';
+import { ClassificationModule } from './modules/classification/classification.module';
 import { EventStoreModule } from './modules/event-store/event-store.module';
 import { UserModule } from './modules/user/user.module';
 import { validateAppConfig } from './utils/validate-app-config.util';
@@ -52,6 +53,7 @@ import { validateAppConfig } from './utils/validate-app-config.util';
       },
     }),
     AuthModule,
+    ClassificationModule,
     UserModule,
   ],
   providers: [
