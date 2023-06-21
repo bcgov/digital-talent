@@ -1,3 +1,4 @@
+import { ExistsState, InitialState } from '../event-store/types/decider-state.type';
 import { Decider } from '../event-store/utils/create-command-handler.util';
 import { decideUpdateEventData } from '../event-store/utils/decide-update-event-data.util';
 import { SyncUserCommand } from './commands/sync-user/sync-user.command';
@@ -5,10 +6,7 @@ import { UserEntity } from './entities/user.entity';
 import { UserSyncedEvent } from './events/user-synced/user-synced.event';
 import { SyncUserInput } from './inputs/sync-user.input';
 
-type InitialState = { exists: false };
-type ExistsState = { exists: true; data: UserEntity };
-export type UserState = InitialState | ExistsState;
-
+export type UserState = InitialState | ExistsState<UserEntity>;
 export type UserCommand = SyncUserCommand;
 export type UserEvent = UserSyncedEvent;
 
@@ -25,7 +23,6 @@ export function evolve(state: UserState, event: UserEvent): UserState {
           ...(state.exists === true && { ...state.data }),
           ...data,
           created_at: new Date(state.exists === false ? metadata.created_at : state.data.created_at),
-          created_by: metadata.created_by,
         },
       };
     }

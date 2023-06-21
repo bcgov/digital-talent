@@ -12,9 +12,6 @@ export class UserEntity {
 
   roles: string[];
 
-  @Field((type) => GraphQLUUID)
-  created_by?: string;
-
   created_at?: Date;
 
   updated_at?: Date;
