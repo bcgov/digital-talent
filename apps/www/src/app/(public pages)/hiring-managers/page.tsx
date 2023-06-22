@@ -20,7 +20,7 @@ export default function Page() {
       {/* Hero */}
       <Hero
         description="Supporting agile teams through hiring digital talent services"
-        title="Digital talent at BC gov"
+        title="Digital Talent at BC Gov"
       />
       <div className="flex flex-col gap-8">
         {/* Card Grid */}
