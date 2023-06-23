@@ -122,7 +122,6 @@ Candidates apply
 Asses and interview candidates
 
 - Use a meritious process to choose candidates by screening, technically assessing, interviewing and checking references
-
 - We outlined the ['time commitment for hiring managers'](/learn/hiring-managers/cross-ministry-hiring/#hm-time-commitment-minimal-involvement)
 
 {% /icon-list-item %}

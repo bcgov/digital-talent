@@ -19,8 +19,8 @@ export default function Page() {
     <>
       {/* Hero */}
       <Hero
-        description="Supporting agile teams through hiring digital talent services"
-        title="Digital Talent at BC Gov"
+        description="Our team builds Agile teams with a modernized Digital Talent hiring service: the Cross-Ministry Hiring Program (CMHP)."
+        title="Digital Talent at BC Govt"
       />
       <div className="flex flex-col gap-8">
         {/* Card Grid */}
@@ -41,7 +41,7 @@ export default function Page() {
                   <div className="my-auto">
                     <h2 className="text-2xl">Join a cross-ministry hiring competition</h2>
                     <hr className="bg-bcgov-blue-dark h-1 w-4 my-2" />
-                    <span>View and sign up for current cross-ministry hiring competitions</span>
+                    <span>Our upcoming hiring is for IS27s and AO24s. View details and sign up.</span>
                   </div>
                 </CardContent>
               </Card>
@@ -64,9 +64,9 @@ export default function Page() {
                       </div>
                       <CardContent className="flex w-2/3 pl-0 pr-2 py-2">
                         <div className="mx-auto">
-                          <h2 className="text-2xl">Learn about our services</h2>
+                          <h2 className="text-2xl">The Cross-Ministry Hiring Program.</h2>
                           <hr className="bg-bcgov-blue-dark h-1 w-4 my-2" />
-                          <span>More about how we run cross-ministry hiring for digital talent</span>
+                          <span>Understand the process and details of our featured program.</span>
                         </div>
                       </CardContent>
                     </div>
@@ -80,9 +80,9 @@ export default function Page() {
                     <div className="flex flex-row gap-4 h-full">
                       <CardContent className="flex w-2/3 pl-4 py-2">
                         <div className="mx-auto">
-                          <h2 className="text-2xl">About the Digital Talent Attraction & Develpment team</h2>
+                          <h2 className="text-2xl">About our Team</h2>
                           <hr className="bg-bcgov-blue-dark h-1 w-4 my-2" />
-                          <span>Understand our mission, history, and upcoming plans</span>
+                          <span>Get to know us better and what motivates us. </span>
                         </div>
                       </CardContent>
                       <div className="flex w-1/3">
@@ -117,7 +117,7 @@ export default function Page() {
                   <div className="mx-auto">
                     <h2 className="text-2xl">Join a cross-ministry hiring competition</h2>
                     <hr className="bg-bcgov-blue-dark h-1 w-4 my-2" />
-                    <span>View and sign up for current cross-ministry hiring competitions</span>
+                    <span>Our upcoming hiring is for IS27s and AO24s. View details and sign up.</span>
                   </div>
                 </CardContent>
               </div>
@@ -136,9 +136,9 @@ export default function Page() {
                 </div>
                 <CardContent className="flex w-2/3 pl-0 pr-2 py-2">
                   <div className="mx-auto">
-                    <h2 className="text-2xl">Learn about our services</h2>
+                    <h2 className="text-2xl">The Cross-Ministry Hiring Program</h2>
                     <hr className="bg-bcgov-blue-dark h-1 w-4 my-2" />
-                    <span>More about how we run cross-ministry hiring for digital talent</span>
+                    <span>Understand the process and details of our featured program.</span>
                   </div>
                 </CardContent>
               </div>
@@ -158,9 +158,9 @@ export default function Page() {
                 </div>
                 <CardContent className="flex w-2/3 pl-4 py-2">
                   <div className="mx-auto">
-                    <h2 className="text-2xl">About the Digital Talent Attraction & Develpment team</h2>
+                    <h2 className="text-2xl">About our Team</h2>
                     <hr className="bg-bcgov-blue-dark h-1 w-4 my-2" />
-                    <span>Understand our mission, history, and upcoming plans</span>
+                    <span>Get to know us better and what motivates us.</span>
                   </div>
                 </CardContent>
               </div>
@@ -172,19 +172,18 @@ export default function Page() {
         <div className="bg-bcgov-blue-light py-8 mb-8">
           <div className="container mx-auto">
             <Heading className="mb-4" level={2}>
-              Welcome! We look forward to working with you
+              Welcome! We look forward to working together!
             </Heading>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="flex flex-col gap-4">
                 <p>
-                  Welcome to the new home for the DTAD team where you can learn about hiring options, join pilot
-                  programs, and discover what we're working on.
+                  Welcome to the homepage for the Digital Talent Attraction and Development Team! This website serves as a hub 
+                  of our hiring programs and pilots, current and upcoming hiring, and who we are.
                 </p>
                 <p>
-                  We work in an agile environment and expect to see changes on this website often as we publish more
-                  information.
+                  Our team works with Agile principles, inclusive of product iterations. Please expect updates as the team gets feedback from users. 
                 </p>
-                <div className="flex flex-row gap-2">
+                <div className="flex flex-row gap-2 mt-4">
                   <Mailbox /> <span className="font-bold">Have questions?</span>{' '}
                   <a className="text-bcgov-blue-dark underline" href="mailto:digital.talent@gov.bc.ca">
                     digital.talent@gov.bc.ca
@@ -194,9 +193,9 @@ export default function Page() {
               <div>
                 <span className="font-bold">Coming soon:</span>
                 <ul className="list-disc ml-8">
-                  <li>Help navigating other hiring options</li>
-                  <li>Reviewing open digital talent opportunities</li>
-                  <li>Sign up for notifications</li>
+                  <li>Process for online approvals to use Digital Talent Job Profiles.</li>
+                  <li>Process for suggesting Job Profiles to our inventory.</li>
+                  <li>Overview of Advisory services of organization design and development for Agile teams.</li>
                 </ul>
               </div>
             </div>
