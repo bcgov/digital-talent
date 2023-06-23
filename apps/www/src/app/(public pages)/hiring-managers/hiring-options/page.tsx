@@ -15,13 +15,13 @@ export default function Page() {
     <div className="mb-4">
       <Hero title="Hiring options in the BC Public Service" variant="section-heading" />
       <div className="flex flex-col gap-4">
-        <div className="container flex flex-col gap-4">
+        <div className="container flex flex-col gap-4 mb-4">
           <p>
             Hiring managers have many choices for hiring staff. Depending on the situation, you can be supported by the
             Public Service Agency (PSA) or the Digital Talent Attraction and Development Team (DTAD).
           </p>
           <Heading level={2}>Available hiring options:</Heading>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 ">
             <div className="bg-gray-300 p-2 text-[1.8rem] flex flex-col">
               <div className="grow font-light leading-8 mb-2">
                 1.
@@ -47,6 +47,9 @@ export default function Page() {
               <div className="font-bold text-base">DTAD or outside competitions</div>
             </div>
           </div>
+        </div>
+
+        <div className="container flex flex-col gap-4 mx-auto mb-4">
           <Heading level={3}>1. Self-run hiring</Heading>
           <p>
             This option allows hiring managers to run a competition and be as creative as they wish. PSA offers support
@@ -78,7 +81,8 @@ export default function Page() {
             </Button>
           </Link>
         </div>
-        <div className="bg-bcgov-blue-light py-4">
+
+        <div className="bg-bcgov-blue-light py-4 mb-4">
           <div className="container flex flex-col gap-4 mx-auto">
             <Heading level={3}>2. Cross-Ministry Hiring Program (CMHP)</Heading>
             <p>
@@ -117,7 +121,8 @@ export default function Page() {
             </Link>
           </div>
         </div>
-        <div className="container flex flex-col gap-4 mx-auto">
+
+        <div className="container flex flex-col gap-4 mx-auto mb-4">
           <Heading level={3}>3. Eligibility Lists</Heading>
           <p>
             An Eligibility List is a list of candidates who are pre-qualified. This means they interviewed and passed

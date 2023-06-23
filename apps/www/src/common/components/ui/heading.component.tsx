@@ -19,7 +19,7 @@ export default function Heading({ id, children, className, level, variant }: Hea
           <h1
             className={cn(
               `mt-0`,
-              variant === 'markdoc-heading' ? 'text-3xl' : 'text-6xl',
+              variant === 'markdoc-heading' ? 'text-3xl mt-4' : 'text-6xl',
               `font-bold`,
               variant === 'section-heading' ? 'text-bcgov-blue-dark' : 'text-black',
               className && className,
