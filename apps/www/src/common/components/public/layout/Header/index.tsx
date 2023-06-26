@@ -8,6 +8,7 @@ import {
   NavigationMenuLink,
   NavigationMenuList,
   navigationMenuTriggerStyle,
+  LinkWithActiveState
 } from '../../../ui/navigation-menu.component';
 import {
   Sheet,
@@ -34,15 +35,17 @@ function Navigation() {
             </NavigationMenuItem>
             {/* Hiring Options */}
             <NavigationMenuItem>
-              <Link legacyBehavior passHref href="/hiring-managers/hiring-options">
+              {/* <Link legacyBehavior passHref href="/hiring-managers/hiring-options">
                 <NavigationMenuLink className={navigationMenuTriggerStyle()}>Hiring Options</NavigationMenuLink>
-              </Link>
+              </Link> */}
+              <LinkWithActiveState href="/hiring-managers/hiring-options">Hiring Options</LinkWithActiveState>
             </NavigationMenuItem>
             {/* About Digital Talent */}
             <NavigationMenuItem>
-              <Link legacyBehavior passHref href="/learn/hiring-managers/about-digital-talent">
+              <LinkWithActiveState href="/learn/hiring-managers/about-digital-talent">About us</LinkWithActiveState>
+              {/* <Link legacyBehavior passHref href="/learn/hiring-managers/about-digital-talent">
                 <NavigationMenuLink className={navigationMenuTriggerStyle()}>About us</NavigationMenuLink>
-              </Link>
+              </Link> */}
             </NavigationMenuItem>
           </NavigationMenuList>
         </NavigationMenu>
@@ -140,7 +143,7 @@ export default function Header() {
       </div>
       {/* Top Header */}
       <div className="bg-white border-b drop-shadow flex flex-row h-12 text-bcgov-blue-dark">
-        <div className="container mx-auto my-auto flex flex-row gap-8">
+        <div className={"container mx-auto my-auto flex flex-row gap-8 mb-0"}>
           <Navigation />
         </div>
       </div>

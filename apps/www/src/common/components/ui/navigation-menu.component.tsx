@@ -3,6 +3,8 @@ import { cva } from 'class-variance-authority';
 import { ChevronDown } from 'lucide-react';
 import React from 'react';
 import { cn } from '../../utils/cn.util';
+import { usePathname } from 'next/navigation';
+import Link from 'next/link';
 
 const NavigationMenu = React.forwardRef<
   React.ElementRef<typeof NavigationMenuPrimitive.Root>,
@@ -33,8 +35,32 @@ NavigationMenuList.displayName = NavigationMenuPrimitive.List.displayName;
 
 const NavigationMenuItem = NavigationMenuPrimitive.Item;
 
+type LinkProps = {
+  href: string;
+  [key: string]: any; // This allows any other props to be passed into the Link component
+};
+
+const LinkWithActiveState: React.FC<LinkProps> = ({ href, ...props }) => {
+  const pathname = usePathname();
+
+  const navigationMenuTriggerStyle2 = () => {
+    return href ===pathname ? "bg-bcgov-blue-light underline underline-offset-12 decoration-4" : ""; // use your active and non-active styles here
+  };
+
+  return (
+    <Link legacyBehavior passHref href={href}>
+      <NavigationMenuPrimitive.Link
+        className={cn(`${navigationMenuTriggerStyle()} ${navigationMenuTriggerStyle2()}`)}
+        {...props}
+      />
+    </Link>
+  );
+};
+
+
+
 const navigationMenuTriggerStyle = cva(
-  'inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus:outline-none focus:bg-accent focus:text-accent-foreground disabled:opacity-50 disabled:pointer-events-none bg-background hover:bg-accent hover:text-accent-foreground data-[state=open]:bg-accent/50 data-[active]:bg-accent/50 h-10 py-2 px-4 group w-max',
+  'inline-flex items-center justify-center text-sm font-medium transition-colors focus:outline-none focus:bg-accent focus:text-accent-foreground disabled:opacity-50 disabled:pointer-events-none bg-background hover:bg-accent hover:text-accent-foreground data-[state=open]:bg-accent/50 data-[active]:bg-accent/50 h-10 py-2 px-4 group w-max',
 );
 
 const NavigationMenuTrigger = React.forwardRef<
@@ -116,4 +142,5 @@ export {
   NavigationMenuLink,
   NavigationMenuIndicator,
   NavigationMenuViewport,
+  LinkWithActiveState
 };
