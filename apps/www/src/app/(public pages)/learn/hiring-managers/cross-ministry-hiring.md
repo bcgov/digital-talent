@@ -60,8 +60,13 @@ The CMHP matches candidates with job opportunities based on a candidate-focused 
 
 After, candidates rank their preferred working location(s) and job opportunities. We match this with hiring managers' skillset preferences. 
 
-{% div className="my-4 p-4" %}
+{% div className="my-4 p-4 grid grid-cols-1 sm:grid-cols-2 gap-4" %}
 
+{% div className="hidden sm:block"%}
+![Images](/cross-ministry.png)
+{% /div %}
+
+{% div %}
 {% div className="font-bold text-sm" %}
 Matching recipe:
 {% /div %}
@@ -70,6 +75,7 @@ Matching recipe:
 - candidate's {% span className="font-bold" %} job opportunities {% /span %} preference (the team they want to work on)
 - hiring managers' {% span className="font-bold" %} skillset {% /span %} preferences
 
+{% /div %}
 {% /div %}
 
 
