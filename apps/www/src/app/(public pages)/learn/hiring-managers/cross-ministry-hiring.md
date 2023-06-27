@@ -6,7 +6,7 @@ navigation: true
 
 # Overview {% #Overview %}
 
-The Cross-Ministry Hiring Program uses one job profile to fill many positions across BC Government. The outcome of the CMHP is an [Eligibility List (E-list)](hiring-managers/hiring-options) of pre-qualified candidates. Hiring managers and candidates are matched based on candidate preferences.
+The Cross-Ministry Hiring Program uses one job profile to fill many positions across BC Government. The outcome of the CMHP is an [Eligibility List (E-list)](hiring-managers/hiring-options) of pre-qualified candidates. We match hiring managers and candidates based on candidate preferences.
 
 Our team gives administrative support. With dedicated Public Service Agency (PSA) resources, we have shorter wait times. For hiring managers, they get candidates quicker without spending hours of labour. For candidates, they do not need to apply to similar position, and they save time. Candidates' experience with BC Govt hiring becomes better.  
 
@@ -56,7 +56,7 @@ Across BC Govt
 
 ## Matching candidates and job opportunities {% #matching-candidates-and-job-opportunities %}
 
-The CMHP matches candidates with job opportunities based on a candidate-focused process. We create an Eligibility list of successful candidates. Ranking decision comes from screening, assessment, interviews and Years of Continous Services (YOCS)
+The CMHP matches candidates with job opportunities based on a candidate-focused process. We create an Eligibility list of successful candidates. Ranking decision comes from screening, assessment, interviews and Years of Continous Services (YOCS).
 
 After, candidates rank their preferred working location(s) and job opportunities. We match this with hiring managers' skillset preferences. 
 
@@ -118,7 +118,7 @@ Signed Service Agreement
 
 Join an upcoming competition.
 
-- Explore our [upcoming competitions](https://dt.apps.silver.devops.gov.bc.ca/hiring-managers/cross-ministry-hiring) to find a fit
+- Explore our [upcoming competitions](https://dt.apps.silver.devops.gov.bc.ca/hiring-managers/cross-ministry-hiring) to find a fit.
 - Found one or more? Fill out our Hiring Requirement Form to confirm our requirements and give us details about your position(s).
 
 {% /icon-list-item %}
@@ -183,10 +183,10 @@ This option benefits hiring managers who need talent from the CMHP, but cannot t
 Review and approve the job posting, job profile and screening questionnaire with other hiring managers.
 {% /icon-list-item %}
 {% icon-list-item icon="CheckCircle2" iconColor="text-blue-500" %}
-Rank preferred candidates based on scored competition notes.Review and approve job posting draft, job profile, and questionnaire
+Candidate ranking debrief.
 {% /icon-list-item %}
 {% icon-list-item icon="CheckCircle2" iconColor="text-blue-500" %}
-Get updates from our team when we move through the process.
+Get updates from our team as we move through the process.
 {% /icon-list-item %}
 
 {% /icon-list %}
@@ -197,7 +197,7 @@ Get updates from our team when we move through the process.
 
 #### Full involvement {% #hm-time-commitment-full-involvement %}
 
-This option gives hiring managers, or designates, opportunities to take in every step of the hiring process. Because demand to take part can be high, we engage in a selection processes for a hiring panel. In total, hiring managers must commit **10 hours**:
+This option gives hiring managers, or designates, opportunities to take in every step of the hiring process. Because demand to take part can be high, we engage in a selection processes for a hiring panel. In total, hiring managers must commit **10 or more** hours:
 
 {% icon-list %}
 
@@ -208,7 +208,7 @@ Review and approve the job posting, job profile and screening questionnaire with
 Review and screen candidates within 3 days of receiving the screening report.
 {% /icon-list-item %}
 {% icon-list-item icon="CheckCircle2" iconColor="text-blue-500" %}
-Attend consensus meeting for final decision on screened candidates.
+Finalize screening.
 {% /icon-list-item %}
 {% icon-list-item icon="CheckCircle2" iconColor="text-blue-500" %}
 Review and approve drafts of technical assessments.
@@ -217,7 +217,7 @@ Review and approve drafts of technical assessments.
 Score assessments.
 {% /icon-list-item %}
 {% icon-list-item icon="CheckCircle2" iconColor="text-blue-500" %}
-3 consecutive days for panel interviews.
+Panel interviews for 3 consecutive days.
 {% /icon-list-item %}
 {% icon-list-item icon="CheckCircle2" iconColor="text-blue-500" %}
 Conduct reference checks for successful candidates.
@@ -236,6 +236,6 @@ Candidate ranking debrief.
 {%  call-to-action
     title="Ready to join?"
     description="Submit position details to us before joining the Cross-Ministry Hiring Program."
-    action_text="See our current competitions"
+    action_text="See our upcoming competitions"
     action_href="/hiring-managers/cross-ministry-hiring"
 /%}
