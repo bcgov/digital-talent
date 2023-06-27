@@ -5,6 +5,7 @@ import Heading from '../../../../common/components/ui/heading.component';
 import Hero from '../../../../common/components/ui/hero/hero.component';
 import { Icon } from '../../../../common/components/ui/icon.component';
 import { wrapTitle } from '../../../../common/utils/wrap-title.util';
+import { CheckCircle2 } from 'lucide-react';
 
 export const metadata: Metadata = {
   title: wrapTitle('Hiring options in the BC Public Service'),
@@ -13,48 +14,104 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <div className="mb-4">
-      <Hero title="Hiring options in the BC Public Service" variant="section-heading" />
+      <Hero title="Hiring options for digital talent" variant="section-heading" />
       <div className="flex flex-col gap-4">
         <div className="container flex flex-col gap-4 mb-4">
           <p>
-            Hiring managers have many choices for hiring staff. Depending on the situation, you can be supported by the
-            Public Service Agency (PSA) or the Digital Talent Attraction and Development Team (DTAD).
+          Hiring managers have three options for hiring staff. Each option gets support from either our team, 
+          the Digital Talent Attraction and Development Team (DADT), or guidance from the Public Service Agency (PSA).
           </p>
-          <Heading level={2}>Available hiring options:</Heading>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 ">
-            <div className="bg-gray-300 p-2 text-[1.8rem] flex flex-col">
-              <div className="grow font-light leading-8 mb-2">
-                1.
-                <br />
-                Self-run hiring
+        </div>
+
+        <div className="bg-bcgov-blue-light py-10 mb-6">
+          <div className="container flex flex-col gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 ">
+              
+              <div className="bg-white p-4 text-[1.8rem] flex flex-col rounded-md border">
+                <div className="grow font-light leading-8 mb-2">
+                  The Cross-Ministry Hiring  Program
+                </div>
+                <div className="font-bold text-base">with the DTAD</div>
               </div>
-              <div className="font-bold text-base">with the PSA</div>
-            </div>
-            <div className="bg-bcgov-blue-light p-2 text-[1.8rem] flex flex-col">
-              <div className="grow font-light leading-8 mb-2">
-                2.
-                <br />
-                Cross-Ministry Hiring
+
+              <div className="bg-white p-4 text-[1.8rem] flex flex-col rounded-md border">
+                <div className="grow font-light leading-8 mb-2">
+                  Access Eligibility Lists
+                </div>
+                <div className="font-bold text-base">with the DTAD</div>
               </div>
-              <div className="font-bold text-base">with the DTAD</div>
-            </div>
-            <div className="bg-bcgov-blue-light p-2 text-[1.8rem] flex flex-col">
-              <div className="grow font-light leading-8 mb-2">
-                3.
-                <br />
-                Eligibility
+
+              <div className="bg-white p-4 text-[1.8rem] flex flex-col rounded-md border">
+                <div className="grow font-light leading-8 mb-2">
+                  Self-run hiring 
+                </div>
+                <div className="font-bold text-base">with the PSA</div>
               </div>
-              <div className="font-bold text-base">DTAD or outside competitions</div>
+
             </div>
           </div>
         </div>
 
-        <div className="container flex flex-col gap-4 mx-auto mb-4">
-          <Heading level={3}>1. Self-run hiring</Heading>
+
+        <div className="container flex flex-col gap-4 mx-auto mb-6">
+          <Heading level={3}>Cross-Ministry Hiring Program (CMHP)</Heading>
           <p>
-            This option allows hiring managers to run a competition and be as creative as they wish. PSA offers support
-            for self-run hiring upon request. Because of high demand of PSA support across BC Government, this hiring
-            can take 3 weeks.
+            The CMHP helps many ministries at the same time. After filling in our Intake Form, 
+            our team offers recruitment services, such as job profile marketing and guiding candidates. 
+            This option only hires for permanent positions.
+          </p>
+          <p>Top benefits we’ve heard about from hiring managers we’ve worked with:</p>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {/* Left */}
+            <div className="flex flex-row gap-4">
+              <div className="shrink-0">
+                <Icon icon="GraduationCap" />
+              </div>
+              <div className="grow">Leverage subject matter experts on digital roles</div>
+            </div>
+            {/* Middle */}
+            <div className="flex flex-row gap-4">
+              <div className="shrink-0">
+                <Icon icon="Zap" />
+              </div>
+              <div className="grow">Hire qualified candidates faster (estimated 6 weeks)</div>
+            </div>
+            {/* Right */}
+            <div className="flex flex-row gap-4">
+              <div className="shrink-0">
+                <Icon icon="ListChecks" />
+              </div>
+              <div className="grow">DTAD handles administrative processes</div>
+            </div>
+          </div>
+          <Link href="/learn/hiring-managers/cross-ministry-hiring">
+            <Button className="text-lg w-full md:w-72" variant="default">
+              <span className="text-bold">Cross-Ministry Hiring overview</span>
+            </Button>
+          </Link>
+        </div>
+
+
+        <div className="container flex flex-col gap-4 mx-auto mb-6">
+          <Heading level={3}>Access Eligibility Lists</Heading>
+          <p>
+            Our team creates Eligibility Lists (E-lists) that have pre-qualified candidates. E-lists are the outcome of the CMHP. 
+            Hiring managers across BC Govt can get access to our E-lists to save time and resources. Sign up for alerts using the button below.
+          </p>
+          <p>
+            This reduces candidates' time too because they do not need to spend hours applying to similar positions. 
+            The candidates’ hiring experience with our organization improves.
+          </p>
+          <p>
+            If you need immediate access, please contact our team at <a className="text-bcgov-blue-dark underline" href="mailto:digital.talent@gov.bc.ca">digital.talent@gov.bc.ca</a>. 
+          </p>
+        </div>
+
+        <div className="container flex flex-col gap-4 mx-auto mb-6">
+          <Heading level={3}>Self-run hiring</Heading>
+          <p>
+            This option offers hiring managers the opportunity to manage a competition on their own. 
+            Hiring managers receive guidance from the PSA and resources can be found on PSA's myHR website.
           </p>
           <p>Benefits:</p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -75,67 +132,89 @@ export default function Page() {
               </div>
             </div>
           </div>
+          <p>
+            If you need immediate access, please contact our team at <a className="text-bcgov-blue-dark underline" href="mailto:digital.talent@gov.bc.ca">digital.talent@gov.bc.ca</a>. 
+          </p>
+
+          {/* <div className="flex flex-row gap-2 mt-4">
+            <Mailbox /> <span className="font-bold">Have questions?</span>{' '}
+            <a className="text-bcgov-blue-dark underline" href="mailto:digital.talent@gov.bc.ca">
+              digital.talent@gov.bc.ca
+            </a>
+          </div> */}
+
           <Link href="https://www2.gov.bc.ca/gov/content/careers-myhr/hiring-managers">
             <Button className="text-lg w-full md:w-72" variant="outline">
-              Hiring resources
+              myHR Hiring resources
             </Button>
           </Link>
         </div>
 
-        <div className="bg-bcgov-blue-light py-4 mb-4">
-          <div className="container flex flex-col gap-4 mx-auto">
-            <Heading level={3}>2. Cross-Ministry Hiring Program (CMHP)</Heading>
-            <p>
-              Our team supports this service, which benefits many ministries at the same time. This option supports
-              building agile teams by hiring permanent digital talent, such as a cross-government competition for an
-              Information Systems 24.
-            </p>
-            <p>Top benefits we’ve heard about from hiring managers we’ve worked with:</p>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              {/* Left */}
-              <div className="flex flex-row gap-4">
-                <div className="shrink-0">
-                  <Icon icon="GraduationCap" />
-                </div>
-                <div className="grow">Leverage subject matter experts on digital roles</div>
-              </div>
-              {/* Middle */}
-              <div className="flex flex-row gap-4">
-                <div className="shrink-0">
-                  <Icon icon="Zap" />
-                </div>
-                <div className="grow">Hire qualified candidates faster (estimated 6 weeks)</div>
-              </div>
-              {/* Right */}
-              <div className="flex flex-row gap-4">
-                <div className="shrink-0">
-                  <Icon icon="Inbox" />
-                </div>
-                <div className="grow">DTAD handles administrative processes</div>
-              </div>
-            </div>
-            <Link href="/learn/hiring-managers/cross-ministry-hiring">
-              <Button className="text-lg w-full md:w-72" variant="call-to-action">
-                <span className="text-bold">Cross-Ministry Hiring overview</span>
-              </Button>
-            </Link>
-          </div>
+        <div className="container flex flex-col gap-4 mx-auto mb-6">
+          <Heading level={3}>Compare hiring options</Heading>
+          <table className="table-auto w-full">
+            <thead className="bg-bcgov-blue-dark text-white">
+              <tr>
+                <th className="px-4 py-2"></th>
+                <th className="px-4 py-2">CMHP</th>
+                <th className="px-4 py-2">Self-run</th>
+                <th className="px-4 py-2">E-list</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td className="border px-4 py-2 font-bold">Best for</td>
+                <td className="border px-4 py-2">Hiring specific skillsets and full involvement</td>
+                <td className="border px-4 py-2">Hiring digital talent quickly</td>
+                <td className="border px-4 py-2">Hiring pre-qualified candidates</td>
+              </tr>
+
+              <tr>
+                <td className="border px-4 py-2 font-bold">Appointments supported</td>
+                <td className="border px-4 py-2">Any</td>
+                <td className="border px-4 py-2">Full-time Digital Talent</td>
+                <td className="border px-4 py-2">Full-time Digital Talent</td>
+              </tr>
+
+              <tr>
+                <td className="border px-4 py-2 font-bold">Involvement</td>
+                <td className="border px-4 py-2">Hight time commitment</td>
+                <td className="border px-4 py-2">2 options for time commitments: low and high</td>
+                <td className="border px-4 py-2">low time commitment</td>
+              </tr>
+
+              <tr>
+                <td className="border px-4 py-2 font-bold">Completion</td>
+                <td className="border px-4 py-2">Dependent on hiring team's capacity</td>
+                <td className="border px-4 py-2">Expected 7 weeks from posting to offer</td>
+                <td className="border px-4 py-2">Immediately</td>
+              </tr>
+
+              <tr>
+                <td className="border px-4 py-2 font-bold">Support</td>
+                <td className="border px-4 py-2">PSA or SHR, and marketing support for digital talent roles</td>
+                <td className="border px-4 py-2">Full administrative support, marketing and SME support during process</td>
+                <td className="border px-4 py-2">N/A</td>
+              </tr>
+
+              <tr>
+                <td className="border px-4 py-2 font-bold">Flexibility</td>
+                <td className="border px-4 py-2">Full control of job requirements and posting</td>
+                <td className="border px-4 py-2">Shared job profile with other ministries</td>
+                <td className="border px-4 py-2">Order of ranking</td>
+              </tr>
+
+              <tr>
+                <td className="border px-4 py-2 font-bold">Cost</td>
+                <td className="border px-4 py-2">N/A</td>
+                <td className="border px-4 py-2">N/A</td>
+                <td className="border px-4 py-2">N/A</td>
+              </tr>
+
+            </tbody>
+          </table>
         </div>
 
-        <div className="container flex flex-col gap-4 mx-auto mb-4">
-          <Heading level={3}>3. Eligibility Lists</Heading>
-          <p>
-            An Eligibility List is a list of candidates who are pre-qualified. This means they interviewed and passed
-            with a high score, but were not a top candidate.
-          </p>
-          <p>
-            To save time and resources, hiring managers can hire these candidates immediately. The timeframe varies from
-            3 months to 1 year. If candidates decline 2 times, they are removed from the list.
-          </p>
-          <Button className="text-lg w-full md:w-72" variant="outline">
-            Sign up for notifications
-          </Button>
-        </div>
       </div>
     </div>
   );

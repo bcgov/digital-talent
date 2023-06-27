@@ -2,6 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
+
+@layer base {
+  ul, ol {
+    @apply mt-0 !important;
+    @apply mb-0 !important;
+  }
+  li {
+    @apply mt-1 !important;
+    @apply mb-1 !important;
+  }
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -68,6 +80,9 @@
 
     --radius: 0.5rem;
   }
+
+  
+
 }
 
 @layer base {
