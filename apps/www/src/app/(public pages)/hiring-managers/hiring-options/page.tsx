@@ -72,27 +72,27 @@ export default function Page() {
             This option only hires for permanent positions.
           </p>
           <p>Top benefits we’ve heard about from hiring managers we’ve worked with:</p>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 my-4">
+          <div className="my-4 space-y-4 md:flex md:space-y-0 md:space-x-4">
             {/* Left */}
-            <div className="flex flex-row gap-4">
-              <div className="shrink-0">
+            <div className="flex items-center space-x-4">
+              <div className="">
                 <Icon icon="GraduationCap" />
               </div>
-              <div className="grow">Leverage subject matter experts on digital roles</div>
+              <div>Leverage subject matter experts on digital roles</div>
             </div>
             {/* Middle */}
-            <div className="flex flex-row gap-4">
-              <div className="shrink-0">
+            <div className="flex items-center space-x-4">
+              <div className="">
                 <Icon icon="Zap" />
               </div>
-              <div className="grow">Hire qualified candidates faster (estimated 6 weeks)</div>
+              <div>Hire qualified candidates faster (estimated 6 weeks)</div>
             </div>
             {/* Right */}
-            <div className="flex flex-row gap-4">
-              <div className="shrink-0">
+            <div className="flex items-center space-x-4">
+              <div className="">
                 <Icon icon="ListChecks" />
               </div>
-              <div className="grow">DTAD handles administrative processes</div>
+              <div>DTAD handles administrative processes</div>
             </div>
           </div>
           <Link href="/learn/hiring-managers/cross-ministry-hiring">
@@ -125,20 +125,20 @@ export default function Page() {
             Hiring managers receive guidance from the PSA and resources can be found on PSA's myHR website.
           </p>
           <p>Benefits:</p>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+          <div className="mt-4 space-y-4 md:flex md:space-y-0 md:space-x-4">
             {/* Left */}
-            <div className="flex flex-row gap-4">
-              <div className="shrink-0">
+            <div className="flex items-center space-x-4">
+              <div className="">
                 <Icon icon="GraduationCap" />
               </div>
-              <div className="grow">Full control over the schedule, requirements, and final candidates</div>
+              <div>Full control over the schedule, requirements, and final candidates</div>
             </div>
             {/* Right */}
-            <div className="flex flex-row gap-4">
-              <div className="shrink-0">
+            <div className="flex items-center space-x-4">
+              <div className="">
                 <Icon icon="Zap" />
               </div>
-              <div className="grow">
+              <div>
                 Available for all job types (eg. Temporary Appointments, non-digital talent roles)
               </div>
             </div>
