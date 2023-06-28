@@ -135,7 +135,7 @@ export default function Header() {
           <div className="mx-auto my-auto">
             <Info className="inline-block h-4 w-4 mr-2 -mt-1" />
             <span className="font-bold">BETA - This website is still being developed.</span>{' '}
-            <a className="underline" href="/">
+            <a className="underline" href="https://submit.digital.gov.bc.ca/app/form/submit?f=98550cc5-59a9-44b2-862a-e003fa6d9e8c">
               We'd love your feedback!
             </a>
           </div>

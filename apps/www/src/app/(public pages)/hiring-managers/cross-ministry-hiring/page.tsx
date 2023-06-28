@@ -9,20 +9,21 @@ import CompetitionList from '../../../../common/components/ui/hiring-manager/com
 import { IconList, IconListItem } from '../../../../common/libs/markdoc/components/tags/icon-list';
 
 import { wrapTitle } from '../../../../common/utils/wrap-title.util';
+import { Mailbox } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: wrapTitle('Join a Cross-Ministry Hiring (CMH)'),
+  title: wrapTitle('Apply for an upcoming competition'),
 };
 
 export default function Page() {
   return (
     <>
-      <Hero title="Join a Cross-Ministry Hiring (CMH)" variant="section-heading" />
-      <div className="flex flex-col gap-4">
-        <div className="container flex flex-col gap-4 mx-auto">
-          <Heading level={2}>Sign up for one of our upcoming competitions.</Heading>
+      <Hero title="Apply for an upcoming competition" variant="section-heading" />
+      <div className="flex flex-col">
+        <div className="container flex flex-col mx-auto">
+          <Heading className="text-bcgov-blue-dark" level={2}>Consider joining us for the competitions below!</Heading>
           <p>
-            Select a competition below to start our intake form. Hiring managers should be ready to sign our{' '}
+            Selecting one of the options below sends hiring managers to our Hiring Intake form. Hiring managers should be ready to sign our{' '}
             <span className="text-blue-500 underline">
               <Link href="https://bcgov.sharepoint.com/:w:/r/teams/00109-DigitalTalentAttractionandDevelopmentTeam/Shared%20Documents/Digital%20Talent%20Attraction%20and%20Development%20Team/20230704%20-%20Cross-Ministry%20Hiring%20-%20Service%20Agreement.docx?d=w3e18227237d340eb90d54e7ff354971e&csf=1&web=1&e=AHRiWf">
                 Service Agreement
@@ -32,9 +33,9 @@ export default function Page() {
           </p>
           <CompetitionList />
         </div>
-        <div className="bg-bcgov-blue-light py-6">
+        <div className="bg-bcgov-blue-light py-6 mb-10">
           <div className="container flex flex-col gap-4 mx-auto">
-            <Heading level={2}>Don't see what you're looking for?</Heading>
+            <Heading className="text-bcgov-blue-dark" level={2}>Don't see what you're looking for?</Heading>
             <ul>
               <li className="flex flex-row gap-2">
                 <span className="text-bcgov-blue-dark">→</span>
@@ -52,29 +53,25 @@ export default function Page() {
               </li>
             </ul>
             <Heading level={3}>Positions we hire for</Heading>
-            <p>We offer hiring services for:</p>
+            <p>Digital Talent (DT) are roles in the BC Govt are focus on designing, developing, and deploying digital products and/or services.</p>
             <ul className="list list-disc ml-6">
-              <li>Developers (Information Systems 18 to 30)</li>
-              <li>Dev Ops Specialists (Information Systems 27)</li>
-              <li>Product Manager (Information Systems 30, and Band 3)</li>
-              <li>Scrum Master (Information Systems 24 and 27)</li>
-              <li>Site Reliability Specialist (Information Systems 27 and 30)</li>
-              <li>User Experience Designer (Information Systems 24 and 27)</li>
-              <li>Users Experience Researcher (Administration Officer 24 and 27)</li>
+              <li>Full Stack Developers</li>
+              <li>DevOps Specialists</li>
+              <li>Product Manager</li>
+              <li>Scrum Master </li>
+              <li>Site Reliability Specialist</li>
+              <li>UX/Service Designers</li>
             </ul>
-            <p>
-              The{' '}
-              <span className="text-blue-500 underline">
-                <Link href="https://www2.gov.bc.ca/gov/content/careers-myhr/all-employees/pay-benefits/salaries/salarylookuptool">
-                  salary look up tool
-                </Link>
-              </span>{' '}
-              helps with forecasting and budgeting for these classifications.
-            </p>
+            <div className="flex flex-row gap-2 mt-2">
+              <Mailbox /> <span className="font-bold">Have questions?</span>{' '}
+              <a className="text-bcgov-blue-dark underline" href="mailto:digital.talent@gov.bc.ca">
+                digital.talent@gov.bc.ca
+              </a>
+            </div>
           </div>
         </div>
         <div className="container mx-auto mb-4">
-          <Heading level={2}>Cross-Ministry Hiring process</Heading>
+          <Heading level={2}>Process overview</Heading>
           <div className="grid grid-cols-1 md:grid-cols-12 gap-4">
             <div className="col-span-12 md:col-span-8">
               <IconList>
@@ -92,7 +89,7 @@ export default function Page() {
                     Assess and interview candidates
                   </IconListItem>
                   <IconListItem color="#FFFFFF" icon="5" iconBgColor="bg-bcgov-blue-dark" iconColor="text-white">
-                    We match candidates to opportunities
+                    We match candidates with opportunities
                   </IconListItem>
                   <IconListItem color="#FFFFFF" icon="6" iconBgColor="bg-bcgov-blue-dark" iconColor="text-white">
                     Offers
@@ -114,9 +111,9 @@ export default function Page() {
                     </CardHeader>
                     <CardContent className="h-fill">
                       <div className="my-auto">
-                        <h2 className="text-2xl">Learn about our services</h2>
+                        <h2 className="text-2xl">The Cross-Ministry Hiring Program</h2>
                         <hr className="bg-bcgov-blue-dark h-1 w-4 my-2" />
-                        <span>More about how we run cross-ministry hiring for digital talent</span>
+                        <span>Understand the process and details of our featured program.</span>
                       </div>
                     </CardContent>
                   </Card>
