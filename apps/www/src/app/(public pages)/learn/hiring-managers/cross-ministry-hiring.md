@@ -14,7 +14,7 @@ Our team gives administrative support. With dedicated Public Service Agency (PSA
 {% div className="bg-bcgov-gold-extralight my-4 p-4" %}
 
 {% div className="font-bold text-xl mb-4" %}
-Consider the benefits of the CMHP:
+Consider other benefits:
 {% /div %}
 
 {% div className="grid grid-cols-1 lg:grid-cols-3" %}
@@ -42,7 +42,7 @@ For Candidates
 
 {% div %}
 {% div className="font-bold text-sm" %}
-Across BC Govt
+For BC Govt
 {% /div %}
 
 - Leverage pre-qualified candidates through E-List
@@ -56,7 +56,7 @@ Across BC Govt
 
 ## Matching candidates and job opportunities {% #matching-candidates-and-job-opportunities %}
 
-The CMHP matches candidates with job opportunities based on a candidate-focused process. We create an Eligibility list of successful candidates. Ranking decision comes from screening, assessment, interviews and Years of Continous Services (YOCS).
+The CMHP matches candidates with job opportunities based on a candidate-focused process. We create an Eligibility list of successful candidates. The ranking decision comes from screening, assessment, interviews and Years of Continous Services (YOCS).
 
 After, candidates rank their preferred working location(s) and job opportunities. We match this with hiring managers' skillset preferences. 
 
@@ -125,7 +125,7 @@ Signed Service Agreement
 Join an upcoming competition.
 
 - Explore our [upcoming competitions](https://dt.apps.silver.devops.gov.bc.ca/hiring-managers/cross-ministry-hiring) to find a fit.
-- Found one or more? Fill out our Hiring Requirement Form to confirm our requirements and give us details about your position(s).
+- Found one or more? Fill out our Hiring Intake Form to confirm our requirements and give us details about your position(s).
 
 {% /icon-list-item %}
 
