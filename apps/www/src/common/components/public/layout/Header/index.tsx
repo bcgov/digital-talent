@@ -21,6 +21,8 @@ import {
 
 import { usePathname, useSearchParams } from 'next/navigation'
 import { useEffect } from 'react';
+import React, { useState } from 'react';
+import { cn } from '@/common/utils/cn.util';
 
 function Navigation() {
 
@@ -46,8 +48,13 @@ function Navigation() {
       requestAnimationFrame(() => {
         document.documentElement.style.scrollBehavior = '';
       });
+
+      
+
   }, [pathname, searchParams]);
 
+  const [isOpen, setIsOpen] = useState(false);
+  
   return (
     <>
       <div className="hidden sm:inline">
@@ -63,10 +70,23 @@ function Navigation() {
             </NavigationMenuItem>
             {/* Hiring Options */}
             <NavigationMenuItem>
-              {/* <Link legacyBehavior passHref href="/hiring-managers/hiring-options">
-                <NavigationMenuLink className={navigationMenuTriggerStyle()}>Hiring Options</NavigationMenuLink>
-              </Link> */}
-              <LinkWithActiveState href="/hiring-managers/hiring-options">Hiring Options</LinkWithActiveState>
+              {/* <LinkWithActiveState href="/hiring-managers/hiring-options">Hiring Options</LinkWithActiveState> */}
+              <div className="relative">
+                <LinkWithActiveState href="/hiring-managers/hiring-options"  onMouseEnter={() => setIsOpen(true)}
+                  >Hiring Options</LinkWithActiveState>
+               
+                {isOpen && (
+                  <div
+                    onMouseLeave={() => setIsOpen(false)}
+                    className="absolute left-0 bg-white p-5 w-96"
+                  >
+                    <Link className="mb-3 block" href="/hiring-managers/hiring-options" onClick={() => setIsOpen(false)}>Available hiring options</Link>
+                    <Link className="block" href="/learn/hiring-managers/cross-ministry-hiring" onClick={() => setIsOpen(false)}>Cross Ministry Hiring Program (CMHP)</Link>
+                    {/* <LinkWithActiveState variant="simple" className="mb-3 block" href="/hiring-managers/hiring-options">Available hiring options</LinkWithActiveState>
+                    <LinkWithActiveState variant="simple" className="block" href="/learn/hiring-managers/cross-ministry-hiring">Cross Ministry Hiring Program (CMHP)</LinkWithActiveState> */}
+                  </div>
+                )}
+              </div>
             </NavigationMenuItem>
             {/* About Digital Talent */}
             <NavigationMenuItem>
@@ -123,20 +143,29 @@ function Navigation() {
                             </SheetClose>
                           </Link>
                         </li>
-                        <li className="ml-4 py-2 border-b">
-                          <Link className="w-full" href="/hiring-managers/cross-ministry-hiring">
+
+                        <li className="ml-4 py-2 border-b pl-4">
+                          <Link className="w-full" href="/hiring-managers/hiring-options">
                             <SheetClose>
-                              <div className="font-semibold select-none text-xl container px-auto">
-                                Cross-Ministry Hiring
-                              </div>
+                              <div className="font-semibold select-none text-xl container px-auto">Available hiring options</div>
                             </SheetClose>
                           </Link>
                         </li>
+
+                        <li className="ml-4 py-2 border-b pl-4">
+                          <Link className="w-full" href="/learn/hiring-managers/cross-ministry-hiring">
+                            <SheetClose>
+                              <div className="font-semibold select-none text-xl container px-auto">Cross Ministry Hiring Program (CMHP)</div>
+                            </SheetClose>
+                          </Link>
+                        </li>
+                        
+                      
                         <li className="ml-4 py-2 border-b">
                           <Link className="w-full" href="/learn/hiring-managers/about-digital-talent">
                             <SheetClose>
                               <div className="font-semibold select-none text-xl container px-auto">
-                                About Digital Talent
+                                About Us
                               </div>
                             </SheetClose>
                           </Link>

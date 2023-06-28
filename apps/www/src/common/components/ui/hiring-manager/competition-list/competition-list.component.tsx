@@ -30,7 +30,9 @@ function CompetitionCard({ competition }: CompetitionCardProps) {
             Deadline to join:
             <br />
             <span className="font-bold">
-              {dayjs(competition.opportunity_submission_period[1]).format('MMM D, YYYY')}
+              July 21, 2023
+              {/* todo: for some reason this doesn't render correct date */}
+              {/* {dayjs(competition.opportunity_submission_period[1]).format('MMM D, YYYY')} */}
             </span>
           </div>
         </div>
@@ -61,7 +63,7 @@ const data: Competition[] = [
     form_url: 'https://submit.digital.gov.bc.ca/app/form/submit?f=25b4aed3-fb14-495f-9c13-36e48e6f196a',
     classification: 'Full Stack Developer (IS 27)',
     requisition: 'coming soon',
-    opportunity_submission_period: ['2023-06-01T16:00:00Z', '2023-07-22T06:59:59.999Z'],
+    opportunity_submission_period: ['2023-06-01T16:00:00Z', '2023-07-21T06:59:59.999Z'],
     application_submission_period: ['2023-08-11T16:00:00Z', '2023-07-07T06:59:59.999Z'],
   },
   {
@@ -69,7 +71,7 @@ const data: Competition[] = [
     form_url: 'https://submit.digital.gov.bc.ca/app/form/submit?f=af4a3ed7-de98-4403-868d-3257354a2529',
     classification: 'Senior Scrum Master (IS 27)',
     requisition: 'coming soon',
-    opportunity_submission_period: ['2023-06-01T16:00:00Z', '2023-07-22T06:59:59.999Z'],
+    opportunity_submission_period: ['2023-06-01T16:00:00Z', '2023-07-21T06:59:59.999Z'],
     application_submission_period: ['2023-08-11T16:00:00Z', '2023-07-07T06:59:59.999Z'],
   },
 ];
