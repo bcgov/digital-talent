@@ -27,7 +27,7 @@ export default function Heading({ id, children, className, level, variant }: Hea
           >
             {children}
           </h1>
-          {variant === 'section-heading' && <hr className="bg-bcgov-blue-dark h-2 w-16 my-2" />}
+          {variant === 'section-heading' && <hr className="bg-bcgov-blue-dark h-2 w-16 mt-4 mb-8" />}
         </>
       );
     case 2:

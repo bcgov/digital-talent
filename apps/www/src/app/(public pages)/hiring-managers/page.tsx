@@ -3,6 +3,7 @@ import { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import aboutDtadImage from '../../../common/components/hiring-managers/svgs/about-dtad.svg';
+import compareHiringServicesImage from '../../../common/components/hiring-managers/svgs/compare-hiring-services.svg';
 import joinCmhCompetitionImage from '../../../common/components/hiring-managers/svgs/join-cmh-competition.svg';
 import learnAboutOurServicesImage from '../../../common/components/hiring-managers/svgs/learn-about-our-services.svg';
 import { Card, CardContent, CardHeader } from '../../../common/components/ui/card.component';
@@ -22,37 +23,37 @@ export default function Page() {
         description="Our team builds Agile teams with a modernized Digital Talent hiring service: the Cross-Ministry Hiring Program (CMHP)."
         title="Digital Talent at BC Govt"
       />
-      <div className="flex flex-col gap-8">
+      <div className="flex flex-col">
         {/* Card Grid */}
-        <div className="container hidden md:flex flex-row gap-4">
-          {/* Join a Cross-Ministry Hiring Competition */}
+        <div className="container hidden md:flex flex-row gap-6 mb-14">
+          {/* Apply for an upcoming competition */}
           <div className="w-1/3">
             <Link href="/hiring-managers/cross-ministry-hiring">
-              <Card className="h-full shadow-[0_0.25rem_0_0_rgba(0,0,0,0.1)] hover:ring-1 hover:ring-bcgov-blue-dark hover:shadow-lg ">
+              <Card className="h-full shadow-md hover:ring-1 hover:ring-bcgov-blue-dark hover:shadow-xl ">
                 <CardHeader className="px-8 py-2">
                   <Image
                     priority
-                    alt="Join a cross-ministry hiring competition"
+                    alt="Apply for an upcoming competition"
                     className="mx-auto"
                     src={joinCmhCompetitionImage}
                   />
                 </CardHeader>
                 <CardContent className="h-fill">
                   <div className="my-auto">
-                    <h2 className="text-2xl">Join a cross-ministry hiring competition</h2>
+                    <h2 className="text-2xl">Apply for an upcoming competition</h2>
                     <hr className="bg-bcgov-blue-dark h-1 w-4 my-2" />
-                    <span>Our upcoming hiring is for IS27s and AO24s. View details and sign up.</span>
+                    <span>Fill out our Hiring Intake form if an upcoming competition works for your team.</span>
                   </div>
                 </CardContent>
               </Card>
             </Link>
           </div>
           <div className="w-2/3">
-            <div className="flex flex-col gap-4 h-full">
+            <div className="flex flex-col gap-6 h-full">
               {/* Learn about our services */}
               <div className="h-1/2">
                 <Link href="/learn/hiring-managers/cross-ministry-hiring">
-                  <Card className="h-full shadow-[0_0.25rem_0_0_rgba(0,0,0,0.1)] hover:ring-1 hover:ring-bcgov-blue-dark hover:shadow-lg">
+                  <Card className="h-full shadow-md hover:ring-1 hover:ring-bcgov-blue-dark hover:shadow-xl">
                     <div className="flex flex-row gap-4 h-full">
                       <div className="flex w-1/3">
                         <Image
@@ -64,7 +65,7 @@ export default function Page() {
                       </div>
                       <CardContent className="flex w-2/3 pl-0 pr-2 py-2">
                         <div className="mx-auto">
-                          <h2 className="text-2xl">The Cross-Ministry Hiring Program.</h2>
+                          <h2 className="text-2xl">The Cross-Ministry Hiring Program</h2>
                           <hr className="bg-bcgov-blue-dark h-1 w-4 my-2" />
                           <span>Understand the process and details of our featured program.</span>
                         </div>
@@ -75,22 +76,22 @@ export default function Page() {
               </div>
               {/* About the Digital Talent Attraction & Development Team */}
               <div className="h-1/2">
-                <Link href="/learn/hiring-managers/about-digital-talent">
-                  <Card className="h-full shadow-[0_0.25rem_0_0_rgba(0,0,0,0.1)] hover:ring-1 hover:ring-bcgov-blue-dark hover:shadow-lg">
+                <Link href="/hiring-managers/hiring-options">
+                  <Card className="h-full shadow-md hover:ring-1 hover:ring-bcgov-blue-dark hover:shadow-xl">
                     <div className="flex flex-row gap-4 h-full">
                       <CardContent className="flex w-2/3 pl-4 py-2">
                         <div className="mx-auto">
-                          <h2 className="text-2xl">About our Team</h2>
+                          <h2 className="text-2xl">Compare hiring services</h2>
                           <hr className="bg-bcgov-blue-dark h-1 w-4 my-2" />
-                          <span>Get to know us better and what motivates us. </span>
+                          <span>Explore the different services available for  digital talent positions.</span>
                         </div>
                       </CardContent>
                       <div className="flex w-1/3">
                         <Image
                           priority
-                          alt="About the Digital Talent Attraction & Develpment team"
+                          alt="Compare hiring services"
                           className="mx-auto my-auto p-2 gap-1.5"
-                          src={aboutDtadImage}
+                          src={compareHiringServicesImage}
                         />
                       </div>
                     </div>
@@ -101,30 +102,30 @@ export default function Page() {
           </div>
         </div>
 
-        <div className="container flex flex-col gap-4 md:hidden">
+        <div className="container flex flex-col gap-4 md:hidden mb-10">
           <Link href="/hiring-managers/cross-ministry-hiring">
-            <Card className="h-full shadow-[0_0.25rem_0_0_rgba(0,0,0,0.1)] hover:ring-1 hover:ring-bcgov-blue-dark hover:shadow-lg">
+            <Card className="h-full shadow-md hover:ring-1 hover:ring-bcgov-blue-dark hover:shadow-xl">
               <div className="flex flex-row gap-4 h-full">
                 <div className="flex w-1/3">
                   <Image
                     priority
-                    alt="Join a cross-ministry hiring competition"
+                    alt="Apply for an upcoming competition"
                     className="mx-auto my-auto p-2 gap-1.5"
                     src={joinCmhCompetitionImage}
                   />
                 </div>
                 <CardContent className="flex w-2/3 pl-0 pr-2 py-2">
                   <div className="mx-auto">
-                    <h2 className="text-2xl">Join a cross-ministry hiring competition</h2>
+                    <h2 className="text-2xl">Apply for an upcoming competition</h2>
                     <hr className="bg-bcgov-blue-dark h-1 w-4 my-2" />
-                    <span>Our upcoming hiring is for IS27s and AO24s. View details and sign up.</span>
+                    <span>Fill out our Hiring Intake form if an upcoming competition works for your team. </span>
                   </div>
                 </CardContent>
               </div>
             </Card>
           </Link>
           <Link href="/learn/hiring-managers/cross-ministry-hiring">
-            <Card className="h-full shadow-[0_0.25rem_0_0_rgba(0,0,0,0.1)] hover:ring-1 hover:ring-bcgov-blue-dark hover:shadow-lg">
+            <Card className="h-full shadow-md hover:ring-1 hover:ring-bcgov-blue-dark hover:shadow-xl">
               <div className="flex flex-row gap-4 h-full">
                 <div className="flex w-1/3">
                   <Image
@@ -145,22 +146,22 @@ export default function Page() {
             </Card>
           </Link>
 
-          <Link href="/learn/hiring-managers/about-digital-talent">
-            <Card className="h-full shadow-[0_0.25rem_0_0_rgba(0,0,0,0.1)] hover:ring-1 hover:ring-bcgov-blue-dark hover:shadow-lg">
+          <Link href="/hiring-managers/hiring-options">
+            <Card className="h-full shadow-md hover:ring-1 hover:ring-bcgov-blue-dark hover:shadow-xl">
               <div className="flex flex-row gap-4 h-full">
                 <div className="flex w-1/3">
                   <Image
                     priority
-                    alt="About the Digital Talent Attraction & Develpment team"
+                    alt="Compare hiring services"
                     className="mx-auto my-auto p-2 gap-1.5"
-                    src={aboutDtadImage}
+                    src={compareHiringServicesImage}
                   />
                 </div>
                 <CardContent className="flex w-2/3 pl-4 py-2">
                   <div className="mx-auto">
-                    <h2 className="text-2xl">About our Team</h2>
+                    <h2 className="text-2xl">Compare hiring services</h2>
                     <hr className="bg-bcgov-blue-dark h-1 w-4 my-2" />
-                    <span>Get to know us better and what motivates us.</span>
+                    <span>Explore the different services available for digital talent positions.</span>
                   </div>
                 </CardContent>
               </div>
@@ -169,7 +170,7 @@ export default function Page() {
         </div>
 
         {/* Blue Banner */}
-        <div className="bg-bcgov-blue-light py-8 mb-8">
+        <div className="bg-bcgov-blue-light py-8">
           <div className="container mx-auto">
             <Heading className="mb-4" level={2}>
               Welcome! We look forward to working together!

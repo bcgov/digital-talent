@@ -8,7 +8,7 @@ export default function Footer() {
       {/* Dark Footer */}
       <div className="bg-bcgov-gray-dark">
         <div className="container flex flex-col flex-0 gap-4 mx-auto py-8 text-sm text-white">
-          <p>
+          <p className="mb-4">
             The B.C. Public Service acknowledges the territories of First Nations around B.C. and is grateful to carry
             out our work on these lands. We acknowledge the rights, interests, priorities, and concerns of all
             Indigenous Peoples-First Nations, Métis, and Inuit-respecting and acknowledging their distinct cultures,
