@@ -19,7 +19,35 @@ import {
   SheetTrigger,
 } from '../../../ui/sheet.component';
 
+import { usePathname, useSearchParams } from 'next/navigation'
+import { useEffect } from 'react';
+
 function Navigation() {
+
+  
+  const pathname = usePathname()
+  const searchParams = useSearchParams()
+
+  // this fixes scroll issue due to smooth scrolling on html element (unknown cause) by temporarily disabling smooth scrolling for the duration of the
+  // scroll up event and then re-enabling it back
+  // 
+  // But according to chatGPT:
+  // It's because the scroll animation might not have enough time to complete before 
+  // the new page renders and sets a new scroll position, especially on faster machines 
+  // or when the pages are not very heavy. This can result in the window not scrolling all the way to the top.
+  useEffect(() => {
+      // Scroll manually to the top with smooth enabled:  This fixes scroll to top issue, but also makes it scroll to top when pressing back button
+      // window.scrollTo({ top: 0, behavior: 'smooth' });
+       
+      // Temporarily disable smooth scrolling
+      document.documentElement.style.scrollBehavior = 'auto';
+
+      // Re-enable smooth scrolling after the scroll is complete
+      requestAnimationFrame(() => {
+        document.documentElement.style.scrollBehavior = '';
+      });
+  }, [pathname, searchParams]);
+
   return (
     <>
       <div className="hidden sm:inline">

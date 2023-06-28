@@ -4,7 +4,7 @@ interface HeroProps {
   children?: React.ReactNode;
   description?: string;
   title: string;
-  variant?: 'section-heading';
+  variant?: 'section-heading'| 'bc-gov';
 }
 
 export default function Hero({ variant, title, description, children }: HeroProps) {
