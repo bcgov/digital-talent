@@ -7,7 +7,7 @@ export type HeadingProps = {
   id?: string;
   children: string;
   level: number;
-  variant?: 'markdoc-heading' | 'section-heading';
+  variant?: 'markdoc-heading' | 'section-heading' | 'bc-gov';
 } & React.HTMLAttributes<HTMLDivElement>;
 
 export default function Heading({ id, children, className, level, variant }: HeadingProps) {
@@ -22,6 +22,7 @@ export default function Heading({ id, children, className, level, variant }: Hea
               variant === 'markdoc-heading' ? 'text-3xl mb-1 mt-5' : 'text-6xl',
               `font-bold`,
               variant === 'section-heading' ? 'text-bcgov-blue-dark' : 'text-black',
+              variant === 'bc-gov'? 'text-bcgov-blue-dark' : '',
               className && className,
             )}
           >

@@ -8,7 +8,7 @@
     @apply mt-0 !important;
     @apply mb-0 !important;
   }
-  li {
+  ul:not([dir="ltr"]) > li {
     @apply mt-1 !important;
     @apply mb-1 !important;
   }

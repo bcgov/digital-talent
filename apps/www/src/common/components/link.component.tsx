@@ -18,6 +18,14 @@ export default function Link({ className, children, href, variant }: Props) {
 
   const classes = cn(typeof children === 'string' && variant !== 'plain' && 'text-blue-500 underline', className);
 
+  if (href.startsWith('#')) {
+    return (
+      <a className={classes} href={href.toString()}>
+        {children}
+      </a>
+    );
+  }
+
   if (isExternalUrl(href.toString())) {
     return (
       <a className={classes} href={href.toString()} rel="noreferrer" target="_blank">
