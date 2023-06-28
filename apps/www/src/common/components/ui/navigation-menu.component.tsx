@@ -40,12 +40,32 @@ type LinkProps = {
   [key: string]: any; // This allows any other props to be passed into the Link component
 };
 
-const LinkWithActiveState: React.FC<LinkProps> = ({ href, ...props }) => {
+const LinkWithActiveState: React.FC<LinkProps> = ({  href, ...props }) => {
   const pathname = usePathname();
+  // let variant = props.variant;
 
   const navigationMenuTriggerStyle2 = () => {
-    return href ===pathname ? "bg-bcgov-blue-light underline underline-offset-12 decoration-4" : ""; // use your active and non-active styles here
+
+    let active = false;
+    if (href ===pathname){
+      active = true;
+    }
+    if (href === "/hiring-managers/hiring-options" && pathname==="/learn/hiring-managers/cross-ministry-hiring"){
+      active = true;
+    }
+    // if (variant=="simple"){
+    //   return active? "text-bold":""
+    // }
+    return active ? "bg-bcgov-blue-light underline underline-offset-12 decoration-4" : ""; // use your active and non-active styles here
   };
+
+  // if (variant=="simple"){
+  //   return (
+  //     <Link className={cn(`${navigationMenuTriggerStyle()}}`, className)} href={href}>
+  //         {children}
+  //     </Link>
+  //   );
+  // }
 
   return (
     <Link legacyBehavior passHref href={href}>
@@ -57,6 +77,47 @@ const LinkWithActiveState: React.FC<LinkProps> = ({ href, ...props }) => {
   );
 };
 
+
+// interface LinkProps {
+//   href: string;
+//   variant?: string;
+//   className?: string;
+//   children?: React.ReactNode;
+// }
+
+// const LinkWithActiveState: React.FC<LinkProps> = ({ href, variant, className, children, ...props }) => {
+//   const  pathname  = usePathname();
+
+//   const navigationMenuTriggerStyle2 = () => {
+//     let active = false;
+//     if (href === pathname){
+//       active = true;
+//     }
+//     if (href === "/hiring-managers/hiring-options" && pathname === "/learn/hiring-managers/cross-ministry-hiring"){
+//       active = true;
+//     }
+//     if (variant === "simple"){
+//       return active ? "text-bold" : "";
+//     }
+//     return active ? "bg-bcgov-blue-light underline underline-offset-12 decoration-4" : "";
+//   };
+
+//   if (variant === "simple") {
+//     return (
+//       <Link href={href} className={cn(navigationMenuTriggerStyle2(), className)}>
+//           {children}
+//       </Link>
+//     );
+//   }
+
+//   return (
+//     <Link href={href} passHref>
+//       <a className={cn(navigationMenuTriggerStyle2(), className)} {...props}>
+//         {children}
+//       </a>
+//     </Link>
+//   );
+// };
 
 
 const navigationMenuTriggerStyle = cva(
