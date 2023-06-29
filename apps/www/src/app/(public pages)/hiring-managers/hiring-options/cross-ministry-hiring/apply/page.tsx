@@ -26,13 +26,7 @@ export default function Page() {
           </Heading>
           <p>
             Selecting one of the options below sends hiring managers to our Hiring Intake form. Hiring managers should
-            be ready to sign our{' '}
-            <span className="text-blue-500 underline">
-              <Link href="https://bcgov.sharepoint.com/:w:/r/teams/00109-DigitalTalentAttractionandDevelopmentTeam/Shared%20Documents/Digital%20Talent%20Attraction%20and%20Development%20Team/20230704%20-%20Cross-Ministry%20Hiring%20-%20Service%20Agreement.docx?d=w3e18227237d340eb90d54e7ff354971e&csf=1&web=1&e=AHRiWf">
-                Service Agreement
-              </Link>
-            </span>
-            .
+            be ready to sign our Service Agreement.
           </p>
           <CompetitionList />
         </div>
