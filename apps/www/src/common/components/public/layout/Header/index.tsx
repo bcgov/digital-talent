@@ -1,6 +1,6 @@
 'use client';
 
-import { Info, Menu } from 'lucide-react';
+import { ChevronDown, Info, Menu } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname, useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
@@ -63,13 +63,13 @@ function Navigation() {
             {/* Hiring Options */}
             <NavigationMenuItem>
               {/* <LinkWithActiveState href="/hiring-managers/hiring-options">Hiring Options</LinkWithActiveState> */}
-              <div className="relative">
+              <div className="relative" onMouseLeave={() => setIsOpen(false)}>
                 <LinkWithActiveState href="/hiring-managers/hiring-options" onMouseEnter={() => setIsOpen(true)}>
-                  Hiring Options
+                  Hiring options <ChevronDown className="w-4 ml-2 -mr-2" />
                 </LinkWithActiveState>
 
                 {isOpen && (
-                  <div className="absolute left-0 bg-white p-5 w-96" onMouseLeave={() => setIsOpen(false)}>
+                  <div className="absolute left-0 bg-white p-5 w-96">
                     <Link
                       className="mb-3 block"
                       href="/hiring-managers/hiring-options"
@@ -84,6 +84,8 @@ function Navigation() {
                     >
                       Cross Ministry Hiring Program (CMHP)
                     </Link>
+                    {/* <LinkWithActiveState variant="simple" className="mb-3 block" href="/hiring-managers/hiring-options">Available hiring options</LinkWithActiveState>
+                    <LinkWithActiveState variant="simple" className="block" href="/learn/hiring-managers/cross-ministry-hiring">Cross Ministry Hiring Program (CMHP)</LinkWithActiveState> */}
                   </div>
                 )}
               </div>

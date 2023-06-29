@@ -101,7 +101,7 @@ export default function Page() {
             <div className="col-span-12 md:col-span-4">
               <div className="hidden md:flex">
                 <Link href="/hiring-managers/hiring-options/cross-ministry-hiring">
-                  <Card className="h-full shadow-[0_0.25rem_0_0_rgba(0,0,0,0.1)] hover:ring-1 hover:ring-bcgov-blue-dark hover:shadow-lg ">
+                  <Card className="h-full shadow-md hover:ring-1 hover:ring-bcgov-blue-dark hover:shadow-xl ">
                     <CardHeader className="px-8 py-2">
                       <Image
                         priority
@@ -122,7 +122,7 @@ export default function Page() {
               </div>
               <div className="flex md:hidden">
                 <Link href="/hiring-managers/hiring-options/cross-ministry-hiring">
-                  <Card className="h-full shadow-[0_0.25rem_0_0_rgba(0,0,0,0.1)] hover:ring-1 hover:ring-bcgov-blue-dark hover:shadow-lg">
+                  <Card className="h-full shadow-md hover:ring-1 hover:ring-bcgov-blue-dark hover:shadow-xl">
                     <div className="flex flex-row gap-4 h-full">
                       <div className="flex w-1/3">
                         <Image
