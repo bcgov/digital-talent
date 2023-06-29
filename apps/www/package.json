@@ -18,6 +18,8 @@
     "@radix-ui/react-navigation-menu": "^1.1.3",
     "@radix-ui/react-separator": "^1.0.2",
     "@radix-ui/react-slot": "^1.0.1",
+    "@snowplow/browser-plugin-link-click-tracking": "^3.13.0",
+    "@snowplow/browser-tracker": "^3.13.0",
     "@tailwindcss/typography": "^0.5.9",
     "@tanstack/react-table": "^8.9.1",
     "@types/node": "18.16.3",
