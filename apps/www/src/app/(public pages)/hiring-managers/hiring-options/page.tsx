@@ -114,7 +114,8 @@ export default function Page() {
             The candidates’ hiring experience with our organization improves.
           </p>
           <p>
-            If you need immediate access, please contact our team at <a className="text-bcgov-blue-dark underline" href="mailto:digital.talent@gov.bc.ca?subject=Request%20to%20Access%20E-list">digital.talent@gov.bc.ca</a>. 
+            {/* Generated with https://www.sender.net/mailto-link-generator/ */}
+            If you need immediate access, please contact our team at <a className="text-bcgov-blue-dark underline" href="mailto:digital.talent@gov.bc.ca?subject=Request%20to%20access%20E-%20List%3A%C2%A0%3CJob%20Profile%20Title%3E&body=Hello%2C%20I%20would%20like%20to%20access%20an%20eligibility%20list%20for%20%3CJob%20Profile%3E%2C%C2%A0please%20confirm%20if%20you%20have%20a%20current%20and%20active%20list.">digital.talent@gov.bc.ca</a>. 
           </p>
         </div>
 
