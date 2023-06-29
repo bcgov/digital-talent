@@ -79,7 +79,7 @@ function Navigation() {
                     </Link>
                     <Link
                       className="block"
-                      href="/learn/hiring-managers/cross-ministry-hiring"
+                      href="/hiring-managers/hiring-options/cross-ministry-hiring"
                       onClick={() => setIsOpen(false)}
                     >
                       Cross Ministry Hiring Program (CMHP)
@@ -90,7 +90,7 @@ function Navigation() {
             </NavigationMenuItem>
             {/* About Digital Talent */}
             <NavigationMenuItem>
-              <LinkWithActiveState href="/learn/about-digital-talent">About us</LinkWithActiveState>
+              <LinkWithActiveState href="/about-digital-talent">About us</LinkWithActiveState>
             </NavigationMenuItem>
           </NavigationMenuList>
         </NavigationMenu>
@@ -152,7 +152,7 @@ function Navigation() {
                         </li>
 
                         <li className="ml-4 py-2 border-b pl-4">
-                          <Link className="w-full" href="/learn/hiring-managers/cross-ministry-hiring">
+                          <Link className="w-full" href="/hiring-managers/hiring-options/cross-ministry-hiring">
                             <SheetClose>
                               <div className="font-semibold select-none text-xl container px-auto">
                                 Cross Ministry Hiring Program (CMHP)
@@ -162,7 +162,7 @@ function Navigation() {
                         </li>
 
                         <li className="ml-4 py-2 border-b">
-                          <Link className="w-full" href="/learn/about-digital-talent">
+                          <Link className="w-full" href="/about-digital-talent">
                             <SheetClose>
                               <div className="font-semibold select-none text-xl container px-auto">About Us</div>
                             </SheetClose>

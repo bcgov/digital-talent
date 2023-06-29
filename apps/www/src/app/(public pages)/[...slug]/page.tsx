@@ -7,11 +7,11 @@ import Head from 'next/head';
 import { notFound } from 'next/navigation';
 import path from 'path';
 import React from 'react';
-import HeroTitle from '../../../../common/components/ui/hero/hero.component';
-import PageNav from '../../../../common/libs/markdoc/components/page-nav/page-nav.component';
-import { components, config } from '../../../../common/libs/markdoc/markdoc.config';
-import { extractHeadings } from '../../../../common/libs/markdoc/utils/extract-headings.util';
-import { wrapTitle } from '../../../../common/utils/wrap-title.util';
+import HeroTitle from '../../../common/components/ui/hero/hero.component';
+import PageNav from '../../../common/libs/markdoc/components/page-nav/page-nav.component';
+import { components, config } from '../../../common/libs/markdoc/markdoc.config';
+import { extractHeadings } from '../../../common/libs/markdoc/utils/extract-headings.util';
+import { wrapTitle } from '../../../common/utils/wrap-title.util';
 
 type Params = {
   slug: string[];
@@ -21,7 +21,7 @@ type PageProps = {
   params: Params;
 };
 
-const PAGES_DIR = 'src/app/(public pages)/learn';
+const PAGES_DIR = 'src/app/(public pages)/';
 const PAGES_PATH = path.join(process.cwd(), PAGES_DIR);
 
 export async function generateStaticParams() {
@@ -52,6 +52,7 @@ async function getMarkdownContent(slug: string[]) {
   try {
     source = await fs.readFile(pagePath, 'utf-8');
   } catch (error) {
+    console.log('ERROR: ', error);
     return notFound();
   }
 

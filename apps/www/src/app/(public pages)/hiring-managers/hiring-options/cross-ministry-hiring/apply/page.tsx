@@ -1,15 +1,15 @@
 import { Mailbox } from 'lucide-react';
 import { Metadata } from 'next';
 import Image from 'next/image';
-import learnAboutOurServicesImage from '../../../../../common/components/hiring-managers/svgs/learn-about-our-services.svg';
-import Link from '../../../../../common/components/link.component';
-import { Card, CardContent, CardHeader } from '../../../../../common/components/ui/card.component';
-import Heading from '../../../../../common/components/ui/heading.component';
-import Hero from '../../../../../common/components/ui/hero/hero.component';
-import CompetitionList from '../../../../../common/components/ui/hiring-manager/competition-list/competition-list.component';
-import { IconList, IconListItem } from '../../../../../common/libs/markdoc/components/tags/icon-list';
+import learnAboutOurServicesImage from '../../../../../../common/components/hiring-managers/svgs/learn-about-our-services.svg';
+import Link from '../../../../../../common/components/link.component';
+import { Card, CardContent, CardHeader } from '../../../../../../common/components/ui/card.component';
+import Heading from '../../../../../../common/components/ui/heading.component';
+import Hero from '../../../../../../common/components/ui/hero/hero.component';
+import CompetitionList from '../../../../../../common/components/ui/hiring-manager/competition-list/competition-list.component';
+import { IconList, IconListItem } from '../../../../../../common/libs/markdoc/components/tags/icon-list';
 
-import { wrapTitle } from '../../../../../common/utils/wrap-title.util';
+import { wrapTitle } from '../../../../../../common/utils/wrap-title.util';
 
 export const metadata: Metadata = {
   title: wrapTitle('Apply for an upcoming competition'),
@@ -45,14 +45,14 @@ export default function Page() {
               <li className="flex flex-row gap-2">
                 <span className="text-bcgov-blue-dark">→</span>
                 <span>
-                  <Link href="/learn/hiring-managers/cross-ministry-hiring">Cross-Ministry Hiring</Link>. Great source
-                  of information for hiring managers new to CMH.
+                  <Link href="/hiring-managers/hiring-options/cross-ministry-hiring">Cross-Ministry Hiring</Link>. Great
+                  source of information for hiring managers new to CMH.
                 </span>
               </li>
               <li className="flex flex-row gap-2">
                 <span className="text-bcgov-blue-dark">→</span>
                 <span>
-                  <Link href="/learn/about-digital-talent">About our team</Link>. Learn about our team and our passion.
+                  <Link href="/about-digital-talent">About our team</Link>. Learn about our team and our passion.
                 </span>
               </li>
             </ul>
@@ -106,7 +106,7 @@ export default function Page() {
             </div>
             <div className="col-span-12 md:col-span-4">
               <div className="hidden md:flex">
-                <Link href="/learn/hiring-managers/cross-ministry-hiring">
+                <Link href="/hiring-managers/hiring-options/cross-ministry-hiring">
                   <Card className="h-full shadow-[0_0.25rem_0_0_rgba(0,0,0,0.1)] hover:ring-1 hover:ring-bcgov-blue-dark hover:shadow-lg ">
                     <CardHeader className="px-8 py-2">
                       <Image
@@ -127,7 +127,7 @@ export default function Page() {
                 </Link>
               </div>
               <div className="flex md:hidden">
-                <Link href="/learn/hiring-managers/cross-ministry-hiring">
+                <Link href="/hiring-managers/hiring-options/cross-ministry-hiring">
                   <Card className="h-full shadow-[0_0.25rem_0_0_rgba(0,0,0,0.1)] hover:ring-1 hover:ring-bcgov-blue-dark hover:shadow-lg">
                     <div className="flex flex-row gap-4 h-full">
                       <div className="flex w-1/3">

@@ -28,7 +28,7 @@ export default function Page() {
         <div className="container hidden md:flex flex-row gap-6 mb-14">
           {/* Apply for an upcoming competition */}
           <div className="w-1/3">
-            <Link href="/hiring-managers/cross-ministry-hiring/apply">
+            <Link href="/hiring-managers/hiring-options/cross-ministry-hiring/apply">
               <Card className="h-full shadow-md hover:ring-1 hover:ring-bcgov-blue-dark hover:shadow-xl ">
                 <CardHeader className="px-8 py-2">
                   <Image
@@ -52,7 +52,7 @@ export default function Page() {
             <div className="flex flex-col gap-6 h-full">
               {/* Learn about our services */}
               <div className="h-1/2">
-                <Link href="/learn/hiring-managers/cross-ministry-hiring">
+                <Link href="/hiring-managers/hiring-options/cross-ministry-hiring">
                   <Card className="h-full shadow-md hover:ring-1 hover:ring-bcgov-blue-dark hover:shadow-xl">
                     <div className="flex flex-row gap-4 h-full">
                       <div className="flex w-1/3">
@@ -103,7 +103,7 @@ export default function Page() {
         </div>
 
         <div className="container flex flex-col gap-4 md:hidden mb-10">
-          <Link href="/hiring-managers/cross-ministry-hiring/apply">
+          <Link href="/hiring-managers/hiring-options/cross-ministry-hiring/apply">
             <Card className="h-full shadow-md hover:ring-1 hover:ring-bcgov-blue-dark hover:shadow-xl">
               <div className="flex flex-row gap-4 h-full">
                 <div className="flex w-1/3">
@@ -124,7 +124,7 @@ export default function Page() {
               </div>
             </Card>
           </Link>
-          <Link href="/learn/hiring-managers/cross-ministry-hiring">
+          <Link href="/hiring-managers/hiring-options/cross-ministry-hiring">
             <Card className="h-full shadow-md hover:ring-1 hover:ring-bcgov-blue-dark hover:shadow-xl">
               <div className="flex flex-row gap-4 h-full">
                 <div className="flex w-1/3">

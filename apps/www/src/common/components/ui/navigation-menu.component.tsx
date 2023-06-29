@@ -50,7 +50,7 @@ const LinkWithActiveState: React.FC<LinkProps> = ({ href, ...props }) => {
     if (href === pathname) {
       active = true;
     }
-    if (href === '/hiring-managers/hiring-options' && pathname === '/learn/hiring-managers/cross-ministry-hiring') {
+    if (href === '/hiring-managers/hiring-options' && pathname === '/hiring-managers/cross-ministry-hiring') {
       active = true;
     }
     // if (variant=="simple"){
