@@ -1,17 +1,22 @@
 const { fontFamily } = require('tailwindcss/defaultTheme');
 const tailwindAnimate = require('tailwindcss-animate');
+const typography = require('@tailwindcss/typography');
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ['./src/app/**/*.{js,ts,jsx,tsx,mdx}'],
+  content: ['./src/**/*.{js,ts,jsx,tsx,md}'],
   darkMode: ['class'],
   theme: {
     container: {
       center: true,
       padding: '2rem',
-      screens: {
-        '2xl': '1400px',
-      },
+    },
+    screens: {
+      sm: '640px',
+      md: '768px',
+      lg: '1024px',
+      xl: '1024px',
+      '2xl': '1024px',
     },
     extend: {
       colors: {
@@ -48,6 +53,21 @@ module.exports = {
           DEFAULT: 'hsl(var(--card))',
           foreground: 'hsl(var(--card-foreground))',
         },
+        bcgov: {
+          blue: {
+            dark: '#003366',
+            DEFAULT: '#38598A',
+            light: '#F5FAFF',
+          },
+          gold: {
+            DEFAULT: '#FCBA19',
+            light: '#FCEDCA',
+            extralight: '#FFFBF0',
+          },
+          gray: {
+            dark: '#313131',
+          },
+        },
       },
       borderRadius: {
         lg: `var(--radius)`,
@@ -58,6 +78,7 @@ module.exports = {
         sans: [`var(--font-noto-sans-display)`, ...fontFamily.sans],
         serif: ['var(--font-noto-serif-display)', ...fontFamily.serif],
         mono: ['var(--font-noto-sans-mono)', ...fontFamily.mono],
+        montserrat: ['var(--font-montserrat)'],
       },
       keyframes: {
         'accordion-down': {
@@ -73,7 +94,10 @@ module.exports = {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
       },
+      textUnderlineOffset:{
+          12: '12px'
+      }
     },
   },
-  plugins: [tailwindAnimate],
+  plugins: [tailwindAnimate, typography],
 };

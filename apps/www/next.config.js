@@ -19,6 +19,25 @@ const nextConfig = {
       },
     ];
   },
+  async redirects() {
+    return [
+      {
+        source: '/',
+        destination: '/hiring-managers',
+        permanent: false,
+      },
+      {
+        source: '/auth',
+        destination: '/auth/login',
+        permanent: false,
+      },
+      {
+        source: '/admin',
+        destination: '/admin/candidates',
+        permanent: false,
+      },
+    ];
+  },
 };
 
 module.exports = nextConfig;
