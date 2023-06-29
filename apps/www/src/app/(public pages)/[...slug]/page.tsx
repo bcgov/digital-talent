@@ -21,7 +21,7 @@ type PageProps = {
   params: Params;
 };
 
-const PAGES_DIR = 'src/app/(public pages)/';
+const PAGES_DIR = 'src/app/(public pages)';
 const PAGES_PATH = path.join(process.cwd(), PAGES_DIR);
 
 export async function generateStaticParams() {
@@ -52,7 +52,6 @@ async function getMarkdownContent(slug: string[]) {
   try {
     source = await fs.readFile(pagePath, 'utf-8');
   } catch (error) {
-    console.log('ERROR: ', error);
     return notFound();
   }
 
