@@ -1,3 +1,4 @@
+import { Mailbox } from 'lucide-react';
 import { Metadata } from 'next';
 import Image from 'next/image';
 import learnAboutOurServicesImage from '../../../../common/components/hiring-managers/svgs/learn-about-our-services.svg';
@@ -9,7 +10,6 @@ import CompetitionList from '../../../../common/components/ui/hiring-manager/com
 import { IconList, IconListItem } from '../../../../common/libs/markdoc/components/tags/icon-list';
 
 import { wrapTitle } from '../../../../common/utils/wrap-title.util';
-import { Mailbox } from 'lucide-react';
 
 export const metadata: Metadata = {
   title: wrapTitle('Apply for an upcoming competition'),
@@ -21,9 +21,12 @@ export default function Page() {
       <Hero title="Apply for an upcoming competition" variant="section-heading" />
       <div className="flex flex-col">
         <div className="container flex flex-col mx-auto">
-          <Heading className="text-bcgov-blue-dark" level={2}>Consider joining us for the competitions below!</Heading>
+          <Heading className="text-bcgov-blue-dark" level={2}>
+            Consider joining us for the competitions below!
+          </Heading>
           <p>
-            Selecting one of the options below sends hiring managers to our Hiring Intake form. Hiring managers should be ready to sign our{' '}
+            Selecting one of the options below sends hiring managers to our Hiring Intake form. Hiring managers should
+            be ready to sign our{' '}
             <span className="text-blue-500 underline">
               <Link href="https://bcgov.sharepoint.com/:w:/r/teams/00109-DigitalTalentAttractionandDevelopmentTeam/Shared%20Documents/Digital%20Talent%20Attraction%20and%20Development%20Team/20230704%20-%20Cross-Ministry%20Hiring%20-%20Service%20Agreement.docx?d=w3e18227237d340eb90d54e7ff354971e&csf=1&web=1&e=AHRiWf">
                 Service Agreement
@@ -35,7 +38,9 @@ export default function Page() {
         </div>
         <div className="bg-bcgov-blue-light py-6 mb-10">
           <div className="container flex flex-col gap-4 mx-auto">
-            <Heading className="text-bcgov-blue-dark" level={2}>Don't see what you're looking for?</Heading>
+            <Heading className="text-bcgov-blue-dark" level={2}>
+              Don't see what you're looking for?
+            </Heading>
             <ul>
               <li className="flex flex-row gap-2">
                 <span className="text-bcgov-blue-dark">→</span>
@@ -47,13 +52,15 @@ export default function Page() {
               <li className="flex flex-row gap-2">
                 <span className="text-bcgov-blue-dark">→</span>
                 <span>
-                  <Link href="/learn/hiring-managers/about-digital-talent">About our team</Link>. Learn about our team
-                  and our passion.
+                  <Link href="/learn/about-digital-talent">About our team</Link>. Learn about our team and our passion.
                 </span>
               </li>
             </ul>
             <Heading level={3}>Positions we hire for</Heading>
-            <p>Digital Talent (DT) are roles in the BC Govt focus on designing, developing, and deploying digital products and/or services.</p>
+            <p>
+              Digital Talent (DT) are roles in the BC Govt focus on designing, developing, and deploying digital
+              products and/or services.
+            </p>
             <ul className="list list-disc ml-6">
               <li>Full Stack Developers</li>
               <li>DevOps Specialists</li>
