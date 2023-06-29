@@ -8,7 +8,7 @@ import { Icon } from '../../../../common/components/ui/icon.component';
 import { wrapTitle } from '../../../../common/utils/wrap-title.util';
 
 export const metadata: Metadata = {
-  title: wrapTitle('Hiring options in the BC Public Service'),
+  title: wrapTitle('Hiring options in BC Govt'),
 };
 
 export default function Page() {
