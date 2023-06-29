@@ -203,45 +203,45 @@ export default function Page() {
                 <tbody>
                   <tr>
                     <td className="border px-4 py-2 font-bold">Best for</td>
-                    <td className="border px-4 py-2">Hiring specific skillsets and full involvement</td>
                     <td className="border px-4 py-2">Hiring digital talent quickly</td>
+                    <td className="border px-4 py-2">Hiring specific skillsets and full involvement</td>
                     <td className="border px-4 py-2">Hiring pre-qualified candidates</td>
                   </tr>
 
                   <tr>
                     <td className="border px-4 py-2 font-bold">Appointments supported</td>
-                    <td className="border px-4 py-2">Any</td>
                     <td className="border px-4 py-2">Full-time Digital Talent</td>
+                    <td className="border px-4 py-2">Any</td>
                     <td className="border px-4 py-2">Full-time Digital Talent</td>
                   </tr>
 
                   <tr>
                     <td className="border px-4 py-2 font-bold">Involvement</td>
-                    <td className="border px-4 py-2">Hight time commitment</td>
                     <td className="border px-4 py-2">2 options for time commitments: low and high</td>
-                    <td className="border px-4 py-2">low time commitment</td>
+                    <td className="border px-4 py-2">High time commitment</td>
+                    <td className="border px-4 py-2">Low time commitment</td>
                   </tr>
 
                   <tr>
                     <td className="border px-4 py-2 font-bold">Completion</td>
-                    <td className="border px-4 py-2">Dependent on hiring team's capacity</td>
                     <td className="border px-4 py-2">Expected 7 weeks from posting to offer</td>
+                    <td className="border px-4 py-2">Dependent on hiring team's capacity</td>
                     <td className="border px-4 py-2">Immediately</td>
                   </tr>
 
                   <tr>
                     <td className="border px-4 py-2 font-bold">Support</td>
-                    <td className="border px-4 py-2">PSA or SHR, and marketing support for digital talent roles</td>
                     <td className="border px-4 py-2">
                       Full administrative support, marketing and SME support during process
                     </td>
+                    <td className="border px-4 py-2">PSA or SHR, and marketing support for digital talent roles</td>
                     <td className="border px-4 py-2">N/A</td>
                   </tr>
 
                   <tr>
                     <td className="border px-4 py-2 font-bold">Flexibility</td>
-                    <td className="border px-4 py-2">Full control of job requirements and posting</td>
                     <td className="border px-4 py-2">Shared job profile with other ministries</td>
+                    <td className="border px-4 py-2">Full control of job requirements and posting</td>
                     <td className="border px-4 py-2">Order of ranking</td>
                   </tr>
 
