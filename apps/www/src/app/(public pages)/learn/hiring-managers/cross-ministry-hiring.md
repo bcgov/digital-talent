@@ -8,13 +8,15 @@ navigation: true
 
 The Cross-Ministry Hiring Program uses one job profile to fill many positions across BC Government. The outcome of the CMHP is an [Eligibility List (E-list)](hiring-managers/hiring-options) of pre-qualified candidates. We match hiring managers and candidates based on candidate preferences.
 
-Our team gives administrative support. With dedicated Public Service Agency (PSA) resources, we have shorter wait times. For hiring managers, they get candidates quicker without spending hours of labour. For candidates, they do not need to apply to similar position, and they save time. Candidates' experience with BC Govt hiring becomes better.  
+Our team gives administrative support. With dedicated Public Service Agency (PSA) resources, we have shorter wait times. For hiring managers, they get candidates quicker without spending hours of labour. For candidates, they do not need to apply to similar position, and they save time. 
+
+Candidates' experience with BC Govt hiring becomes better.  
 
 
 {% div className="bg-bcgov-gold-extralight my-4 p-4" %}
 
 {% div className="font-bold text-xl mb-4" %}
-Consider other benefits:
+Consider other benefits of our Program:
 {% /div %}
 
 {% div className="grid grid-cols-1 lg:grid-cols-3" %}
@@ -134,7 +136,7 @@ Join an upcoming competition.
 We create a job posting.
 
 - We meet all hiring managers to understand hiring needs.
-- Using feedback, we create user friendly job profile.
+- Using feedback, we create a user friendly job profile.
 
 {% /icon-list-item %}
 {% icon-list-item icon="3" iconColor="text-white" iconBgColor="bg-bcgov-blue-dark" %}
@@ -150,7 +152,7 @@ Candidates apply.
 Assess and interview candidates.
 
 - We use a meritorious process to choose candidates by screening, assessing, interviewing and checking references.
-- We outlined the [time commitment for hiring managers](/learn/hiring-managers/cross-ministry-hiring/#hm-time-commitment-minimal-involvement) further down the page.
+- We outlined the [time commitment for hiring managers](/learn/hiring-managers/cross-ministry-hiring/#hm-time-commitment-minimal-involvement) below.
 
 {% /icon-list-item %}
 {% icon-list-item icon="5" iconColor="text-white" iconBgColor="bg-bcgov-blue-dark" %}
@@ -175,7 +177,7 @@ Offers
 
 ## Hiring manager time commitments {% #hiring-manager-time-commitments %}
 
-We have 2 options for hiring managers who want to joing the CMHP:
+We have 2 options for hiring managers joining the CMHP:
 
 {% card %}
 
