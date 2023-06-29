@@ -1,10 +1,10 @@
 import * as NavigationMenuPrimitive from '@radix-ui/react-navigation-menu';
 import { cva } from 'class-variance-authority';
 import { ChevronDown } from 'lucide-react';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import React from 'react';
 import { cn } from '../../utils/cn.util';
-import { usePathname } from 'next/navigation';
-import Link from 'next/link';
 
 const NavigationMenu = React.forwardRef<
   React.ElementRef<typeof NavigationMenuPrimitive.Root>,
@@ -37,26 +37,26 @@ const NavigationMenuItem = NavigationMenuPrimitive.Item;
 
 type LinkProps = {
   href: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   [key: string]: any; // This allows any other props to be passed into the Link component
 };
 
-const LinkWithActiveState: React.FC<LinkProps> = ({  href, ...props }) => {
+const LinkWithActiveState: React.FC<LinkProps> = ({ href, ...props }) => {
   const pathname = usePathname();
   // let variant = props.variant;
 
   const navigationMenuTriggerStyle2 = () => {
-
     let active = false;
-    if (href ===pathname){
+    if (href === pathname) {
       active = true;
     }
-    if (href === "/hiring-managers/hiring-options" && pathname==="/learn/hiring-managers/cross-ministry-hiring"){
+    if (href === '/hiring-managers/hiring-options' && pathname === '/learn/hiring-managers/cross-ministry-hiring') {
       active = true;
     }
     // if (variant=="simple"){
     //   return active? "text-bold":""
     // }
-    return active ? "bg-bcgov-blue-light underline underline-offset-12 decoration-4" : ""; // use your active and non-active styles here
+    return active ? 'bg-bcgov-blue-light underline underline-offset-12 decoration-4' : ''; // use your active and non-active styles here
   };
 
   // if (variant=="simple"){
@@ -76,49 +76,6 @@ const LinkWithActiveState: React.FC<LinkProps> = ({  href, ...props }) => {
     </Link>
   );
 };
-
-
-// interface LinkProps {
-//   href: string;
-//   variant?: string;
-//   className?: string;
-//   children?: React.ReactNode;
-// }
-
-// const LinkWithActiveState: React.FC<LinkProps> = ({ href, variant, className, children, ...props }) => {
-//   const  pathname  = usePathname();
-
-//   const navigationMenuTriggerStyle2 = () => {
-//     let active = false;
-//     if (href === pathname){
-//       active = true;
-//     }
-//     if (href === "/hiring-managers/hiring-options" && pathname === "/learn/hiring-managers/cross-ministry-hiring"){
-//       active = true;
-//     }
-//     if (variant === "simple"){
-//       return active ? "text-bold" : "";
-//     }
-//     return active ? "bg-bcgov-blue-light underline underline-offset-12 decoration-4" : "";
-//   };
-
-//   if (variant === "simple") {
-//     return (
-//       <Link href={href} className={cn(navigationMenuTriggerStyle2(), className)}>
-//           {children}
-//       </Link>
-//     );
-//   }
-
-//   return (
-//     <Link href={href} passHref>
-//       <a className={cn(navigationMenuTriggerStyle2(), className)} {...props}>
-//         {children}
-//       </a>
-//     </Link>
-//   );
-// };
-
 
 const navigationMenuTriggerStyle = cva(
   'inline-flex items-center justify-center text-sm font-medium transition-colors focus:outline-none focus:bg-accent focus:text-accent-foreground disabled:opacity-50 disabled:pointer-events-none bg-background hover:bg-accent hover:text-accent-foreground data-[state=open]:bg-accent/50 data-[active]:bg-accent/50 h-10 py-2 px-4 group w-max',
@@ -203,5 +160,5 @@ export {
   NavigationMenuLink,
   NavigationMenuIndicator,
   NavigationMenuViewport,
-  LinkWithActiveState
+  LinkWithActiveState,
 };

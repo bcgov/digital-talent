@@ -1,15 +1,15 @@
 import { Mailbox } from 'lucide-react';
 import { Metadata } from 'next';
 import Image from 'next/image';
-import learnAboutOurServicesImage from '../../../../common/components/hiring-managers/svgs/learn-about-our-services.svg';
-import Link from '../../../../common/components/link.component';
-import { Card, CardContent, CardHeader } from '../../../../common/components/ui/card.component';
-import Heading from '../../../../common/components/ui/heading.component';
-import Hero from '../../../../common/components/ui/hero/hero.component';
-import CompetitionList from '../../../../common/components/ui/hiring-manager/competition-list/competition-list.component';
-import { IconList, IconListItem } from '../../../../common/libs/markdoc/components/tags/icon-list';
+import learnAboutOurServicesImage from '../../../../../common/components/hiring-managers/svgs/learn-about-our-services.svg';
+import Link from '../../../../../common/components/link.component';
+import { Card, CardContent, CardHeader } from '../../../../../common/components/ui/card.component';
+import Heading from '../../../../../common/components/ui/heading.component';
+import Hero from '../../../../../common/components/ui/hero/hero.component';
+import CompetitionList from '../../../../../common/components/ui/hiring-manager/competition-list/competition-list.component';
+import { IconList, IconListItem } from '../../../../../common/libs/markdoc/components/tags/icon-list';
 
-import { wrapTitle } from '../../../../common/utils/wrap-title.util';
+import { wrapTitle } from '../../../../../common/utils/wrap-title.util';
 
 export const metadata: Metadata = {
   title: wrapTitle('Apply for an upcoming competition'),
@@ -151,53 +151,6 @@ export default function Page() {
               </div>
             </div>
           </div>
-          {/* <div className="flex flex-row">
-            <div className="font-bold w-2/3">
-              <IconList>
-                <div className="flex flex-col gap-4 py-4">
-                  <IconListItem color="#FFFFFF" icon="1" iconBgColor="bg-bcgov-blue-dark" iconColor="text-white">
-                    Join an upcoming competition
-                  </IconListItem>
-                  <IconListItem color="#FFFFFF" icon="2" iconBgColor="bg-bcgov-blue-dark" iconColor="text-white">
-                    We create a job posting
-                  </IconListItem>
-                  <IconListItem color="#FFFFFF" icon="3" iconBgColor="bg-bcgov-blue-dark" iconColor="text-white">
-                    Candidates apply
-                  </IconListItem>
-                  <IconListItem color="#FFFFFF" icon="4" iconBgColor="bg-bcgov-blue-dark" iconColor="text-white">
-                    Assess and interview candidates
-                  </IconListItem>
-                  <IconListItem color="#FFFFFF" icon="5" iconBgColor="bg-bcgov-blue-dark" iconColor="text-white">
-                    We match candidates to opportunities
-                  </IconListItem>
-                  <IconListItem color="#FFFFFF" icon="6" iconBgColor="bg-bcgov-blue-dark" iconColor="text-white">
-                    Offers
-                  </IconListItem>
-                </div>
-              </IconList>
-            </div>
-            <div className="w-1/3 md:hidden">
-              <Link href="/hiring-managers/cross-ministry-hiring">
-                <Card className="h-full shadow-[0_0.25rem_0_0_rgba(0,0,0,0.1)] hover:ring-1 hover:ring-bcgov-blue-dark hover:shadow-lg ">
-                  <CardHeader className="px-8 py-2">
-                    <Image
-                      priority
-                      alt="Join a cross-ministry hiring competition"
-                      className="mx-auto"
-                      src={learnAboutOurServicesImage}
-                    />
-                  </CardHeader>
-                  <CardContent className="h-fill">
-                    <div className="my-auto">
-                      <h2 className="text-2xl">Join a cross-ministry hiring competition</h2>
-                      <hr className="bg-bcgov-blue-dark h-1 w-4 my-2" />
-                      <span>View and sign up for current cross-ministry hiring competitions</span>
-                    </div>
-                  </CardContent>
-                </Card>
-              </Link>
-            </div>
-          </div> */}
         </div>
       </div>
     </>

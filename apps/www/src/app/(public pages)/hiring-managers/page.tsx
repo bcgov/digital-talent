@@ -2,7 +2,6 @@ import { Mailbox } from 'lucide-react';
 import { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
-import aboutDtadImage from '../../../common/components/hiring-managers/svgs/about-dtad.svg';
 import compareHiringServicesImage from '../../../common/components/hiring-managers/svgs/compare-hiring-services.svg';
 import joinCmhCompetitionImage from '../../../common/components/hiring-managers/svgs/join-cmh-competition.svg';
 import learnAboutOurServicesImage from '../../../common/components/hiring-managers/svgs/learn-about-our-services.svg';
@@ -29,7 +28,7 @@ export default function Page() {
         <div className="container hidden md:flex flex-row gap-6 mb-14">
           {/* Apply for an upcoming competition */}
           <div className="w-1/3">
-            <Link href="/hiring-managers/cross-ministry-hiring">
+            <Link href="/hiring-managers/cross-ministry-hiring/apply">
               <Card className="h-full shadow-md hover:ring-1 hover:ring-bcgov-blue-dark hover:shadow-xl ">
                 <CardHeader className="px-8 py-2">
                   <Image
@@ -84,7 +83,7 @@ export default function Page() {
                         <div className="mx-auto">
                           <h2 className="text-2xl">Compare hiring services</h2>
                           <hr className="bg-bcgov-blue-dark h-1 w-4 my-2" />
-                          <span>Explore the different services available for  digital talent positions.</span>
+                          <span>Explore the different services available for digital talent positions.</span>
                         </div>
                       </CardContent>
                       <div className="flex w-1/3">
@@ -104,7 +103,7 @@ export default function Page() {
         </div>
 
         <div className="container flex flex-col gap-4 md:hidden mb-10">
-          <Link href="/hiring-managers/cross-ministry-hiring">
+          <Link href="/hiring-managers/cross-ministry-hiring/apply">
             <Card className="h-full shadow-md hover:ring-1 hover:ring-bcgov-blue-dark hover:shadow-xl">
               <div className="flex flex-row gap-4 h-full">
                 <div className="flex w-1/3">
@@ -179,11 +178,12 @@ export default function Page() {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="flex flex-col gap-4">
                 <p>
-                  Welcome to the homepage for the Digital Talent Attraction and Development Team! This website serves as a hub 
-                  of our hiring programs and pilots, current and upcoming hiring, and who we are.
+                  Welcome to the homepage for the Digital Talent Attraction and Development Team! This website serves as
+                  a hub of our hiring programs and pilots, current and upcoming hiring, and who we are.
                 </p>
                 <p>
-                  Our team works with Agile principles, inclusive of product iterations. Please expect updates as the team gets feedback from users. 
+                  Our team works with Agile principles, inclusive of product iterations. Please expect updates as the
+                  team gets feedback from users.
                 </p>
                 <div className="flex flex-row gap-2 mt-4">
                   <Mailbox /> <span className="font-bold">Have questions?</span>{' '}
