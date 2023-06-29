@@ -1,5 +1,11 @@
 # @bcgov-dt/www
 
+## 1.0.1
+
+### Patch Changes
+
+- [#97](https://github.com/bcgov/digital-talent/pull/97) [`98f876f`](https://github.com/bcgov/digital-talent/commit/98f876f35c5a9568299080c04576cf5be91548a1) Thanks [@sidmclaughlin](https://github.com/sidmclaughlin)! - Implement fixes to issues raised by PageSpeed Insights.
+
 ## 1.0.0
 
 ### Major Changes
