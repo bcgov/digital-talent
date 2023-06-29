@@ -19,6 +19,9 @@ export default function Footer() {
             <Link className="underline" href="/">
               Digital Talent Home
             </Link>
+            <Link className="underline" href="/hiring-managers/hiring-options">
+              Hiring options
+            </Link>
             <Link className="underline" href="/hiring-managers/cross-ministry-hiring">
               Cross-Ministry Hiring
             </Link>
