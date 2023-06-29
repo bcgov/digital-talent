@@ -62,7 +62,6 @@ function Navigation() {
             </NavigationMenuItem>
             {/* Hiring Options */}
             <NavigationMenuItem>
-              {/* <LinkWithActiveState href="/hiring-managers/hiring-options">Hiring Options</LinkWithActiveState> */}
               <div className="relative" onMouseLeave={() => setIsOpen(false)}>
                 <LinkWithActiveState href="/hiring-managers/hiring-options" onMouseEnter={() => setIsOpen(true)}>
                   Hiring options <ChevronDown className="w-4 ml-2 -mr-2" />
@@ -84,8 +83,6 @@ function Navigation() {
                     >
                       Cross Ministry Hiring Program (CMHP)
                     </Link>
-                    {/* <LinkWithActiveState variant="simple" className="mb-3 block" href="/hiring-managers/hiring-options">Available hiring options</LinkWithActiveState>
-                    <LinkWithActiveState variant="simple" className="block" href="/learn/hiring-managers/cross-ministry-hiring">Cross Ministry Hiring Program (CMHP)</LinkWithActiveState> */}
                   </div>
                 )}
               </div>
