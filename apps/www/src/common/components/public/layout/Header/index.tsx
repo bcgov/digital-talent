@@ -62,7 +62,6 @@ function Navigation() {
             </NavigationMenuItem>
             {/* Hiring Options */}
             <NavigationMenuItem>
-              {/* <LinkWithActiveState href="/hiring-managers/hiring-options">Hiring Options</LinkWithActiveState> */}
               <div className="relative" onMouseLeave={() => setIsOpen(false)}>
                 <LinkWithActiveState href="/hiring-managers/hiring-options" onMouseEnter={() => setIsOpen(true)}>
                   Hiring options <ChevronDown className="w-4 ml-2 -mr-2" />
