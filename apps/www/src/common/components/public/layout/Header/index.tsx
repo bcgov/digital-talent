@@ -114,13 +114,11 @@ function Navigation() {
             <NavigationMenuList>
               {/* About Digital Talent */}
               <Sheet>
-                <SheetTrigger>
-                  <NavigationMenuItem>
-                    <NavigationMenuLink className={`${navigationMenuTriggerStyle()} hover:cursor-pointer`}>
-                      <Menu />
-                    </NavigationMenuLink>
-                  </NavigationMenuItem>
-                </SheetTrigger>
+                <NavigationMenuItem className={`${navigationMenuTriggerStyle()} hover:cursor-pointer`}>
+                  <SheetTrigger aria-label="Navigation Menu Trigger">
+                    <Menu />
+                  </SheetTrigger>
+                </NavigationMenuItem>
                 <SheetContent className="px-0" position="static" size="full">
                   <SheetHeader>
                     <SheetDescription className="mt-2 text-bcgov-blue-dark text-left">
