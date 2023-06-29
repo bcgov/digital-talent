@@ -29,6 +29,7 @@ export default function Footer() {
               About Digital Talent
             </Link>
             <a
+              aria-label="Exchange Lab LinkedIn"
               className="underline"
               href="https://www.linkedin.com/company/bc-gov-csi-lab/"
               rel="noreferrer"
