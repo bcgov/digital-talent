@@ -1,6 +1,6 @@
 'use client';
 
-import { Info, Menu } from 'lucide-react';
+import { ChevronDown, Info, Menu } from 'lucide-react';
 import Link from 'next/link';
 import {
   NavigationMenu,
@@ -71,13 +71,12 @@ function Navigation() {
             {/* Hiring Options */}
             <NavigationMenuItem>
               {/* <LinkWithActiveState href="/hiring-managers/hiring-options">Hiring Options</LinkWithActiveState> */}
-              <div className="relative">
-                <LinkWithActiveState href="/hiring-managers/hiring-options"  onMouseEnter={() => setIsOpen(true)}
-                  >Hiring Options</LinkWithActiveState>
+              <div className="relative" onMouseLeave={() => setIsOpen(false)}>
+                <LinkWithActiveState href="/hiring-managers/hiring-options"   onMouseEnter={() => setIsOpen(true)}
+                  >Hiring options <ChevronDown className="w-4 ml-2 -mr-2" /></LinkWithActiveState>
                
                 {isOpen && (
                   <div
-                    onMouseLeave={() => setIsOpen(false)}
                     className="absolute left-0 bg-white p-5 w-96"
                   >
                     <Link className="mb-3 block" href="/hiring-managers/hiring-options" onClick={() => setIsOpen(false)}>Available hiring options</Link>
