@@ -84,8 +84,6 @@ function Navigation() {
                     >
                       Cross Ministry Hiring Program (CMHP)
                     </Link>
-                    {/* <LinkWithActiveState variant="simple" className="mb-3 block" href="/hiring-managers/hiring-options">Available hiring options</LinkWithActiveState>
-                    <LinkWithActiveState variant="simple" className="block" href="/learn/hiring-managers/cross-ministry-hiring">Cross Ministry Hiring Program (CMHP)</LinkWithActiveState> */}
                   </div>
                 )}
               </div>

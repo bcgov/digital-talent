@@ -1,5 +1,4 @@
 import { PropsWithChildren } from 'react';
-// import Content from '../../../../common/components/public/layout/Content';
 import Footer from '../../common/components/public/layout/Footer';
 import Header from '../../common/components/public/layout/Header';
 
