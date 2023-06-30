@@ -23,33 +23,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     // when navigatingd between internal links. This is addressed in header component by temporarily disabling smooth scroll when
     // navigating between pages
     <html className="scroll-smooth" lang="en">
-      <head>
-        {/* Primary Meta Tags */}
-        <meta content="Digital Talent | BC Public Service" name="title" />
-        <meta
-          content="Learn and join specialized programs to hire digital talent into public service at BC Public Service"
-          name="description"
-        />
-        {/* Open Graph / Facebook */}
-        <meta content="website" property="og:type" />
-        <meta content="https://talent.digital.gov.bc.ca/hiring-managers" property="og:url" />
-        <meta content="Digital Talent | BC Public Service" property="og:title" />
-        <meta
-          content="Learn and join specialized programs to hire digital talent into public service at BC Public Service"
-          property="og:description"
-        />
-        <meta content="https://talent.digital.gov.bc.ca/og-image.png" property="og:image" />
-        {/* Twitter */}
-        <meta content="summary_large_image" property="twitter:card" />
-        <meta content="https://talent.digital.gov.bc.ca/hiring-managers" property="twitter:url" />
-        <meta content="Digital Talent | BC Public Service" property="twitter:title" />
-        <meta
-          content="Learn and join specialized programs to hire digital talent into public service at BC Public Service"
-          property="twitter:description"
-        />
-        <meta content="https://talent.digital.gov.bc.ca/og-image.png" property="twitter:image" />
-        {/* Meta Tags Generated with https://metatags.io */}
-      </head>
       <body
         className={`${montserrat.variable} ${notoSans.variable} ${notoSansMono.variable} ${notoSerif.variable} font-sans`}
       >
