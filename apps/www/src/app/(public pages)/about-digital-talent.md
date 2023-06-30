@@ -1,9 +1,9 @@
 ---
 title: About the Digital Talent Attraction and Development Team
-description: Learn more about the team and how they help hiring managers fill their vacant BC Government jobs.
+description: Learn more about the team and how they help hiring managers fill their vacant BC Public Service jobs.
 ---
 
-On April 6th, 2023, the Digital Office released [BC Government's Digital Plan](https://www2.gov.bc.ca/assets/gov/data/digital-government/digital-plan.pdf). One of many items reported on are hiring barriers:
+On April 6th, 2023, the Digital Office released [BC Public Service's Digital Plan](https://www2.gov.bc.ca/assets/gov/data/digital-government/digital-plan.pdf). One of many items reported on are hiring barriers:
 
 > Early on, the Exchange Lab recognized that ministries faced several barriers to building digital capacity. It often took months or years to bring in external vendors to support digital initiatives. Further, there was no clear path for existing employees to develop their own digital skills, and ministries struggled to attract and hire talented technologists from outside government.
 

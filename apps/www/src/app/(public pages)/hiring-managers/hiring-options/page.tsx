@@ -8,7 +8,7 @@ import { Icon } from '../../../../common/components/ui/icon.component';
 import { wrapTitle } from '../../../../common/utils/wrap-title.util';
 
 export const metadata: Metadata = {
-  title: wrapTitle('Hiring options in BC Govt'),
+  title: wrapTitle('Hiring options in BC Public Service'),
 };
 
 export default function Page() {
@@ -18,12 +18,12 @@ export default function Page() {
       <div className="flex flex-col">
         <div className="container flex flex-col gap-4 mb-12">
           <p>
-            We define Digital Talent (DT) as roles in the BC Government that focus on designing, developing, and
+            We define Digital Talent (DT) as roles in the BC Public Service that focus on designing, developing, and
             deploying digital products and/or services.
           </p>
           <p>
             Hiring managers have three options for hiring staff. Each option gets support from either our team, the
-            Digital Talent Attraction and Development Team (DADT), or guidance from the Public Service Agency (PSA).
+            Digital Talent Attraction and Development Team (DTAD), or guidance from the Public Service Agency (PSA).
           </p>
         </div>
 
@@ -33,7 +33,7 @@ export default function Page() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 ">
               <Link className="bg-white p-4 text-[1.8rem] flex flex-col rounded-md border hover:shadow-xl" href="#cmhp">
                 <div>
-                  <div className="grow text-bcgov-blue-dark leading-8 mb-2 font-semibold text-2xl leading-8">
+                  <div className="grow text-bcgov-blue-dark mb-2 font-semibold text-2xl leading-8">
                     The Cross-Ministry Hiring Program
                   </div>
                   <div className="font-bold text-base text-bcgov-blue-dark">with the DTAD</div>
@@ -45,7 +45,7 @@ export default function Page() {
                 href="#eligibility-lists"
               >
                 <div>
-                  <div className="grow text-bcgov-blue-dark leading-8 mb-2 font-semibold text-2xl leading-8">
+                  <div className="grow text-bcgov-blue-dark mb-2 font-semibold text-2xl leading-8">
                     Access Eligibility Lists
                   </div>
                   <div className="font-bold text-base text-bcgov-blue-dark">with the DTAD</div>
@@ -113,8 +113,8 @@ export default function Page() {
           </Heading>
           <p>
             Our team creates Eligibility Lists (E-lists) that have pre-qualified candidates. E-lists are the outcome of
-            the CMHP. Hiring managers across BC Govt can get access to our E-lists to save time and resources. Sign up
-            for alerts using the button below.
+            the CMHP. Hiring managers across BC Public Service can get access to our E-lists to save time and resources.
+            Sign up for alerts using the button below.
           </p>
           <p>
             This reduces candidates' time too because they do not need to spend hours applying to similar positions. The

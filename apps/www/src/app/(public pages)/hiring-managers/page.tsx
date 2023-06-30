@@ -20,7 +20,7 @@ export default function Page() {
       {/* Hero */}
       <Hero
         description="Our team builds Agile teams with a modernized Digital Talent hiring service: the Cross-Ministry Hiring Program (CMHP)."
-        title="Digital Talent at BC Govt"
+        title="Digital Talent at BC Public Service"
         variant="bc-gov"
       />
       <div className="flex flex-col">
