@@ -52,8 +52,8 @@ export default function Page() {
             </ul>
             <Heading level={3}>Positions we hire for</Heading>
             <p>
-              Digital Talent (DT) are roles in the BC Govt focus on designing, developing, and deploying digital
-              products and/or services.
+              Digital Talent (DT) are roles in the BC Public Service focus on designing, developing, and deploying
+              digital products and/or services.
             </p>
             <ul className="list list-disc ml-6">
               <li>Full Stack Developers</li>
