@@ -1,5 +1,12 @@
 # @bcgov-dt/www
 
+## 1.0.2
+
+### Patch Changes
+
+- [#100](https://github.com/bcgov/digital-talent/pull/100) [`16427ea`](https://github.com/bcgov/digital-talent/commit/16427ea5baa541f53f87eb4fc84ac5140f56732e) Thanks [@sidmclaughlin](https://github.com/sidmclaughlin)! - Add opengraph meta tags.
+  Refactor BC Govt -> BC Public Service
+
 ## 1.0.1
 
 ### Patch Changes
