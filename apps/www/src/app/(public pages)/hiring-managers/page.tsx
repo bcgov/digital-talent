@@ -13,19 +13,6 @@ import { wrapTitle } from '../../../common/utils/wrap-title.util';
 export const metadata: Metadata = {
   title: wrapTitle('Digital Talent'),
   description: 'Learn and join specialized programs to hire digital talent in the BC Public Service',
-  openGraph: {
-    type: 'website',
-    title: wrapTitle('Digital Talent'),
-    description: 'Learn and join specialized programs to hire digital talent in the BC Public Service',
-    url: 'https://talent.digital.gov.bc.ca/hiring-managers',
-    images: [{ url: 'https://talent.digital.gov.bc.ca/og-image.png' }],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: wrapTitle('Digital Talent'),
-    description: 'Learn and join specialized programs to hire digital in the BC Public Service',
-    images: [{ url: 'https://talent.digital.gov.bc.ca/og-image.png' }],
-  },
 };
 
 export default function Page() {
