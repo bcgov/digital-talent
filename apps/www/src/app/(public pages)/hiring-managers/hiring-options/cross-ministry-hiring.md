@@ -124,7 +124,7 @@ Signed Service Agreement
 
 Join an upcoming competition.
 
-- Explore our [upcoming competitions](https://dt.apps.silver.devops.gov.bc.ca/hiring-managers/cross-ministry-hiring) to find a fit.
+- Explore our [upcoming competitions](/hiring-managers/hiring-options/cross-ministry-hiring/apply) to find a fit.
 - Found one or more? Fill out our Hiring Intake Form to confirm our requirements and give us details about your position(s).
 
 {% /icon-list-item %}
@@ -150,7 +150,7 @@ Candidates apply.
 Assess and interview candidates.
 
 - We use a meritorious process to choose candidates by screening, assessing, interviewing and checking references.
-- We outlined the [time commitment for hiring managers](/learn/hiring-managers/cross-ministry-hiring/#hm-time-commitment-minimal-involvement) below.
+- We outlined the [time commitment for hiring managers](/hiring-managers/hiring-options/cross-ministry-hiring/#hm-time-commitment-minimal-involvement) below.
 
 {% /icon-list-item %}
 {% icon-list-item icon="5" iconColor="text-white" iconBgColor="bg-bcgov-blue-dark" %}
@@ -159,7 +159,7 @@ Match candidates with job opportunities.
 
 - We create an Eligibility List and rank candidates.
 - Ranking is based on competition scores and years of service.
-- Learn more about the [candidate-focused matching process](learn/hiring-managers/cross-ministry-hiring#matching-candidates-and-opportunities).
+- Learn more about the [candidate-focused matching process](/hiring-managers/hiring-options/cross-ministry-hiring#matching-candidates-and-opportunities).
 
 {% /icon-list-item %}
 {% icon-list-item icon="6" iconColor="text-white" iconBgColor="bg-bcgov-blue-dark" %}
