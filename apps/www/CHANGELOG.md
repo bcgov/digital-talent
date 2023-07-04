@@ -1,5 +1,11 @@
 # @bcgov-dt/www
 
+## 1.0.3
+
+### Patch Changes
+
+- [#108](https://github.com/bcgov/digital-talent/pull/108) [`d28c4c4`](https://github.com/bcgov/digital-talent/commit/d28c4c4ad3906e66fca2548ae855a572c2ca0ffd) Thanks [@sidmclaughlin](https://github.com/sidmclaughlin)! - Fix og meta tags
+
 ## 1.0.2
 
 ### Patch Changes
