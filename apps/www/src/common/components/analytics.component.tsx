@@ -6,7 +6,7 @@ import { useEffect } from 'react';
 
 export default function Analytics() {
   useEffect(() => {
-    newTracker('rt', 'spm.apps.gov.bc.ca', {
+    newTracker('rt', 'spt.apps.gov.bc.ca', {
       appId: 'Snowplow_standalone_OCIO',
       cookieLifetime: 86500 * 548,
       platform: 'web',
