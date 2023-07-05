@@ -112,7 +112,7 @@ Signed Service Agreement
 {%  call-to-action
     title="Ready to join?"
     description="Submit position details to us before joining the Cross-Ministry Hiring Program."
-    action_text="See our upcoming competitions"
+    action_text="Access our upcoming competitions"
     action_href="/hiring-managers/hiring-options/cross-ministry-hiring/apply"
 /%}
 
@@ -241,6 +241,6 @@ Candidate ranking debrief.
 {%  call-to-action
     title="Ready to join?"
     description="Submit position details to us before joining the Cross-Ministry Hiring Program."
-    action_text="See our upcoming competitions"
+    action_text="Access our upcoming competitions"
     action_href="/hiring-managers/hiring-options/cross-ministry-hiring/apply"
 /%}
