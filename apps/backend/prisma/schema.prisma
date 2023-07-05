@@ -34,3 +34,13 @@ model User {
 
   @@map("user")
 }
+
+model Ministry {
+  id         String    @id @db.Uuid
+  deltek_id  String?
+  name       String?
+  created_at DateTime
+  updated_at DateTime?
+
+  @@map("ministry")
+}
