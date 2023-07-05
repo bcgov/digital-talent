@@ -1,5 +1,13 @@
 # @bcgov-dt/www
 
+## 1.0.4
+
+### Patch Changes
+
+- [#115](https://github.com/bcgov/digital-talent/pull/115) [`3777844`](https://github.com/bcgov/digital-talent/commit/3777844554b1fa6d53da6f8116425340474f94b1) Thanks [@sidmclaughlin](https://github.com/sidmclaughlin)! - Update CTA button from "See our upcoming competitions" to "Access our upcoming competitions"
+
+- [#112](https://github.com/bcgov/digital-talent/pull/112) [`e8ed80f`](https://github.com/bcgov/digital-talent/commit/e8ed80f5d4b490e2147493e79801c6d2ad9ab488) Thanks [@sidmclaughlin](https://github.com/sidmclaughlin)! - Update snowplow collector
+
 ## 1.0.3
 
 ### Patch Changes
