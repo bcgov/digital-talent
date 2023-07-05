@@ -12,16 +12,26 @@ datasource db {
 
 model Classification {
   id                String    @id @db.Uuid
-  name              String
+  name              String?
   description       String?
-  code              String
-  grid              String
+  code              String?
+  grid              String?
   salary_range      Decimal[]
   salary_adjustment Decimal?
   created_at        DateTime
   updated_at        DateTime?
 
   @@map("classification")
+}
+
+model Ministry {
+  id         String    @id @db.Uuid
+  deltek_id  String?
+  name       String?
+  created_at DateTime
+  updated_at DateTime?
+
+  @@map("ministry")
 }
 
 model User {
@@ -33,14 +43,4 @@ model User {
   updated_at DateTime?
 
   @@map("user")
-}
-
-model Ministry {
-  id         String    @id @db.Uuid
-  deltek_id  String?
-  name       String?
-  created_at DateTime
-  updated_at DateTime?
-
-  @@map("ministry")
 }

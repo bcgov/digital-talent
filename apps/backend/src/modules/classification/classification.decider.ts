@@ -40,7 +40,6 @@ export function decide(state: ClassificationState, command: ClassificationComman
 
       return [
         new ClassificationSyncedEvent(data, {
-          ...(state.exists === true && { ...state.data }),
           ...command.metadata,
           created_at: new Date().toISOString(),
         }),

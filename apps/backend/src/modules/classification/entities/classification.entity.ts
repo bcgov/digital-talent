@@ -7,13 +7,13 @@ export class ClassificationEntity {
   @Field((type) => GraphQLUUID)
   id: string;
 
-  name: string;
+  name?: string;
 
   description?: string;
 
-  code: string;
+  code?: string;
 
-  grid: string;
+  grid?: string;
 
   @Field((type) => GraphQLRange)
   salary_range: [number, number];

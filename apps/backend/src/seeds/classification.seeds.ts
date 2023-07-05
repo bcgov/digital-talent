@@ -12,7 +12,7 @@ const syncSeeds: SyncClassificationInput[] = [
   },
   {
     id: '44c4762e-a9ab-404a-bd8a-ba265415fc3b',
-    name: 'Full Stack Developer',
+    name: 'Full Stackddddddd Developer',
     code: 'IS',
     grid: '21',
     salary_range: [67728.87, 77012.22],

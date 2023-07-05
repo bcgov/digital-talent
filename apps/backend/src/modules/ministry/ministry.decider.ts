@@ -40,7 +40,6 @@ export function decide(state: MinistryState, command: MinistryCommand): Ministry
 
       return [
         new MinistrySyncedEvent(data, {
-          ...(state.exists === true && { ...state.data }),
           ...command.metadata,
           created_at: new Date().toISOString(),
         }),
