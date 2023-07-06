@@ -47,9 +47,22 @@ model Province {
   created_at DateTime
   updated_at DateTime?
 
+  regions Region[]
   country Country? @relation(fields: [country_id], references: [id])
 
   @@map("province")
+}
+
+model Region {
+  id          String    @id @db.Uuid
+  province_id String?   @db.Uuid
+  name        String?
+  created_at  DateTime
+  updated_at  DateTime?
+
+  province Province? @relation(fields: [province_id], references: [id])
+
+  @@map("region")
 }
 
 model Ministry {
