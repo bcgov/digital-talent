@@ -1,27 +1,43 @@
 import { ExistsState, InitialState } from '../event-store/types/decider-state.type';
 import { Decider } from '../event-store/utils/create-command-handler.util';
 import { decideUpdateEventData } from '../event-store/utils/decide-update-event-data.util';
+import { SyncCityCommand } from './commands/sync-city/sync-city.command';
 import { SyncCountryCommand } from './commands/sync-country/sync-country.command';
 import { SyncProvinceCommand } from './commands/sync-province/sync-province.command';
 import { SyncRegionCommand } from './commands/sync-region/sync-region.command';
+import { CityEntity } from './entities/city.entity';
 import { CountryEntity } from './entities/country.entity';
 import { ProvinceEntity } from './entities/province.entity';
 import { RegionEntity } from './entities/region.entity';
+import { CitySyncedEvent } from './events/city-synced/city-synced.event';
 import { CountrySyncedEvent } from './events/country-synced/country-synced.event';
 import { ProvinceSyncedEvent } from './events/province-synced/province-synced.event';
 import { RegionSyncedEvent } from './events/region-synced/region-synced.event';
+import { SyncCityInput } from './inputs/sync-city.input';
 import { SyncCountryInput } from './inputs/sync-country.input';
 import { SyncProvinceInput } from './inputs/sync-province.input';
 import { SyncRegionInput } from './inputs/sync-region.input';
 
-export type GeographyState = InitialState | ExistsState<CountryEntity | ProvinceEntity | RegionEntity>;
-export type GeographyCommand = SyncCountryCommand | SyncProvinceCommand | SyncRegionCommand;
-export type GeographyEvent = CountrySyncedEvent | ProvinceSyncedEvent | RegionSyncedEvent;
+export type GeographyState = InitialState | ExistsState<CityEntity | CountryEntity | ProvinceEntity | RegionEntity>;
+export type GeographyCommand = SyncCityCommand | SyncCountryCommand | SyncProvinceCommand | SyncRegionCommand;
+export type GeographyEvent = CitySyncedEvent | CountrySyncedEvent | ProvinceSyncedEvent | RegionSyncedEvent;
 
 export const initialState: GeographyState = { exists: false };
 
 export function evolve(state: GeographyState, event: GeographyEvent): GeographyState {
   switch (event.type) {
+    case 'CitySyncedEvent': {
+      const { data, metadata } = event;
+
+      return {
+        exists: true,
+        data: {
+          ...(state.exists === true && { ...state.data }),
+          ...data,
+          created_at: new Date(state.exists === false ? metadata.created_at : state.data.created_at),
+        },
+      };
+    }
     case 'CountrySyncedEvent': {
       const { data, metadata } = event;
 
@@ -66,6 +82,17 @@ export function evolve(state: GeographyState, event: GeographyEvent): GeographyS
 
 export function decide(state: GeographyState, command: GeographyCommand): GeographyEvent[] {
   switch (command.type) {
+    case 'SyncCityCommand': {
+      const data: SyncCityInput = decideUpdateEventData(command, state);
+      if (data == null) return [];
+
+      return [
+        new CitySyncedEvent(data, {
+          ...command.metadata,
+          created_at: new Date().toISOString(),
+        }),
+      ];
+    }
     case 'SyncCountryCommand': {
       const data: SyncCountryInput = decideUpdateEventData(command, state);
       if (data == null) return [];

@@ -60,9 +60,26 @@ model Region {
   created_at  DateTime
   updated_at  DateTime?
 
+  cities   City[]
   province Province? @relation(fields: [province_id], references: [id])
 
   @@map("region")
+}
+
+model City {
+  id          String    @id @db.Uuid
+  region_id   String?   @db.Uuid
+  deltek_id   String?
+  name        String?
+  postal_code String?
+  lat         Float?
+  lon         Float?
+  created_at  DateTime
+  updated_at  DateTime?
+
+  region Region? @relation(fields: [region_id], references: [id])
+
+  @@map("city")
 }
 
 model Ministry {
