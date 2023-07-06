@@ -5,19 +5,19 @@ import { CommandHandlerResult } from '../../../event-store/types/command-handler
 import { createCommandHandler } from '../../../event-store/utils/create-command-handler.util';
 import { Events } from '../../events';
 import { decider } from '../../geography.decider';
-import { SyncCountryCommand } from './sync-country.command';
+import { SyncProvinceCommand } from './sync-province.command';
 
-@CommandHandler(SyncCountryCommand)
-export class SyncCountryHandler implements ICommandHandler<SyncCountryCommand> {
-  private readonly streamId = (command: SyncCountryCommand) => `country-${command.data.id}`;
+@CommandHandler(SyncProvinceCommand)
+export class SyncProvinceHandler implements ICommandHandler<SyncProvinceCommand> {
+  private readonly streamId = (command: SyncProvinceCommand) => `province-${command.data.id}`;
 
-  private readonly handle: (command: SyncCountryCommand) => Promise<CommandHandlerResult>;
+  private readonly handle: (command: SyncProvinceCommand) => Promise<CommandHandlerResult>;
 
   constructor(private readonly eventBus: EventBus, private readonly eventStore: EventStoreDBClient) {
     this.handle = createCommandHandler(eventStore, this.streamId, decider);
   }
 
-  async execute(command: SyncCountryCommand): Promise<any> {
+  async execute(command: SyncProvinceCommand): Promise<any> {
     const { result, events }: CommandHandlerResult = await this.handle(command);
 
     if (result.success === true) {

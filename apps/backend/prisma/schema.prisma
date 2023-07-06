@@ -24,6 +24,7 @@ model Classification {
   @@map("classification")
 }
 
+// Geography
 model Country {
   id         String    @id @db.Uuid
   deltek_id  String?
@@ -32,7 +33,23 @@ model Country {
   created_at DateTime
   updated_at DateTime?
 
+  provinces Province[]
+
   @@map("country")
+}
+
+model Province {
+  id         String    @id @db.Uuid
+  country_id String?   @db.Uuid
+  deltek_id  String?
+  name       String?
+  code       String?
+  created_at DateTime
+  updated_at DateTime?
+
+  country Country? @relation(fields: [country_id], references: [id])
+
+  @@map("province")
 }
 
 model Ministry {
