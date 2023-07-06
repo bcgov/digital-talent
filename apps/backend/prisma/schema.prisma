@@ -24,6 +24,17 @@ model Classification {
   @@map("classification")
 }
 
+model Country {
+  id         String    @id @db.Uuid
+  deltek_id  String?
+  name       String?
+  code       String?
+  created_at DateTime
+  updated_at DateTime?
+
+  @@map("country")
+}
+
 model Ministry {
   id         String    @id @db.Uuid
   deltek_id  String?

@@ -17,6 +17,7 @@ import { EventStoreModule } from './modules/event-store/event-store.module';
 import { MinistryModule } from './modules/ministry/ministry.module';
 import { UserModule } from './modules/user/user.module';
 import { validateAppConfig } from './utils/validate-app-config.util';
+import { GeographyModule } from './modules/geography/geography.module';
 
 @Module({
   imports: [
@@ -57,6 +58,7 @@ import { validateAppConfig } from './utils/validate-app-config.util';
     ClassificationModule,
     MinistryModule,
     UserModule,
+    GeographyModule,
   ],
   providers: [
     { provide: APP_GUARD, useClass: AuthGuard },
