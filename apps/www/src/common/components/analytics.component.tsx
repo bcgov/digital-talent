@@ -1,7 +1,7 @@
 'use client';
 
 import { enableLinkClickTracking, LinkClickTrackingPlugin } from '@snowplow/browser-plugin-link-click-tracking';
-import { newTracker } from '@snowplow/browser-tracker';
+import { newTracker, trackPageView } from '@snowplow/browser-tracker';
 import { useEffect } from 'react';
 
 export default function Analytics() {
@@ -17,6 +17,7 @@ export default function Analytics() {
     });
 
     enableLinkClickTracking();
+    trackPageView();
   }, []);
 
   return <div />;
