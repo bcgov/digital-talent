@@ -18,6 +18,7 @@ import { MinistryModule } from './modules/ministry/ministry.module';
 import { UserModule } from './modules/user/user.module';
 import { validateAppConfig } from './utils/validate-app-config.util';
 import { GeographyModule } from './modules/geography/geography.module';
+import { SkillModule } from './modules/skill/skill.module';
 
 @Module({
   imports: [
@@ -59,6 +60,7 @@ import { GeographyModule } from './modules/geography/geography.module';
     MinistryModule,
     UserModule,
     GeographyModule,
+    SkillModule,
   ],
   providers: [
     { provide: APP_GUARD, useClass: AuthGuard },
