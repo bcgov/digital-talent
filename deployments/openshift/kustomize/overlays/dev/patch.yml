@@ -1,0 +1,26 @@
+kind: DeploymentConfig
+apiVersion: apps.openshift.io/v1
+metadata:
+  name: www
+spec:
+  replicas: 1
+  selector:
+    name: www
+  triggers:
+    - type: ConfigChange
+    - type: ImageChange
+      imageChangeParams:
+        automatic: true
+        containerNames:
+          - www
+        from:
+          kind: ImageStreamTag
+          name: www:develop-latest
+          namespace: f15899-tools
+---
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+    name: www
+spec:
+  host: dt.apps.silver.devops.gov.bc.ca
