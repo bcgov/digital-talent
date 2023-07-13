@@ -114,7 +114,6 @@ export default function Page() {
           <p>
             Our team creates Eligibility Lists (E-lists) that have pre-qualified candidates. E-lists are the outcome of
             the CMHP. Hiring managers across BC Public Service can get access to our E-lists to save time and resources.
-            Sign up for alerts using the button below.
           </p>
           <p>
             This reduces candidates' time too because they do not need to spend hours applying to similar positions. The
