@@ -35,7 +35,7 @@ function CompetitionCard({ competition }: CompetitionCardProps) {
             Deadline to join:
             <br />
             <span className="font-bold">
-              July 21, 2023
+              July 28, 2023
               {/* todo: for some reason this doesn't render correct date */}
               {/* {dayjs(competition.opportunity_submission_period[1]).format('MMM D, YYYY')} */}
             </span>
