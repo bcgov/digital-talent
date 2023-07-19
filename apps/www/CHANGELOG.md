@@ -1,5 +1,11 @@
 # @bcgov-dt/www
 
+## 1.0.6
+
+### Patch Changes
+
+- [#126](https://github.com/bcgov/digital-talent/pull/126) [`979f5b6`](https://github.com/bcgov/digital-talent/commit/979f5b636edf2f47c3f6424ad7138fb057482fba) Thanks [@sidmclaughlin](https://github.com/sidmclaughlin)! - Update competition end date
+
 ## 1.0.5
 
 ### Patch Changes
