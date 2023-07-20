@@ -1,3 +1,4 @@
+import { BadRequestException } from '@nestjs/common';
 import { ExistsState, InitialState } from '../event-store/types/decider-state.type';
 import { Decider } from '../event-store/utils/create-command-handler.util';
 import { decideUpdateEventData } from '../event-store/utils/decide-update-event-data.util';
@@ -35,6 +36,8 @@ export function evolve(state: ClassificationState, event: ClassificationEvent): 
 export function decide(state: ClassificationState, command: ClassificationCommand): ClassificationEvent[] {
   switch (command.type) {
     case 'CreateGridCommand': {
+      if (state.exists) throw new BadRequestException('Grid already exists');
+
       const data: CreateGridInput = decideUpdateEventData(command, state);
       if (data == null) return [];
 

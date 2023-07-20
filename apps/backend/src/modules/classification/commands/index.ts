@@ -1,3 +1,3 @@
-import { CreateGridCommand } from './create-grid/create-grid.command';
+import { CreateGridHandler } from './create-grid/create-grid.handler';
 
-export const CommandHandlers = [CreateGridCommand];
+export const CommandHandlers = [CreateGridHandler];

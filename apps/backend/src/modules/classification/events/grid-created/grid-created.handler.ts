@@ -1,10 +1,23 @@
 import { EventsHandler, IEventHandler } from '@nestjs/cqrs';
+import { PrismaService } from '../../../prisma/prisma.service';
 import { GridCreatedEvent } from './grid-created.event';
 
 @EventsHandler(GridCreatedEvent)
 export class GridCreatedHandler implements IEventHandler<GridCreatedEvent> {
-  handle(event: GridCreatedEvent) {
-    // eslint-disable-next-line no-console
-    console.log('Event: ', event);
+  constructor(private readonly prisma: PrismaService) {}
+
+  async handle(event: GridCreatedEvent) {
+    const {
+      data: { id, name },
+      metadata,
+    } = event;
+
+    await this.prisma.grid.create({
+      data: {
+        id,
+        name,
+        created_at: metadata.created_at,
+      },
+    });
   }
 }
