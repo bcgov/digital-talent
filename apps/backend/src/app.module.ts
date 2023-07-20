@@ -12,13 +12,9 @@ import { RequestIdMiddleware } from './middleware/request-id.middleware';
 import { AuthModule } from './modules/auth/auth.module';
 import { AuthGuard } from './modules/auth/guards/auth.guard';
 import { RoleGuard } from './modules/auth/guards/role.guard';
-import { ClassificationModule } from './modules/classification/classification.module';
 import { EventStoreModule } from './modules/event-store/event-store.module';
-import { MinistryModule } from './modules/ministry/ministry.module';
 import { UserModule } from './modules/user/user.module';
 import { validateAppConfig } from './utils/validate-app-config.util';
-import { GeographyModule } from './modules/geography/geography.module';
-import { SkillModule } from './modules/skill/skill.module';
 
 @Module({
   imports: [
@@ -56,11 +52,7 @@ import { SkillModule } from './modules/skill/skill.module';
       },
     }),
     AuthModule,
-    ClassificationModule,
-    MinistryModule,
     UserModule,
-    GeographyModule,
-    SkillModule,
   ],
   providers: [
     { provide: APP_GUARD, useClass: AuthGuard },
