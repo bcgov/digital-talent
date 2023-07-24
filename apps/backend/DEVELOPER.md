@@ -13,16 +13,16 @@ Create a Postgres Instance
 **On macOS**: For simplicity, you can use [Postgres.app](https://postgresapp.com/).
 
 **On Linux/Windows**:
+Postgress is run via docker. Create a .env file in the postgres
+directory with the following variables:
 
-Run the following commands:
+POSTGRES_DB=
+POSTGRES_USER=
+POSTGRES_PASSWORD=
 
-```
-docker pull postgres
-```
+To a start Postgres server, run
 
-```
-docker run -itd -e POSTGRES_USER=admin -e POSTGRES_PASSWORD=password -p 5432:5432 -v /data:/var/lib/postgresql/data --name postgresql postgres
-```
+docker run --name backend_postgress -p 5432:5432 --env-file=.env -d my_postgres
 
 ### 2. EventStoreDB Instance
 
@@ -61,7 +61,6 @@ services:
     #   - type: volume
     #     source: eventstore-volume-logs
     #     target: /var/log/eventstore
-
 # Uncomment the following lines if volumes are uncommented above
 # volumes:
 #   eventstore-volume-data:
