@@ -1,0 +1,426 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+enum WorkOption {
+  REMOTE
+  HYBRID
+  ON_PREM
+}
+
+model Location {
+  id          String @id @db.Uuid
+  deltek_id   String
+  name        String
+  postal_code String
+  lat         Float
+  lon         Float
+  created_at DateTime
+  updated_at DateTime?
+
+  applications  ApplicationLocation[]
+  opportunities OpportunityLocation[]
+
+  @@map("location")
+}
+
+// Classification Models
+model Grid {
+  id   String @id @db.Uuid
+  name String
+  created_at DateTime
+  updated_at DateTime?
+  created_at DateTime
+  updated_at DateTime?
+
+  clasifications Classification[]
+  steps          GridStep[]
+
+  @@map("grid")
+}
+
+model GridStep {
+  id                 String  @id @db.Uuid
+  grid_id            String  @db.Uuid
+  name               Int
+  rate_per_year      Decimal
+  rate_per_month     Decimal
+  rate_per_fortnight Decimal
+  rate_per_hour      Decimal
+  created_at DateTime
+  updated_at DateTime?
+
+  grid Grid @relation(fields: [grid_id], references: [id])
+
+  @@map("grid_step")
+}
+
+enum PositionCategory {
+  AO
+  IS
+}
+
+model Position {
+  id          String           @id @db.Uuid
+  category    PositionCategory
+  name        String
+  description String
+  created_at DateTime
+  updated_at DateTime?
+
+  classification Classification[]
+
+  @@map("position")
+}
+
+model Classification {
+  id              String  @id @db.Uuid
+  grid_id         String  @db.Uuid
+  position_id     String  @db.Uuid
+  rate_adjustment Decimal
+  created_at DateTime
+  updated_at DateTime?
+
+  competitions Competition[]
+  grid         Grid          @relation(fields: [grid_id], references: [id])
+  position     Position      @relation(fields: [position_id], references: [id])
+
+  @@map("classification")
+}
+
+model User {
+  id    String   @id @db.Uuid
+  name  String?
+  email String?  @unique
+  roles String[]
+  created_at DateTime
+  updated_at DateTime?
+
+  applications  Application[]
+  competitions  Competition[] // Competition where user is a recruiter
+  opportunities Opportunity[]
+  elist         Elist[]
+  Comment       Comment[]
+  Document      Document[]
+
+  @@map("user")
+}
+
+model Identity {
+  sub               String
+  identity_provider String
+  user_id           String    @db.Uuid
+  created_at        DateTime
+  updated_at        DateTime?
+
+  user User @relation(fields: [user_id], references: [id])
+
+  @@id([sub, identity_provider])
+  @@map("identity")
+}
+
+
+model Ministry {
+  id        String @id @db.Uuid
+  deltek_id String
+  name      String
+  created_at DateTime
+  updated_at DateTime?
+
+  opportunities Opportunity[]
+
+  @@map("ministry")
+}
+
+enum SkillCategory {
+  CLOUD_PLATFORMS
+  COMMUNICATION
+  CONTAINER_PLATFORMS
+  DATABASES
+  DEVELOPMENT_TOOLS
+  FRAMEWORKS_AND_LIBRARIES
+  KNOWLEDGE
+  OPERATING_SYSTEMS
+  PRODUCTIVITY
+  PROGRAMMING_LANGUAGES
+}
+
+model Skill {
+  id          String        @id @db.Uuid
+  category    SkillCategory
+  name        String
+  description String
+  created_at DateTime
+  updated_at DateTime?
+
+  applications  ApplicationSkill[]
+  competitions  CompetitionSkill[]
+  opportunities OpportunitySkill[]
+
+  @@map("skill")
+}
+
+enum CompetitionCategory {
+  CMHP
+  RH
+}
+
+enum CompetitionState {
+  DRAFT
+  PUBLISHED
+  INTAKE_PERIOD
+  APPLICATION_PERIOD
+  ASSESSMENT_PERIOD
+  INTERVIEW_PERIOD
+  OFFER_PERIOD
+  CLOSED
+  CANCELLED
+}
+
+model Competition {
+  id                String               @id @db.Uuid
+  classification_id String               @db.Uuid
+  deltek_id         String?
+  recruiter_id      String               @db.Uuid
+  chefs_config      Json
+  category          CompetitionCategory
+  schedule          CompetitionSchedule?
+  state             CompetitionState
+  created_at DateTime
+  updated_at DateTime?
+
+  opportunities  Opportunity[]
+  skills         CompetitionSkill[]
+  classification Classification     @relation(fields: [classification_id], references: [id])
+  recruiter      User               @relation(fields: [recruiter_id], references: [id])
+  elist          Elist[]
+
+  @@map("competition")
+}
+
+// Store people who are actually on the hiring panel
+// model HiringPanel {
+// id
+// user_id
+// role (HM, SME, Recruiter)
+// }
+
+model Elist {
+  id             String @id @db.Uuid
+  applicant_id   String @db.Uuid
+  competition_id String @db.Uuid
+  rank           Int
+  created_at DateTime
+  updated_at DateTime?
+
+  applicant   User         @relation(fields: [applicant_id], references: [id])
+  competition Competition  @relation(fields: [competition_id], references: [id])
+  ElistOffer  ElistOffer[]
+
+  @@map("competition_eligibility_list")
+}
+
+model ElistOffer {
+  id            String  @id @db.Uuid
+  elistId       String  @db.Uuid
+  opportunityId String  @db.Uuid // Are these opportunities in our system?  Do they come from somewhere external? 
+  is_accepted   Boolean
+  created_at DateTime
+  updated_at DateTime?
+
+  elist       Elist       @relation(fields: [elistId], references: [id])
+  opportunity Opportunity @relation(fields: [opportunityId], references: [id])
+}
+
+model CompetitionSchedule {
+  id             String           @id @db.Uuid
+  competition_id String           @unique @db.Uuid
+  state          CompetitionState
+  start_at       DateTime
+  end_at         DateTime
+  created_at DateTime
+  updated_at DateTime?
+
+  competition Competition @relation(fields: [competition_id], references: [id])
+
+  @@map("competition_schedule")
+}
+
+model CompetitionSkill {
+  competition_id       String  @db.Uuid
+  skill_id             String  @db.Uuid
+  min_years_experience Int
+  is_required          Boolean
+  created_at DateTime
+  updated_at DateTime?
+
+  competition Competition @relation(fields: [competition_id], references: [id])
+  skill       Skill       @relation(fields: [skill_id], references: [id])
+
+  @@id([competition_id, skill_id])
+  @@map("competition_skill")
+}
+
+enum OpportunityInvolvement {
+  NONE
+  FULL
+}
+
+enum OpportunityState {
+  SUBMITTED
+  APPROVED
+  REJECTED
+}
+
+model Opportunity {
+  id                    String                 @id @db.Uuid
+  competition_id        String                 @db.Uuid
+  deltek_id             String // Position #
+  hiring_manager_id     String                 @db.Uuid
+  ministry_id           String                 @db.Uuid
+  state                 OpportunityState
+  involvement           OpportunityInvolvement
+  work_option           WorkOption
+  description           String
+  candidate_description String
+  team_name             String
+  team_description      String
+  work_examples         String
+  created_at DateTime
+  updated_at DateTime?
+
+  skills         OpportunitySkill[]
+  locations      OpportunityLocation[]
+  competition    Competition           @relation(fields: [competition_id], references: [id])
+  hiring_manager User                  @relation(fields: [hiring_manager_id], references: [id])
+  ministry       Ministry              @relation(fields: [ministry_id], references: [id])
+  ElistOffer     ElistOffer[]
+
+  @@map("opportunity")
+}
+
+model OpportunityLocation {
+  location_id    String @db.Uuid
+  opportunity_id String @db.Uuid
+  created_at DateTime
+  updated_at DateTime?
+
+  location    Location    @relation(fields: [location_id], references: [id])
+  opportunity Opportunity @relation(fields: [opportunity_id], references: [id])
+
+  @@id([location_id, opportunity_id])
+}
+
+model OpportunitySkill {
+  opportunity_id String @db.Uuid
+  skill_id       String @db.Uuid
+  created_at DateTime
+  updated_at DateTime?
+
+  opportunity Opportunity @relation(fields: [opportunity_id], references: [id])
+  skill       Skill       @relation(fields: [skill_id], references: [id])
+
+  @@id([opportunity_id, skill_id])
+  @@map("opportunity_skill")
+}
+
+enum WorkEligibility {
+  YES
+  NO
+}
+
+model Application {
+  id           String @id @db.Uuid
+  applicant_id String @db.Uuid
+  created_at DateTime
+  updated_at DateTime?
+
+  json Json
+
+  locations ApplicationLocation[]
+  skills    ApplicationSkill[]
+  applicant User                  @relation(fields: [applicant_id], references: [id])
+
+  @@map("application")
+}
+
+model ApplicationLocation {
+  application_id String @db.Uuid
+  location_id    String @db.Uuid
+  rank           Int
+  created_at DateTime
+  updated_at DateTime?
+
+  application Application @relation(fields: [application_id], references: [id])
+  location    Location    @relation(fields: [location_id], references: [id])
+
+  @@id([application_id, location_id])
+  @@map("application_location")
+}
+
+// model ApplicationOpportunity {}
+
+model ApplicationSkill {
+  application_id   String @db.Uuid
+  skill_id         String @db.Uuid
+  years_experience Int
+  description      String
+  created_at DateTime
+  updated_at DateTime?
+
+  application Application @relation(fields: [application_id], references: [id])
+  skill       Skill       @relation(fields: [skill_id], references: [id])
+
+  @@id([application_id, skill_id])
+  @@map("application_skill")
+}
+
+// model AppointmentSchedule { // Event Type
+
+//   id String @id @db.Uuid
+//   calendly_id String
+//   sots
+
+//   @@map("appointment_schedule")
+// }
+
+// model Appointment { // Scheduled Events
+//   id String @id @db.Uuid
+//   calendly_id String // 
+
+//   @@map("appointment")
+// }
+
+// model Document {
+//   record_id   String
+//   record_type String
+//   object_id String @db.Uuid
+//   author_id String @db.Uuid
+//   title String // Original filename
+//   url String
+
+//   author   User   @relation(fields: [author_id], references: [id])
+
+//   @@id([record_id, record_type, object_id])
+//   @@map("document")
+// }
+
+model Comment {
+  comment_id String @db.Uuid
+  record_id   String @db.Uuid
+  record_type String
+  user_id     String @db.Uuid
+  text        String
+  created_at DateTime
+  updated_at DateTime?
+
+  user User @relation(fields: [user_id], references: [id])
+
+  @@id([record_id, record_type])
+  @@map("comment")
+}

@@ -4,13 +4,13 @@ import { Inject, Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { CommandBus } from '@nestjs/cqrs';
 import { Cache } from 'cache-manager';
-import { isUUID } from 'class-validator';
 import { JwtPayload } from 'jsonwebtoken';
 import { catchError, firstValueFrom, map } from 'rxjs';
+import { v4 as uuidv4 } from 'uuid';
 import { AppConfigDto } from '../../dtos/app-config.dto';
-import { guidToUuid } from '../../utils/guid-to-uuid.util';
-import { SyncUserCommand } from '../user/commands/sync-user/sync-user.command';
+import { PrismaService } from '../prisma/prisma.service';
 import { CACHE_USER_PREFIX, KEYCLOAK_PUBLIC_KEY } from './auth.constants';
+import { SyncAccountCommand } from './commands/sync-account/sync-account.command';
 
 @Injectable()
 export class AuthService {
@@ -19,25 +19,12 @@ export class AuthService {
     private readonly commandBus: CommandBus,
     private readonly configService: ConfigService<AppConfigDto, true>,
     private readonly httpService: HttpService,
+    private readonly prisma: PrismaService,
   ) {}
 
   private async getKeycloakPublicKeyFromCache(): Promise<string | undefined> {
     const pk = await this.cacheManager.get<string | undefined>(KEYCLOAK_PUBLIC_KEY);
     return pk;
-  }
-
-  private getUserIdFromSub(sub: string) {
-    let id: string | undefined;
-
-    if (isUUID(sub, 4)) {
-      // By default, keycloak uses UUIDs as values for `sub`
-      id = sub;
-    } else if (sub.indexOf('@idir') > -1) {
-      // IDIR ids are of the format <GUID>@idir
-      id = guidToUuid(sub.replace('@idir', ''));
-    }
-
-    return id;
   }
 
   async getKeycloakPublicKey() {
@@ -68,16 +55,35 @@ export class AuthService {
   }
 
   async getUserFromPayload(data: JwtPayload) {
-    const { sub, name, email, client_roles, exp } = data;
-    const id = this.getUserIdFromSub(sub);
+    const { sub, identity_provider, name, email, client_roles, exp } = data;
 
-    const CACHE_KEY = `${CACHE_USER_PREFIX}${id}`;
+    // const id = this.getUserIdFromSub(sub);
+
+    const CACHE_KEY = `${CACHE_USER_PREFIX}${sub}-${identity_provider}`;
     let match = await this.cacheManager.get<Express.User>(CACHE_KEY);
 
     if (!match) {
+      // Store User, Identity
+      const identity = await this.prisma.identity.findUnique({
+        where: { sub_identity_provider: { identity_provider, sub } },
+      });
+
+      let id = '';
+      if (identity) {
+        id = identity.user_id;
+      } else {
+        const existingUser = await this.prisma.user.findUnique({
+          where: { email },
+        });
+
+        id = existingUser ? existingUser.id : uuidv4();
+      }
+
       const user: Express.User = { id, name, email, roles: (client_roles as string[]).sort() };
 
-      await this.commandBus.execute(new SyncUserCommand(user, { created_by: user.id }));
+      await this.commandBus.execute(
+        new SyncAccountCommand({ ...user, sub, identity_provider }, { created_by: user.id }),
+      );
       await this.cacheManager.set(CACHE_KEY, user, (exp ?? 0) * 1000 - Date.now());
       match = await this.cacheManager.get<Express.User>(CACHE_KEY);
     }
