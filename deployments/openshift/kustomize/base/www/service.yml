@@ -1,0 +1,11 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: www
+spec:
+  selector:
+    name: www
+  ports:
+    - name: http
+      port: 3000
+      targetPort: 3000
