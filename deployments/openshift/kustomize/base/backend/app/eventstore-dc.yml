@@ -1,0 +1,60 @@
+apiVersion: apps.openshift.io/v1
+kind: DeploymentConfig
+metadata:
+  name: hms-eventstore
+spec:
+  replicas: 1
+  selector:
+    app: hms-eventstore
+  strategy:
+    type: Rolling
+  template:
+    metadata:
+      labels:
+        app: hms-eventstore
+    spec:
+      containers:
+        - name: hms-eventstore
+          image: hms-eventstore:latest
+          ports:
+            - containerPort: 1113
+            - containerPort: 2113
+          env:
+            - name: EVENTSTORE_CLUSTER_SIZE
+              value: '1'
+            - name: EVENTSTORE_RUN_PROJECTIONS
+              value: 'All'
+            - name: EVENTSTORE_START_STANDARD_PROJECTIONS
+              value: 'true'
+            - name: EVENTSTORE_EXT_TCP_PORT
+              value: '1113'
+            - name: EVENTSTORE_HTTP_PORT
+              value: '2113'
+            - name: EVENTSTORE_INSECURE
+              value: 'true'
+            - name: EVENTSTORE_ENABLE_EXTERNAL_TCP
+              value: 'true'
+            - name: EVENTSTORE_ENABLE_ATOM_PUB_OVER_HTTP
+              value: 'true'
+          volumeMounts:
+            - name: eventstore-volume-data
+              mountPath: /var/lib/eventstore
+            - name: eventstore-volume-logs
+              mountPath: /var/log/eventstore
+      volumes:
+        - name: eventstore-volume-data
+          persistentVolumeClaim:
+            claimName: eventstore-volume-data
+        - name: eventstore-volume-logs
+          persistentVolumeClaim:
+            claimName: eventstore-volume-logs
+  triggers:
+    - type: ConfigChange
+    - imageChangeParams:
+        automatic: true
+        containerNames:
+          - hms-eventstore
+        from:
+          kind: ImageStreamTag
+          name: hms-eventstore:latest
+      type: ImageChange
