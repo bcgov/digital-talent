@@ -1,16 +1,16 @@
 ---
 title: The Cross-Ministry Hiring Program (CMHP)
-description: British Columbia, public sector jobs, BC Government, hiring services, CMH process
+description: British Columbia, public sector jobs, BC Public Service, hiring services, CMH process
 navigation: true
 ---
 
 # Overview {% #Overview %}
 
-The Cross-Ministry Hiring Program uses one job profile to fill many positions across BC Government. The outcome of the CMHP is an [Eligibility List (E-list)](hiring-managers/hiring-options) of pre-qualified candidates. We match hiring managers and candidates based on candidate preferences.
+The Cross-Ministry Hiring Program uses one job profile to fill many positions across BC Public Service. The outcome of the CMHP is an [Eligibility List (E-list)](hiring-managers/hiring-options) of pre-qualified candidates. We match hiring managers and candidates based on candidate preferences.
 
 Our team gives administrative support. With dedicated Public Service Agency (PSA) resources, we have shorter wait times. For hiring managers, they get candidates quicker without spending hours of labour. For candidates, they do not need to apply to similar position, and they save time.
 
-Candidates' experience with BC Govt hiring becomes better.
+Candidates' experience with BC Public Service hiring becomes better.
 
 {% div className="bg-bcgov-gold-extralight my-4 p-4" %}
 
@@ -43,7 +43,7 @@ For Candidates
 
 {% div %}
 {% div className="font-bold text-sm" %}
-For BC Govt
+For BC Public Service
 {% /div %}
 
 - Leverage pre-qualified candidates through E-List
@@ -81,7 +81,7 @@ Matching recipe:
 
 # Requirements {% #Requirements %}
 
-Before we start the process, hiring managers must verify they meet CMHP requirements. The requirements help us attract and retain top candidates, and meet BC Government’s policies. We can only move faster through the process when we have what we need from hiring managers:
+Before we start the process, hiring managers must verify they meet CMHP requirements. The requirements help us attract and retain top candidates, and meet BC Public Service’s policies. We can only move faster through the process when we have what we need from hiring managers:
 
 {% icon-list %}
 
@@ -112,7 +112,7 @@ Signed Service Agreement
 {%  call-to-action
     title="Ready to join?"
     description="Submit position details to us before joining the Cross-Ministry Hiring Program."
-    action_text="See our upcoming competitions"
+    action_text="Access our upcoming competitions"
     action_href="/hiring-managers/hiring-options/cross-ministry-hiring/apply"
 /%}
 
@@ -124,7 +124,7 @@ Signed Service Agreement
 
 Join an upcoming competition.
 
-- Explore our [upcoming competitions](https://dt.apps.silver.devops.gov.bc.ca/hiring-managers/cross-ministry-hiring) to find a fit.
+- Explore our [upcoming competitions](/hiring-managers/hiring-options/cross-ministry-hiring/apply) to find a fit.
 - Found one or more? Fill out our Hiring Intake Form to confirm our requirements and give us details about your position(s).
 
 {% /icon-list-item %}
@@ -150,7 +150,7 @@ Candidates apply.
 Assess and interview candidates.
 
 - We use a meritorious process to choose candidates by screening, assessing, interviewing and checking references.
-- We outlined the [time commitment for hiring managers](/learn/hiring-managers/cross-ministry-hiring/#hm-time-commitment-minimal-involvement) below.
+- We outlined the [time commitment for hiring managers](/hiring-managers/hiring-options/cross-ministry-hiring/#hm-time-commitment-minimal-involvement) below.
 
 {% /icon-list-item %}
 {% icon-list-item icon="5" iconColor="text-white" iconBgColor="bg-bcgov-blue-dark" %}
@@ -159,7 +159,7 @@ Match candidates with job opportunities.
 
 - We create an Eligibility List and rank candidates.
 - Ranking is based on competition scores and years of service.
-- Learn more about the [candidate-focused matching process](learn/hiring-managers/cross-ministry-hiring#matching-candidates-and-opportunities).
+- Learn more about the [candidate-focused matching process](/hiring-managers/hiring-options/cross-ministry-hiring#matching-candidates-and-opportunities).
 
 {% /icon-list-item %}
 {% icon-list-item icon="6" iconColor="text-white" iconBgColor="bg-bcgov-blue-dark" %}
@@ -241,6 +241,6 @@ Candidate ranking debrief.
 {%  call-to-action
     title="Ready to join?"
     description="Submit position details to us before joining the Cross-Ministry Hiring Program."
-    action_text="See our upcoming competitions"
+    action_text="Access our upcoming competitions"
     action_href="/hiring-managers/hiring-options/cross-ministry-hiring/apply"
 /%}

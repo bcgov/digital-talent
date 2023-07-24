@@ -1,0 +1,32 @@
+name: Auto Sync Develop
+
+on:
+  push:
+    branches:
+      - stage
+
+concurrency: ${{ github.workflow }}-${{ github.ref }}
+
+jobs:
+  merge:
+    name: Merge to Develop
+    # The job runs only if we're not merging from develop branch.
+    runs-on: ubuntu-latest
+    permissions:
+      # Give the default GITHUB_TOKEN write permission to commit and push the
+      # added or changed files to the repository.
+      contents: write
+    steps:
+      - uses: actions/checkout@v3
+      - name: Check if push is from develop branch
+        id: check
+        run: |
+          git fetch origin develop:develop
+          echo "FROM_DEVELOP=$(git merge-base --is-ancestor ${{ github.event.before }} develop && echo 'true' || echo 'false')" >> $GITHUB_OUTPUT
+      - name: Merge staging -> develop
+        if: ${{ steps.check.outputs.FROM_DEVELOP == 'false' }}
+        uses: devmasx/merge-branch@master
+        with:
+          type: now
+          target_branch: develop
+          github_token: ${{ secrets.GITHUB_TOKEN }}

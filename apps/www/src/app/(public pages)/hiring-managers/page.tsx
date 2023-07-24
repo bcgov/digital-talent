@@ -11,7 +11,8 @@ import Hero from '../../../common/components/ui/hero/hero.component';
 import { wrapTitle } from '../../../common/utils/wrap-title.util';
 
 export const metadata: Metadata = {
-  title: wrapTitle('Hiring Managers'),
+  title: wrapTitle('Digital Talent'),
+  description: 'Learn and join specialized programs to hire digital talent in the BC Public Service',
 };
 
 export default function Page() {
@@ -20,7 +21,7 @@ export default function Page() {
       {/* Hero */}
       <Hero
         description="Our team builds Agile teams with a modernized Digital Talent hiring service: the Cross-Ministry Hiring Program (CMHP)."
-        title="Digital Talent at BC Govt"
+        title="Digital Talent in the BC Public Service"
         variant="bc-gov"
       />
       <div className="flex flex-col">

@@ -2,7 +2,7 @@ name: Build Docker Images
 
 on:
   push:
-    branches: [main, develop]
+    branches: [main, stage, develop]
 
 jobs:
   metadata:
@@ -24,6 +24,9 @@ jobs:
           filters: |
             www:
               - 'apps/www/**'
+              exclude:
+              - 'apps/www/CHANGELOG.md'
+              - 'apps/www/package.json'
       - name: Get Short SHA
         id: get-short-sha
         run: echo "sha=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
@@ -33,7 +36,7 @@ jobs:
     if: ${{ needs.metadata.outputs.changed-apps != '[]' && needs.metadata.outputs.changed-apps != '' }}
     runs-on: ubuntu-20.04
     environment:
-      name: ${{ github.ref_name == 'main' && 'prod' || 'dev' }}
+      name: ${{ github.ref_name == 'main' && 'prod' || github.ref_name == 'stage' && 'test' || 'dev' }}
     strategy:
       matrix:
         app: ${{ fromJSON(needs.metadata.outputs.changed-apps) }}

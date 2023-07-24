@@ -1,5 +1,46 @@
 # @bcgov-dt/www
 
+## 1.0.6
+
+### Patch Changes
+
+- [#126](https://github.com/bcgov/digital-talent/pull/126) [`979f5b6`](https://github.com/bcgov/digital-talent/commit/979f5b636edf2f47c3f6424ad7138fb057482fba) Thanks [@sidmclaughlin](https://github.com/sidmclaughlin)! - Update competition end date
+
+## 1.0.5
+
+### Patch Changes
+
+- [#121](https://github.com/bcgov/digital-talent/pull/121) [`b5906ce`](https://github.com/bcgov/digital-talent/commit/b5906ce5f0b06128fdb819698a8a2bb96157f053) Thanks [@sidmclaughlin](https://github.com/sidmclaughlin)! - Removed statement about using a button which no longer exists.
+
+- [#118](https://github.com/bcgov/digital-talent/pull/118) [`057cc32`](https://github.com/bcgov/digital-talent/commit/057cc3222906ff7b708b2507b5984ca14fdac144) Thanks [@sidmclaughlin](https://github.com/sidmclaughlin)! - Add page tracking to analytics
+
+## 1.0.4
+
+### Patch Changes
+
+- [#115](https://github.com/bcgov/digital-talent/pull/115) [`3777844`](https://github.com/bcgov/digital-talent/commit/3777844554b1fa6d53da6f8116425340474f94b1) Thanks [@sidmclaughlin](https://github.com/sidmclaughlin)! - Update CTA button from "See our upcoming competitions" to "Access our upcoming competitions"
+
+- [#112](https://github.com/bcgov/digital-talent/pull/112) [`e8ed80f`](https://github.com/bcgov/digital-talent/commit/e8ed80f5d4b490e2147493e79801c6d2ad9ab488) Thanks [@sidmclaughlin](https://github.com/sidmclaughlin)! - Update snowplow collector
+
+## 1.0.3
+
+### Patch Changes
+
+- [#108](https://github.com/bcgov/digital-talent/pull/108) [`d28c4c4`](https://github.com/bcgov/digital-talent/commit/d28c4c4ad3906e66fca2548ae855a572c2ca0ffd) Thanks [@sidmclaughlin](https://github.com/sidmclaughlin)! - Fix og meta tags
+
+## 1.0.2
+
+### Patch Changes
+
+- [#100](https://github.com/bcgov/digital-talent/pull/100) [`16427ea`](https://github.com/bcgov/digital-talent/commit/16427ea5baa541f53f87eb4fc84ac5140f56732e) Thanks [@sidmclaughlin](https://github.com/sidmclaughlin)! - Add opengraph meta tags.
+  Refactor BC Govt -> BC Public Service
+
+## 1.0.1
+
+### Patch Changes
+
+- [#97](https://github.com/bcgov/digital-talent/pull/97) [`98f876f`](https://github.com/bcgov/digital-talent/commit/98f876f35c5a9568299080c04576cf5be91548a1) Thanks [@sidmclaughlin](https://github.com/sidmclaughlin)! - Implement fixes to issues raised by PageSpeed Insights.
+
 ## 1.0.0
 
 ### Major Changes
