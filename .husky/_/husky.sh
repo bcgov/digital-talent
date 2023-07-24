@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env sh
 if [ -z "$husky_skip_init" ]; then
   debug () {
     if [ "$HUSKY_DEBUG" = "1" ]; then
@@ -21,7 +21,7 @@ if [ -z "$husky_skip_init" ]; then
 
   readonly husky_skip_init=1
   export husky_skip_init
-  bash -e "$0" "$@"
+  sh -e "$0" "$@"
   exitCode="$?"
 
   if [ $exitCode != 0 ]; then
