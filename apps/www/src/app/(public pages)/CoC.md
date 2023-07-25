@@ -23,7 +23,7 @@ Social locating helps us to know where unconscious bias plays a role, and where 
 
 One of the common tools to social locate is Sylvia Duckworth’s Wheel of Power/Privilege. The version below comes from Canadian Institutes of Health Research’s  “Meet the Methods series: Quantitative intersectional study design and primary data collection”:
 
-<h2>Reconciliation</h2>
+## Reconciliation
 
 Reconciliation means settlers confronting the past and current harms against Indigenous Peoples. Then, building a future based on Indigenous rights, respect, and partnership. This looks like re-writing law, policies and processes to remove systemic racism. 
 
@@ -31,9 +31,9 @@ The Declaration on the Rights of Indigenous Peoples Act (Declaration Act) gives 
 
 The Ministry of Indigenous Relations and Reconciliation (MIRR) leads provincial actions on behalf of BC Gov. Some of the featured topics MIRR has are: 
 
-•	Economic Development
-•	Consulting First Nations
-•	Minister's Advisory Council on Indigenous Women (MACIW) 
+-	Economic Development
+-	Consulting First Nations
+-	Minister's Advisory Council on Indigenous Women (MACIW) 
 
 Truth and Reconciliation is important because it creates a future without systemic racism. 
 
@@ -52,4 +52,30 @@ Colonization is complex. Intersectional analysis transforms a colonial mindset. 
 
 ![7 IGBA+ Toolkit Guiding Principles](7%20IGBA%20Toolkit%20Guiding%20Principles.png)
 
-All toolkits are effective after socially locating. Doing so takes BC Gov one step closer to decolonization. 
+Though the MACIW offered settlers the Guiding Principles, only Indigenous Peoples can use IGBA+ authentically. This happens because IGBA+ needs Indigeneity for full understanding.
+
+All toolkits based on social equity are effective after socially locating. Doing so takes BC Gov one step closer to decolonization. 
+
+## Accessibility Directorate 
+
+Within the Ministry of Social Development and Poverty Reduction is the Accessibility Directorate. The directorate works to dismantle systemic barriers that People with Disabilities go through daily.
+
+After BC Gov passed the Accessible British Columbia Act, the directorate released B.C.’s Accessibility Plan for 2023/23 to 2024/25. It is often referred to as AccessibleBC. The plan outlines 5 priorities: 
+
+- Creating a culture of accessibility and inclusion
+- Information and communications
+- Buildings, infrastructure and public spaces
+- Employment in the B.C. Public Service
+- Delivery of goods and services 
+
+Each priority has actions showing the way forward. When drafting the plan and the Act, the directorate included principles from the United Nations Conventions on the Rights of Persons with Disabilities.
+
+The plan declares area leads from across BC Gov for each action. The directorate then publishes a report of outcomes. This holds each ministry accountable to sustainable change. 
+
+To know more about service barriers, the directorate launched a public feedback mechanism. The form collects feedback of affected People with Disabilities and/or observers. There are other ways to submit the form if online is not possible.
+
+There are many ways to understand what an accessible society looks like. Some helpful resources are: 
+
+- National AccessAbility Week
+- W3 Web Accessibility Initiative
+- Global Accessibility Awareness Day 
