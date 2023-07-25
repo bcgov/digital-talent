@@ -19,4 +19,37 @@ Our process of intersectional analysis starts with socially locating ourselves. 
 
 Social locating helps us to know where unconscious bias plays a role, and where and how we can stop the bias. By doing this analysis, we ensure our services benefit all B.C. residents. 
 
+![Wheel of power and privilege](https://github.com/bcgov/digital-talent/blob/develop/apps/www/src/app/(public%20pages)/ebf281ff-a3b2-4a59-9771-47b16f828dbb.jpg)
+
 One of the common tools to social locate is Sylvia Duckworth’s Wheel of Power/Privilege. The version below comes from Canadian Institutes of Health Research’s  “Meet the Methods series: Quantitative intersectional study design and primary data collection”:
+
+<h2>Reconciliation</h2>
+
+Reconciliation means settlers confronting the past and current harms against Indigenous Peoples. Then, building a future based on Indigenous rights, respect, and partnership. This looks like re-writing law, policies and processes to remove systemic racism. 
+
+The Declaration on the Rights of Indigenous Peoples Act (Declaration Act) gives BC Govt guidance. The Act sets the framework for Reconciliation between BC Govt and Indigenous Peoples. 
+
+The Ministry of Indigenous Relations and Reconciliation (MIRR) leads provincial actions on behalf of BC Gov. Some of the featured topics MIRR has are: 
+
+•	Economic Development
+•	Consulting First Nations
+•	Minister's Advisory Council on Indigenous Women (MACIW) 
+
+Truth and Reconciliation is important because it creates a future without systemic racism. 
+
+Truth always comes first.
+
+Before Canada became a nation, Indigenous communities were stewards of land and water. As stewards, they had (and continue to have) a strong relationship with nature.
+
+When settlers came to Turtle Island, they took northern Indigenous lands. Settlers renamed them Canada. This outcome was possible because settlers strategized to control Indigenous Peoples. Some forms of control were land reservations, residential schools, and the Indian Act.
+All ways strived to remove Indigenous cultures and knowledge. The violence lasted centuries. The stewards were harmed, and so was their ability to keep a healthy ecosystem. Without them, settlers abused natural resources for profit. 
+
+This is colonization. Indigenous Peoples always resisted colonization. 
+
+In 2019, The National Centre of Truth and Reconciliation issued the 231 Calls to Action. The Calls to Action offer comprehensive solutions for past harms and most are government focused. The report became the core of Reconciliation. BC Govt responds to the Calls to Action, guided by the Declaration Act. 
+
+Colonization is complex. Intersectional analysis transforms a colonial mindset. One way to change is using Indigenous Gender Based Analysis Plus (IGBA+) Toolkit. It offers us the 7 IGBA+ Toolkit Guiding Principles:
+
+![7 IGBA+ Toolkit Guiding Principles](7%20IGBA%20Toolkit%20Guiding%20Principles.png)
+
+All toolkits are effective after socially locating. Doing so takes BC Gov one step closer to decolonization. 
