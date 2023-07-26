@@ -9,10 +9,18 @@ import { CreateCompetitionScheduleInput } from './inputs/create-competition-sche
 import { UpdateCompetitionScheduleCommand } from './commands/update-competition-schedule/update-competition-schedule.command';
 import { CompetitionScheduleUpdatedEvent } from './events/competition-schedule-updated/competition-schedule-updated.event';
 import { UpdateCompetitionScheduleInput } from './inputs/update-competition-schedule.input';
+import { DeleteCompetitionScheduleCommand } from './commands/delete-competition-schedule/delete-competition-schedule.command';
+import { CompetitionScheduleDeletedEvent } from './events/competition-schedule-deleted/competition-schedule-deleted.event';
 
 export type CompetitionScheduleState = InitialState | ExistsState<CompetitionScheduleEntity>;
-export type CompetitionScheduleCommand = CreateCompetitionScheduleCommand | UpdateCompetitionScheduleCommand;
-export type CompetitionScheduleEvent = CompetitionScheduleCreatedEvent | CompetitionScheduleUpdatedEvent;
+export type CompetitionScheduleCommand =
+  | CreateCompetitionScheduleCommand
+  | UpdateCompetitionScheduleCommand
+  | DeleteCompetitionScheduleCommand;
+export type CompetitionScheduleEvent =
+  | CompetitionScheduleCreatedEvent
+  | CompetitionScheduleUpdatedEvent
+  | CompetitionScheduleDeletedEvent;
 
 export const initialState: CompetitionScheduleState = { exists: false };
 
@@ -39,6 +47,17 @@ export function evolve(state: CompetitionScheduleState, event: CompetitionSchedu
           ...(state.exists === true && { ...state.data }),
           ...data,
           updated_at: new Date(metadata.updated_at as string),
+        },
+      };
+    }
+    case 'CompetitionScheduleDeletedEvent': {
+      const { metadata } = event;
+
+      return {
+        exists: true,
+        data: {
+          ...(state.exists === true && { ...state.data }),
+          deleted_at: new Date(metadata.created_at as string),
         },
       };
     }
@@ -75,6 +94,22 @@ export function decide(
           ...command.metadata,
           updated_at: new Date().toISOString(),
         }),
+      ];
+    }
+    case 'DeleteCompetitionScheduleCommand': {
+      if (!state.exists) throw new BadRequestException('Competition Schedule does not exist');
+
+      const data: CreateCompetitionScheduleInput = decideUpdateEventData(command, state);
+
+      if (data == null) return [];
+      return [
+        new CompetitionScheduleDeletedEvent(
+          { ...data, deleted_at: command.data.deleted_at },
+          {
+            ...command.metadata,
+            deleted_at: command.data.deleted_at,
+          },
+        ),
       ];
     }
     default: {

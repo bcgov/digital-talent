@@ -8,6 +8,7 @@ import { CompetitionScheduleEntity } from './entities/competition-schedule.entit
 import { CreateCompetitionScheduleInput } from './inputs/create-competition-schedule.input';
 import { UpdateCompetitionScheduleInput } from './inputs/update-competition-schedule.input';
 import { PrismaService } from '../prisma/prisma.service';
+import { DeleteCompetitionScheduleCommand } from './commands/delete-competition-schedule/delete-competition-schedule.command';
 
 @Resolver((of) => CompetitionScheduleEntity)
 export class CompetitionScheduleResolver {
@@ -30,6 +31,17 @@ export class CompetitionScheduleResolver {
     @Args({ name: 'data', type: () => UpdateCompetitionScheduleInput }) data: UpdateCompetitionScheduleInput,
   ) {
     const command = new UpdateCompetitionScheduleCommand(data, { created_by: userId });
+    await this.commandBus.execute(command);
+
+    return command.data.id;
+  }
+
+  @Mutation((returns) => GraphQLString)
+  async deleteCompetitionSchedule(
+    @CurrentUser() { id: userId }: Express.User,
+    @Args({ name: 'id', type: () => String }) id: string,
+  ) {
+    const command = new DeleteCompetitionScheduleCommand({ id }, { created_by: userId });
     await this.commandBus.execute(command);
 
     return command.data.id;

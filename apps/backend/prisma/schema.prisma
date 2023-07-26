@@ -53,6 +53,7 @@ model CompetitionSchedule {
   end_at         DateTime
   created_at DateTime
   updated_at DateTime?
+  deleted_at DateTime?
 
   //competition Competition @relation(fields: [competition_id], references: [id])
 
