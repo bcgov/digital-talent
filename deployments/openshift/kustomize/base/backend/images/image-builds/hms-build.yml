@@ -1,0 +1,43 @@
+apiVersion: build.openshift.io/v1
+kind: BuildConfig
+metadata:
+  name: hms-backend
+  namespace: f15899-tools
+spec:
+  output:
+    to:
+      kind: ImageStreamTag
+      name: 'hms-backend:latest'
+  source:
+    type: Git
+    git:
+      ref: deploy-backend
+      uri: https://github.com/bcgov/digital-talent.git
+    contextDir: apps/backend
+    dockerfile: |
+      # Use the official Node.js 18 image.
+      FROM node:18.17.0
+
+      # Create and change to the app directory.
+      WORKDIR /usr/src/app
+
+      # Copy application dependency manifests to the container image.
+      COPY package*.json ./
+
+      # Install dependencies.
+      RUN npm install
+
+      # Copy local code to the container image.
+      COPY . .
+
+      # Copy the start.sh script to the Docker image.
+      COPY start.sh ./
+      RUN chmod +x ./start.sh
+
+      # Expose port 4000
+      EXPOSE 4000
+
+      # Start the application
+      CMD ["./start.sh"]
+  strategy:
+    type: Docker

@@ -24,6 +24,8 @@ jobs:
           filters: |
             www:
               - 'apps/www/**'
+            backend-hms:
+              - 'apps/backend/**'
       - name: Get Short SHA
         id: get-short-sha
         run: echo "sha=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT

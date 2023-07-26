@@ -1,0 +1,9 @@
+
+kind: ImageStream
+apiVersion: image.openshift.io/v1
+metadata:
+  name: hms-backend-eventstore
+  namespace: f15899-tools
+spec:
+  lookupPolicy:
+    local: true

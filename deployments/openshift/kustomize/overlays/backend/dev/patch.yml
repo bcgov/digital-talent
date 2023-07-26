@@ -1,0 +1,26 @@
+kind: DeploymentConfig
+apiVersion: apps.openshift.io/v1
+metadata:
+  name: backend
+spec:
+  replicas: 1
+  selector:
+    name: backend
+  triggers:
+    - type: ConfigChange
+    - type: ImageChange
+      imageChangeParams:
+        automatic: true
+        containerNames:
+          - backend
+        from:
+          kind: ImageStreamTag
+          name: backend:develop-latest
+          namespace: f15899-tools
+---
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+    name: backend
+spec:
+  host: dt-hms-backend.apps.silver.devops.gov.bc.ca

@@ -1,0 +1,33 @@
+apiVersion: apps.openshift.io/v1
+kind: DeploymentConfig
+metadata:
+  name: nestjs-app
+spec:
+  strategy:
+    type: Rolling
+  triggers:
+      - type: ConfigChange
+      - imageChangeParams:
+          automatic: true
+          containerNames:
+            - hms-backend
+          from:
+            kind: ImageStreamTag
+            name: hms-backend:latest
+            namespace: f15899-tools
+        type: ImageChange
+  replicas: 1
+  selector:
+    app: nestjs-app
+  template:
+    metadata:
+      labels:
+        app: nestjs-app
+    spec:
+      containers:
+      - name: nestjs-app
+        image: nestjs-app:latest
+        ports:
+        - containerPort: 3000
+          protocol: TCP
+

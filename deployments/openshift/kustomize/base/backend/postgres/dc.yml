@@ -1,0 +1,45 @@
+apiVersion: apps.openshift.io/v1
+kind: DeploymentConfig
+metadata:
+  name: hms-backend-postgres
+spec:
+  replicas: 1
+  selector:
+    app: hms-backend-postgres
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: hms-backend-postgres
+    spec:
+      containers:
+      - env:
+        - name: hms-backend-postgresQL_USER
+          valueFrom:
+            secretKeyRef:
+              name: hms-backend-postgres
+              key: database-user
+        - name: hms-backend-postgresQL_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: hms-backend-postgres
+              key: database-password
+        - name: hms-backend-postgresQL_DATABASE
+          valueFrom:
+            secretKeyRef:
+              name: hms-backend-postgres
+              key: database-name
+        image: 'registry.access.redhat.com/rhscl/postgresql-10-rhel7:latest'
+        name: hms-backend-postgres
+        ports:
+        - containerPort: 5432
+        volumeMounts:
+        - mountPath: /var/lib/pgsql/data
+          name: hms-backend-postgres-data
+      volumes:
+      - name: hms-backend-postgres-data
+        persistentVolumeClaim:
+          claimName: hms-backend-postgres-data
+  triggers:
+  - type: ConfigChange

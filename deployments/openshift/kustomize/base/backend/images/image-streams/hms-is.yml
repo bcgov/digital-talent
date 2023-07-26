@@ -1,0 +1,34 @@
+
+kind: ImageStream
+apiVersion: image.openshift.io/v1
+metadata:
+  name: hms-backend
+  namespace: f15899-tools
+spec:
+  lookupPolicy:
+    local: true
+  # tags:
+  #   - name: develop-latest
+  #     from:
+  #       kind: DockerImage
+  #       name: artifacts.developer.gov.bc.ca/tf15-images/hms-backend:develop-latest
+  #     importPolicy:
+  #       scheduled: true
+  #     referencePolicy:
+  #       type: Source
+  #   - name: test
+  #     from:
+  #       kind: DockerImage
+  #       name: artifacts.developer.gov.bc.ca/tf15-images/hms-backend:latest
+  #     importPolicy:
+  #       scheduled: true
+  #     referencePolicy:
+  #       type: Source
+  #   - name: latest
+  #     from:
+  #       kind: DockerImage
+  #       name: artifacts.developer.gov.bc.ca/tf15-images/hms-backend:latest
+  #     importPolicy:
+  #       scheduled: true
+  #     referencePolicy:
+  #       type: Source
