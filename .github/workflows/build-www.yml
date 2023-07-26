@@ -24,9 +24,6 @@ jobs:
           filters: |
             www:
               - 'apps/www/**'
-              exclude:
-              - 'apps/www/CHANGELOG.md'
-              - 'apps/www/package.json'
       - name: Get Short SHA
         id: get-short-sha
         run: echo "sha=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
