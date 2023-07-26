@@ -14,27 +14,15 @@ registerEnumType(CompetitionState, {
 
 @InputType()
 export class CreateCompetitionScheduleInput {
-  // start_at       DateTime
-  // end_at         DateTime
-  // created_at DateTime
-  // updated_at DateTime?
   @Field((type) => GraphQLUUID)
   @IsUUID()
   id: string;
 
-  // @Field((type) => CompetitionWhereUniqueInput, { nullable: true })
-  // competition?: CompetitionWhereUniqueInput;
-
-  // @IsOptional()
   @IsDate()
   start_at: Date;
 
   @IsDate()
   end_at: Date;
-
-  // @Field((type) => CompetitionState)
-  // @IsEnum(CompetitionState)
-  // state: CompetitionState;
 
   @Field((type) => CompetitionState)
   // not looking for enum, looking for string. Key value are the same. Test with "isEnum" (elswhere) - capitalized is decorator, camelcase is function that decorator calls

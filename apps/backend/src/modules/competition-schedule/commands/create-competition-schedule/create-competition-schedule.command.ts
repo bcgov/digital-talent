@@ -1,6 +1,6 @@
 import { DomainEvent } from '../../../event-store/types/domain-event.type';
 import { Metadata } from '../../../event-store/types/metadata.type';
-import { CreateCompetitionScheduleInput } from '../../inputs/competition-schedule.input';
+import { CreateCompetitionScheduleInput } from '../../inputs/create-competition-schedule.input';
 
 export class CreateCompetitionScheduleCommand
   implements DomainEvent<'CreateCompetitionScheduleCommand', CreateCompetitionScheduleInput>

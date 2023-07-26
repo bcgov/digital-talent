@@ -18,7 +18,7 @@ export class CompetitionScheduleUpdatedHandler implements IEventHandler<Competit
         start_at,
         end_at,
         state,
-        updated_at: metadata.updated_at,
+        updated_at: metadata.created_at,
       },
     });
   }

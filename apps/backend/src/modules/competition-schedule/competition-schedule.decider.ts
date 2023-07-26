@@ -5,9 +5,10 @@ import { decideUpdateEventData } from '../event-store/utils/decide-update-event-
 import { CreateCompetitionScheduleCommand } from './commands/create-competition-schedule/create-competition-schedule.command';
 import { CompetitionScheduleEntity } from './entities/competition-schedule.entity';
 import { CompetitionScheduleCreatedEvent } from './events/competition-schedule-created/competition-schedule-created.event';
-import { CreateCompetitionScheduleInput } from './inputs/competition-schedule.input';
+import { CreateCompetitionScheduleInput } from './inputs/create-competition-schedule.input';
 import { UpdateCompetitionScheduleCommand } from './commands/update-competition-schedule/update-competition-schedule.command';
 import { CompetitionScheduleUpdatedEvent } from './events/competition-schedule-updated/competition-schedule-updated.event';
+import { UpdateCompetitionScheduleInput } from './inputs/update-competition-schedule.input';
 
 export type CompetitionScheduleState = InitialState | ExistsState<CompetitionScheduleEntity>;
 export type CompetitionScheduleCommand = CreateCompetitionScheduleCommand | UpdateCompetitionScheduleCommand;
@@ -33,7 +34,7 @@ export function evolve(state: CompetitionScheduleState, event: CompetitionSchedu
       const { data, metadata } = event;
 
       return {
-        exists: true, // It should be true since an entity exists to be updated
+        exists: true,
         data: {
           ...(state.exists === true && { ...state.data }),
           ...data,
@@ -67,7 +68,7 @@ export function decide(
     }
     case 'UpdateCompetitionScheduleCommand': {
       if (!state.exists) throw new BadRequestException('Competition Schedule does not exist');
-      const data: CreateCompetitionScheduleInput = decideUpdateEventData(command, state);
+      const data: UpdateCompetitionScheduleInput = decideUpdateEventData(command, state);
       if (data == null) return [];
       return [
         new CompetitionScheduleUpdatedEvent(data, {
