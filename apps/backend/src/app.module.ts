@@ -16,6 +16,7 @@ import { ClassificationModule } from './modules/classification/classification.mo
 import { EventStoreModule } from './modules/event-store/event-store.module';
 import { UserModule } from './modules/user/user.module';
 import { validateAppConfig } from './utils/validate-app-config.util';
+import { CompetitionScheduleModule } from './modules/competition-schedule/competition-schedule.module';
 
 @Module({
   imports: [
@@ -54,6 +55,7 @@ import { validateAppConfig } from './utils/validate-app-config.util';
     }),
     AuthModule,
     ClassificationModule,
+    CompetitionScheduleModule,
     UserModule,
   ],
   providers: [
