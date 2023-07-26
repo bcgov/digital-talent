@@ -78,4 +78,55 @@ There are many ways to understand what an accessible society looks like. Some he
 
 - National AccessAbility Week
 - W3 Web Accessibility Initiative
-- Global Accessibility Awareness Day 
+- Global Accessibility Awareness Day
+
+## Equity, Diversity and Inclusion 
+
+Equity, Diversity, and Inclusion
+The BC Public Service strives to create a public sector that is reflective of our province. This means being inclusive of Indigenous Peoples, minorities communities, newcomers, People with Disabilities and 2SLGBTQIA+ communities. 
+
+The Public Service Agency (PSA) creates the plan and supports government leaders to action. We call the plan the Diversity & Inclusion Strategy. It shows our mandate, vision, values, diversity and inclusion goals, areas of focus and outcomes.
+
+The plan shows the way to build a fair workplace. This looks like everyone getting development opportunities with corporate services and products. An outcome of the plan is the Equity Internship program. It is a 12-month program for BIPOC and/or 2SLGBTQIA+ peoples to get government experience in many ways.
+
+There are many volunteer-run employee resource groups (ERG) in our organization. Marginalized and underrepresented staff can connect with others with similar lived experience: 
+
+### Indigenous Employees Network 
+
+The Indigenous Employees Network offers a community for Indigenous employees and meets monthly. 
+
+Resources: 
+·	Indigenous Employees Network
+·	Indigenous initiatives in BC Public Service
+·	Indigenous Youth Internship Program
+·	Ministry of Indigenous Relations and Reconciliation's featured topics
+
+### BIPOC Employee Resource Group
+
+BIPOC stands for Black (B), Indigenous (I), and People of Colour (POC). 
+
+These communities experience different forms of racism. The BIPOC ERG has chances for racialized staff to connect and work together on Anti-racism initiatives.
+
+Resources: 
+·	BIPOC Employee Resource Group
+·	Multiculturalism and Anti-Racism Branch
+·	Anti-Racism in BC
+
+### 2SLGBTQIA+ Employee Resource Group 
+
+2SLGBTQIA+ stands for 2-Spirited, Lesbian (L), Gay (G), Bisexual (B), Transgender (T), Queer (Q), Intersex (I), and Asexual (A). The plus (+) stands for sexual and gender identities not represented.
+The 2SLGBTQIA+ represents gender, sexual, and relationship diverse (GSRD) communities. 
+BC Gov affirms living on Indigenous lands. This is why 2-Spirited (2S) is at the front of the 2SLGBTQIA+ community acronym.
+Resources: 
+·	2SLGBTQIA+ Employee Resource Group (restricted for workers)
+·	The Gender Equity Office
+·	Gender Equity and 2SLGBTQIA+ Resources
+
+### Accessibility Community of Practice
+
+The Accessibility Community of Practice (ACoP) offers People with Disabilities and allies a place to connect. The ACoP hosts workshops, events, and collaborative spaces to progress Accessibility.  
+
+Resources: 
+·	Accessibility Community of Practice
+·	Accessibility Directorate
+·	AccessibleBC: Accessibility plan for 2022/23 to 2024/25
