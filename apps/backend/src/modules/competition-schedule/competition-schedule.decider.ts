@@ -46,7 +46,7 @@ export function evolve(state: CompetitionScheduleState, event: CompetitionSchedu
         data: {
           ...(state.exists === true && { ...state.data }),
           ...data,
-          updated_at: new Date(metadata.updated_at as string),
+          updated_at: new Date(metadata.created_at as string),
         },
       };
     }
