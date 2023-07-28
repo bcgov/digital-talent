@@ -6,7 +6,7 @@ import { UserEntity } from './entities/user.entity';
 import { UserSyncedEvent } from './events/user-synced/user-synced.event';
 import { SyncUserInput } from './inputs/sync-user.input';
 
-export type UserState = InitialState | ExistsState<UserEntity>;
+export type UserState = InitialState | ExistsState<'user', UserEntity>;
 export type UserCommand = SyncUserCommand;
 export type UserEvent = UserSyncedEvent;
 
@@ -19,6 +19,7 @@ export function evolve(state: UserState, event: UserEvent): UserState {
 
       return {
         exists: true,
+        type: 'user',
         data: {
           ...(state.exists === true && { ...state.data }),
           ...data,

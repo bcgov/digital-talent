@@ -6,7 +6,7 @@ import { SyncAccountDto } from './dtos/sync-account.dto';
 import { AccountEntity } from './entities/account.entity';
 import { AccountSyncedEvent } from './events/account-synced/account-synced.event';
 
-export type AuthState = InitialState | ExistsState<AccountEntity>;
+export type AuthState = InitialState | ExistsState<'account', AccountEntity>;
 export type AuthCommand = SyncAccountCommand;
 export type AuthEvent = AccountSyncedEvent;
 
@@ -19,6 +19,7 @@ export function evolve(state: AuthState, event: AuthEvent): AuthState {
 
       return {
         exists: true,
+        type: 'account',
         data: {
           ...(state.exists === true && { ...state.data }),
           ...data,

@@ -15,10 +15,31 @@ model Grid {
   name       String
   created_at DateTime
   updated_at DateTime?
+  deleted_at DateTime?
 
   @@map("grid")
 }
 
+// Classification Models
+enum PositionCategory {
+  BAND
+  AO
+  IS
+}
+
+model Position {
+  id          String           @id @db.Uuid
+  category    PositionCategory
+  name        String
+  description String?
+  created_at  DateTime
+  updated_at  DateTime?
+  deleted_at  DateTime?
+
+  @@map("position")
+}
+
+// User Models
 model User {
   id         String    @id @db.Uuid
   name       String?
@@ -26,6 +47,7 @@ model User {
   roles      String[]
   created_at DateTime
   updated_at DateTime?
+  deleted_at DateTime?
 
   identities Identity[]
 
@@ -38,6 +60,7 @@ model Identity {
   user_id           String    @db.Uuid
   created_at        DateTime
   updated_at        DateTime?
+  deleted_at        DateTime?
 
   user User @relation(fields: [user_id], references: [id])
 
