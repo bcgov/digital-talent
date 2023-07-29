@@ -1,0 +1,32 @@
+kind: DeploymentConfig
+apiVersion: apps.openshift.io/v1
+metadata:
+  name: www
+spec:
+  replicas: 1
+  selector:
+    name: www
+  triggers:
+    - type: ConfigChange
+    - type: ImageChange
+      imageChangeParams:
+        automatic: true
+        containerNames:
+          - www
+        from:
+          kind: ImageStreamTag
+          namespace: f15899-tools
+          name: www:develop-latest
+  strategy:
+    type: Rolling
+  template:
+    metadata:
+      labels:
+        name: www
+    spec:
+      containers:
+        - name: www
+          image: ''
+          ports:
+            - containerPort: 3000
+              protocol: TCP

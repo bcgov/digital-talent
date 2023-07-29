@@ -1,0 +1,32 @@
+
+kind: ImageStream
+apiVersion: image.openshift.io/v1
+metadata:
+  name: www
+  namespace: f15899-tools
+spec:
+  tags:
+    - name: develop-latest
+      from:
+        kind: DockerImage
+        name: artifacts.developer.gov.bc.ca/tf15-images/www:develop-latest
+      importPolicy:
+        scheduled: true
+      referencePolicy:
+        type: Source
+    - name: test
+      from:
+        kind: DockerImage
+        name: artifacts.developer.gov.bc.ca/tf15-images/www:latest
+      importPolicy:
+        scheduled: true
+      referencePolicy:
+        type: Source
+    - name: latest
+      from:
+        kind: DockerImage
+        name: artifacts.developer.gov.bc.ca/tf15-images/www:latest
+      importPolicy:
+        scheduled: true
+      referencePolicy:
+        type: Source
