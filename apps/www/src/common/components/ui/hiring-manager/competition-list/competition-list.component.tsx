@@ -18,31 +18,29 @@ type CompetitionCardProps = {
 
 function CompetitionCard({ competition }: CompetitionCardProps) {
   return competition.form_url !== '/' ? (
-    <a href={competition.form_url} rel="noreferrer" target="_blank">
-      <Card className="hover:ring-1 ring-bcgov-blue-dark shadow-md hover:shadow-xl p-4">
-        <div className="grid grid-cols-1 md:grid-cols-2">
-          <div className="flex flex-col gap-2">
-            <span className="font-bold text-bcgov-blue-dark">{competition.classification}</span>
-            <div>
-              <span>{`REQ: `}</span>
-              <i className="inline">{competition.requisition}</i>
-            </div>
-            <span>
-              Anticipated Posting Date: {dayjs(competition.application_submission_period[0]).format('MMM D, YYYY')}
-            </span>
+    <Card className="disabled ring-bcgov-blue-dark shadow-md p-4">
+      <div className="grid grid-cols-1 md:grid-cols-2">
+        <div className="flex flex-col gap-2">
+          <span className="font-bold text-bcgov-blue-dark">{competition.classification}</span>
+          <div>
+            <span>{`REQ: `}</span>
+            <i className="inline">{competition.requisition}</i>
           </div>
-          <div className="py-2 md:py-0 text-start md:text-end my-0 md:my-auto">
-            Deadline to join:
-            <br />
-            <span className="font-bold">
-              July 28, 2023
-              {/* todo: for some reason this doesn't render correct date */}
-              {/* {dayjs(competition.opportunity_submission_period[1]).format('MMM D, YYYY')} */}
-            </span>
-          </div>
+          <span>
+            Anticipated Posting Date: {dayjs(competition.application_submission_period[0]).format('MMM D, YYYY')}
+          </span>
         </div>
-      </Card>
-    </a>
+        <div className="py-2 md:py-0 text-start md:text-end my-0 md:my-auto">
+          <span className="font-bold">Closed for signups</span>
+          <br />
+          <span className="font-bold">
+            Deadline to join was: July 28, 2023
+            {/* todo: for some reason this doesn't render correct date */}
+            {/* {dayjs(competition.opportunity_submission_period[1]).format('MMM D, YYYY')} */}
+          </span>
+        </div>
+      </div>
+    </Card>
   ) : (
     <div />
   );
@@ -69,7 +67,7 @@ const data: Competition[] = [
 
 export default function CompetitionList() {
   return (
-    <div className="flex flex-col gap-6 text-lg mt-10 mb-12">
+    <div className="flex flex-col gap-6 text-lg mt-2 mb-12">
       {data.map((d) => (
         <CompetitionCard competition={d} key={d.id} />
       ))}
