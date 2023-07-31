@@ -1,8 +1,9 @@
 /* eslint-disable max-classes-per-file */
 import { EventStoreDBClient, FORWARDS, START } from '@eventstore/db-client';
 import { CommandBus, ICommand } from '@nestjs/cqrs';
+import { GridAffiliation } from '@prisma/client';
 import { Type } from 'class-transformer';
-import { IsArray, IsNotEmpty, IsNumber, IsString, IsUUID, ValidateNested } from 'class-validator';
+import { IsArray, IsEnum, IsNotEmpty, IsNumber, IsString, IsUUID, ValidateNested } from 'class-validator';
 import { SYSTEM_USER_ID } from '../../modules/auth/auth.constants';
 import { CreateGridCommand } from '../../modules/classification/grid/commands/create-grid/create-grid.command';
 import { DeleteGridCommand } from '../../modules/classification/grid/commands/delete-grid/delete-grid.command';
@@ -32,6 +33,9 @@ export class GridSeed {
   @IsUUID()
   id: string;
 
+  @IsEnum(GridAffiliation)
+  affiliation: GridAffiliation;
+
   @IsString()
   @IsNotEmpty()
   name: string;
@@ -46,6 +50,7 @@ export const gridSeeds: SeedType<GridSeed> = {
   upsert: [
     {
       id: '7a22c548-26a9-4bf3-96d1-b8b0bda28eab',
+      affiliation: 'BCGEU',
       name: '18',
       steps: [
         {
@@ -87,6 +92,7 @@ export const gridSeeds: SeedType<GridSeed> = {
     },
     {
       id: '97203bf7-46f4-4b8d-9cd9-a0a0b8bb9560',
+      affiliation: 'BCGEU',
       name: '21',
       steps: [
         {
@@ -128,6 +134,7 @@ export const gridSeeds: SeedType<GridSeed> = {
     },
     {
       id: '6dd3345c-00b1-410e-b584-11315af2b3db',
+      affiliation: 'BCGEU',
       name: '24',
       steps: [
         {
@@ -169,6 +176,7 @@ export const gridSeeds: SeedType<GridSeed> = {
     },
     {
       id: '6410100c-2c34-4f0e-baad-ed9de5299dd8',
+      affiliation: 'BCGEU',
       name: '27',
       steps: [
         {
@@ -210,6 +218,7 @@ export const gridSeeds: SeedType<GridSeed> = {
     },
     {
       id: '851f9d71-fc20-4055-becd-41ecf50d6750',
+      affiliation: 'BCGEU',
       name: '30',
       steps: [
         {
@@ -251,6 +260,7 @@ export const gridSeeds: SeedType<GridSeed> = {
     },
     {
       id: 'dcca8de3-bc01-4e24-84b0-3e89be512c1a',
+      affiliation: 'MCCF',
       name: '3',
       steps: [
         {

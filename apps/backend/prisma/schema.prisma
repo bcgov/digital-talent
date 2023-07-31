@@ -11,13 +11,37 @@ datasource db {
 }
 
 // Classification Models
+model Classification {
+  id              String    @id @db.Uuid
+  grid_id         String    @db.Uuid
+  position_id     String    @db.Uuid
+  rate_adjustment Decimal
+  created_at      DateTime
+  updated_at      DateTime?
+  deleted_at      DateTime?
+
+  grid     Grid     @relation(fields: [grid_id], references: [id])
+  position Position @relation(fields: [position_id], references: [id])
+
+  @@map("classification")
+}
+
+enum GridAffiliation {
+  BCGEU
+  MCCF
+  PEA
+}
+
 model Grid {
-  id         String    @id @db.Uuid
-  name       String    @unique
-  steps      Json[]
-  created_at DateTime
-  updated_at DateTime?
-  deleted_at DateTime?
+  id          String          @id @db.Uuid
+  affiliation GridAffiliation
+  name        String          @unique
+  steps       Json[]
+  created_at  DateTime
+  updated_at  DateTime?
+  deleted_at  DateTime?
+
+  classifications Classification[]
 
   @@map("grid")
 }
@@ -36,6 +60,8 @@ model Position {
   created_at  DateTime
   updated_at  DateTime?
   deleted_at  DateTime?
+
+  classifications Classification[]
 
   @@map("position")
 }

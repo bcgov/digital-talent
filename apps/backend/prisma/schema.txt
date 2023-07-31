@@ -31,33 +31,16 @@ model Location {
 
 // Classification Models
 model Grid {
-  id   String @id @db.Uuid
-  name String
+  id         String    @id @db.Uuid
+  name       String    @unique
+  steps      Json[]
   created_at DateTime
   updated_at DateTime?
-  created_at DateTime
-  updated_at DateTime?
+  deleted_at DateTime?
 
   clasifications Classification[]
-  steps          GridStep[]
 
   @@map("grid")
-}
-
-model GridStep {
-  id                 String  @id @db.Uuid
-  grid_id            String  @db.Uuid
-  name               Int
-  rate_per_year      Decimal
-  rate_per_month     Decimal
-  rate_per_fortnight Decimal
-  rate_per_hour      Decimal
-  created_at DateTime
-  updated_at DateTime?
-
-  grid Grid @relation(fields: [grid_id], references: [id])
-
-  @@map("grid_step")
 }
 
 enum PositionCategory {
