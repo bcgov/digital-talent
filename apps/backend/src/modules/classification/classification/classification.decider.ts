@@ -17,7 +17,7 @@ type State = InitialState | ExistsState<'classification', ClassificationEntity>;
 type Command = CreateClassificationCommand | UpdateClassificationCommand | DeleteClassificationCommand;
 type Event = ClassificationCreatedEvent | ClassificationUpdatedEvent | ClassificationDeletedEvent;
 
-export const initialState: State = { exists: false };
+const initialState: State = { exists: false };
 
 export function evolve(state: State, event: Event): State {
   switch (event.type) {

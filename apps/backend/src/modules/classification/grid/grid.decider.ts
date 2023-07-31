@@ -13,15 +13,13 @@ import { GridUpdatedEvent } from './events/grid-updated/grid-updated.event';
 import { CreateGridInput } from './inputs/create-grid.input';
 import { UpdateGridInput } from './inputs/update-grid.input';
 
-type GridState = ExistsState<'grid', GridEntity>;
+type State = InitialState | ExistsState<'grid', GridEntity>;
+type Command = CreateGridCommand | UpdateGridCommand | DeleteGridCommand;
+type Event = GridCreatedEvent | GridUpdatedEvent | GridDeletedEvent;
 
-export type ClassificationState = InitialState | GridState;
-export type ClassificationCommand = CreateGridCommand | UpdateGridCommand | DeleteGridCommand;
-export type ClassificationEvent = GridCreatedEvent | GridUpdatedEvent | GridDeletedEvent;
+const initialState: State = { exists: false };
 
-export const initialState: ClassificationState = { exists: false };
-
-export function evolve(state: ClassificationState, event: ClassificationEvent): ClassificationState {
+export function evolve(state: State, event: Event): State {
   switch (event.type) {
     case 'GridCreatedEvent': {
       assert(state.exists === false);
@@ -35,7 +33,7 @@ export function evolve(state: ClassificationState, event: ClassificationEvent): 
           ...data,
           created_at: new Date(metadata.created_at),
         },
-      } as GridState;
+      };
     }
     case 'GridUpdatedEvent': {
       assert(state.exists === true);
@@ -47,11 +45,11 @@ export function evolve(state: ClassificationState, event: ClassificationEvent): 
         exists: true,
         type: 'grid',
         data: {
-          ...(state.exists === true && { ...state.data }),
+          ...state.data,
           ...data,
           updated_at: new Date(metadata.created_at),
         },
-      } as GridState;
+      };
     }
     case 'GridDeletedEvent': {
       assert(state.exists === true);
@@ -63,11 +61,11 @@ export function evolve(state: ClassificationState, event: ClassificationEvent): 
         exists: true,
         type: 'grid',
         data: {
-          ...(state.exists === true && { ...state.data }),
+          ...state.data,
           ...data,
           deleted_at: new Date(metadata.created_at),
         },
-      } as GridState;
+      };
     }
 
     default: {
@@ -76,7 +74,7 @@ export function evolve(state: ClassificationState, event: ClassificationEvent): 
   }
 }
 
-export function decide(state: ClassificationState, command: ClassificationCommand): ClassificationEvent[] {
+export function decide(state: State, command: Command): Event[] {
   switch (command.type) {
     case 'CreateGridCommand': {
       if (state.exists) throw new BadRequestException('Grid already exists');
@@ -110,7 +108,7 @@ export function decide(state: ClassificationState, command: ClassificationComman
   }
 }
 
-export const decider: Decider<ClassificationState, ClassificationEvent, ClassificationCommand> = {
+export const decider: Decider<State, Event, Command> = {
   initialState,
   evolve,
   decide,

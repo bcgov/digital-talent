@@ -13,15 +13,13 @@ import { PositionUpdatedEvent } from './events/position-updated/position-updated
 import { CreatePositionInput } from './inputs/create-position.input';
 import { UpdatePositionInput } from './inputs/update-position.input';
 
-type PositionState = ExistsState<'position', PositionEntity>;
+type State = InitialState | ExistsState<'position', PositionEntity>;
+type Command = CreatePositionCommand | UpdatePositionCommand | DeletePositionCommand;
+type Event = PositionCreatedEvent | PositionUpdatedEvent | PositionDeletedEvent;
 
-export type ClassificationState = InitialState | PositionState;
-export type ClassificationCommand = CreatePositionCommand | UpdatePositionCommand | DeletePositionCommand;
-export type ClassificationEvent = PositionCreatedEvent | PositionUpdatedEvent | PositionDeletedEvent;
+const initialState: State = { exists: false };
 
-export const initialState: ClassificationState = { exists: false };
-
-export function evolve(state: ClassificationState, event: ClassificationEvent): ClassificationState {
+export function evolve(state: State, event: Event): State {
   switch (event.type) {
     case 'PositionCreatedEvent': {
       assert(state.exists === false);
@@ -35,7 +33,7 @@ export function evolve(state: ClassificationState, event: ClassificationEvent): 
           ...data,
           created_at: new Date(metadata.created_at),
         },
-      } as PositionState;
+      };
     }
     case 'PositionUpdatedEvent': {
       assert(state.exists === true);
@@ -47,11 +45,11 @@ export function evolve(state: ClassificationState, event: ClassificationEvent): 
         exists: true,
         type: 'position',
         data: {
-          ...(state.exists === true && { ...state.data }),
+          ...state.data,
           ...data,
           updated_at: new Date(metadata.created_at),
         },
-      } as PositionState;
+      };
     }
     case 'PositionDeletedEvent': {
       assert(state.exists === true);
@@ -63,11 +61,11 @@ export function evolve(state: ClassificationState, event: ClassificationEvent): 
         exists: true,
         type: 'position',
         data: {
-          ...(state.exists === true && { ...state.data }),
+          ...state.data,
           ...data,
           deleted_at: new Date(metadata.created_at),
         },
-      } as PositionState;
+      };
     }
     default: {
       return { exists: false };
@@ -75,7 +73,7 @@ export function evolve(state: ClassificationState, event: ClassificationEvent): 
   }
 }
 
-export function decide(state: ClassificationState, command: ClassificationCommand): ClassificationEvent[] {
+export function decide(state: State, command: Command): Event[] {
   switch (command.type) {
     case 'CreatePositionCommand': {
       if (state.exists) throw new BadRequestException('Position already exists');
@@ -108,7 +106,7 @@ export function decide(state: ClassificationState, command: ClassificationComman
   }
 }
 
-export const decider: Decider<ClassificationState, ClassificationEvent, ClassificationCommand> = {
+export const decider: Decider<State, Event, Command> = {
   initialState,
   evolve,
   decide,
