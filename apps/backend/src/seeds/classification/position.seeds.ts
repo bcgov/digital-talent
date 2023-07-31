@@ -1,5 +1,13 @@
+import { EventStoreDBClient, FORWARDS, START } from '@eventstore/db-client';
+import { CommandBus, ICommand } from '@nestjs/cqrs';
 import { PositionCategory } from '@prisma/client';
 import { IsEnum, IsNotEmpty, IsOptional, IsString, IsUUID } from 'class-validator';
+import { SYSTEM_USER_ID } from '../../modules/auth/auth.constants';
+import { CreatePositionCommand } from '../../modules/classification/commands/create-position/create-position.command';
+import { DeletePositionCommand } from '../../modules/classification/commands/delete-position/delete-position.command';
+import { UpdatePositionCommand } from '../../modules/classification/commands/update-position/update-position.command';
+import { handleEmpty } from '../../modules/event-store/utils/create-command-handler.util';
+import { validateObject } from '../../utils/validate-object.dto';
 import { SeedType } from '../seeds.type';
 
 export class PositionSeed {
@@ -19,13 +27,12 @@ export class PositionSeed {
   description?: string;
 }
 
-export const seeds: SeedType<PositionSeed> = {
+export const positionSeeds: SeedType<PositionSeed> = {
   upsert: [
     { id: 'fa931d17-41cb-4967-b9aa-ada43391674c', name: 'Dev Ops Specialist', category: 'IS' },
     {
       id: '8b98f19d-85df-40f2-819b-bdf8eae68813',
       name: 'Full Stack Developer',
-      description: 'Orangina',
       category: 'IS',
     },
     { id: '8212a5b1-5efb-4e45-a48c-070043f83121', name: 'Product Manager', category: 'BAND' },
@@ -38,4 +45,35 @@ export const seeds: SeedType<PositionSeed> = {
   remove: [],
 };
 
-//
+export const applyPositionSeeds = async (commandBus: CommandBus<ICommand>, eventStore: EventStoreDBClient) => {
+  const { upsert, remove } = positionSeeds;
+
+  for await (const seed of upsert) {
+    validateObject(seed, PositionSeed);
+
+    // Check if the stream exists
+    const events = handleEmpty(
+      eventStore.readStream(`position-${seed.id}`, {
+        direction: FORWARDS,
+        fromRevision: START,
+        maxCount: 1,
+      }),
+    );
+
+    const { value } = await events.next();
+    if (value == null) {
+      // Stream doesn't exist -- create it
+      const command = new CreatePositionCommand(seed, { created_by: SYSTEM_USER_ID });
+      await commandBus.execute(command);
+    } else {
+      // Stream exists -- update it
+      const command = new UpdatePositionCommand(seed, { created_by: SYSTEM_USER_ID });
+      await commandBus.execute(command);
+    }
+  }
+
+  for await (const seed of remove) {
+    const command = new DeletePositionCommand(seed, { created_by: SYSTEM_USER_ID });
+    await commandBus.execute(command);
+  }
+};

@@ -11,6 +11,17 @@ datasource db {
 }
 
 // Classification Models
+model Grid {
+  id         String    @id @db.Uuid
+  name       String    @unique
+  steps      Json[]
+  created_at DateTime
+  updated_at DateTime?
+  deleted_at DateTime?
+
+  @@map("grid")
+}
+
 enum PositionCategory {
   BAND
   AO

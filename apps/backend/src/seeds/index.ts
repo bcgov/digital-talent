@@ -1,6 +1,7 @@
 import { EventStoreDBClient } from '@eventstore/db-client';
 import { CommandBus, ICommand } from '@nestjs/cqrs';
 import applyClassificationSeeds from './classification';
+import { applyGridSeeds } from './classification/grid.seeds';
 import userSeeds from './user/user.seeds';
 
 export const applySeeds = async (commandBus: CommandBus<ICommand>, eventStore: EventStoreDBClient) => {
@@ -9,4 +10,5 @@ export const applySeeds = async (commandBus: CommandBus<ICommand>, eventStore: E
   }
 
   await applyClassificationSeeds(commandBus, eventStore);
+  await applyGridSeeds(commandBus, eventStore);
 };
