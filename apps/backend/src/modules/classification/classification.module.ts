@@ -1,11 +1,13 @@
 import { Module } from '@nestjs/common';
 import { CqrsModule } from '@nestjs/cqrs';
 import { PrismaModule } from '../prisma/prisma.module';
-import { CommandHandlers } from './commands';
-import { EventHandlers } from './events';
+import { GridCommandHandlers } from './grid/commands';
+import { GridEventHandlers } from './grid/events';
+import { PositionCommandHandlers } from './position/commands';
+import { PositionEventHandlers } from './position/events';
 
 @Module({
   imports: [CqrsModule, PrismaModule],
-  providers: [...CommandHandlers, ...EventHandlers],
+  providers: [...GridCommandHandlers, ...GridEventHandlers, ...PositionCommandHandlers, ...PositionEventHandlers],
 })
 export class ClassificationModule {}
