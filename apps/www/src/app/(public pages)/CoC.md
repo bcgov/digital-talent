@@ -2,7 +2,7 @@ Social equity creates an inclusive society. One where everyone has the same chan
 BC Gov supports 5 primary social equity initiatives: 
 - Reconciliation
 - Anti-Racism 
-- Accessibility Directorate
+- Accessibility
 - Gender Equity 
 - Equity, Diversity, and Inclusion in the BC Public Service
 
@@ -114,9 +114,9 @@ There are many volunteer-run employee resource groups (ERG) in our organization.
 The Indigenous Employees Network offers a community for Indigenous employees and meets monthly. 
 
 Resources: 
-·	[Indigenous Employees Network](https://compass.gww.gov.bc.ca/communities-practice-employee-resource-groups/)
-·	[Indigenous initiatives in BC Public Service](https://www2.gov.bc.ca/gov/content/careers-myhr/about-the-bc-public-service/diversity-inclusion/indigenous-initiatives)
-·	[Ministry of Indigenous Relations and Reconciliation](https://www2.gov.bc.ca/gov/content/governments/organizational-structure/ministries-organizations/ministries/indigenous-relations-reconciliation)'s featured topics
+- [Indigenous Employees Network](https://compass.gww.gov.bc.ca/communities-practice-employee-resource-groups/)
+- [Indigenous initiatives in BC Public Service](https://www2.gov.bc.ca/gov/content/careers-myhr/about-the-bc-public-service/diversity-inclusion/indigenous-initiatives)
+- [Ministry of Indigenous Relations and Reconciliation](https://www2.gov.bc.ca/gov/content/governments/organizational-structure/ministries-organizations/ministries/indigenous-relations-reconciliation)'s featured topics
 
 ### BIPOC Employee Resource Group
 
@@ -124,26 +124,30 @@ BIPOC stands for Black (B), Indigenous (I), and People of Colour (POC).
 
 These communities experience different forms of racism. The BIPOC ERG has chances for racialized staff to connect and work together on Anti-racism initiatives.
 
-Resources: 
-·	[BIPOC Employee Resource Group](https://compass.gww.gov.bc.ca/communities-practice-employee-resource-groups/)
-·	[Multiculturalism and Anti-Racism Branch](https://www2.gov.bc.ca/gov/content/governments/multiculturalism-anti-racism)
-·	[Anti-Racism in BC](https://antiracism.gov.bc.ca/?utm_campaign=45097_CITZ_IP_BCDS__LEARN_ADW_BCGOV_EN_BC__TEXT)
+Resources:
+
+- [BIPOC Employee Resource Group](https://compass.gww.gov.bc.ca/communities-practice-employee-resource-groups/)
+- [Multiculturalism and Anti-Racism Branch](https://www2.gov.bc.ca/gov/content/governments/multiculturalism-anti-racism)
+- [Anti-Racism in BC](https://antiracism.gov.bc.ca/?utm_campaign=45097_CITZ_IP_BCDS__LEARN_ADW_BCGOV_EN_BC__TEXT)
 
 ### 2SLGBTQIA+ Employee Resource Group 
 
 2SLGBTQIA+ stands for 2-Spirited, Lesbian (L), Gay (G), Bisexual (B), Transgender (T), Queer (Q), Intersex (I), and Asexual (A). The plus (+) stands for sexual and gender identities not represented.
 The 2SLGBTQIA+ represents gender, sexual, and relationship diverse (GSRD) communities. 
+
 BC Gov affirms living on Indigenous lands. This is why 2-Spirited (2S) is at the front of the 2SLGBTQIA+ community acronym.
-Resources: 
-·	[2SLGBTQIA+ Employee Resource Group](https://compass.gww.gov.bc.ca/communities-practice-employee-resource-groups/) (restricted for workers)
-·	[The Gender Equity Office](https://www2.gov.bc.ca/gov/content/gender-equity)
-·	[Gender Equity and 2SLGBTQIA+ Resources](https://www2.gov.bc.ca/gov/content/gender-equity/resources)
+
+Resources:
+
+- [2SLGBTQIA+ Employee Resource Group](https://compass.gww.gov.bc.ca/communities-practice-employee-resource-groups/) (restricted for workers)
+- [The Gender Equity Office](https://www2.gov.bc.ca/gov/content/gender-equity)
+- [Gender Equity and 2SLGBTQIA+ Resources](https://www2.gov.bc.ca/gov/content/gender-equity/resources)
 
 ### Accessibility Community of Practice
 
 The Accessibility Community of Practice (ACoP) offers People with Disabilities and allies a place to connect. The ACoP hosts workshops, events, and collaborative spaces to progress Accessibility.  
 
 Resources: 
-·	[Accessibility Community of Practice](https://compass.gww.gov.bc.ca/communities-practice-employee-resource-groups/)
-·	[Accessibility Directorate](https://www2.gov.bc.ca/gov/content/governments/about-the-bc-government/accessibility)
-·	[AccessibleBC: Accessibility plan for 2022/23 to 2024/25](https://www2.gov.bc.ca/gov/content/governments/about-the-bc-government/accessibility/legislation/accessiblebc)
+- [Accessibility Community of Practice](https://compass.gww.gov.bc.ca/communities-practice-employee-resource-groups/)
+- [Accessibility Directorate](https://www2.gov.bc.ca/gov/content/governments/about-the-bc-government/accessibility)
+- [AccessibleBC: Accessibility plan for 2022/23 to 2024/25](https://www2.gov.bc.ca/gov/content/governments/about-the-bc-government/accessibility/legislation/accessiblebc)
