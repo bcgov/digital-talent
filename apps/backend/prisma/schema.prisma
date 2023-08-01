@@ -10,6 +10,18 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+// Common Models
+model Ministry {
+  id        String @id @db.Uuid
+  deltek_id String
+  name      String
+  created_at DateTime
+  updated_at DateTime?
+  deleted_at DateTime?
+
+  @@map("ministry")
+}
+
 // Classification Models
 model Classification {
   id              String    @id @db.Uuid

@@ -8,6 +8,18 @@ CREATE TYPE "PositionCategory" AS ENUM ('BAND', 'AO', 'IS');
 CREATE TYPE "CompetitionState" AS ENUM ('DRAFT', 'PUBLISHED', 'INTAKE_PERIOD', 'APPLICATION_PERIOD', 'ASSESSMENT_PERIOD', 'INTERVIEW_PERIOD', 'OFFER_PERIOD', 'CLOSED', 'CANCELLED');
 
 -- CreateTable
+CREATE TABLE "ministry" (
+    "id" UUID NOT NULL,
+    "deltek_id" TEXT NOT NULL,
+    "name" TEXT NOT NULL,
+    "created_at" TIMESTAMP(3) NOT NULL,
+    "updated_at" TIMESTAMP(3),
+    "deleted_at" TIMESTAMP(3),
+
+    CONSTRAINT "ministry_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
 CREATE TABLE "classification" (
     "id" UUID NOT NULL,
     "grid_id" UUID NOT NULL,
