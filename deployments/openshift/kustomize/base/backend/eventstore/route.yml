@@ -1,0 +1,11 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: hms-api-eventstore-route
+spec:
+  host: hms-eventstore.apps.silver.devops.gov.bc.ca
+  to:
+    kind: Service
+    name: hms-api-eventstore
+  port:
+    targetPort: 2113

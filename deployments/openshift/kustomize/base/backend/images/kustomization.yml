@@ -4,5 +4,5 @@ resources:
 - image-streams
 - image-builds
 commonLabels:
-  app: hms-backend
+  app: hms-api
   env: tools

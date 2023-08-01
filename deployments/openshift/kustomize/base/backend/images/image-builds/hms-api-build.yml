@@ -1,13 +1,17 @@
 apiVersion: build.openshift.io/v1
 kind: BuildConfig
 metadata:
-  name: hms-backend
-  namespace: f15899-tools
+  name: hms-api
+  namespace: fd34fb-tools
 spec:
+  resources:
+      limits:
+        cpu: "2"
+        memory: "3Gi"
   output:
     to:
       kind: ImageStreamTag
-      name: 'hms-backend:latest'
+      name: 'hms-api:latest'
   source:
     type: Git
     git:
@@ -26,12 +30,18 @@ spec:
 
       # Install dependencies.
       RUN npm install
+      RUN mkdir -p /.npm && chown -R 1004980000:0 /.npm
+
+      # Install the PostgreSQL client tool (psql).
+      RUN apt-get update && apt-get install -y postgresql-client
 
       # Copy local code to the container image.
       COPY . .
 
       # Copy the start.sh script to the Docker image.
       COPY start.sh ./
+      RUN chown -R 1004980000:0 /usr/src/app
+
       RUN chmod +x ./start.sh
 
       # Expose port 4000
@@ -39,5 +49,6 @@ spec:
 
       # Start the application
       CMD ["./start.sh"]
+
   strategy:
     type: Docker

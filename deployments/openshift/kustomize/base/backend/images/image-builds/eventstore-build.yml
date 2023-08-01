@@ -1,13 +1,13 @@
 apiVersion: build.openshift.io/v1
 kind: BuildConfig
 metadata:
-  name: hms-backend-eventstore
-  namespace: f15899-tools
+  name: hms-api-eventstore
+  namespace: fd34fb-tools
 spec:
   output:
     to:
       kind: ImageStreamTag
-      name: 'hms-backend-eventstore:latest'
+      name: 'hms-api-eventstore:latest'
   source:
     dockerfile: |
       FROM eventstore/eventstore:22.10.2-bionic

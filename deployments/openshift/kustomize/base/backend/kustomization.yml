@@ -4,5 +4,3 @@ resources:
 - eventstore
 - hms
 - postgres
-commonLabels:
-  app: hms-backend

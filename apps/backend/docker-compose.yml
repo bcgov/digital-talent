@@ -13,7 +13,7 @@ services:
       - .env.docker
     volumes:
       - ./src:/usr/src/app/src
-      - hms-backend-nodemodules:/node_modules
+      - hms-api-nodemodules:/node_modules
   postgres:
     image: postgres:latest
     ports:
@@ -40,4 +40,4 @@ services:
 volumes:
   eventstore-volume-data:
   eventstore-volume-logs:
-  hms-backend-nodemodules:
+  hms-api-nodemodules:

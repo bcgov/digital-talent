@@ -1,21 +1,21 @@
 apiVersion: apps.openshift.io/v1
 kind: DeploymentConfig
 metadata:
-  name: hms-backend-eventstore
+  name: hms-api-eventstore
 spec:
   replicas: 1
   selector:
-    app: hms-backend-eventstore
+    name: hms-api-eventstore
   strategy:
     type: Rolling
   template:
     metadata:
       labels:
-        app: hms-backend-eventstore
+        name: hms-api-eventstore
     spec:
       containers:
-        - name: hms-backend-eventstore
-          image: hms-backend-eventstore:latest
+        - name: hms-api-eventstore
+          image: hms-api-eventstore:latest
           ports:
             - containerPort: 1113
             - containerPort: 2113
@@ -53,9 +53,9 @@ spec:
     - imageChangeParams:
         automatic: true
         containerNames:
-          - hms-backend-eventstore
+          - hms-api-eventstore
         from:
           kind: ImageStreamTag
-          name: hms-backend-eventstore:latest
-          namespace: f15899-tools
+          name: hms-api-eventstore:latest
+          namespace: fd34fb-tools
       type: ImageChange

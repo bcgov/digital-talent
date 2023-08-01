@@ -4,3 +4,8 @@ resources:
 - dc.yml
 - service.yml
 - volume.yml
+secretGenerator:
+- name: hms-api-postgres
+  type: Opaque
+  files:
+  - .env
