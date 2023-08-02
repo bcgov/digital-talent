@@ -14,6 +14,7 @@ import { AuthGuard } from './modules/auth/guards/auth.guard';
 import { RoleGuard } from './modules/auth/guards/role.guard';
 import { ClassificationModule } from './modules/classification/classification.module';
 import { CompetitionScheduleModule } from './modules/competition-schedule/competition-schedule.module';
+import { CompetitionModule } from './modules/competition/competition.module';
 import { EventStoreModule } from './modules/event-store/event-store.module';
 import { MinistryModule } from './modules/ministry/ministry.module';
 import { UserModule } from './modules/user/user.module';
@@ -56,6 +57,7 @@ import { validateAppConfig } from './utils/validate-app-config.util';
     }),
     AuthModule,
     ClassificationModule,
+    CompetitionModule,
     CompetitionScheduleModule,
     UserModule,
     MinistryModule,

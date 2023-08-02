@@ -12,9 +12,9 @@ datasource db {
 
 // Common Models
 model Ministry {
-  id        String @id @db.Uuid
-  deltek_id String
-  name      String
+  id         String    @id @db.Uuid
+  deltek_id  String
+  name       String
   created_at DateTime
   updated_at DateTime?
   deleted_at DateTime?
@@ -32,8 +32,9 @@ model Classification {
   updated_at      DateTime?
   deleted_at      DateTime?
 
-  grid     Grid     @relation(fields: [grid_id], references: [id])
-  position Position @relation(fields: [position_id], references: [id])
+  competitions Competition[]
+  grid         Grid          @relation(fields: [grid_id], references: [id])
+  position     Position      @relation(fields: [position_id], references: [id])
 
   @@map("classification")
 }
@@ -78,6 +79,61 @@ model Position {
   @@map("position")
 }
 
+// Competition Models
+enum CompetitionCategory {
+  CMH
+  RH
+}
+
+enum CompetitionState {
+  DRAFT
+  PUBLISHED
+  INTAKE_PERIOD
+  APPLICATION_PERIOD
+  ASSESSMENT_PERIOD
+  INTERVIEW_PERIOD
+  OFFER_PERIOD
+  CLOSED
+  CANCELLED
+}
+
+model Competition {
+  id                String              @id @db.Uuid
+  classification_id String              @db.Uuid
+  deltek_id         String?
+  recruiter_id      String              @db.Uuid
+  category          CompetitionCategory
+  state             CompetitionState
+  metadata          Json
+  created_at        DateTime
+  updated_at        DateTime?
+  deleted_at        DateTime?
+
+  // opportunities  Opportunity[]
+  // skills         CompetitionSkill[]
+  // elist          Elist[]
+  classification Classification       @relation(fields: [classification_id], references: [id])
+  recruiter      User                 @relation(fields: [recruiter_id], references: [id])
+  schedule       CompetitionSchedule?
+
+  @@map("competition")
+}
+
+model CompetitionSchedule {
+  id             String           @id @db.Uuid
+  competition_id String           @unique @db.Uuid
+  state          CompetitionState
+  start_at       DateTime
+  end_at         DateTime
+  created_at     DateTime
+  updated_at     DateTime?
+  deleted_at     DateTime?
+
+  competition Competition @relation(fields: [competition_id], references: [id])
+
+  @@map("competition_schedule")
+}
+
 // User Models
 model User {
   id         String    @id @db.Uuid
@@ -88,7 +144,8 @@ model User {
   updated_at DateTime?
   deleted_at DateTime?
 
-  identities Identity[]
+  competitions Competition[]
+  identities   Identity[]
 
   @@map("user")
 }
@@ -105,31 +162,4 @@ model Identity {
 
   @@id([sub, identity_provider])
   @@map("identity")
-}
-
-model CompetitionSchedule {
-  id         String           @id @db.Uuid
-  //competition_id String           @unique @db.Uuid
-  state      CompetitionState
-  start_at   DateTime
-  end_at     DateTime
-  created_at DateTime
-  updated_at DateTime?
-  deleted_at DateTime?
-
-  //competition Competition @relation(fields: [competition_id], references: [id])
-
-  @@map("competition_schedule")
-}
-
-enum CompetitionState {
-  DRAFT
-  PUBLISHED
-  INTAKE_PERIOD
-  APPLICATION_PERIOD
-  ASSESSMENT_PERIOD
-  INTERVIEW_PERIOD
-  OFFER_PERIOD
-  CLOSED
-  CANCELLED
 }

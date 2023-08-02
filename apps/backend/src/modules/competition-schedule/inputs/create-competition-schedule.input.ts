@@ -18,6 +18,10 @@ export class CreateCompetitionScheduleInput {
   @IsUUID()
   id: string;
 
+  @Field((type) => GraphQLUUID)
+  @IsUUID()
+  competition_id: string;
+
   @IsDate()
   start_at: Date;
 

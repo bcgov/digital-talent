@@ -8,13 +8,18 @@ export class CompetitionScheduleCreatedHandler implements IEventHandler<Competit
 
   async handle(event: CompetitionScheduleCreatedEvent) {
     const {
-      data: { id, start_at, end_at, state },
+      data: { id, competition_id, start_at, end_at, state },
       metadata,
     } = event;
 
     await this.prisma.competitionSchedule.create({
       data: {
         id,
+        competition: {
+          connect: {
+            id: competition_id,
+          },
+        },
         start_at,
         end_at,
         state,
