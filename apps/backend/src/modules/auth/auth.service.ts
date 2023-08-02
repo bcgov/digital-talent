@@ -79,7 +79,7 @@ export class AuthService {
         id = existingUser ? existingUser.id : uuidv4();
       }
 
-      const user: Express.User = { id, name, email, roles: (client_roles as string[]).sort() };
+      const user: Express.User = { id, name, email, roles: ((client_roles as string[]) ?? []).sort() };
 
       await this.commandBus.execute(
         new SyncAccountCommand({ ...user, sub, identity_provider }, { created_by: user.id }),
