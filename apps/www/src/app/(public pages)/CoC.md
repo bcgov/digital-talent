@@ -6,6 +6,8 @@ BC Gov supports 5 primary social equity initiatives:
 - Gender Equity 
 - Equity, Diversity, and Inclusion in the BC Public Service
 
+Though social equity includes Reconciliation, Reconciliation is about Indigenous sovereignty. 
+
 The [Where we all belong: Diversity & Inclusion Strategy](https://www2.gov.bc.ca/assets/gov/careers/about-the-bc-public-service/diversity-inclusion-respect/di_roadmap.pdf) outlines a 3 year strategy to have a public service that reflects our province.    
 Over 36, 000 employees work in our organization and our diversity informs our work. We start and finish tasks with a social equity lens. We call this process intersectional analysis, a term that comes from Intersectionality.
 
@@ -96,6 +98,10 @@ We continue to grow our capacity to confront different forms of systemic racism.
 >“Committee members represent the diversity of B.C. and will provide input about how demographic data will be collected and used safely in order to illuminate gaps in government services and dismantle systemic barriers to government programs. The committee will recommend priorities for research, and review statistics prior to their release to prevent future community harms.”
 
 To help the committee, BC Stats recently launched the [BC Demographic Survey](https://bcstats.apps.gov.bc.ca/i/cwx.cgi?_lang=en&_crypt=0648090e3706647073453404412d467e0c0c1a2a1730). The data from the survey offers the committee a broader picture of where barriers are and how to dismantle them.
+
+## Gender Equity
+
+
 
 
 ## Equity, Diversity and Inclusion 
