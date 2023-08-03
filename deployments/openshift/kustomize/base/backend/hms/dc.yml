@@ -31,8 +31,8 @@ spec:
         - containerPort: 3000
           protocol: TCP
         envFrom:
-        - configMapRef:
-            name: hms-api-configmap-m7b865gbt9
-        # - secretRef:
-        #     name: hms-api-secret
+        # - configMapRef:
+        #     name: hms-api-configmap
+        - secretRef:
+            name: hms-secrets
 

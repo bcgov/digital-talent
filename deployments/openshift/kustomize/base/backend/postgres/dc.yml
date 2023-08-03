@@ -18,17 +18,17 @@ spec:
         - name: POSTGRESQL_DATABASE
           valueFrom:
             secretKeyRef:
-              name: hms-api-postgres-645t8c87cd
+              name: hms-secrets
               key: POSTGRES_DB
         - name: POSTGRESQL_USER
           valueFrom:
             secretKeyRef:
-              name: hms-api-postgres-645t8c87cd
+              name: hms-secrets
               key: POSTGRES_USER
         - name: POSTGRESQL_PASSWORD
           valueFrom:
             secretKeyRef:
-              name: hms-api-postgres-645t8c87cd
+              name: hms-secrets
               key: POSTGRES_PASSWORD
         image: 'registry.access.redhat.com/rhscl/postgresql-10-rhel7:latest'
         name: hms-api-postgres

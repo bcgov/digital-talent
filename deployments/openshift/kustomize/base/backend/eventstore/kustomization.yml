@@ -3,5 +3,5 @@ kind: Kustomization
 resources:
 - service.yml
 - route.yml
-- dc.yml
+- statefulset.yml
 - volumes.yml

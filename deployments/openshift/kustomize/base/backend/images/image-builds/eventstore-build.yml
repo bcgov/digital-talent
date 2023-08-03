@@ -4,6 +4,10 @@ metadata:
   name: hms-api-eventstore
   namespace: fd34fb-tools
 spec:
+  resources:
+        limits:
+          cpu: "2"
+          memory: "3Gi"
   output:
     to:
       kind: ImageStreamTag

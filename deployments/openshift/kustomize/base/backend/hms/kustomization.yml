@@ -4,7 +4,3 @@ resources:
 - dc.yml
 - service.yml
 - route.yml
-configMapGenerator:
-- name: hms-api-configmap
-  files:
-  - .env
