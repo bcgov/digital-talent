@@ -22,6 +22,35 @@ model Ministry {
   @@map("ministry")
 }
 
+enum SkillCategory {
+  CLOUD_PLATFORMS
+  COMMUNICATION
+  CONTAINER_PLATFORMS
+  DATABASES
+  DEVELOPMENT_TOOLS
+  FRAMEWORKS_AND_LIBRARIES
+  KNOWLEDGE
+  OPERATING_SYSTEMS
+  PRODUCTIVITY
+  PROGRAMMING_LANGUAGES
+}
+
+model Skill {
+  id          String        @id @db.Uuid
+  category    SkillCategory
+  name        String
+  description String?
+  created_at  DateTime
+  updated_at  DateTime?
+  deleted_at  DateTime?
+
+  // applications  ApplicationSkill[]
+  // competitions  CompetitionSkill[]
+  // opportunities OpportunitySkill[]
+
+  @@map("skill")
+}
+
 // Classification Models
 model Classification {
   id              String    @id @db.Uuid
