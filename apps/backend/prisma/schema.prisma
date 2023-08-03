@@ -10,15 +10,132 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Grid {
+// Common Models
+model Ministry {
   id         String    @id @db.Uuid
+  deltek_id  String
   name       String
   created_at DateTime
   updated_at DateTime?
+  deleted_at DateTime?
+
+  @@map("ministry")
+}
+
+// Classification Models
+model Classification {
+  id              String    @id @db.Uuid
+  grid_id         String    @db.Uuid
+  position_id     String    @db.Uuid
+  rate_adjustment Decimal
+  created_at      DateTime
+  updated_at      DateTime?
+  deleted_at      DateTime?
+
+  competitions Competition[]
+  grid         Grid          @relation(fields: [grid_id], references: [id])
+  position     Position      @relation(fields: [position_id], references: [id])
+
+  @@map("classification")
+}
+
+enum GridAffiliation {
+  BCGEU
+  MCCF
+  PEA
+}
+
+model Grid {
+  id          String          @id @db.Uuid
+  affiliation GridAffiliation
+  name        String          @unique
+  steps       Json[]
+  created_at  DateTime
+  updated_at  DateTime?
+  deleted_at  DateTime?
+
+  classifications Classification[]
 
   @@map("grid")
 }
 
+enum PositionCategory {
+  BAND
+  AO
+  IS
+}
+
+model Position {
+  id          String           @id @db.Uuid
+  category    PositionCategory
+  name        String
+  description String?
+  created_at  DateTime
+  updated_at  DateTime?
+  deleted_at  DateTime?
+
+  classifications Classification[]
+
+  @@map("position")
+}
+
+// Competition Models
+enum CompetitionCategory {
+  CMH
+  RH
+}
+
+enum CompetitionState {
+  DRAFT
+  PUBLISHED
+  INTAKE_PERIOD
+  APPLICATION_PERIOD
+  SCREENING_PERIOD
+  ASSESSMENT_PERIOD
+  INTERVIEW_PERIOD
+  OFFER_PERIOD
+  CLOSED
+  CANCELLED
+}
+
+model Competition {
+  id                String              @id @db.Uuid
+  classification_id String              @db.Uuid
+  deltek_id         String?
+  recruiter_id      String              @db.Uuid
+  category          CompetitionCategory
+  state             CompetitionState
+  metadata          Json
+  created_at        DateTime
+  updated_at        DateTime?
+  deleted_at        DateTime?
+
+  // opportunities  Opportunity[]
+  // skills         CompetitionSkill[]
+  // elist          Elist[]
+  classification Classification       @relation(fields: [classification_id], references: [id])
+  recruiter      User                 @relation(fields: [recruiter_id], references: [id])
+  schedule       CompetitionSchedule?
+
+  @@map("competition")
+}
+
+model CompetitionSchedule {
+  id             String           @id @db.Uuid
+  competition_id String           @unique @db.Uuid
+  state          CompetitionState
+  start_at       DateTime
+  end_at         DateTime
+  created_at     DateTime
+  updated_at     DateTime?
+  deleted_at     DateTime?
+
+  competition Competition @relation(fields: [competition_id], references: [id])
+
+  @@map("competition_schedule")
+}
+
+// User Models
 model User {
   id         String    @id @db.Uuid
   name       String?
@@ -26,8 +143,10 @@ model User {
   roles      String[]
   created_at DateTime
   updated_at DateTime?
+  deleted_at DateTime?
 
-  identities Identity[]
+  competitions Competition[]
+  identities   Identity[]
 
   @@map("user")
 }
@@ -38,35 +157,10 @@ model Identity {
   user_id           String    @db.Uuid
   created_at        DateTime
   updated_at        DateTime?
+  deleted_at        DateTime?
 
   user User @relation(fields: [user_id], references: [id])
 
   @@id([sub, identity_provider])
   @@map("identity")
-}
-
-model CompetitionSchedule {
-  id             String           @id @db.Uuid
-  //competition_id String           @unique @db.Uuid
-  state          CompetitionState
-  start_at       DateTime
-  end_at         DateTime
-  created_at DateTime
-  updated_at DateTime?
-
-  //competition Competition @relation(fields: [competition_id], references: [id])
-
-  @@map("competition_schedule")
-}
-
-enum CompetitionState {
-  DRAFT
-  PUBLISHED
-  INTAKE_PERIOD
-  APPLICATION_PERIOD
-  ASSESSMENT_PERIOD
-  INTERVIEW_PERIOD
-  OFFER_PERIOD
-  CLOSED
-  CANCELLED
 }

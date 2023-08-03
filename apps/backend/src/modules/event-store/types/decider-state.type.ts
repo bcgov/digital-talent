@@ -1,4 +1,4 @@
 export type InitialState = { exists: false };
-export type ExistsState<T> = { exists: true; data: T };
+export type ExistsState<T, D> = { exists: true; type: T; data: D };
 
-export type DeciderState<T> = InitialState | ExistsState<T>;
+export type DeciderState<D> = InitialState | ExistsState<string, D>;

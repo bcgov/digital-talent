@@ -50,5 +50,8 @@
     "tailwindcss-animate": "^1.0.5",
     "typescript": "^4.9.5",
     "uuid": "^9.0.0"
+  },
+  "devDependencies": {
+    "prisma": "~4.16.1"
   }
 }

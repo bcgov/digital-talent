@@ -3,16 +3,24 @@ import { ExistsState, InitialState } from '../event-store/types/decider-state.ty
 import { Decider } from '../event-store/utils/create-command-handler.util';
 import { decideUpdateEventData } from '../event-store/utils/decide-update-event-data.util';
 import { CreateCompetitionScheduleCommand } from './commands/create-competition-schedule/create-competition-schedule.command';
+import { DeleteCompetitionScheduleCommand } from './commands/delete-competition-schedule/delete-competition-schedule.command';
+import { UpdateCompetitionScheduleCommand } from './commands/update-competition-schedule/update-competition-schedule.command';
 import { CompetitionScheduleEntity } from './entities/competition-schedule.entity';
 import { CompetitionScheduleCreatedEvent } from './events/competition-schedule-created/competition-schedule-created.event';
-import { CreateCompetitionScheduleInput } from './inputs/create-competition-schedule.input';
-import { UpdateCompetitionScheduleCommand } from './commands/update-competition-schedule/update-competition-schedule.command';
+import { CompetitionScheduleDeletedEvent } from './events/competition-schedule-deleted/competition-schedule-deleted.event';
 import { CompetitionScheduleUpdatedEvent } from './events/competition-schedule-updated/competition-schedule-updated.event';
+import { CreateCompetitionScheduleInput } from './inputs/create-competition-schedule.input';
 import { UpdateCompetitionScheduleInput } from './inputs/update-competition-schedule.input';
 
-export type CompetitionScheduleState = InitialState | ExistsState<CompetitionScheduleEntity>;
-export type CompetitionScheduleCommand = CreateCompetitionScheduleCommand | UpdateCompetitionScheduleCommand;
-export type CompetitionScheduleEvent = CompetitionScheduleCreatedEvent | CompetitionScheduleUpdatedEvent;
+export type CompetitionScheduleState = InitialState | ExistsState<'competition-schedule', CompetitionScheduleEntity>;
+export type CompetitionScheduleCommand =
+  | CreateCompetitionScheduleCommand
+  | UpdateCompetitionScheduleCommand
+  | DeleteCompetitionScheduleCommand;
+export type CompetitionScheduleEvent =
+  | CompetitionScheduleCreatedEvent
+  | CompetitionScheduleUpdatedEvent
+  | CompetitionScheduleDeletedEvent;
 
 export const initialState: CompetitionScheduleState = { exists: false };
 
@@ -23,6 +31,7 @@ export function evolve(state: CompetitionScheduleState, event: CompetitionSchedu
 
       return {
         exists: true,
+        type: 'competition-schedule',
         data: {
           ...(state.exists === true && { ...state.data }),
           ...data,
@@ -35,10 +44,23 @@ export function evolve(state: CompetitionScheduleState, event: CompetitionSchedu
 
       return {
         exists: true,
+        type: 'competition-schedule',
         data: {
           ...(state.exists === true && { ...state.data }),
           ...data,
-          updated_at: new Date(metadata.updated_at as string),
+          updated_at: new Date(metadata.created_at as string),
+        },
+      };
+    }
+    case 'CompetitionScheduleDeletedEvent': {
+      const { metadata } = event;
+
+      return {
+        exists: true,
+        type: 'competition-schedule',
+        data: {
+          ...(state.exists === true && { ...state.data }),
+          deleted_at: new Date(metadata.created_at as string),
         },
       };
     }
@@ -75,6 +97,22 @@ export function decide(
           ...command.metadata,
           updated_at: new Date().toISOString(),
         }),
+      ];
+    }
+    case 'DeleteCompetitionScheduleCommand': {
+      if (!state.exists) throw new BadRequestException('Competition Schedule does not exist');
+
+      const data: CreateCompetitionScheduleInput = decideUpdateEventData(command, state);
+
+      if (data == null) return [];
+      return [
+        new CompetitionScheduleDeletedEvent(
+          { ...data, deleted_at: command.data.deleted_at },
+          {
+            ...command.metadata,
+            deleted_at: command.data.deleted_at,
+          },
+        ),
       ];
     }
     default: {

@@ -1,3 +1,4 @@
+import { EventStoreDBClient } from '@eventstore/db-client';
 import { ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { CommandBus } from '@nestjs/cqrs';
@@ -14,6 +15,7 @@ async function bootstrap() {
   await app.listen(4000);
 
   const commandBus = app.get(CommandBus);
-  await applySeeds(commandBus);
+  const eventStore = app.get(EventStoreDBClient);
+  await applySeeds(commandBus, eventStore);
 }
 bootstrap();

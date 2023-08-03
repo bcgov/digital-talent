@@ -6,8 +6,8 @@ export class CompetitionScheduleEntity {
   @Field((type) => GraphQLUUID)
   id: string;
 
-  // @Field((type) => GraphQLUUID)
-  // competition_id: string;
+  @Field((type) => GraphQLUUID)
+  competition_id: string;
 
   state: string; // state          CompetitionState
 
@@ -18,4 +18,6 @@ export class CompetitionScheduleEntity {
   created_at?: Date;
 
   updated_at?: Date;
+
+  deleted_at?: Date;
 }
