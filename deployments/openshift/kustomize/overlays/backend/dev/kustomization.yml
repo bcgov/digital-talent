@@ -3,17 +3,6 @@ kind: Kustomization
 # Points to the overlay that creates the images.
 resources:
 - ../../../base/backend
-namespace: f15899-dev
-namePrefix: dev-
-replacements:
-  - source:
-      kind: Service
-      fieldPath: metadata.name
-    targets:
-      - select:
-          kind: Route
-          name: backend
-        fieldPaths: 
-          - spec.to.name
+namespace: fd34fb-dev
 patchesStrategicMerge:
 - patch.yml

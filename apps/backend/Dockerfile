@@ -9,12 +9,15 @@ COPY package*.json ./
 
 # Install dependencies.
 RUN npm install
+RUN mkdir -p /.npm && chown -R 1004980000:0 /.npm
 
 # Copy local code to the container image.
 COPY . .
 
 # Copy the start.sh script to the Docker image.
 COPY start.sh ./
+RUN chown -R 1004980000:0 /usr/src/app
+
 RUN chmod +x ./start.sh
 
 # Expose port 4000
