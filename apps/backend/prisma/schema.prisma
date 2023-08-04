@@ -138,6 +138,7 @@ model CompetitionSchedule {
 // User Models
 model User {
   id         String    @id @db.Uuid
+  deltek_id  String?   @unique
   name       String?
   email      String?   @unique
   roles      String[]
@@ -145,6 +146,7 @@ model User {
   updated_at DateTime?
   deleted_at DateTime?
 
+  applications  Application[]
   competitions Competition[]
   identities   Identity[]
 
@@ -163,4 +165,21 @@ model Identity {
 
   @@id([sub, identity_provider])
   @@map("identity")
+}
+
+
+model Application {
+  id           String @id @db.Uuid
+  applicant_id String @db.Uuid
+  created_at DateTime
+  updated_at DateTime?
+  deleted_at DateTime?
+  
+  json Json
+
+  //locations ApplicationLocation[]
+  //skills    ApplicationSkill[]
+  applicant User                  @relation(fields: [applicant_id], references: [id])
+
+  @@map("application")
 }

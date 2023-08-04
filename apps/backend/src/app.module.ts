@@ -19,6 +19,7 @@ import { EventStoreModule } from './modules/event-store/event-store.module';
 import { MinistryModule } from './modules/ministry/ministry.module';
 import { UserModule } from './modules/user/user.module';
 import { validateAppConfig } from './utils/validate-app-config.util';
+import { ApplicationModule } from './modules/application/application.module';
 
 @Module({
   imports: [
@@ -61,6 +62,7 @@ import { validateAppConfig } from './utils/validate-app-config.util';
     CompetitionScheduleModule,
     UserModule,
     MinistryModule,
+    ApplicationModule,
   ],
   providers: [
     { provide: APP_GUARD, useClass: AuthGuard },

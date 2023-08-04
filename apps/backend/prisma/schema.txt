@@ -78,6 +78,7 @@ model Classification {
 
 model User {
   id    String   @id @db.Uuid
+  deltek_id  String?   @unique
   name  String?
   email String?  @unique
   roles String[]
@@ -323,6 +324,7 @@ model Application {
   applicant_id String @db.Uuid
   created_at DateTime
   updated_at DateTime?
+  deleted_at DateTime?
 
   json Json
 

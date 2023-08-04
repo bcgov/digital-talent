@@ -10,6 +10,10 @@ export class SyncUserInput {
 
   @IsOptional()
   @IsString()
+  deltek_id?: string;
+
+  @IsOptional()
+  @IsString()
   name?: string;
 
   @IsOptional()

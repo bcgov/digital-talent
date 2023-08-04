@@ -6,11 +6,11 @@ export class AppConfigDto {
   NODE_ENV: Environment;
 
   @IsNotEmpty()
-  @IsUrl({ protocols: ['postgresql'] })
+  // @IsUrl({ protocols: ['postgresql'] })
   DATABASE_URL: string;
 
   @IsNotEmpty()
-  @IsUrl({ protocols: ['esdb'] })
+  // @IsUrl({ protocols: ['esdb'] })
   EVENT_STORE_URL: string;
 
   @IsNotEmpty()

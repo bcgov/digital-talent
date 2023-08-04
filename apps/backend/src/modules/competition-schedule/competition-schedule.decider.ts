@@ -40,7 +40,11 @@ export function evolve(state: CompetitionScheduleState, event: CompetitionSchedu
       };
     }
     case 'CompetitionScheduleUpdatedEvent': {
-      const { data, metadata } = event;
+      const { data } = event;
+
+      // Convert start_at and end_at strings to Date objects if they exist
+      const startAt = data.start_at ? new Date(data.start_at) : undefined;
+      const endAt = data.end_at ? new Date(data.end_at) : undefined;
 
       return {
         exists: true,
@@ -48,7 +52,8 @@ export function evolve(state: CompetitionScheduleState, event: CompetitionSchedu
         data: {
           ...(state.exists === true && { ...state.data }),
           ...data,
-          updated_at: new Date(metadata.created_at as string),
+          ...(startAt && { start_at: startAt }),
+          ...(endAt && { end_at: endAt }),
         },
       };
     }
@@ -90,7 +95,9 @@ export function decide(
     }
     case 'UpdateCompetitionScheduleCommand': {
       if (!state.exists) throw new BadRequestException('Competition Schedule does not exist');
+
       const data: UpdateCompetitionScheduleInput = decideUpdateEventData(command, state);
+
       if (data == null) return [];
       return [
         new CompetitionScheduleUpdatedEvent(data, {
