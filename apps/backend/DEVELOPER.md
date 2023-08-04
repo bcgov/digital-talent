@@ -97,4 +97,7 @@ docker compose up -d
    docker run -p 8080:4000 nestjs-app
    ```
 
+   **note:**:
+   the .dockerignore file includes the /src directory; this is required for docker compose to work with file watching. If you would like to build the nestjs-app by itself, you can either mount the volume or remove /src from the dockerignore.
+
 2. Visit `http://localhost:4000/graphql` in your browser to access the GraphQL API.

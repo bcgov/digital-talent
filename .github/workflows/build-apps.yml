@@ -24,7 +24,7 @@ jobs:
           filters: |
             www:
               - 'apps/www/**'
-            backend-hms:
+            hms-api:
               - 'apps/backend/**'
       - name: Get Short SHA
         id: get-short-sha
