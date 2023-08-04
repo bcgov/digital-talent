@@ -1,5 +1,5 @@
 #!/bin/bash
-
+whoami
 # Run migrations
 npx prisma db push
 
