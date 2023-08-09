@@ -22,6 +22,35 @@ model Ministry {
   @@map("ministry")
 }
 
+enum SkillCategory {
+  CLOUD_PLATFORMS
+  COMMUNICATION
+  CONTAINER_PLATFORMS
+  DATABASES
+  DEVELOPMENT_TOOLS
+  FRAMEWORKS_AND_LIBRARIES
+  KNOWLEDGE
+  OPERATING_SYSTEMS
+  PRODUCTIVITY
+  PROGRAMMING_LANGUAGES
+}
+
+model Skill {
+  id          String        @id @db.Uuid
+  category    SkillCategory
+  name        String
+  description String?
+  created_at  DateTime
+  updated_at  DateTime?
+  deleted_at  DateTime?
+
+  // applications  ApplicationSkill[]
+  competitions CompetitionSkill[]
+  // opportunities OpportunitySkill[]
+
+  @@map("skill")
+}
+
 // Classification Models
 model Classification {
   id              String    @id @db.Uuid
@@ -111,13 +140,29 @@ model Competition {
   deleted_at        DateTime?
 
   // opportunities  Opportunity[]
-  // skills         CompetitionSkill[]
+  skills         CompetitionSkill[]
   // elist          Elist[]
   classification Classification       @relation(fields: [classification_id], references: [id])
   recruiter      User                 @relation(fields: [recruiter_id], references: [id])
   schedule       CompetitionSchedule?
 
   @@map("competition")
+}
+
+model CompetitionSkill {
+  competition_id       String    @db.Uuid
+  skill_id             String    @db.Uuid
+  min_years_experience Int
+  is_required          Boolean
+  created_at           DateTime
+  updated_at           DateTime?
+  deleted_at           DateTime?
+
+  competition Competition @relation(fields: [competition_id], references: [id])
+  skill       Skill       @relation(fields: [skill_id], references: [id])
+
+  @@id([competition_id, skill_id])
+  @@map("competition_skill")
 }
 
 model CompetitionSchedule {
@@ -138,6 +183,7 @@ model CompetitionSchedule {
 // User Models
 model User {
   id         String    @id @db.Uuid
+  deltek_id  String?   @unique
   name       String?
   email      String?   @unique
   roles      String[]
@@ -145,6 +191,7 @@ model User {
   updated_at DateTime?
   deleted_at DateTime?
 
+  applications  Application[]
   competitions Competition[]
   identities   Identity[]
 
@@ -163,4 +210,21 @@ model Identity {
 
   @@id([sub, identity_provider])
   @@map("identity")
+}
+
+
+model Application {
+  id           String @id @db.Uuid
+  applicant_id String @db.Uuid
+  created_at DateTime
+  updated_at DateTime?
+  deleted_at DateTime?
+  
+  json Json
+
+  //locations ApplicationLocation[]
+  //skills    ApplicationSkill[]
+  applicant User                  @relation(fields: [applicant_id], references: [id])
+
+  @@map("application")
 }

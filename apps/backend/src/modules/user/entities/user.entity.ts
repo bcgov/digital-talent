@@ -6,6 +6,8 @@ export class UserEntity {
   @Field((type) => GraphQLUUID)
   id: string;
 
+  deltek_id?: string;
+
   name?: string;
 
   email?: string;

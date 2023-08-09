@@ -6,8 +6,7 @@ export class AppConfigDto {
   NODE_ENV: Environment;
 
   @IsNotEmpty()
-  // eslint-disable-next-line spaced-comment
-  //@IsUrl({ protocols: ['postgresql'] })
+  // @IsUrl({ protocols: ['postgresql'] })
   DATABASE_URL: string;
 
   @IsNotEmpty()
