@@ -29,56 +29,24 @@ spec:
       COPY package*.json ./
 
       # Install dependencies.
-      #RUN npm config set cache /home/nodeuser/.npm-cache --global
       RUN npm install
-      #RUN npm install @prisma/client
-      # Create a non-root user and give ownership to the app directory.
-      # RUN groupadd -g 1001 nodeuser && \
-      #     useradd -r -u 1001 -g nodeuser nodeuser; \
-      #     chown -R nodeuser:nodeuser /usr/src/app;
-      # RUN find / \( \
-      #       -path /proc -o \
-      #       -path /dev -o \
-      #       -path /sys \
-      #     \) -prune -o \( \
-      #       -xtype l -exec rm {} \; -o \
-      #       -exec chmod g=u {} \; -a \
-      #       -exec chgrp 0 {} \; -a \
-      #       -exec chown nodeuser {} \; \
-      #     \)
 
       # Copy local code to the container image.
       COPY . .
       RUN rm start.sh
 
-      #RUN mkdir /usr/src/app/tmp
-      #COPY prisma /usr/src/app/tmp/prisma
       RUN npx prisma generate
-      #COPY /usr/src/app/node_modules /usr/src/app/tmp/node_modules
       
       RUN npm run build
-      #COPY dist /usr/src/app/tmp/dist
-      #RUN mkdir -p /usr/src/app/.npm/cache
-      #RUN npm config set cache /usr/src/app/.npm/cache
-      #RUN chgrp -R 0 /usr/src/app/.npm/cache && chmod -R g=u /usr/src/app/.npm/cache
       RUN mkdir /.npm
       RUN chgrp -R 0 /.npm && chmod -R g=u /.npm
-      #RUN chmod -R g+rw /usr/src/app/
-
 
       # Copy the start.sh script to the Docker image.
       #COPY start.sh ./
       # Create and write the contents of start.sh in the container
       RUN echo "#!/bin/bash" >> start.sh && \
-          echo "whoami" >> start.sh && \
-          echo "#npm run build" >> start.sh && \
-          echo "ls" >> start.sh && \
-          echo " " >> start.sh && \
-          echo "#cp -r tmp/* ."  >> start.sh && \
-          echo "#ls node_modules" >> start.sh && \
-          echo "#cp prisma/schema.prisma /usr/src/app/node_modules/.prisma/client/schema.prisma" >> start.sh && \
+          echo "# push the schema to the database and sync the client" >> start.sh && \
           echo "npx prisma db push --schema='/usr/src/app/prisma/schema.prisma' --skip-generate " >> start.sh && \
-          echo "# query db - check if should do migration" >> start.sh && \
           echo "" >> start.sh && \
           echo "# Start the application" >> start.sh && \
           echo "npm run start:prod" >> start.sh
