@@ -48,6 +48,19 @@ module.exports = easelint({
         },
       },
       {
+        // apps/hms-app | React
+        files: ['apps/hms-app/**/*.{js,jsx,ts,tsx}'],
+        extends: ['plugin:react-hooks/recommended'],
+        plugins: ['react-refresh'],
+        rules: {
+          '@typescript-eslint/no-shadow': 'off',
+          'import/no-default-export': 'off',
+          'react/react-in-jsx-scope': 'off',
+          'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
+          'react/require-default-props': 'off',
+        },
+      },
+      {
         // www | Next.js
         files: ['apps/www/**/*.{js,jsx,ts,tsx}'],
         extends: ['plugin:@next/next/recommended'],
