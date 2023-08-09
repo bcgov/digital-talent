@@ -1,11 +1,6 @@
 #!/bin/bash
-whoami
-
-ID=`id -u`
-sed -i 's/:1001:/:'"$ID"':/g' /etc/passwd
 
 # Run migrations
-npx prisma db push
-
+npx prisma db push --schema='/usr/src/app/prisma/schema.prisma' --skip-generate 
 # Start the application
-npm run start:dev
+npm run start:prod

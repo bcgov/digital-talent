@@ -1,0 +1,13 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+    name: nestjs-app
+spec:
+  host: hms-api.digital.gov.bc.ca
+---
+#disable the route for prod
+$patch: delete
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: hms-api-eventstore-route

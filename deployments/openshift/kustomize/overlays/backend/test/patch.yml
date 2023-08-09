@@ -1,0 +1,13 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+    name: nestjs-app
+spec:
+  host: hms-api-test.apps.silver.devops.gov.bc.ca
+---
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: hms-api-eventstore-route
+spec:
+  host: hms-eventstore-test.apps.silver.devops.gov.bc.ca

@@ -30,6 +30,12 @@ spec:
             secretKeyRef:
               name: hms-secrets
               key: POSTGRES_PASSWORD
+        # Added the following environment variable for superuser
+        - name: POSTGRESQL_ADMIN_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: hms-secrets
+              key: POSTGRES_PASSWORD
         image: 'registry.access.redhat.com/rhscl/postgresql-10-rhel7:latest'
         name: hms-api-postgres
         ports:
