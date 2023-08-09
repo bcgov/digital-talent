@@ -7,7 +7,7 @@ export const LoginPage = () => {
   return (
     <Space align="center" direction="vertical" style={{ height: '100vh', width: '100vw', justifyContent: 'center' }}>
       <Button onClick={() => auth.signinRedirect()} type="primary">
-        Login using IDIR
+        Log In
       </Button>
     </Space>
   );
