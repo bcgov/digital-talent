@@ -3,7 +3,6 @@ kind: Route
 metadata:
   name: nestjs-app
 spec:
-  host: hms-api.apps.silver.devops.gov.bc.ca
   to:
     kind: Service
     name: nestjs-app

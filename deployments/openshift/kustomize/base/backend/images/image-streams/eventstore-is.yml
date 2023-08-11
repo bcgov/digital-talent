@@ -3,7 +3,6 @@ kind: ImageStream
 apiVersion: image.openshift.io/v1
 metadata:
   name: hms-api-eventstore
-  namespace: fd34fb-tools
 spec:
   lookupPolicy:
     local: true

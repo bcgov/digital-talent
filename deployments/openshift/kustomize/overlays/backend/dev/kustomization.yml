@@ -3,6 +3,6 @@ kind: Kustomization
 # Points to the overlay that creates the images.
 resources:
 - ../../../base/backend
-namespace: fd34fb-dev
+namespace: f15899-dev
 patchesStrategicMerge:
 - patch.yml

@@ -14,7 +14,7 @@ spec:
           from:
             kind: ImageStreamTag
             name: hms-api:latest
-            namespace: fd34fb-tools
+            namespace: f15899-tools
         type: ImageChange
   replicas: 1
   selector:

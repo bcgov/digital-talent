@@ -9,15 +9,31 @@ COPY package*.json ./
 
 # Install dependencies.
 RUN npm install
-RUN mkdir -p /.npm && chown -R 1004980000:0 /.npm
 
 # Copy local code to the container image.
 COPY . .
 
-# Copy the start.sh script to the Docker image.
-COPY start.sh ./
-RUN chown -R 1004980000:0 /usr/src/app
+# generates the prisma client
+RUN npx prisma generate
 
+#generates the dist folder for nest to run
+RUN npm run build
+
+# openshift runs as a different user than what docker builds with
+# this fixes the issue as related to the npm cache
+RUN mkdir /.npm
+RUN chgrp -R 0 /.npm && chmod -R g=u /.npm
+
+# For debugging: create and write the contents of start.sh in the container
+# RUN rm start.sh
+# RUN echo "#!/bin/bash" >> start.sh && \
+#     echo "# push the schema to the database and sync the client" >> start.sh && \
+#     echo "npx prisma db push --schema='/usr/src/app/prisma/schema.prisma' --skip-generate " >> start.sh && \
+#     echo "" >> start.sh && \
+#     echo "# Start the application" >> start.sh && \
+#     echo "npm run start:prod" >> start.sh
+
+# Set execute permissions for the start.sh script.
 RUN chmod +x ./start.sh
 
 # Expose port 4000

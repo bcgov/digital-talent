@@ -2,7 +2,6 @@ apiVersion: build.openshift.io/v1
 kind: BuildConfig
 metadata:
   name: hms-api-eventstore
-  namespace: fd34fb-tools
 spec:
   resources:
         limits:

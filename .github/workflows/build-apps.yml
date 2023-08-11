@@ -2,7 +2,7 @@ name: Build Docker Images
 
 on:
   push:
-    branches: [main, stage, develop]
+    branches: [main, stage, develop, feature/deploy-backend]
 
 jobs:
   metadata:
