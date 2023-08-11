@@ -1,4 +1,4 @@
-# Digital Talent Backend
+# Digital Talent hms-api
 
 The `Digital Talent` backend is created using [NestJS](https://nestjs.com/).
 

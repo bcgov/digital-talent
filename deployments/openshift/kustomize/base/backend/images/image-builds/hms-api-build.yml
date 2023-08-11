@@ -16,7 +16,7 @@ spec:
     git:
       ref: deploy-backend
       uri: https://github.com/bcgov/digital-talent.git
-    contextDir: apps/backend
+    contextDir: apps/hms-api
     dockerfile: |
       # Use the official Node.js 18 image.
       FROM node:18.17.0
