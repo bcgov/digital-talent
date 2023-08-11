@@ -15,7 +15,7 @@ spec:
           - www
         from:
           kind: ImageStreamTag
-          name: www:test
+          name: www:stage-latest
           namespace: f15899-tools
 ---
 apiVersion: route.openshift.io/v1

@@ -1,3 +1,15 @@
+apiVersion: apps.openshift.io/v1
+kind: DeploymentConfig
+metadata:
+  name: nestjs-app
+spec:
+  triggers:
+      - imageChangeParams:
+          from:
+            kind: ImageStreamTag
+            name: hms-api:stage-latest
+            namespace: f15899-tools
+---          
 apiVersion: route.openshift.io/v1
 kind: Route
 metadata:

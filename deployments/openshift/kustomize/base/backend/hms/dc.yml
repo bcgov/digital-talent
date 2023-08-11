@@ -13,7 +13,7 @@ spec:
             - nestjs-app
           from:
             kind: ImageStreamTag
-            name: hms-api:latest
+            name: hms-api:develop-latest
             namespace: f15899-tools
         type: ImageChange
   replicas: 1
