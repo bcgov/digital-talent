@@ -40,7 +40,7 @@ export function evolve(state: CompetitionScheduleState, event: CompetitionSchedu
       };
     }
     case 'CompetitionScheduleUpdatedEvent': {
-      const { data } = event;
+      const { data, metadata } = event;
 
       // Convert start_at and end_at strings to Date objects if they exist
       const startAt = data.start_at ? new Date(data.start_at) : undefined;
@@ -52,6 +52,7 @@ export function evolve(state: CompetitionScheduleState, event: CompetitionSchedu
         data: {
           ...(state.exists === true && { ...state.data }),
           ...data,
+          updated_at: new Date(metadata.created_at as string),
           ...(startAt && { start_at: startAt }),
           ...(endAt && { end_at: endAt }),
         },

@@ -19,7 +19,6 @@ export class ApplicationResolver {
     @CurrentUser() { id: userId }: Express.User,
     @Args({ name: 'data', type: () => CreateApplicationInput }) data: CreateApplicationInput,
   ) {
-    // console.log('resolver executing command.., data: ', data);
     const { id, ...restData } = data;
     const command = new CreateApplicationCommand({ id, applicant_id: userId, ...restData }, { created_by: userId });
     await this.commandBus.execute(command);

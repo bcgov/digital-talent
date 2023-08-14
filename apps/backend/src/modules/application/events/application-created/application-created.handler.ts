@@ -12,7 +12,6 @@ export class ApplicationCreatedHandler implements IEventHandler<ApplicationCreat
       metadata,
     } = event;
 
-    // console.log('application-created.handler.., json: ', json);
     const createObj = {
       data: {
         id,
@@ -21,11 +20,10 @@ export class ApplicationCreatedHandler implements IEventHandler<ApplicationCreat
             id: applicant_id,
           },
         },
-        json: JSON.parse(json), // Assuming that 'json' field is a stringified JSON
+        json,
         created_at: new Date(metadata.created_at),
       },
     };
-    // console.log('createObj: ', createObj);
     await this.prisma.application.create(createObj);
   }
 }

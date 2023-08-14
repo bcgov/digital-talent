@@ -14,7 +14,6 @@ export class CreateApplicationHandler implements ICommandHandler<CreateApplicati
   private readonly handle: (command: CreateApplicationCommand) => Promise<CommandHandlerResult>;
 
   constructor(private readonly eventBus: EventBus, private readonly eventStore: EventStoreDBClient) {
-    // console.log('createApplication command constructor');
     this.handle = createCommandHandler(eventStore, this.streamId, decider);
   }
 

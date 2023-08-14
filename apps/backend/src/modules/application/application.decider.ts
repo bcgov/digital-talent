@@ -22,7 +22,6 @@ export function evolve(state: ApplicationState, event: ApplicationEvent): Applic
   switch (event.type) {
     case 'ApplicationCreatedEvent': {
       const { data, metadata } = event;
-      // console.log('ApplicationCreatedEvent.evolve');
       return {
         exists: true,
         type: 'application',
@@ -71,10 +70,6 @@ export function decide(state: ApplicationState, command: ApplicationCommand): Ap
 
       const data: CreateApplicationInput = decideUpdateEventData(command, state);
 
-      // console.log('ApplicationCreatedEvent.decide, command: ', command);
-      // console.log('ApplicationCreatedEvent.decide, state: ', state);
-      // console.log('ApplicationCreatedEvent.decide, data: ', data);
-
       if (data == null) return [];
 
       return [
@@ -87,6 +82,7 @@ export function decide(state: ApplicationState, command: ApplicationCommand): Ap
     case 'UpdateApplicationCommand': {
       if (!state.exists) throw new BadRequestException('Application does not exist');
       const data: UpdateApplicationInput = decideUpdateEventData(command, state);
+
       if (data == null) return [];
       return [
         new ApplicationUpdatedEvent(data, {

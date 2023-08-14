@@ -20,7 +20,7 @@ export class ApplicationUpdatedHandler implements IEventHandler<ApplicationUpdat
             connect: { id: applicant_id },
           },
         }),
-        json: JSON.parse(json), // Assuming that 'json' field is a stringified JSON
+        json,
         updated_at: metadata.created_at,
       },
     });

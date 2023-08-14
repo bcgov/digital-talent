@@ -6,10 +6,11 @@ import { CommandHandlers } from './commands';
 import { EventHandlers } from './events';
 import { ApplicationResolver } from './application.resolver';
 import { ApplicationController } from './controllers/application.controller';
+import { ApplicationService } from './application.service';
 
 @Module({
   imports: [CqrsModule, PrismaModule],
-  providers: [ApplicationResolver, ...CommandHandlers, ...EventHandlers],
+  providers: [ApplicationResolver, ...CommandHandlers, ...EventHandlers, ApplicationService],
   controllers: [ApplicationController],
 })
 export class ApplicationModule {
