@@ -17,6 +17,31 @@ export function decideUpdateEventData<
   const ids = extractIdentifiersFromCommandData(command.data);
   const delta: Partial<Command> = diff(state.data, command.data);
 
+  const {
+    data: { id, ...data },
+  } = command;
+  const { data: stateData } = state;
+
+  // // Preliminary diff (to detect changes)
+  // const delta: Partial<Command> = diff(stateData, data);
+
+  // This is a helper function to check if a value is an object
+  function isObject(value: any): boolean {
+    return value !== null && typeof value === 'object' && !Array.isArray(value);
+  }
+
+  // Loop over keys in `data` and compare JSON-like fields
+  for (const key in data) {
+    if (
+      isObject(data[key]) &&
+      isObject(stateData[key]) &&
+      JSON.stringify(data[key]) !== JSON.stringify(stateData[key])
+    ) {
+      // If there's a difference in the JSON values, use the whole JSON-like field from the command
+      (delta[key as keyof typeof delta] as any) = data[key];
+    }
+  }
+
   if (Object.keys(delta).length === 0) return null;
 
   const retObj = {

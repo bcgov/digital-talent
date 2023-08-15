@@ -44,7 +44,7 @@ model Skill {
   updated_at  DateTime?
   deleted_at  DateTime?
 
-  // applications  ApplicationSkill[]
+  applications  ApplicationSkill[]
   competitions CompetitionSkill[]
   // opportunities OpportunitySkill[]
 
@@ -222,9 +222,57 @@ model Application {
   
   json Json
 
-  //locations ApplicationLocation[]
-  //skills    ApplicationSkill[]
+  locations ApplicationLocation[]
+  skills    ApplicationSkill[]
   applicant User                  @relation(fields: [applicant_id], references: [id])
 
   @@map("application")
+}
+
+model Location {
+  id          String @id @db.Uuid
+  deltek_id   String
+  name        String
+  postal_code String
+  lat         Float
+  lon         Float
+  created_at DateTime
+  updated_at DateTime?
+  deleted_at DateTime?
+
+  applications  ApplicationLocation[]
+  // opportunities OpportunityLocation[]
+
+  @@map("location")
+}
+
+model ApplicationLocation {
+  application_id String @db.Uuid
+  location_id    String @db.Uuid
+  rank           Int
+  created_at DateTime
+  updated_at DateTime?
+  deleted_at DateTime?
+
+  application Application @relation(fields: [application_id], references: [id])
+  location    Location    @relation(fields: [location_id], references: [id])
+
+  @@id([application_id, location_id])
+  @@map("application_location")
+}
+
+model ApplicationSkill {
+  application_id   String @db.Uuid
+  skill_id         String @db.Uuid
+  years_experience Int
+  description      String
+  created_at DateTime
+  updated_at DateTime?
+  deleted_at DateTime?
+  
+  application Application @relation(fields: [application_id], references: [id])
+  skill       Skill       @relation(fields: [skill_id], references: [id])
+
+  @@id([application_id, skill_id])
+  @@map("application_skill")
 }
