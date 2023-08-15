@@ -98,3 +98,6 @@ docker compose up -d
    ```
 
 2. Visit `http://localhost:4000/graphql` in your browser to access the GraphQL API.
+
+## GitHub for Windows pre-commit husky issues
+To avoid GitHub for windows attempting to run pre-commit husky script through WSL, configure your system PATH environment variable to contain C:\Program Files\Git\bin (note: it should not be C:\Program Files\Git\cmd). Also ensure that this entry comes before %SystemRoot%\system32 as it will override bash.exe.
