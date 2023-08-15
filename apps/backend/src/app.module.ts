@@ -21,6 +21,7 @@ import { MinistryModule } from './modules/ministry/ministry.module';
 import { SkillModule } from './modules/skill/skill.module';
 import { UserModule } from './modules/user/user.module';
 import { validateAppConfig } from './utils/validate-app-config.util';
+import { LocationModule } from './modules/location/location.module';
 
 @Module({
   imports: [
@@ -65,6 +66,7 @@ import { validateAppConfig } from './utils/validate-app-config.util';
     MinistryModule,
     ApplicationModule,
     SkillModule,
+    LocationModule,
   ],
   providers: [
     { provide: APP_GUARD, useClass: AuthGuard },

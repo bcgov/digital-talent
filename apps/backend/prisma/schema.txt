@@ -22,6 +22,7 @@ model Location {
   lon         Float
   created_at DateTime
   updated_at DateTime?
+  deleted_at DateTime?
 
   applications  ApplicationLocation[]
   opportunities OpportunityLocation[]
