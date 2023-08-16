@@ -1,5 +1,5 @@
 import { Field, InputType } from '@nestjs/graphql';
-import { IsDate, IsOptional, IsUUID } from 'class-validator';
+import { IsUUID } from 'class-validator';
 import { GraphQLUUID } from 'graphql-scalars';
 
 @InputType()
@@ -7,8 +7,4 @@ export class DeleteCompetitionScheduleInput {
   @Field((type) => GraphQLUUID)
   @IsUUID()
   id: string;
-
-  @IsDate()
-  @IsOptional()
-  deleted_at?: Date;
 }

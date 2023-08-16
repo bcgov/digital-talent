@@ -93,18 +93,9 @@ export function decide(state: LocationState, command: LocationCommand): Location
     case 'DeleteLocationCommand': {
       if (!state.exists) throw new BadRequestException('Location does not exist');
 
-      const data: CreateLocationInput = decideUpdateEventData(command, state);
+      if (state.data.deleted_at != null) return [];
 
-      if (data == null) return [];
-      return [
-        new LocationDeletedEvent(
-          { ...data, deleted_at: command.data.deleted_at },
-          {
-            ...command.metadata,
-            deleted_at: command.data.deleted_at,
-          },
-        ),
-      ];
+      return [new LocationDeletedEvent(command.data, { ...command.metadata, created_at: new Date().toISOString() })];
     }
     default: {
       return [];

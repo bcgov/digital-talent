@@ -7,10 +7,12 @@ import { GridCommandHandlers } from './grid/commands';
 import { GridEventHandlers } from './grid/events';
 import { PositionCommandHandlers } from './position/commands';
 import { PositionEventHandlers } from './position/events';
+import { PositionResolver } from './position/position.resolver';
 
 @Module({
   imports: [CqrsModule, PrismaModule],
   providers: [
+    PositionResolver,
     ...ClassificationCommandHandlers,
     ...ClassificationEventHandlers,
     ...GridCommandHandlers,

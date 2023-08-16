@@ -202,6 +202,7 @@ model Elist {
   rank           Int
   created_at DateTime
   updated_at DateTime?
+  deleted_at DateTime?
 
   applicant   User         @relation(fields: [applicant_id], references: [id])
   competition Competition  @relation(fields: [competition_id], references: [id])
@@ -217,6 +218,7 @@ model ElistOffer {
   is_accepted   Boolean
   created_at DateTime
   updated_at DateTime?
+  deleted_at DateTime?
 
   elist       Elist       @relation(fields: [elistId], references: [id])
   opportunity Opportunity @relation(fields: [opportunityId], references: [id])

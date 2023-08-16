@@ -13,7 +13,7 @@ export class DeleteApplicationLocationCommand
 
   constructor(data: DeleteApplicationLocationInput, metadata: Metadata) {
     this.type = 'DeleteApplicationLocationCommand';
-    this.data = { ...data, deleted_at: new Date() };
+    this.data = data;
     this.metadata = metadata;
   }
 }

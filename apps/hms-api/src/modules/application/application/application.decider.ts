@@ -94,18 +94,9 @@ export function decide(state: ApplicationState, command: ApplicationCommand): Ap
     case 'DeleteApplicationCommand': {
       if (!state.exists) throw new BadRequestException('Application does not exist');
 
-      const data: CreateApplicationInput = decideUpdateEventData(command, state);
+      if (state.data.deleted_at != null) return [];
 
-      if (data == null) return [];
-      return [
-        new ApplicationDeletedEvent(
-          { ...data, deleted_at: command.data.deleted_at },
-          {
-            ...command.metadata,
-            deleted_at: command.data.deleted_at,
-          },
-        ),
-      ];
+      return [new ApplicationDeletedEvent(command.data, { ...command.metadata, created_at: new Date().toISOString() })];
     }
     default: {
       return [];

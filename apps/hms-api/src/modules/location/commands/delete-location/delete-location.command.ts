@@ -11,7 +11,7 @@ export class DeleteLocationCommand implements DomainEvent<'DeleteLocationCommand
 
   constructor(data: DeleteLocationInput, metadata: Metadata) {
     this.type = 'DeleteLocationCommand';
-    this.data = { ...data, deleted_at: new Date() };
+    this.data = data;
     this.metadata = metadata;
   }
 }

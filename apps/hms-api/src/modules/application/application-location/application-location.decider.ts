@@ -103,17 +103,13 @@ export function decide(
     case 'DeleteApplicationLocationCommand': {
       if (!state.exists) throw new BadRequestException('ApplicationLocation does not exist');
 
-      const data: CreateApplicationLocationInput = decideUpdateEventData(command, state);
+      if (state.data.deleted_at != null) return [];
 
-      if (data == null) return [];
       return [
-        new ApplicationLocationDeletedEvent(
-          { ...data, deleted_at: command.data.deleted_at },
-          {
-            ...command.metadata,
-            deleted_at: command.data.deleted_at,
-          },
-        ),
+        new ApplicationLocationDeletedEvent(command.data, {
+          ...command.metadata,
+          created_at: new Date().toISOString(),
+        }),
       ];
     }
     default: {

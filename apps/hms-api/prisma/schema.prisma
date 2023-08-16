@@ -141,7 +141,7 @@ model Competition {
 
   // opportunities  Opportunity[]
   skills         CompetitionSkill[]
-  // elist          Elist[]
+  elist          Elist[]
   classification Classification       @relation(fields: [classification_id], references: [id])
   recruiter      User                 @relation(fields: [recruiter_id], references: [id])
   schedule       CompetitionSchedule?
@@ -194,6 +194,7 @@ model User {
   applications Application[]
   competitions Competition[]
   identities   Identity[]
+  elist   Elist[]
   Comment      Comment[]
 
   @@map("user")
@@ -275,6 +276,35 @@ model ApplicationSkill {
 
   @@id([application_id, skill_id])
   @@map("application_skill")
+}
+
+model Elist {
+  id             String @id @db.Uuid
+  applicant_id   String @db.Uuid
+  competition_id String @db.Uuid
+  rank           Int
+  created_at DateTime
+  updated_at DateTime?
+  deleted_at DateTime?
+
+  applicant   User         @relation(fields: [applicant_id], references: [id])
+  competition Competition  @relation(fields: [competition_id], references: [id])
+  ElistOffer  ElistOffer[]
+
+  @@map("competition_eligibility_list")
+}
+
+model ElistOffer {
+  id            String  @id @db.Uuid
+  elistId       String  @db.Uuid
+  is_accepted   Boolean
+  //opportunityId String  @db.Uuid // Are these opportunities in our system?  Do they come from somewhere external? 
+  created_at DateTime
+  updated_at DateTime?
+  deleted_at DateTime?
+
+  elist       Elist       @relation(fields: [elistId], references: [id])
+  //opportunity Opportunity @relation(fields: [opportunityId], references: [id])
 }
 
 model Comment {

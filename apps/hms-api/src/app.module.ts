@@ -23,6 +23,8 @@ import { MinistryModule } from './modules/ministry/ministry.module';
 import { SkillModule } from './modules/skill/skill.module';
 import { UserModule } from './modules/user/user.module';
 import { validateAppConfig } from './utils/validate-app-config.util';
+import { ElistOfferModule } from './modules/elist/elist-offer/elist-offer.module';
+import { ElistModule } from './modules/elist/elist/elist.module';
 
 @Module({
   imports: [
@@ -68,6 +70,8 @@ import { validateAppConfig } from './utils/validate-app-config.util';
     ApplicationModule,
     SkillModule,
     LocationModule,
+    ElistModule,
+    ElistOfferModule,
     CommentModule,
   ],
   providers: [

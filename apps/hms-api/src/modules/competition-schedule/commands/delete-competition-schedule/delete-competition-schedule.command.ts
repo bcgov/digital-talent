@@ -13,7 +13,7 @@ export class DeleteCompetitionScheduleCommand
 
   constructor(data: DeleteCompetitionScheduleInput, metadata: Metadata) {
     this.type = 'DeleteCompetitionScheduleCommand';
-    this.data = { ...data, deleted_at: new Date() };
+    this.data = data;
     this.metadata = metadata;
   }
 }

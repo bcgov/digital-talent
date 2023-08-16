@@ -11,7 +11,7 @@ export class DeleteApplicationCommand implements DomainEvent<'DeleteApplicationC
 
   constructor(data: DeleteApplicationInput, metadata: Metadata) {
     this.type = 'DeleteApplicationCommand';
-    this.data = { ...data, deleted_at: new Date() };
+    this.data = data;
     this.metadata = metadata;
   }
 }
