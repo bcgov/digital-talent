@@ -44,7 +44,7 @@ model Skill {
   updated_at  DateTime?
   deleted_at  DateTime?
 
-  applications  ApplicationSkill[]
+  applications ApplicationSkill[]
   competitions CompetitionSkill[]
   // opportunities OpportunitySkill[]
 
@@ -191,9 +191,10 @@ model User {
   updated_at DateTime?
   deleted_at DateTime?
 
-  applications  Application[]
+  applications Application[]
   competitions Competition[]
   identities   Identity[]
+  Comment      Comment[]
 
   @@map("user")
 }
@@ -212,14 +213,13 @@ model Identity {
   @@map("identity")
 }
 
-
 model Application {
-  id           String @id @db.Uuid
-  applicant_id String @db.Uuid
-  created_at DateTime
-  updated_at DateTime?
-  deleted_at DateTime?
-  
+  id           String    @id @db.Uuid
+  applicant_id String    @db.Uuid
+  created_at   DateTime
+  updated_at   DateTime?
+  deleted_at   DateTime?
+
   json Json
 
   locations ApplicationLocation[]
@@ -230,29 +230,29 @@ model Application {
 }
 
 model Location {
-  id          String @id @db.Uuid
+  id          String    @id @db.Uuid
   deltek_id   String
   name        String
   postal_code String
   lat         Float
   lon         Float
-  created_at DateTime
-  updated_at DateTime?
-  deleted_at DateTime?
+  created_at  DateTime
+  updated_at  DateTime?
+  deleted_at  DateTime?
 
-  applications  ApplicationLocation[]
+  applications ApplicationLocation[]
   // opportunities OpportunityLocation[]
 
   @@map("location")
 }
 
 model ApplicationLocation {
-  application_id String @db.Uuid
-  location_id    String @db.Uuid
+  application_id String    @db.Uuid
+  location_id    String    @db.Uuid
   rank           Int
-  created_at DateTime
-  updated_at DateTime?
-  deleted_at DateTime?
+  created_at     DateTime
+  updated_at     DateTime?
+  deleted_at     DateTime?
 
   application Application @relation(fields: [application_id], references: [id])
   location    Location    @relation(fields: [location_id], references: [id])
@@ -262,17 +262,33 @@ model ApplicationLocation {
 }
 
 model ApplicationSkill {
-  application_id   String @db.Uuid
-  skill_id         String @db.Uuid
+  application_id   String    @db.Uuid
+  skill_id         String    @db.Uuid
   years_experience Int
   description      String
-  created_at DateTime
-  updated_at DateTime?
-  deleted_at DateTime?
-  
+  created_at       DateTime
+  updated_at       DateTime?
+  deleted_at       DateTime?
+
   application Application @relation(fields: [application_id], references: [id])
   skill       Skill       @relation(fields: [skill_id], references: [id])
 
   @@id([application_id, skill_id])
   @@map("application_skill")
+}
+
+model Comment {
+  id          String    @id @db.Uuid
+  record_id   String    @default("0")
+  record_type String    @default("n/a")
+  user_id     String    @db.Uuid
+  text        String
+  created_at  DateTime
+  updated_at  DateTime?
+  deleted_at  DateTime?
+
+  user User @relation(fields: [user_id], references: [id])
+
+  // @@id([record_id, record_type])
+  @@map("comment")
 }

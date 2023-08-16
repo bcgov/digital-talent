@@ -14,14 +14,15 @@ import { AuthModule } from './modules/auth/auth.module';
 import { AuthGuard } from './modules/auth/guards/auth.guard';
 import { RoleGuard } from './modules/auth/guards/role.guard';
 import { ClassificationModule } from './modules/classification/classification.module';
+import { CommentModule } from './modules/comment/comment.module';
 import { CompetitionScheduleModule } from './modules/competition-schedule/competition-schedule.module';
 import { CompetitionModule } from './modules/competition/competition.module';
 import { EventStoreModule } from './modules/event-store/event-store.module';
+import { LocationModule } from './modules/location/location.module';
 import { MinistryModule } from './modules/ministry/ministry.module';
 import { SkillModule } from './modules/skill/skill.module';
 import { UserModule } from './modules/user/user.module';
 import { validateAppConfig } from './utils/validate-app-config.util';
-import { LocationModule } from './modules/location/location.module';
 
 @Module({
   imports: [
@@ -67,6 +68,7 @@ import { LocationModule } from './modules/location/location.module';
     ApplicationModule,
     SkillModule,
     LocationModule,
+    CommentModule,
   ],
   providers: [
     { provide: APP_GUARD, useClass: AuthGuard },
