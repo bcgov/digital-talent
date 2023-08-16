@@ -6,8 +6,11 @@ import { ApplicationCommandHandlers } from './application/commands';
 import { ApplicationEventHandlers } from './application/events';
 import { ApplicationLocationCommandHandlers } from './application-location/commands';
 import { ApplicationLocationEventHandlers } from './application-location/events';
-import { ApplicationResolver } from './application/application.resolver';
 import { ApplicationLocationResolver } from './application-location/application-location.resolver';
+import { ApplicationSkillCommandHandlers } from './application-skill/commands';
+import { ApplicationSkillEventHandlers } from './application-skill/events';
+import { ApplicationSkillResolver } from './application-skill/application-skill.resolver';
+import { ApplicationResolver } from './application/application.resolver';
 import { ApplicationController } from './application/controllers/application.controller';
 import { ApplicationService } from './application/application.service';
 
@@ -16,11 +19,14 @@ import { ApplicationService } from './application/application.service';
   providers: [
     ApplicationResolver,
     ApplicationLocationResolver,
+    ApplicationSkillResolver,
+    ApplicationService,
     ...ApplicationCommandHandlers,
     ...ApplicationEventHandlers,
     ...ApplicationLocationCommandHandlers,
     ...ApplicationLocationEventHandlers,
-    ApplicationService,
+    ...ApplicationSkillCommandHandlers,
+    ...ApplicationSkillEventHandlers,
   ],
   controllers: [ApplicationController],
 })

@@ -3,9 +3,10 @@ import { CqrsModule } from '@nestjs/cqrs';
 import { PrismaModule } from '../prisma/prisma.module';
 import { SkillCommandHandlers } from './commands';
 import { SkillEventHandlers } from './events';
+import { SkillResolver } from './skill.resolver';
 
 @Module({
   imports: [CqrsModule, PrismaModule],
-  providers: [...SkillCommandHandlers, ...SkillEventHandlers],
+  providers: [SkillResolver, ...SkillCommandHandlers, ...SkillEventHandlers],
 })
 export class SkillModule {}
