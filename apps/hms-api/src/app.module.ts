@@ -25,6 +25,7 @@ import { UserModule } from './modules/user/user.module';
 import { validateAppConfig } from './utils/validate-app-config.util';
 import { ElistOfferModule } from './modules/elist/elist-offer/elist-offer.module';
 import { ElistModule } from './modules/elist/elist/elist.module';
+import { IdentityModule } from './modules/identity/identity.module';
 
 @Module({
   imports: [
@@ -73,6 +74,7 @@ import { ElistModule } from './modules/elist/elist/elist.module';
     ElistModule,
     ElistOfferModule,
     CommentModule,
+    IdentityModule,
   ],
   providers: [
     { provide: APP_GUARD, useClass: AuthGuard },
