@@ -1,5 +1,5 @@
 import { CommandBus } from '@nestjs/cqrs';
-import { Args, Mutation, Resolver } from '@nestjs/graphql';
+import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { GraphQLString } from 'graphql';
 import { CurrentUser } from '../../../auth/decorators/current-user.decorator';
 import { CreateCompetitionCommand } from '../commands/create-competition/create-competition.command';
@@ -10,10 +10,12 @@ import { CreateCompetitionInput } from '../inputs/create-competition.input';
 import { DeleteCompetitionInput } from '../inputs/delete-competition.input';
 import { UpdateCompetitionStateInput } from '../inputs/update-competition-state.input';
 import { UpdateCompetitionInput } from '../inputs/update-competition.input';
+import { CompetitionWriteEntity } from '../entities/competition-write.entity';
+import { PrismaService } from '../../../prisma/prisma.service';
 
-@Resolver((of) => GraphQLString)
+@Resolver((of) => CompetitionWriteEntity)
 export class CompetitionCommandResolver {
-  constructor(private readonly commandBus: CommandBus) {}
+  constructor(private readonly commandBus: CommandBus, private readonly prisma: PrismaService) {}
 
   @Mutation((returns) => GraphQLString)
   async createCompetition(
@@ -61,5 +63,21 @@ export class CompetitionCommandResolver {
     await this.commandBus.execute(command);
 
     return command.data.id;
+  }
+
+  @Query((returns) => [CompetitionWriteEntity])
+  async competitions() {
+    return this.prisma.competition.findMany({
+      where: {
+        deleted_at: null,
+      },
+    });
+  }
+
+  @Query((returns) => CompetitionWriteEntity)
+  async competition(@Args('id', { type: () => GraphQLString }) id: string) {
+    return this.prisma.competition.findUnique({
+      where: { id },
+    });
   }
 }

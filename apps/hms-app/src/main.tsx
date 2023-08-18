@@ -2,21 +2,12 @@ import { ApolloClient, ApolloProvider, createHttpLink, InMemoryCache } from '@ap
 import { setContext } from '@apollo/client/link/context';
 import { App } from 'antd';
 import 'antd/dist/reset.css';
-import { WebStorageStateStore } from 'oidc-client-ts';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { AuthProvider, AuthProviderProps } from 'react-oidc-context';
+import { AuthProvider } from 'react-oidc-context';
 import { RouterProvider } from 'react-router-dom';
 import { router } from './router';
-
-const oidcConfig: AuthProviderProps = {
-  userStore: new WebStorageStateStore({
-    store: localStorage,
-  }),
-  authority: import.meta.env.VITE_KEYCLOAK_REALM_URL,
-  client_id: import.meta.env.VITE_KEYCLOAK_CLIENT_ID,
-  redirect_uri: import.meta.env.VITE_KEYCLOAK_REDIRECT_URL,
-};
+import userManager from './user-manager';
 
 const httpLink = createHttpLink({
   uri: `${import.meta.env.VITE_BACKEND_URL}/graphql`,
@@ -44,7 +35,7 @@ const client = new ApolloClient({
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <AuthProvider {...oidcConfig} automaticSilentRenew>
+    <AuthProvider automaticSilentRenew userManager={userManager}>
       <App>
         <ApolloProvider client={client}>
           <RouterProvider router={router} />
@@ -53,3 +44,5 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
     </AuthProvider>
   </React.StrictMode>,
 );
+
+export default userManager;
