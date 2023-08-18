@@ -44,9 +44,10 @@ model Skill {
   updated_at  DateTime?
   deleted_at  DateTime?
 
-  applications ApplicationSkill[]
-  competitions CompetitionSkill[]
+  applications     ApplicationSkill[]
+  competitions     CompetitionSkill[]
   // opportunities OpportunitySkill[]
+  OpportunitySkill OpportunitySkill[]
 
   @@map("skill")
 }
@@ -194,7 +195,7 @@ model User {
   applications Application[]
   competitions Competition[]
   identities   Identity[]
-  elist   Elist[]
+  elist        Elist[]
   Comment      Comment[]
 
   @@map("user")
@@ -241,8 +242,9 @@ model Location {
   updated_at  DateTime?
   deleted_at  DateTime?
 
-  applications ApplicationLocation[]
+  applications        ApplicationLocation[]
   // opportunities OpportunityLocation[]
+  OpportunityLocation OpportunityLocation[]
 
   @@map("location")
 }
@@ -279,13 +281,13 @@ model ApplicationSkill {
 }
 
 model Elist {
-  id             String @id @db.Uuid
-  applicant_id   String @db.Uuid
-  competition_id String @db.Uuid
+  id             String    @id @db.Uuid
+  applicant_id   String    @db.Uuid
+  competition_id String    @db.Uuid
   rank           Int
-  created_at DateTime
-  updated_at DateTime?
-  deleted_at DateTime?
+  created_at     DateTime
+  updated_at     DateTime?
+  deleted_at     DateTime?
 
   applicant   User         @relation(fields: [applicant_id], references: [id])
   competition Competition  @relation(fields: [competition_id], references: [id])
@@ -295,16 +297,41 @@ model Elist {
 }
 
 model ElistOffer {
-  id            String  @id @db.Uuid
-  elistId       String  @db.Uuid
-  is_accepted   Boolean
+  id          String    @id @db.Uuid
+  elistId     String    @db.Uuid
+  is_accepted Boolean
   //opportunityId String  @db.Uuid // Are these opportunities in our system?  Do they come from somewhere external? 
-  created_at DateTime
-  updated_at DateTime?
-  deleted_at DateTime?
+  created_at  DateTime
+  updated_at  DateTime?
+  deleted_at  DateTime?
 
-  elist       Elist       @relation(fields: [elistId], references: [id])
+  elist Elist @relation(fields: [elistId], references: [id])
   //opportunity Opportunity @relation(fields: [opportunityId], references: [id])
+}
+
+model OpportunityLocation {
+  location_id    String    @db.Uuid
+  opportunity_id String    @db.Uuid
+  created_at     DateTime
+  deleted_at     DateTime?
+
+  location Location @relation(fields: [location_id], references: [id])
+  // opportunity Opportunity @relation(fields: [opportunity_id], references: [id])
+
+  @@id([opportunity_id, location_id])
+}
+
+model OpportunitySkill {
+  opportunity_id String    @db.Uuid
+  skill_id       String    @db.Uuid
+  created_at     DateTime
+  deleted_at     DateTime?
+
+  // opportunity Opportunity @relation(fields: [opportunity_id], references: [id])
+  skill Skill @relation(fields: [skill_id], references: [id])
+
+  @@id([opportunity_id, skill_id])
+  @@map("opportunity_skill")
 }
 
 model Comment {

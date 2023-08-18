@@ -17,15 +17,16 @@ import { ClassificationModule } from './modules/classification/classification.mo
 import { CommentModule } from './modules/comment/comment.module';
 import { CompetitionScheduleModule } from './modules/competition-schedule/competition-schedule.module';
 import { CompetitionModule } from './modules/competition/competition.module';
+import { ElistOfferModule } from './modules/elist/elist-offer/elist-offer.module';
+import { ElistModule } from './modules/elist/elist/elist.module';
 import { EventStoreModule } from './modules/event-store/event-store.module';
+import { IdentityModule } from './modules/identity/identity.module';
 import { LocationModule } from './modules/location/location.module';
 import { MinistryModule } from './modules/ministry/ministry.module';
+import { OpportunityModule } from './modules/opportunity/opportunity.module';
 import { SkillModule } from './modules/skill/skill.module';
 import { UserModule } from './modules/user/user.module';
 import { validateAppConfig } from './utils/validate-app-config.util';
-import { ElistOfferModule } from './modules/elist/elist-offer/elist-offer.module';
-import { ElistModule } from './modules/elist/elist/elist.module';
-import { IdentityModule } from './modules/identity/identity.module';
 
 @Module({
   imports: [
@@ -75,6 +76,7 @@ import { IdentityModule } from './modules/identity/identity.module';
     ElistOfferModule,
     CommentModule,
     IdentityModule,
+    OpportunityModule,
   ],
   providers: [
     { provide: APP_GUARD, useClass: AuthGuard },
