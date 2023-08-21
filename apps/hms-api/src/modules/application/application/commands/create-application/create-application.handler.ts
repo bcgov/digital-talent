@@ -19,12 +19,10 @@ export class CreateApplicationHandler implements ICommandHandler<CreateApplicati
 
   async execute(command: CreateApplicationCommand): Promise<any> {
     const { result, events }: CommandHandlerResult = await this.handle(command);
-
     if (result.success === true) {
       const nestEvents = events.map(({ type, data, metadata }) =>
         plainToInstance(Events[type], { type, data, metadata }),
       );
-
       this.eventBus.publishAll(nestEvents);
     }
 
