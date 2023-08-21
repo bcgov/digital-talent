@@ -12,12 +12,13 @@ datasource db {
 
 // Common Models
 model Ministry {
-  id         String    @id @db.Uuid
-  deltek_id  String
-  name       String
-  created_at DateTime
-  updated_at DateTime?
-  deleted_at DateTime?
+  id          String        @id @db.Uuid
+  deltek_id   String
+  name        String
+  created_at  DateTime
+  updated_at  DateTime?
+  deleted_at  DateTime?
+  Opportunity Opportunity[]
 
   @@map("ministry")
 }
@@ -146,6 +147,7 @@ model Competition {
   classification Classification       @relation(fields: [classification_id], references: [id])
   recruiter      User                 @relation(fields: [recruiter_id], references: [id])
   schedule       CompetitionSchedule?
+  Opportunity    Opportunity[]
 
   @@map("competition")
 }
@@ -197,6 +199,7 @@ model User {
   identities   Identity[]
   elist        Elist[]
   Comment      Comment[]
+  Opportunity  Opportunity[]
 
   @@map("user")
 }
@@ -305,8 +308,10 @@ model ElistOffer {
   updated_at  DateTime?
   deleted_at  DateTime?
 
-  elist Elist @relation(fields: [elistId], references: [id])
+  elist         Elist        @relation(fields: [elistId], references: [id])
   //opportunity Opportunity @relation(fields: [opportunityId], references: [id])
+  Opportunity   Opportunity? @relation(fields: [opportunityId], references: [id])
+  opportunityId String?      @db.Uuid
 }
 
 model OpportunityLocation {
@@ -315,8 +320,10 @@ model OpportunityLocation {
   created_at     DateTime
   deleted_at     DateTime?
 
-  location Location @relation(fields: [location_id], references: [id])
+  location      Location     @relation(fields: [location_id], references: [id])
   // opportunity Opportunity @relation(fields: [opportunity_id], references: [id])
+  Opportunity   Opportunity? @relation(fields: [opportunityId], references: [id])
+  opportunityId String?      @db.Uuid
 
   @@id([opportunity_id, location_id])
 }
@@ -328,10 +335,60 @@ model OpportunitySkill {
   deleted_at     DateTime?
 
   // opportunity Opportunity @relation(fields: [opportunity_id], references: [id])
-  skill Skill @relation(fields: [skill_id], references: [id])
+  skill         Skill        @relation(fields: [skill_id], references: [id])
+  Opportunity   Opportunity? @relation(fields: [opportunityId], references: [id])
+  opportunityId String?      @db.Uuid
 
   @@id([opportunity_id, skill_id])
   @@map("opportunity_skill")
+}
+
+model Opportunity {
+  id                    String                 @id @db.Uuid
+  competition_id        String                 @db.Uuid
+  deltek_id             String // Position #
+  hiring_manager_id     String                 @db.Uuid
+  ministry_id           String                 @db.Uuid
+  state                 OpportunityState
+  involvement           OpportunityInvolvement
+  work_option           WorkOption
+  description           String
+  candidate_description String
+  team_name             String
+  team_description      String
+  work_examples         String
+  created_at            DateTime
+  updated_at            DateTime?
+  deleted_at            DateTime?
+
+  skills         OpportunitySkill[]
+  locations      OpportunityLocation[]
+  competition    Competition           @relation(fields: [competition_id], references: [id])
+  hiring_manager User                  @relation(fields: [hiring_manager_id], references: [id])
+  ministry       Ministry              @relation(fields: [ministry_id], references: [id])
+  ElistOffer     ElistOffer[]
+
+  @@map("opportunity")
+}
+
+// Opportunity Models
+enum OpportunityState {
+  SUBMITTED
+  REJECTED
+  APPROVED
+}
+
+// Opportunity Models
+enum OpportunityInvolvement {
+  NONE
+  FULL
+}
+
+// Opportunity Models
+enum WorkOption {
+  REMOTE
+  HYBRID
+  ON_PREM
 }
 
 model Comment {

@@ -8,16 +8,22 @@ import { OpportunityLocationResolver } from './opportunity-location/opportunity-
 import { OpportunitySkillCommandHandlers } from './opportunity-skill/commands';
 import { OpportunitySkillEventHandlers } from './opportunity-skill/events';
 import { OpportunitySkillResolver } from './opportunity-skill/opportunity-skill.resolver';
+import { OpportunityCommandHandlers } from './opportunity/commands';
+import { OpportunityEventHandlers } from './opportunity/events';
+import { OpportunityResolver } from './opportunity/opportunity.resolver';
 
 @Module({
   imports: [CqrsModule, PrismaModule],
   providers: [
     OpportunityLocationResolver,
     OpportunitySkillResolver,
+    OpportunityResolver,
     ...OpportunityLocationCommandHandlers,
     ...OpportunityLocationEventHandlers,
     ...OpportunitySkillCommandHandlers,
     ...OpportunitySkillEventHandlers,
+    ...OpportunityCommandHandlers,
+    ...OpportunityEventHandlers,
   ],
 })
 export class OpportunityModule {
