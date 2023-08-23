@@ -55,8 +55,10 @@ export default function Page() {
               <li className="flex flex-row gap-2">
                 <span className="text-bcgov-blue-dark">→</span>
                 <span>
-                  <Link href="/hiring-managers/hiring-options/cross-ministry-hiring">Cross-Ministry Hiring</Link>. Great
-                  source of information for hiring managers new to CMH.
+                  <Link href="/hiring-managers/hiring-options/cross-ministry-hiring">
+                    Cross-Ministry Hiring Program
+                  </Link>
+                  . Great source of information for hiring managers who want to join CMHP.
                 </span>
               </li>
               <li className="flex flex-row gap-2">
@@ -71,13 +73,14 @@ export default function Page() {
               Digital Talent (DT) are roles in the BC Public Service focus on designing, developing, and deploying
               digital products and/or services.
             </p>
-            <ul className="list list-disc ml-6">
+            <ul className="list list-disc ml-8">
+              <li>Product Owners</li>
+              <li>UX Designers and Researchers</li>
+              <li>Service Designers (Coming soon)</li>
               <li>Full Stack Developers</li>
-              <li>DevOps Specialists</li>
-              <li>Product Manager</li>
               <li>Scrum Master </li>
-              <li>Site Reliability Specialist</li>
-              <li>UX/Service Designers</li>
+              <li>Site Reliability Specialist </li>
+              <li>DevOps Specialists</li>
             </ul>
             <div className="flex flex-row gap-2 mt-2">
               <Mailbox /> <span className="font-bold">Have questions?</span>{' '}
