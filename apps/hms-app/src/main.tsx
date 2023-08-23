@@ -1,6 +1,6 @@
 import { ApolloClient, ApolloProvider, createHttpLink, InMemoryCache } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
-import { App } from 'antd';
+import { App, ConfigProvider } from 'antd';
 import 'antd/dist/reset.css';
 import { WebStorageStateStore } from 'oidc-client-ts';
 import React from 'react';
@@ -45,11 +45,21 @@ const client = new ApolloClient({
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <AuthProvider {...oidcConfig} automaticSilentRenew>
-      <App>
-        <ApolloProvider client={client}>
-          <RouterProvider router={router} />
-        </ApolloProvider>
-      </App>
+      <ConfigProvider
+        theme={{
+          components: {
+            Layout: {
+              colorBgHeader: '#FFF',
+            },
+          },
+        }}
+      >
+        <App>
+          <ApolloProvider client={client}>
+            <RouterProvider router={router} />
+          </ApolloProvider>
+        </App>
+      </ConfigProvider>
     </AuthProvider>
   </React.StrictMode>,
 );

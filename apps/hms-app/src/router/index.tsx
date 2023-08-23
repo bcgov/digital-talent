@@ -1,33 +1,60 @@
 import { createBrowserRouter } from 'react-router-dom';
 import { RouteGuard } from '../components/guards/route.guard';
-import { AppRoute } from '../routes/app';
-import { AppPage } from '../routes/app/app.page';
+import { Layout } from '../components/layout';
 import { AuthRoute } from '../routes/auth';
 import { LoginPage } from '../routes/auth/login.page';
-import { Routes } from './route.constants';
+import { CompetitionRoute } from '../routes/competition';
+import { CompetitionListPage } from '../routes/competition/competition-list.page';
+import { HomeRoute } from '../routes/home';
+import { HomePage } from '../routes/home/home.page';
+import { SettingsRoute } from '../routes/settings';
+import { SettingsPage } from '../routes/settings/settings.page';
 
 export const router = createBrowserRouter([
   {
-    path: Routes.Auth.ROOT,
+    path: 'auth',
     element: <AuthRoute />,
     children: [
       {
-        path: Routes.Auth.LOGIN,
+        path: 'login',
         element: <LoginPage />,
       },
     ],
   },
   {
-    path: Routes.App.ROOT,
     element: <RouteGuard />,
     children: [
       {
-        path: Routes.App.ROOT,
-        element: <AppRoute />,
+        element: <Layout />,
         children: [
           {
-            path: Routes.App.ROOT,
-            element: <AppPage />,
+            element: <HomeRoute />,
+            children: [
+              {
+                index: true,
+                element: <HomePage />,
+              },
+            ],
+          },
+          {
+            path: '/competitions',
+            element: <CompetitionRoute />,
+            children: [
+              {
+                index: true,
+                element: <CompetitionListPage />,
+              },
+            ],
+          },
+          {
+            path: '/settings',
+            element: <SettingsRoute />,
+            children: [
+              {
+                index: true,
+                element: <SettingsPage />,
+              },
+            ],
           },
         ],
       },

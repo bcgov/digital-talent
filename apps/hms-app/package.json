@@ -12,6 +12,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@ant-design/icons": "^5.2.5",
     "@apollo/client": "^3.8.0",
     "antd": "^5.8.2",
     "graphql": "^16.7.1",
