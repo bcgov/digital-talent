@@ -78,7 +78,7 @@ export default function Page() {
           </div>
           <div className="flex flex-col md:flex-row md:space-x-4 w-full">
             <div className="mt-4">
-              <Link href="https://psa.sp.gov.bc.ca/sites/HRSUPPORT/Jobstore/Digital%20Talent/Forms/AllItems.aspx">
+              <Link href="https://submit.digital.gov.bc.ca/app/form/submit?f=895773c9-6359-4b46-af49-7f0656cef63e">
                 <Button className="text-md w-full md:w-88 md:text-lg" variant="default">
                   Request approval to use Digital Talent job profile <ExternalLink className="w-5 ml-1.5" />
                 </Button>
