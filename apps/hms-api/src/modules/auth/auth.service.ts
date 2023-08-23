@@ -7,7 +7,6 @@ import { Cache } from 'cache-manager';
 import { JwtPayload } from 'jsonwebtoken';
 import { catchError, firstValueFrom, map } from 'rxjs';
 import { v4 as uuidv4 } from 'uuid';
-import * as jwt from 'jsonwebtoken';
 import { AppConfigDto } from '../../dtos/app-config.dto';
 import { PrismaService } from '../prisma/prisma.service';
 import { CACHE_USER_PREFIX, KEYCLOAK_PUBLIC_KEY } from './auth.constants';
@@ -90,42 +89,5 @@ export class AuthService {
     }
 
     return match;
-  }
-
-  async exchangeCodeForToken(code: string): Promise<string> {
-    const tokenEndpoint = `${this.configService.get('KEYCLOAK_REALM_URL')}/protocol/openid-connect/token`;
-    const clientId = this.configService.get('KEYCLOAK_CLIENT_ID');
-    const clientSecret = this.configService.get('KEYCLOAK_CLIENT_SECRET');
-    const redirectUri = `http://localhost:5173/auth/callback`;
-
-    const data = `client_id=${encodeURIComponent(clientId)}&client_secret=${encodeURIComponent(
-      clientSecret,
-    )}&grant_type=authorization_code&code=${encodeURIComponent(code)}&redirect_uri=${encodeURIComponent(redirectUri)}`;
-
-    const headers = {
-      'Content-Type': 'application/x-www-form-urlencoded',
-    };
-
-    this.httpService.axiosRef.interceptors.response.use(
-      (response) => {
-        return response;
-      },
-      (error) => {
-        return Promise.reject(error);
-      },
-    );
-
-    const response = await firstValueFrom(this.httpService.post(tokenEndpoint, data, { headers }));
-
-    return response.data.access_token;
-  }
-
-  async verifyToken(code: string): Promise<JwtPayload> {
-    // First, get the access token by exchanging the code
-    const accessToken = await this.exchangeCodeForToken(code);
-
-    // Then, verify the JWT access token
-    const publicKey = await this.getKeycloakPublicKey();
-    return { accessToken, payload: jwt.verify(accessToken, publicKey, { algorithms: ['RS256'] }) as JwtPayload };
   }
 }
