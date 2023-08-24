@@ -169,7 +169,7 @@ export default function Page() {
             <div className="mt-4">
               <Link href="/hiring-managers/request-approval-to-use-job-profiles">
                 {/*  */}
-                <Button className="text-lg w-full md:w-88" variant="default">
+                <Button className="text-sm w-full md:w-88" variant="default">
                   Use Digital Talent job profiles to hire
                 </Button>
               </Link>
