@@ -21,7 +21,7 @@ export class ApplicationCreatedHandler implements IEventHandler<ApplicationCreat
           },
         },
         json,
-        created_at: new Date(metadata.created_at),
+        created_at: metadata.created_at,
       },
     };
     await this.prisma.application.create(createObj);

@@ -41,7 +41,7 @@ describe('ApplicationCreatedHandler', () => {
           },
         },
         json: mockCreateApplicationInput.json,
-        created_at: new Date(mockMetadata.created_at),
+        created_at: mockMetadata.created_at,
       },
     };
 
