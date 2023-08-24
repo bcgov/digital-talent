@@ -11,7 +11,7 @@ import {
 import { Avatar, Button, Divider, Dropdown, Layout as AntLayout, Menu, Space } from 'antd';
 import { useState } from 'react';
 import { useAuth } from 'react-oidc-context';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, Outlet, useLocation } from 'react-router-dom';
 
 const { Sider, Header, Content, Footer } = AntLayout;
 
@@ -105,7 +105,7 @@ export const Layout = () => {
             </div>
           </Header>
           <Content style={{ flex: '1 0 auto' }}>
-            <br />
+            <Outlet />
           </Content>
           <Footer style={{ flexShrink: 0, padding: '1rem' }} />
         </div>
