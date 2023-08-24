@@ -67,24 +67,22 @@ describe('CreateApplicationHandler', () => {
     await handler.execute(command);
 
     // Check the event bus was triggered with the expected events
-    expect(mockEventBus.publishAll).toHaveBeenCalledWith(
-      expect.arrayContaining([
-        expect.objectContaining({
-          type: 'ApplicationCreatedEvent',
-          data: expect.objectContaining({
-            id: 'd290f1ee-6c54-4b01-90e6-d701748f0851',
-            applicant_id: 'd290f1ee-6c54-4b01-90e6-d701748f0852',
-            json: {
-              exampleKey: 'exampleValue',
-              anotherKey: 1234,
-            },
-          }),
-          metadata: expect.objectContaining({
-            created_at: expect.any(String), // Here, we just expect a string timestamp
-            created_by: 'test-user-id',
-          }),
+    expect(mockEventBus.publishAll).toHaveBeenCalledWith([
+      {
+        type: 'ApplicationCreatedEvent',
+        data: {
+          id: 'd290f1ee-6c54-4b01-90e6-d701748f0851',
+          applicant_id: 'd290f1ee-6c54-4b01-90e6-d701748f0852',
+          json: {
+            exampleKey: 'exampleValue',
+            anotherKey: 1234,
+          },
+        },
+        metadata: expect.objectContaining({
+          created_at: expect.any(String), // Here, we just expect a string timestamp
+          created_by: 'test-user-id',
         }),
-      ]),
-    );
+      },
+    ]);
   });
 });

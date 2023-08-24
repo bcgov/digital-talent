@@ -36,9 +36,21 @@ describe('DeleteApplicationHandler', () => {
   });
 
   it('should handle DeleteApplicationCommand correctly', async () => {
-    // Given: No previous events in the stream
     // eslint-disable-next-line @typescript-eslint/no-empty-function, func-names
-    mockReadStream.mockImplementationOnce(async function* () {});
+    mockReadStream.mockImplementationOnce(async function* () {
+      yield {
+        event: {
+          type: 'ApplicationCreatedEvent', // this mocks an application being created earlier in eventstoredb
+          data: JSON.stringify({
+            id: 'd290f1ee-6c54-4b01-90e6-d701748f0851',
+          }),
+          metadata: JSON.stringify({
+            created_at: '2023-08-20T12:00:00Z',
+            created_by: 'test-user-id',
+          }),
+        },
+      };
+    });
 
     // Mock for Metadata
     const mockMetadata: Metadata = {
@@ -62,24 +74,17 @@ describe('DeleteApplicationHandler', () => {
     await handler.execute(command);
 
     // Check the event bus was triggered with the expected events
-    expect(mockEventBus.publishAll).toHaveBeenCalledWith(
-      expect.arrayContaining([
-        expect.objectContaining({
-          type: 'ApplicationDeletedEvent',
-          data: expect.objectContaining({
-            id: 'd290f1ee-6c54-4b01-90e6-d701748f0851',
-            applicant_id: 'd290f1ee-6c54-4b01-90e6-d701748f0852',
-            json: {
-              exampleKey: 'exampleValue',
-              anotherKey: 1234,
-            },
-          }),
-          metadata: expect.objectContaining({
-            created_at: expect.any(String), // Here, we just expect a string timestamp
-            created_by: 'test-user-id',
-          }),
+    expect(mockEventBus.publishAll).toHaveBeenCalledWith([
+      {
+        type: 'ApplicationDeletedEvent',
+        data: {
+          id: 'd290f1ee-6c54-4b01-90e6-d701748f0851',
+        },
+        metadata: expect.objectContaining({
+          created_at: expect.any(String),
+          created_by: 'test-user-id',
         }),
-      ]),
-    );
+      },
+    ]);
   });
 });

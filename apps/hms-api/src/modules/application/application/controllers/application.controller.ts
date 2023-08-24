@@ -18,10 +18,8 @@ export class ApplicationController {
   async importCsv(@Req() request: any): Promise<any> {
     // Parse CSV Data
     const csvData = request.body;
-
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { requisitionNumber, positionTitle, parsedData } = this.applicationService.parseQSTCSV(csvData);
-
     // Extract the userId from the request - you'll need to implement or adjust this as per your authentication setup
     const userId = request.user.id;
     const metadata = { created_by: userId };
