@@ -1,6 +1,5 @@
 import {
   AppstoreOutlined,
-  DownOutlined,
   HomeOutlined,
   MenuFoldOutlined,
   MenuUnfoldOutlined,
@@ -8,12 +7,12 @@ import {
   SettingOutlined,
   UserOutlined,
 } from '@ant-design/icons';
-import { Avatar, Button, Divider, Dropdown, Layout as AntLayout, Menu, Space } from 'antd';
+import { Avatar, Button, Layout as AntLayout, Menu } from 'antd';
 import { useState } from 'react';
 import { useAuth } from 'react-oidc-context';
 import { Link, Outlet, useLocation } from 'react-router-dom';
 
-const { Sider, Header, Content, Footer } = AntLayout;
+const { Sider, Content, Footer } = AntLayout;
 
 export const Layout = () => {
   const auth = useAuth();
@@ -31,28 +30,23 @@ export const Layout = () => {
           boxShadow: '2px 0 5px 0 #CCC',
         }}
       >
-        <div style={{ display: 'flex', flexDirection: 'column', height: '100%', overflowY: 'auto' }}>
-          <Avatar icon="DT" shape="square" style={{ margin: '0.5rem 0 0.5rem 0.75rem' }} />
-          <Menu
-            selectedKeys={[location.pathname]}
-            style={{ flex: '1 0 auto' }}
-            items={[
-              {
-                key: '/',
-                icon: <HomeOutlined />,
-                label: <Link to="/">Home</Link>,
-              },
-              {
-                key: '/competitions',
-                icon: <AppstoreOutlined />,
-                label: <Link to="/competitions">Competitions</Link>,
-              },
-            ]}
-          />
-          <div style={{ flexShrink: 0 }}>
+        <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
+          <Avatar icon="DT" shape="square" style={{ margin: '0.5rem 0 0.5rem 0.75rem', flexShrink: 0 }} />
+          <div style={{ display: 'flex', flexDirection: 'column', height: '100%', overflowY: 'auto' }}>
             <Menu
               selectedKeys={[location.pathname]}
+              style={{ flex: '1 0 auto' }}
               items={[
+                {
+                  key: '/',
+                  icon: <HomeOutlined />,
+                  label: <Link to="/">Home</Link>,
+                },
+                {
+                  key: '/competitions',
+                  icon: <AppstoreOutlined />,
+                  label: <Link to="/competitions">Competitions</Link>,
+                },
                 {
                   key: '/settings',
                   icon: <SettingOutlined />,
@@ -60,6 +54,37 @@ export const Layout = () => {
                 },
               ]}
             />
+            <div style={{ flexShrink: 0 }}>
+              <Menu
+                selectedKeys={[location.pathname]}
+                triggerSubMenuAction="click"
+                items={[
+                  {
+                    key: 'account',
+                    icon: <UserOutlined />,
+                    label: 'Account',
+                    children: [
+                      {
+                        type: 'group',
+                        label: auth.user?.profile.name,
+                      },
+                      {
+                        type: 'divider',
+                      },
+                      {
+                        key: 'logout',
+                        icon: <PoweroffOutlined />,
+                        danger: true,
+                        label: 'Logout',
+                        onClick: async () => {
+                          auth.removeUser();
+                        },
+                      },
+                    ],
+                  },
+                ]}
+              />
+            </div>
           </div>
           <div style={{ borderTop: '1px solid #CCC', flexShrink: 0 }}>
             <Button
@@ -77,33 +102,6 @@ export const Layout = () => {
       </Sider>
       <AntLayout style={{ height: '100vh' }}>
         <div style={{ display: 'flex', flexDirection: 'column', height: '100%', overflowY: 'auto' }}>
-          <Header style={{ flexShrink: 0, height: '48px', lineHeight: '48px', padding: '0 1rem' }}>
-            <div style={{ textAlign: 'right' }}>
-              <Space size="small">
-                <Divider style={{ height: '36px' }} type="vertical" />
-                <Dropdown
-                  trigger={['click']}
-                  menu={{
-                    items: [
-                      {
-                        key: 'logout',
-                        danger: true,
-                        icon: <PoweroffOutlined />,
-                        label: 'Logout',
-                        onClick: () => auth.removeUser(),
-                      },
-                    ],
-                  }}
-                >
-                  <Space style={{ cursor: 'pointer', userSelect: 'none' }}>
-                    <Avatar icon={<UserOutlined />} />
-                    <span style={{ fontWeight: 400 }}>{auth.user?.profile?.name}</span>
-                    <DownOutlined />
-                  </Space>
-                </Dropdown>
-              </Space>
-            </div>
-          </Header>
           <Content style={{ flex: '1 0 auto' }}>
             <Outlet />
           </Content>
