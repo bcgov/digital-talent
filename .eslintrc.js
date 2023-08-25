@@ -22,6 +22,7 @@ module.exports = easelint({
           '@typescript-eslint/no-explicit-any': 'off',
           '@typescript-eslint/no-shadow': 'off',
           camelcase: 'off',
+          'import/no-cycle': 'off',
           'import/no-default-export': 'off',
           'class-methods-use-this': 'off',
           'no-restricted-syntax': 'off',
@@ -44,7 +45,6 @@ module.exports = easelint({
           '@typescript-eslint/explicit-module-boundary-types': 'off',
           '@typescript-eslint/no-explicit-any': 'off',
           'class-methods-use-this': 'off',
-          'import/no-cycle': 'off',
         },
       },
       {

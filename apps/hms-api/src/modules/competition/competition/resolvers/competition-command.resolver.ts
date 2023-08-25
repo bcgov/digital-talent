@@ -1,19 +1,22 @@
-import { CommandBus } from '@nestjs/cqrs';
-import { Args, Mutation, Resolver } from '@nestjs/graphql';
+import { CommandBus, QueryBus } from '@nestjs/cqrs';
+import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { GraphQLString } from 'graphql';
 import { CurrentUser } from '../../../auth/decorators/current-user.decorator';
 import { CreateCompetitionCommand } from '../commands/create-competition/create-competition.command';
 import { DeleteCompetitionCommand } from '../commands/delete-competition/delete-competition.command';
 import { UpdateCompetitionStateCommand } from '../commands/update-competition-state/update-competition-state.command';
 import { UpdateCompetitionCommand } from '../commands/update-competition/update-competition.command';
+import { CompetitionWriteEntity } from '../entities/competition-write.entity';
 import { CreateCompetitionInput } from '../inputs/create-competition.input';
 import { DeleteCompetitionInput } from '../inputs/delete-competition.input';
 import { UpdateCompetitionStateInput } from '../inputs/update-competition-state.input';
 import { UpdateCompetitionInput } from '../inputs/update-competition.input';
+import { GetCompetitionQuery } from '../queries/get-competition/get-competition.query';
+import { GetCompetitionsQuery } from '../queries/get-competitions/get-competitions.query';
 
 @Resolver((of) => GraphQLString)
 export class CompetitionCommandResolver {
-  constructor(private readonly commandBus: CommandBus) {}
+  constructor(private readonly commandBus: CommandBus, private readonly queryBus: QueryBus) {}
 
   @Mutation((returns) => GraphQLString)
   async createCompetition(
@@ -26,6 +29,18 @@ export class CompetitionCommandResolver {
     await this.commandBus.execute(command);
 
     return command.data.id;
+  }
+
+  @Query((returns) => [CompetitionWriteEntity])
+  async competitions() {
+    const result = await this.queryBus.execute(new GetCompetitionsQuery());
+    return result;
+  }
+
+  @Query((returns) => CompetitionWriteEntity)
+  async competition(@Args('id', { type: () => String }) id: string) {
+    const result = await this.queryBus.execute(new GetCompetitionQuery(id));
+    return result;
   }
 
   @Mutation((returns) => GraphQLString)

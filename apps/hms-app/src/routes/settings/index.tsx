@@ -1,6 +1,6 @@
 import { Outlet } from 'react-router-dom';
 
-export const AppRoute = () => {
+export const SettingsRoute = () => {
   return (
     <div>
       <Outlet />

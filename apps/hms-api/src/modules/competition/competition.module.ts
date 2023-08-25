@@ -6,6 +6,7 @@ import { CompetitionSkillEventHandlers } from './competition-skill/events';
 import { CompetitionSkillCommandResolver } from './competition-skill/resolvers/competition-skill-command.resolver';
 import { CompetitionCommandHandlers } from './competition/commands';
 import { CompetitionEventHandlers } from './competition/events';
+import { CompetitionQueryHandlers } from './competition/queries';
 import { CompetitionCommandResolver } from './competition/resolvers/competition-command.resolver';
 
 @Module({
@@ -14,6 +15,7 @@ import { CompetitionCommandResolver } from './competition/resolvers/competition-
     CompetitionCommandResolver,
     ...CompetitionCommandHandlers,
     ...CompetitionEventHandlers,
+    ...CompetitionQueryHandlers,
     CompetitionSkillCommandResolver,
     ...CompetitionSkillCommandHandlers,
     ...CompetitionSkillEventHandlers,
