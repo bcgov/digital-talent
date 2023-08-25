@@ -1,5 +1,5 @@
-import { BadRequestException } from '@nestjs/common';
 import assert from 'assert';
+import { BadRequestException } from '@nestjs/common';
 import { ExistsState, InitialState } from '../../event-store/types/decider-state.type';
 import { Decider } from '../../event-store/utils/create-command-handler.util';
 import { decideUpdateEventData } from '../../event-store/utils/decide-update-event-data.util';
@@ -13,7 +13,7 @@ import { PositionUpdatedEvent } from './events/position-updated/position-updated
 import { CreatePositionInput } from './inputs/create-position.input';
 import { UpdatePositionInput } from './inputs/update-position.input';
 
-type State = InitialState | ExistsState<'position', PositionEntity>;
+export type State = InitialState | ExistsState<'position', PositionEntity>;
 type Command = CreatePositionCommand | UpdatePositionCommand | DeletePositionCommand;
 type Event = PositionCreatedEvent | PositionUpdatedEvent | PositionDeletedEvent;
 

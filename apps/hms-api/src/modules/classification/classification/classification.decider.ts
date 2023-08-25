@@ -1,5 +1,5 @@
-import { BadRequestException } from '@nestjs/common';
 import assert from 'assert';
+import { BadRequestException } from '@nestjs/common';
 import { ExistsState, InitialState } from '../../event-store/types/decider-state.type';
 import { Decider } from '../../event-store/utils/create-command-handler.util';
 import { decideUpdateEventData } from '../../event-store/utils/decide-update-event-data.util';
@@ -13,7 +13,7 @@ import { ClassificationUpdatedEvent } from './events/classification-updated/clas
 import { CreateClassificationInput } from './inputs/create-classification.input';
 import { UpdateClassificationInput } from './inputs/update-classification.input';
 
-type State = InitialState | ExistsState<'classification', ClassificationEntity>;
+export type State = InitialState | ExistsState<'classification', ClassificationEntity>;
 type Command = CreateClassificationCommand | UpdateClassificationCommand | DeleteClassificationCommand;
 type Event = ClassificationCreatedEvent | ClassificationUpdatedEvent | ClassificationDeletedEvent;
 

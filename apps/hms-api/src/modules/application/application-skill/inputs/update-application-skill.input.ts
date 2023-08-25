@@ -14,7 +14,7 @@ export class UpdateApplicationSkillInput {
 
   @IsNumber()
   @IsOptional()
-  years_experience: number;
+  years_experience?: number;
 
   @IsString()
   @IsOptional()

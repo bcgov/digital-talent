@@ -22,7 +22,7 @@ export class CommentCreatedHandler implements IEventHandler<CommentCreatedEvent>
         record_id,
         record_type,
         text, // Assuming that 'json' field is a stringified JSON
-        created_at: new Date(metadata.created_at),
+        created_at: metadata.created_at,
       },
     };
     await this.prisma.comment.create(createObj);

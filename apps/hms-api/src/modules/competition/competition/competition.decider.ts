@@ -1,6 +1,6 @@
+import assert from 'assert';
 import { BadRequestException } from '@nestjs/common';
 import { CompetitionState } from '@prisma/client';
-import assert from 'assert';
 import { ExistsState, InitialState } from '../../event-store/types/decider-state.type';
 import { Decider } from '../../event-store/utils/create-command-handler.util';
 import { decideUpdateEventData } from '../../event-store/utils/decide-update-event-data.util';
@@ -18,7 +18,7 @@ import { UpdateCompetitionStateInput } from './inputs/update-competition-state.i
 import { UpdateCompetitionInput } from './inputs/update-competition.input';
 import { competitionStateStateMachine } from './state-machines/competition-state.state-machine';
 
-type State = InitialState | ExistsState<'competition', CompetitionWriteEntity>;
+export type State = InitialState | ExistsState<'competition', CompetitionWriteEntity>;
 type Command =
   | CreateCompetitionCommand
   | UpdateCompetitionCommand

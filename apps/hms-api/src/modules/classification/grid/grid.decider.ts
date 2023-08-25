@@ -1,5 +1,5 @@
-import { BadRequestException } from '@nestjs/common';
 import assert from 'assert';
+import { BadRequestException } from '@nestjs/common';
 import { ExistsState, InitialState } from '../../event-store/types/decider-state.type';
 import { Decider } from '../../event-store/utils/create-command-handler.util';
 import { decideUpdateEventData } from '../../event-store/utils/decide-update-event-data.util';
@@ -13,7 +13,7 @@ import { GridUpdatedEvent } from './events/grid-updated/grid-updated.event';
 import { CreateGridInput } from './inputs/create-grid.input';
 import { UpdateGridInput } from './inputs/update-grid.input';
 
-type State = InitialState | ExistsState<'grid', GridEntity>;
+export type State = InitialState | ExistsState<'grid', GridEntity>;
 type Command = CreateGridCommand | UpdateGridCommand | DeleteGridCommand;
 type Event = GridCreatedEvent | GridUpdatedEvent | GridDeletedEvent;
 
