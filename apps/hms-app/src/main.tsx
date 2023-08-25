@@ -4,10 +4,12 @@ import { WebStorageStateStore } from 'oidc-client-ts';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { AuthProvider, AuthProviderProps } from 'react-oidc-context';
+import { Provider as ReduxProvider } from 'react-redux';
 import { RouterProvider } from 'react-router-dom';
+import { store } from './redux/redux.store';
 import { router } from './router';
 
-const oidcConfig: AuthProviderProps = {
+export const oidcConfig: AuthProviderProps = {
   userStore: new WebStorageStateStore({
     store: localStorage,
   }),
@@ -19,19 +21,21 @@ const oidcConfig: AuthProviderProps = {
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <AuthProvider {...oidcConfig} automaticSilentRenew>
-      <ConfigProvider
-        theme={{
-          components: {
-            Layout: {
-              colorBgHeader: '#FFF',
+      <ReduxProvider store={store}>
+        <ConfigProvider
+          theme={{
+            components: {
+              Layout: {
+                colorBgHeader: '#FFF',
+              },
             },
-          },
-        }}
-      >
-        <App>
-          <RouterProvider router={router} />
-        </App>
-      </ConfigProvider>
+          }}
+        >
+          <App>
+            <RouterProvider router={router} />
+          </App>
+        </ConfigProvider>
+      </ReduxProvider>
     </AuthProvider>
   </React.StrictMode>,
 );

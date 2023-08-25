@@ -1,6 +1,6 @@
 export const CreateCompetitionPage = () => {
   return (
-    <div style={{ margin: '1rem 2rem' }}>
+    <div>
       <h1>Create Competition</h1>
     </div>
   );
