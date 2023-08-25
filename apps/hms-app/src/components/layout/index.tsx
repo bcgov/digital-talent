@@ -11,6 +11,7 @@ import { Avatar, Button, Layout as AntLayout, Menu } from 'antd';
 import { useState } from 'react';
 import { useAuth } from 'react-oidc-context';
 import { Link, Outlet, useLocation } from 'react-router-dom';
+import { Breadcrumbs } from '../breadcrumbs';
 
 const { Sider, Content, Footer } = AntLayout;
 
@@ -103,6 +104,9 @@ export const Layout = () => {
       <AntLayout style={{ height: '100vh' }}>
         <div style={{ display: 'flex', flexDirection: 'column', height: '100%', overflowY: 'auto' }}>
           <Content style={{ flex: '1 0 auto' }}>
+            <div style={{ margin: '1rem 2rem' }}>
+              <Breadcrumbs />
+            </div>
             <Outlet />
           </Content>
           <Footer style={{ flexShrink: 0, padding: '1rem' }} />
