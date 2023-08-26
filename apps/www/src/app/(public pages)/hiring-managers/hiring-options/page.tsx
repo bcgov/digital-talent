@@ -167,11 +167,10 @@ export default function Page() {
 
           <div className="flex flex-col md:flex-row md:space-x-4 w-full">
             <div className="mt-4">
-              {/* Generated with https://www.sender.net/mailto-link-generator/ */}
-              <Link href="mailto:digital.talent@gov.bc.ca?subject=Request%20digital%20talent%20job%20profile%3A%20PROFILE%20NAME%20HERE%20%E2%80%93%20YOUR%20MINISTRY%20HERE&body=Please%20update%20the%20subject%20line%20with%20the%20profile%20you%20are%20requesting%20(ex%3A%20Full%20Stack%20Developer%20IS%2027)%20and%20your%20ministry%20to%20help%20us%20process%20your%20request%20faster.">
+              <Link href="/hiring-managers/request-approval-to-use-job-profiles">
                 {/*  */}
-                <Button className="text-lg w-full md:w-80" variant="default">
-                  Request digital talent job profile
+                <Button className="text-sm w-full md:w-88" variant="default">
+                  Use Digital Talent job profiles to hire
                 </Button>
               </Link>
             </div>
