@@ -1,0 +1,45 @@
+apiVersion: build.openshift.io/v1
+kind: BuildConfig
+metadata:
+  name: hms-app
+spec:
+  resources:
+      limits:
+        cpu: "500m"
+        memory: "2Gi"
+  output:
+    to:
+      kind: ImageStreamTag
+      name: 'hms-app:latest'
+  source:
+    type: Git
+    git:
+      ref: deploy-backend
+      uri: https://github.com/bcgov/digital-talent.git
+    contextDir: apps/hms-app
+    dockerfile: |
+      # Use the official Node.js 18 image.
+      FROM node:18.17.0
+      # Create and change to the app directory.
+      WORKDIR /usr/src/app
+
+      # Copy application dependency manifests to the container image.
+      COPY package*.json ./
+
+      # Install dependencies.
+      RUN npm install
+      # openshift runs as a different user than what docker builds with
+      
+      # this fixes the issue as related to the npm cache
+      RUN mkdir /.npm
+      RUN chgrp -R 0 /.npm && chmod -R g=u /.npm
+      # Copy local code to the container image.
+      COPY . .
+
+      # Expose port 5173
+      EXPOSE 5173
+
+      # Start the application
+      CMD ["npm", "run", "build"]
+  strategy:
+    type: Docker

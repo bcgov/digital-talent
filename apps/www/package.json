@@ -53,6 +53,7 @@
   },
   "devDependencies": {
     "eslint": "^8.48.0",
-    "husky": "^8.0.3"
+    "husky": "^8.0.3",
+    "prisma": "~4.16.1"
   }
 }
