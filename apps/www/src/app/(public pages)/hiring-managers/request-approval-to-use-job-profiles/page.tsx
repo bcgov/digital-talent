@@ -44,7 +44,7 @@ export default function Page() {
             transformation across the BC Public Service.
           </p>
           <div>
-            <span className="font-bold underline">Approval is needed for:</span>
+            <span className="font-bold">Approval is needed for:</span>
             <ul className="list-disc ml-8 pt-4">
               <li>Requesting a position number from myHR.</li>
               <li>Self-run hiring for permanent, temporary, and expression of interest positions.</li>
