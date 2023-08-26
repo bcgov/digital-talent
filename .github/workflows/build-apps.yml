@@ -82,6 +82,9 @@ jobs:
           build-args: |
             NEXTAUTH_SECRET=${{ secrets.NEXTAUTH_SECRET }}
             NEXTAUTH_URL=${{ secrets.NEXTAUTH_URL }}
+            VITE_KEYCLOAK_REDIRECT_URL=${{ secrets.NEXTAUTH_URL }}
             KEYCLOAK_CLIENT_ID=${{ secrets.KEYCLOAK_CLIENT_ID }}
+            VITE_KEYCLOAK_CLIENT_ID=${{ secrets.KEYCLOAK_CLIENT_ID }}
             KEYCLOAK_CLIENT_SECRET=${{ secrets.KEYCLOAK_CLIENT_SECRET }}
             KEYCLOAK_ISSUER=${{ secrets.KEYCLOAK_ISSUER }}
+            VITE_KEYCLOAK_REALM_URL=${{ secrets.KEYCLOAK_ISSUER }}

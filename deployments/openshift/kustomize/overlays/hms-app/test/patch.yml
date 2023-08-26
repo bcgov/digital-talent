@@ -1,0 +1,19 @@
+apiVersion: apps.openshift.io/v1
+kind: DeploymentConfig
+metadata:
+  name: hms-app
+spec:
+  triggers:
+      - imageChangeParams:
+          from:
+            kind: ImageStreamTag
+            name: hms-app:stage-latest
+            namespace: f15899-tools
+---          
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+    name: hms-app
+spec:
+  host: dt-test.apps.silver.devops.gov.bc.ca
+  path: /app
