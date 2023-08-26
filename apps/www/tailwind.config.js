@@ -68,6 +68,10 @@ module.exports = {
             dark: '#313131',
           },
         },
+        'custom-yellow': '#FCBA19',
+        'custom-gold': {
+          50: '#FFFCE6',
+        },
       },
       borderRadius: {
         lg: `var(--radius)`,
@@ -94,9 +98,9 @@ module.exports = {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
       },
-      textUnderlineOffset:{
-          12: '12px'
-      }
+      textUnderlineOffset: {
+        12: '12px',
+      },
     },
   },
   plugins: [tailwindAnimate, typography],

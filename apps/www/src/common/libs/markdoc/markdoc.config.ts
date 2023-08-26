@@ -9,6 +9,7 @@ import MDCallToAction from './components/tags/call-to-action/md-call-to-action.m
 import Card from './components/tags/card/card.markdoc';
 import Div from './components/tags/div/div.markdoc';
 import { IconList, IconListItem } from './components/tags/icon-list';
+import OurNumbers from './components/tags/our-numbers/our-numbers.markdoc';
 import Quote from './components/tags/quote/quote.markdoc';
 import Span from './components/tags/span/span.markdoc';
 
@@ -40,6 +41,10 @@ const config: Config = {
     },
   },
   tags: {
+    'our-numbers': {
+      render: 'OurNumbers',
+      attributes: {},
+    },
     button: {
       render: 'Button',
       attributes: {
@@ -139,6 +144,7 @@ const components = {
   Quote,
   Paragraph,
   Span,
+  OurNumbers,
 };
 
 export { components, config };

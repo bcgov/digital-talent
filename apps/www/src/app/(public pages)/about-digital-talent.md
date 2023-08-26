@@ -15,11 +15,7 @@ The diversity of these lands shapes our team members and impacts the foundation 
 
 Across Provincial Government from November 2021 – December 2022, we:
 
-- Completed 16 competitions
-- Interviewed 175 candidates
-- Had 584 Applicants
-  - 490 external to B.C. Government
-  - 94 internal to B.C. Government
+{% our-numbers /%}
 
 Other key areas we help with includes:
 
