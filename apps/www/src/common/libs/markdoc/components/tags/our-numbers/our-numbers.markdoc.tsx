@@ -42,12 +42,12 @@ export default function OurNumbers() {
           <ul className="list-none  ml-8  pl-0">
             {/* <ul className="list-none mx-auto max-w-screen-xl"> */}
             <li className="flex items-center space-x-4 pl-0">
-              <div className="mb-8">
+              <div className="sm:mb-6 mb-4">
                 <div className="w-12 h-12 bg-custom-yellow rounded-full flex items-center justify-center font-bold p-8">
                   175
                 </div>
               </div>
-              <div className="mb-8">Interviewed candidates</div>
+              <div className="sm:mb-6 mb-4">Interviewed candidates</div>
             </li>
             <li className="flex items-center space-x-4 pl-0">
               <div className="w-12 h-12 bg-custom-yellow rounded-full flex items-center justify-center font-bold p-8">
