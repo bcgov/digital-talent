@@ -6,14 +6,14 @@ import { decideUpdateEventData } from '../../event-store/utils/decide-update-eve
 import { CreatePositionCommand } from './commands/create-position/create-position.command';
 import { DeletePositionCommand } from './commands/delete-position/delete-position.command';
 import { UpdatePositionCommand } from './commands/update-position/update-position.command';
-import { PositionEntity } from './entities/position.entity';
 import { PositionCreatedEvent } from './events/position-created/position-created.event';
 import { PositionDeletedEvent } from './events/position-deleted/position-deleted.event';
 import { PositionUpdatedEvent } from './events/position-updated/position-updated.event';
 import { CreatePositionInput } from './inputs/create-position.input';
 import { UpdatePositionInput } from './inputs/update-position.input';
+import { PositionWriteModel } from './models/position-write.model';
 
-export type State = InitialState | ExistsState<'position', PositionEntity>;
+export type State = InitialState | ExistsState<'position', PositionWriteModel>;
 type Command = CreatePositionCommand | UpdatePositionCommand | DeletePositionCommand;
 type Event = PositionCreatedEvent | PositionUpdatedEvent | PositionDeletedEvent;
 

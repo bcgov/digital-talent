@@ -6,14 +6,14 @@ import { decideUpdateEventData } from '../../event-store/utils/decide-update-eve
 import { CreateGridCommand } from './commands/create-grid/create-grid.command';
 import { DeleteGridCommand } from './commands/delete-grid/delete-grid.command';
 import { UpdateGridCommand } from './commands/update-grid/update-grid.command';
-import { GridEntity } from './entities/grid.entity';
 import { GridCreatedEvent } from './events/grid-created/grid-created.event';
 import { GridDeletedEvent } from './events/grid-deleted/grid-deleted.event';
 import { GridUpdatedEvent } from './events/grid-updated/grid-updated.event';
 import { CreateGridInput } from './inputs/create-grid.input';
 import { UpdateGridInput } from './inputs/update-grid.input';
+import { GridWriteModel } from './models/grid-write.model';
 
-export type State = InitialState | ExistsState<'grid', GridEntity>;
+export type State = InitialState | ExistsState<'grid', GridWriteModel>;
 type Command = CreateGridCommand | UpdateGridCommand | DeleteGridCommand;
 type Event = GridCreatedEvent | GridUpdatedEvent | GridDeletedEvent;
 

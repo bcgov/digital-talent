@@ -6,14 +6,14 @@ import { decideUpdateEventData } from '../../event-store/utils/decide-update-eve
 import { CreateClassificationCommand } from './commands/create-classification/create-classification.command';
 import { DeleteClassificationCommand } from './commands/delete-classification/delete-classification.command';
 import { UpdateClassificationCommand } from './commands/update-classification/update-classification.command';
-import { ClassificationEntity } from './entities/classification.entity';
 import { ClassificationCreatedEvent } from './events/classification-created/classification-created.event';
 import { ClassificationDeletedEvent } from './events/classification-deleted/classification-deleted.event';
 import { ClassificationUpdatedEvent } from './events/classification-updated/classification-updated.event';
 import { CreateClassificationInput } from './inputs/create-classification.input';
 import { UpdateClassificationInput } from './inputs/update-classification.input';
+import { ClassificationWriteModel } from './models/classification-write.model';
 
-export type State = InitialState | ExistsState<'classification', ClassificationEntity>;
+export type State = InitialState | ExistsState<'classification', ClassificationWriteModel>;
 type Command = CreateClassificationCommand | UpdateClassificationCommand | DeleteClassificationCommand;
 type Event = ClassificationCreatedEvent | ClassificationUpdatedEvent | ClassificationDeletedEvent;
 
