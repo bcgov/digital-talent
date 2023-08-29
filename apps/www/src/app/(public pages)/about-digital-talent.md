@@ -13,8 +13,6 @@ We work, live, and play on the unceded and ancestral lands of lək̓ʷəŋən Pe
 
 The diversity of these lands shapes our team members and impacts the foundation of our hiring and consulting services for agile teams. We are passionate about delivering improved and streamlined hiring services so the BC Public Service continues and scales employing brilliant workers. Our contribution to the resolution of the Province's complex problems is partnering with hiring managers across government to build their capacity for digital talent.
 
-Across Provincial Government from November 2021 – December 2022, we:
-
 {% our-numbers /%}
 
 Other key areas we help with includes:
