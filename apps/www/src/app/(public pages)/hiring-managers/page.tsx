@@ -179,8 +179,8 @@ export default function Page() {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="flex flex-col gap-4">
                 <p>
-                  Welcome to the new home for the Digital Talent Careers Team (DTCT). You can learn about hiring
-                  options, join pilot programs, and discover what we’re working on.
+                  Welcome to the new home for the Digital Talent Careers Team (DTC). You can learn about hiring options,
+                  join pilot programs, and discover what we’re working on.
                 </p>
                 <p>
                   We work in an agile environment, so please expect changes on this website as we grow and publish more
