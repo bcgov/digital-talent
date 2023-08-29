@@ -26,6 +26,8 @@ jobs:
               - 'apps/www/**'
             hms-api:
               - 'apps/hms-api/**'
+            hms-app:
+              - 'apps/hms-app/**'
       - name: Get Short SHA
         id: get-short-sha
         run: echo "sha=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
@@ -88,3 +90,4 @@ jobs:
             KEYCLOAK_CLIENT_SECRET=${{ secrets.KEYCLOAK_CLIENT_SECRET }}
             KEYCLOAK_ISSUER=${{ secrets.KEYCLOAK_ISSUER }}
             VITE_KEYCLOAK_REALM_URL=${{ secrets.KEYCLOAK_ISSUER }}
+            VITE_BACKEND_URL=${{ secrets.HMS_API_URL }}
