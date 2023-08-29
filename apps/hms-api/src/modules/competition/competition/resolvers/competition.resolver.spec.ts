@@ -1,13 +1,13 @@
-import { CreateCompetitionInput } from '../inputs/create-competition.input';
-import { UpdateCompetitionInput } from '../inputs/update-competition.input';
 import { CreateCompetitionCommand } from '../commands/create-competition/create-competition.command';
-import { UpdateCompetitionCommand } from '../commands/update-competition/update-competition.command';
 import { DeleteCompetitionCommand } from '../commands/delete-competition/delete-competition.command';
-import { CompetitionCommandResolver } from './competition-command.resolver';
+import { UpdateCompetitionCommand } from '../commands/update-competition/update-competition.command';
+import { CreateCompetitionInput } from '../inputs/create-competition.input';
 import { DeleteCompetitionInput } from '../inputs/delete-competition.input';
+import { UpdateCompetitionInput } from '../inputs/update-competition.input';
+import { CompetitionResolver } from './competition.resolver';
 
-describe('CompetitionCommandResolver', () => {
-  let resolver: CompetitionCommandResolver;
+describe('CompetitionResolver', () => {
+  let resolver: CompetitionResolver;
   let mockCommandBus: any;
   // let mockPrismaService: any;
 
@@ -19,7 +19,7 @@ describe('CompetitionCommandResolver', () => {
     //     findUnique: jest.fn(),
     //   },
     // };
-    resolver = new CompetitionCommandResolver(mockCommandBus);
+    resolver = new CompetitionResolver(mockCommandBus);
   });
 
   it('should create an competition correctly', async () => {

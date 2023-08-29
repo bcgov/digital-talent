@@ -4,4 +4,4 @@ import { UserSyncedHandler } from './user-synced/user-synced.handler';
 export const Events = {
   UserSyncedEvent,
 };
-export const EventHandlers = [UserSyncedHandler];
+export const UserEventHandlers = [UserSyncedHandler];
