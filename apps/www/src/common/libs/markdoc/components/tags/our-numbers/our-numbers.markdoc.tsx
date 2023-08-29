@@ -6,17 +6,17 @@ export default function OurNumbers() {
         <div className="w-full mb-8">From our work across Provincial Government from November 2021 – December 2022</div>
         <div className="sm:w-1/2 w-80 gap-y-4 mb-2 border-custom-yellow sm:border-r max-sm:border-b">
           <ul className="list-none  ml-8 pl-0">
-            <li className="flex items-center space-x-4 pl-0">
-              <div className="w-12">
-                <div className="w-12 h-12 bg-custom-yellow rounded-full flex items-center justify-center font-bold mx-auto">
+            <li className="flex items-center space-x-4 pl-0 ">
+              <div className="w-12 mr-3">
+                <div className="w-12 h-12 bg-custom-yellow rounded-full flex items-center justify-center font-bold mx-auto p-8">
                   584
                 </div>
               </div>
               <div className="text-lg font-bold">Total Applicants</div>
             </li>
             <li className="flex items-center space-x-4 pl-0">
-              <div className="w-12">
-                <div className="w-8 h-8 bg-custom-yellow rounded-full flex items-center justify-center font-bold mx-auto">
+              <div className="w-12 ml-2">
+                <div className="w-8 h-8 bg-custom-yellow rounded-full flex items-center justify-center font-bold mx-auto p-5">
                   490
                 </div>
               </div>
@@ -25,8 +25,8 @@ export default function OurNumbers() {
               </div>
             </li>
             <li className="flex items-center space-x-4 pl-0">
-              <div className="w-12">
-                <div className="w-8 h-8 bg-custom-yellow rounded-full flex items-center justify-center font-bold mx-auto">
+              <div className="w-12 ml-2">
+                <div className="w-8 h-8 bg-custom-yellow rounded-full flex items-center justify-center font-bold mx-auto p-5">
                   94
                 </div>
               </div>
@@ -40,13 +40,13 @@ export default function OurNumbers() {
           <ul className="list-none  ml-8  pl-0">
             {/* <ul className="list-none mx-auto max-w-screen-xl"> */}
             <li className="flex items-center space-x-4 pl-0">
-              <div className="w-12 h-12 bg-custom-yellow rounded-full flex items-center justify-center font-bold">
+              <div className="w-12 h-12 bg-custom-yellow rounded-full flex items-center justify-center font-bold p-8">
                 16
               </div>
               <div>Completed competitions </div>
             </li>
             <li className="flex items-center space-x-4 pl-0">
-              <div className="w-12 h-12 bg-custom-yellow rounded-full flex items-center justify-center font-bold">
+              <div className="w-12 h-12 bg-custom-yellow rounded-full flex items-center justify-center font-bold p-8">
                 175
               </div>
               <div>Interviewed candidates</div>
