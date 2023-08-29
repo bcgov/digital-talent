@@ -1,3 +1,4 @@
+import { GridAffiliation } from '@prisma/client';
 import { GridStepModel } from './grid-step.model';
 import { IGridModel } from './grid.model';
 
@@ -5,6 +6,8 @@ export class GridWriteModel implements IGridModel {
   id: string;
 
   name: string;
+
+  affiliation: GridAffiliation;
 
   steps: GridStepModel[];
 

@@ -1,6 +1,8 @@
-import { Field, ObjectType } from '@nestjs/graphql';
+import { Field, ObjectType, registerEnumType } from '@nestjs/graphql';
 import { PositionCategory } from '@prisma/client';
 import { GraphQLUUID } from 'graphql-scalars';
+
+registerEnumType(PositionCategory, { name: 'PositionCategory' });
 
 export interface IPositionModel {
   id: string;

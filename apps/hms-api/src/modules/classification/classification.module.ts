@@ -10,8 +10,9 @@ import { GridEventHandlers } from './grid/events';
 import { GridQueryHandlers } from './grid/queries';
 import { PositionCommandHandlers } from './position/commands';
 import { PositionEventHandlers } from './position/events';
-import { PositionResolver } from './position/position.resolver';
 import { PositionQueryHandlers } from './position/queries';
+import { PositionResolver } from './position/resolvers/position.resolver';
+import { GridResolver } from './grid/resolvers/grid.resolver';
 
 @Module({
   imports: [CqrsModule, PrismaModule],
@@ -27,6 +28,7 @@ import { PositionQueryHandlers } from './position/queries';
     ...PositionCommandHandlers,
     ...PositionEventHandlers,
     ...PositionQueryHandlers,
+    GridResolver,
   ],
 })
 export class ClassificationModule {}
