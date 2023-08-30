@@ -22,7 +22,16 @@ RUN chgrp -R 0 /.npm && chmod -R g=u /.npm
 
 # Serve the app with Nginx
 FROM nginx:alpine AS runner
-# COPY --from=build /usr/src/app/dist /etc/nginx/html/app
+ARG NEXTAUTH_SECRET
+ARG NEXTAUTH_URL
+ARG KEYCLOAK_CLIENT_ID
+ARG KEYCLOAK_CLIENT_SECRET
+ARG KEYCLOAK_ISSUER
+ENV NEXTAUTH_SECRET $NEXTAUTH_SECRET
+ENV NEXTAUTH_URL $NEXTAUTH_URL
+ENV KEYCLOAK_CLIENT_ID $KEYCLOAK_CLIENT_ID
+ENV KEYCLOAK_CLIENT_SECRET $KEYCLOAK_CLIENT_SECRET
+ENV KEYCLOAK_ISSUER $KEYCLOAK_ISSUER
 COPY --from=builder /tmp/build/apps/hms-app/dist /usr/share/nginx/html
 COPY /apps/hms-app/nginx.conf /etc/nginx/conf.d/default.conf
 
