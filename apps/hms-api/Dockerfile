@@ -39,6 +39,8 @@ ENV KEYCLOAK_ISSUER $KEYCLOAK_ISSUER
 WORKDIR /apps/hms-api
 COPY --from=builder /tmp/build/apps/hms-api/dist ./dist
 COPY /apps/hms-api/start.sh start.sh
+COPY /apps/hms-api/prisma/prisma /prisma
+COPY package*.json ./
 
 RUN mkdir /.npm
 RUN chgrp -R 0 /.npm && chmod -R g=u /.npm
