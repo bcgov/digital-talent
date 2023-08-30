@@ -36,14 +36,15 @@ ENV NEXTAUTH_URL $NEXTAUTH_URL
 ENV KEYCLOAK_CLIENT_ID $KEYCLOAK_CLIENT_ID
 ENV KEYCLOAK_CLIENT_SECRET $KEYCLOAK_CLIENT_SECRET
 ENV KEYCLOAK_ISSUER $KEYCLOAK_ISSUER
-COPY --from=builder /tmp/build/apps/hms-api/dist ./apps/hms-api/dist
-COPY /apps/hms-api/start.sh /apps/hms-api/start.sh
+WORKDIR /apps/hms-api
+COPY --from=builder /tmp/build/apps/hms-api/dist ./dist
+COPY /apps/hms-api/start.sh start.sh
 
 RUN mkdir /.npm
 RUN chgrp -R 0 /.npm && chmod -R g=u /.npm
 
 # Set execute permissions for the start.sh script.
-RUN chmod +x ./apps/hms-api/start.sh
+RUN chmod +x start.sh
 
 # Expose port 4000
 EXPOSE 4000
