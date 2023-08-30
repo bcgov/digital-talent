@@ -65,7 +65,7 @@ export const router = createBrowserRouter(
                   },
                   handle: {
                     breadcrumb: (data: Record<string, any>) => {
-                      return `Competition ${data.id}`;
+                      return `Competition #${data.id}`;
                     },
                   },
                 },
