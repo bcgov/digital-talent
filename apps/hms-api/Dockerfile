@@ -40,7 +40,7 @@ WORKDIR /apps/hms-api
 COPY --from=builder /tmp/build/apps/hms-api/dist ./dist
 COPY /apps/hms-api/start.sh start.sh
 COPY /apps/hms-api/prisma ./prisma
-COPY package*.json ./
+COPY /apps/hms-api/package*.json ./
 
 RUN mkdir /.npm
 RUN chgrp -R 0 /.npm && chmod -R g=u /.npm
