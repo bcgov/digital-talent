@@ -26,6 +26,16 @@ RUN npm -w @bcgov-dt/hms-api run build
 # openshift runs as a different user than what docker builds with
 # this fixes the issue as related to the npm cache
 FROM base AS runner
+ARG NEXTAUTH_SECRET
+ARG NEXTAUTH_URL
+ARG KEYCLOAK_CLIENT_ID
+ARG KEYCLOAK_CLIENT_SECRET
+ARG KEYCLOAK_ISSUER
+ENV NEXTAUTH_SECRET $NEXTAUTH_SECRET
+ENV NEXTAUTH_URL $NEXTAUTH_URL
+ENV KEYCLOAK_CLIENT_ID $KEYCLOAK_CLIENT_ID
+ENV KEYCLOAK_CLIENT_SECRET $KEYCLOAK_CLIENT_SECRET
+ENV KEYCLOAK_ISSUER $KEYCLOAK_ISSUER
 COPY --from=builder /tmp/build/apps/hms-api/dist ./apps/hms-api/dist
 COPY /apps/hms-api/start.sh /apps/hms-api/start.sh
 
