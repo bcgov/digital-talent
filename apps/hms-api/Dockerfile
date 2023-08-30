@@ -49,4 +49,4 @@ RUN chmod +x ./apps/hms-api/start.sh
 EXPOSE 4000
 
 # Start the application
-CMD ["./apps/hms-api/start.sh"]
+CMD ["/apps/hms-api/start.sh"]
