@@ -26,6 +26,7 @@ RUN npm -w @bcgov-dt/hms-api run build
 # openshift runs as a different user than what docker builds with
 # this fixes the issue as related to the npm cache
 FROM base AS runner
+<<<<<<< HEAD
 ARG NEXTAUTH_SECRET
 ARG NEXTAUTH_URL
 ARG KEYCLOAK_CLIENT_ID
@@ -41,6 +42,10 @@ COPY --from=builder /tmp/build ./
 COPY /apps/hms-api/start.sh ./apps/hms-api/start.sh
 COPY /apps/hms-api/prisma ./apps/hms-api/prisma
 COPY /apps/hms-api/package*.json ./apps/hms-api/
+=======
+COPY --from=builder /tmp/build/apps/hms-api/dist ./apps/hms-api/dist
+COPY /apps/hms-api/start.sh /apps/hms-api/start.sh
+>>>>>>> be5fe61 (updates for deployments)
 
 RUN mkdir /.npm
 RUN chgrp -R 0 /.npm && chmod -R g=u /.npm
