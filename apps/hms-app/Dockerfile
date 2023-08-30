@@ -1,17 +1,17 @@
 # Use the official Node.js 18 image.
-FROM node:18.17.0 as build
+FROM node:18-alpine AS base
 # Create and change to the app directory.
-WORKDIR /usr/src/app
+FROM base AS builder
+WORKDIR /tmp/build
 
 # Copy application dependency manifests to the container image.
 COPY package*.json ./
-#COPY ../../tsconfig.json ../../tsconfig.json
-# Install dependencies.
-RUN npm install
-
-COPY . .
-
-RUN npm run build
+COPY apps/hms-app/package.json ./apps/hms-app/
+RUN npm ci
+COPY tsconfig.json ./
+COPY apps/hms-app ./apps/hms-app
+#generates the dist folder for nest to run
+RUN npm -w @bcgov-dt/hms-app run build
 # openshift runs as a different user than what docker builds with
 
 # this fixes the issue as related to the npm cache
@@ -21,10 +21,10 @@ RUN chgrp -R 0 /.npm && chmod -R g=u /.npm
 # Copy local code to the container image.
 
 # Serve the app with Nginx
-FROM nginx:alpine
+FROM nginx:alpine AS runner
 # COPY --from=build /usr/src/app/dist /etc/nginx/html/app
-COPY --from=build /usr/src/app/dist /usr/share/nginx/html
-COPY nginx.conf /etc/nginx/conf.d/default.conf
+COPY --from=builder /tmp/build/apps/hms-app/dist /usr/share/nginx/html
+COPY /apps/hms-app/nginx.conf /etc/nginx/conf.d/default.conf
 
 RUN set -x \
     && sed -i -e 's/^\(nginx:[^:]\):[0-9]*:[0-9]*:/\1:1001:0:/' /etc/passwd \

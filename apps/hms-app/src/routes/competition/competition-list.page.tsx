@@ -38,7 +38,8 @@ export const CompetitionListPage = () => {
     {
       title: 'Action',
       key: 'action',
-      render: (text: string, record: any) => (
+      // render: (text: string, record: any) => (
+      render: () => (
         <span>
           <Button
             danger
