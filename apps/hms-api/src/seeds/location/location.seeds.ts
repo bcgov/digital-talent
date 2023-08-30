@@ -15,7 +15,7 @@ export const locationSeeds: SeedType<CreateLocationInput> = {
       id: 'a583cf18-885f-4b7a-b3f0-d755063f28da',
       deltek_id: '101',
       name: 'Victoria',
-      postal_code: 'V1G1X1',
+      postal_code: 'V1G1X2',
       lat: 90,
       lon: 90,
     },

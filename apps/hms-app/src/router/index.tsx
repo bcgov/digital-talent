@@ -13,89 +13,91 @@ import { HomePage } from '../routes/home/home.page';
 import { SettingsRoute } from '../routes/settings';
 import { SettingsPage } from '../routes/settings/settings.page';
 
-export const router = createBrowserRouter([
-  {
-    path: 'auth',
-    element: <AuthRoute />,
-    children: [
-      {
-        path: 'login',
-        element: <LoginPage />,
-      },
-    ],
-  },
-  {
-    element: <RouteGuard />,
-    children: [
-      {
-        element: <Layout />,
-        children: [
-          {
-            path: '/',
-            element: <HomeRoute />,
-            handle: {
-              breadcrumb: () => 'Home',
-              icon: <HomeOutlined />,
-            },
-            children: [
-              {
-                index: true,
-                element: <HomePage />,
+export const router = createBrowserRouter(
+  [
+    {
+      path: 'auth',
+      element: <AuthRoute />,
+      children: [
+        {
+          path: 'login',
+          element: <LoginPage />,
+        },
+      ],
+    },
+    {
+      element: <RouteGuard />,
+      children: [
+        {
+          element: <Layout />,
+          children: [
+            {
+              path: '/',
+              element: <HomeRoute />,
+              handle: {
+                breadcrumb: () => 'Home',
+                icon: <HomeOutlined />,
               },
-            ],
-          },
-          {
-            path: '/competitions',
-            element: <CompetitionRoute />,
-            handle: {
-              breadcrumb: () => 'Competitions',
-              icon: <AppstoreOutlined />,
-            },
-            children: [
-              {
-                index: true,
-                element: <CompetitionListPage />,
-              },
-              {
-                path: ':id',
-                element: <CompetitionDetailPage />,
-                loader: ({ params }) => {
-                  return params;
+              children: [
+                {
+                  index: true,
+                  element: <HomePage />,
                 },
-                handle: {
-                  breadcrumb: (data: Record<string, any>) => {
-                    return `Competition ${data.id}`;
+              ],
+            },
+            {
+              path: '/competitions',
+              element: <CompetitionRoute />,
+              handle: {
+                breadcrumb: () => 'Competitions',
+                icon: <AppstoreOutlined />,
+              },
+              children: [
+                {
+                  index: true,
+                  element: <CompetitionListPage />,
+                },
+                {
+                  path: ':id',
+                  element: <CompetitionDetailPage />,
+                  loader: ({ params }) => {
+                    return params;
+                  },
+                  handle: {
+                    breadcrumb: (data: Record<string, any>) => {
+                      return `Competition ${data.id}`;
+                    },
                   },
                 },
-              },
-              {
-                path: 'create',
-                element: <CreateCompetitionPage />,
-                handle: {
-                  breadcrumb: () => {
-                    return 'Create Competition';
+                {
+                  path: 'create',
+                  element: <CreateCompetitionPage />,
+                  handle: {
+                    breadcrumb: () => {
+                      return 'Create Competition';
+                    },
                   },
                 },
-              },
-            ],
-          },
-          {
-            path: '/settings',
-            element: <SettingsRoute />,
-            handle: {
-              breadcrumb: () => 'Settings',
-              icon: <SettingOutlined />,
+              ],
             },
-            children: [
-              {
-                index: true,
-                element: <SettingsPage />,
+            {
+              path: '/settings',
+              element: <SettingsRoute />,
+              handle: {
+                breadcrumb: () => 'Settings',
+                icon: <SettingOutlined />,
               },
-            ],
-          },
-        ],
-      },
-    ],
-  },
+              children: [
+                {
+                  index: true,
+                  element: <SettingsPage />,
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+  ],
   { basename: '/app' },
-]);
+);
