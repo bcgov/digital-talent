@@ -3,6 +3,7 @@ import 'antd/dist/reset.css';
 import { WebStorageStateStore } from 'oidc-client-ts';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { Helmet, HelmetProvider } from 'react-helmet-async';
 import { AuthProvider, AuthProviderProps } from 'react-oidc-context';
 import { Provider as ReduxProvider } from 'react-redux';
 import { RouterProvider } from 'react-router-dom';
@@ -31,9 +32,12 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
             },
           }}
         >
-          <App>
-            <RouterProvider router={router} />
-          </App>
+          <HelmetProvider>
+            <App>
+              <Helmet defaultTitle="Digital Talent HMS" titleTemplate="%s | Digital Talent HMS" />
+              <RouterProvider router={router} />
+            </App>
+          </HelmetProvider>
         </ConfigProvider>
       </ReduxProvider>
     </AuthProvider>
