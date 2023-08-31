@@ -36,20 +36,20 @@ ENV NEXTAUTH_URL $NEXTAUTH_URL
 ENV KEYCLOAK_CLIENT_ID $KEYCLOAK_CLIENT_ID
 ENV KEYCLOAK_CLIENT_SECRET $KEYCLOAK_CLIENT_SECRET
 ENV KEYCLOAK_ISSUER $KEYCLOAK_ISSUER
-WORKDIR /apps/hms-api
-COPY --from=builder /tmp/build/apps/hms-api/dist ./dist
-COPY /apps/hms-api/start.sh start.sh
-COPY /apps/hms-api/prisma ./prisma
-COPY /apps/hms-api/package*.json ./
+WORKDIR /backend
+COPY --from=builder /tmp/build ./
+COPY /apps/hms-api/start.sh ./apps/hms-api/start.sh
+COPY /apps/hms-api/prisma ./apps/hms-api/prisma
+COPY /apps/hms-api/package*.json ./apps/hms-api/
 
 RUN mkdir /.npm
 RUN chgrp -R 0 /.npm && chmod -R g=u /.npm
 
 # Set execute permissions for the start.sh script.
-RUN chmod +x start.sh
+RUN chmod +x ./apps/hms-api/start.sh
 
 # Expose port 4000
 EXPOSE 4000
-
+WORKDIR /backend/apps/hms-api/
 # Start the application
-CMD ["/apps/hms-api/start.sh"]
+CMD ["./start.sh"]
