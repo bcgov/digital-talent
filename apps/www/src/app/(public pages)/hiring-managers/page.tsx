@@ -1,4 +1,3 @@
-import { Mailbox } from 'lucide-react';
 import { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -187,7 +186,7 @@ export default function Page() {
                   information.
                 </p>
                 <div className="flex flex-row gap-2 mt-4">
-                  <Mailbox /> <span className="font-bold">Have questions?</span>{' '}
+                  <span className="font-bold">Have questions?</span>{' '}
                   <a className="text-bcgov-blue-dark underline" href="mailto:digital.talent@gov.bc.ca">
                     digital.talent@gov.bc.ca
                   </a>
