@@ -59,7 +59,7 @@ export const JobDescriptionPage = () => {
         <h1 style={{ marginBottom: 0 }}>Job Descriptions</h1>
         <Table
           columns={columns}
-          dataSource={(data ?? {})?.jobDescriptions}
+          dataSource={data?.jobDescriptions || []}
           loading={isLoading}
           rowKey="id"
           style={{ border: '1px solid #CCC' }}
