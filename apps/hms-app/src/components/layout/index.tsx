@@ -61,6 +61,14 @@ export const Layout = () => {
                       key: '/job-descriptions',
                       label: <Link to="/settings/job-descriptions">Job Descriptions</Link>,
                     },
+                    {
+                      key: '/locations',
+                      label: <Link to="/settings/locations">Locations</Link>,
+                    },
+                    {
+                      key: '/ministries',
+                      label: <Link to="/settings/ministries">Ministries</Link>,
+                    },
                   ],
                 },
               ]}
