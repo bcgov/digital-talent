@@ -30,17 +30,22 @@ export const CompetitionListPage = () => {
       key: 'category',
     },
     {
+      title: 'Job Description',
+      dataIndex: ['job_description', 'name'],
+      key: 'job_description.name',
+    },
+    {
       title: 'Classification',
-      dataIndex: 'classification',
-      key: 'classification',
+      dataIndex: ['job_description', 'classification'],
+      key: 'job_description.classification',
       render: (classification: any) => {
         const {
-          grid: { name: gridName },
-          position: { category, name },
+          occupation_group: { code },
+          grid: { name },
         } = classification;
         return (
           <span>
-            {name} ({category} {gridName})
+            {code} {name}
           </span>
         );
       },

@@ -4,13 +4,15 @@ import { graphqlApi } from '.';
 interface CompetitionGqlModel {
   id: string;
   deltek_id?: string;
-  classification: {
-    grid: {
-      name: string;
-    };
-    position: {
-      name: string;
-      category: 'CMH' | 'RH';
+  job_description: {
+    name: string;
+    classification: {
+      occupation_group: {
+        code: string;
+      };
+      grid: {
+        name: string;
+      };
     };
   };
   recruiter: {
@@ -33,13 +35,15 @@ export const competitionApi = graphqlApi.injectEndpoints({
             competitions {
               id
               deltek_id
-              classification {
-                grid {
-                  name
-                }
-                position {
-                  name
-                  category
+              job_description {
+                name
+                classification {
+                  occupation_group {
+                    code
+                  }
+                  grid {
+                    name
+                  }
                 }
               }
               recruiter {
