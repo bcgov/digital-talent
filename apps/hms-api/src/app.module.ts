@@ -20,9 +20,12 @@ import { CompetitionModule } from './modules/competition/competition.module';
 import { ElistOfferModule } from './modules/elist/elist-offer/elist-offer.module';
 import { ElistModule } from './modules/elist/elist/elist.module';
 import { EventStoreModule } from './modules/event-store/event-store.module';
+import { GridModule } from './modules/grid/grid.module';
 import { IdentityModule } from './modules/identity/identity.module';
+import { JobDescriptionModule } from './modules/job-description/job-description.module';
 import { LocationModule } from './modules/location/location.module';
 import { MinistryModule } from './modules/ministry/ministry.module';
+import { OccupationGroupModule } from './modules/occupation-group/occupation-group.module';
 import { OpportunityModule } from './modules/opportunity/opportunity.module';
 import { SkillModule } from './modules/skill/skill.module';
 import { UserModule } from './modules/user/user.module';
@@ -63,20 +66,23 @@ import { validateAppConfig } from './utils/validate-app-config.util';
         };
       },
     }),
+    ApplicationModule,
     AuthModule,
     ClassificationModule,
+    CommentModule,
     CompetitionModule,
     CompetitionScheduleModule,
-    UserModule,
-    MinistryModule,
-    ApplicationModule,
-    SkillModule,
-    LocationModule,
     ElistModule,
     ElistOfferModule,
-    CommentModule,
+    GridModule,
     IdentityModule,
+    JobDescriptionModule,
+    LocationModule,
+    MinistryModule,
+    OccupationGroupModule,
     OpportunityModule,
+    SkillModule,
+    UserModule,
   ],
   providers: [
     { provide: APP_GUARD, useClass: AuthGuard },

@@ -11,6 +11,8 @@ import { CreateCompetitionPage } from '../routes/competition/create-competition.
 import { HomeRoute } from '../routes/home';
 import { HomePage } from '../routes/home/home.page';
 import { SettingsRoute } from '../routes/settings';
+import { ClassificationPage } from '../routes/settings/classification.page';
+import { JobDescriptionPage } from '../routes/settings/job-description.page';
 import { SettingsPage } from '../routes/settings/settings.page';
 
 export const router = createBrowserRouter(
@@ -65,7 +67,7 @@ export const router = createBrowserRouter(
                   },
                   handle: {
                     breadcrumb: (data: Record<string, any>) => {
-                      return `Competition ${data.id}`;
+                      return `Competition #${data.id}`;
                     },
                   },
                 },
@@ -91,6 +93,24 @@ export const router = createBrowserRouter(
                 {
                   index: true,
                   element: <SettingsPage />,
+                },
+                {
+                  path: 'classifications',
+                  element: <ClassificationPage />,
+                  handle: {
+                    breadcrumb: () => {
+                      return 'Classifications';
+                    },
+                  },
+                },
+                {
+                  path: 'job-descriptions',
+                  element: <JobDescriptionPage />,
+                  handle: {
+                    breadcrumb: () => {
+                      return 'Job Descriptions';
+                    },
+                  },
                 },
               ],
             },

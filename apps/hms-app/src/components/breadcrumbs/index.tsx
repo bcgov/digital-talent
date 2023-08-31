@@ -1,5 +1,6 @@
 import { Breadcrumb } from 'antd';
-import { useMatches } from 'react-router-dom';
+import { ItemType } from 'antd/es/breadcrumb/Breadcrumb';
+import { Link, useMatches } from 'react-router-dom';
 
 export type BreadcrumbHandleType = {
   breadcrumb: (params?: Record<string, any>) => React.ReactNode;
@@ -26,9 +27,19 @@ export const Breadcrumbs = () => {
         ) : (
           breadcrumb(params)
         ),
-        href: index < arr.length - 1 ? route.pathname : undefined,
+        path: index < arr.length - 1 ? route.pathname : route.pathname,
       };
     });
 
-  return <Breadcrumb items={breadcrumbs} style={{ userSelect: 'none' }} />;
+  const itemRender = (route: ItemType, params: Record<PropertyKey, any>, routes: ItemType[], paths: string[]) => {
+    const last = routes.indexOf(route) === routes.length - 1;
+
+    if (!last && route.path) {
+      return <Link to={route.path}>{route.title}</Link>;
+    }
+
+    return <span>{route.title}</span>;
+  };
+
+  return <Breadcrumb itemRender={itemRender} items={breadcrumbs} style={{ userSelect: 'none' }} />;
 };

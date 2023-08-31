@@ -8,7 +8,6 @@ import { CreateCompetitionCommand } from './commands/create-competition/create-c
 import { DeleteCompetitionCommand } from './commands/delete-competition/delete-competition.command';
 import { UpdateCompetitionStateCommand } from './commands/update-competition-state/update-competition-state.command';
 import { UpdateCompetitionCommand } from './commands/update-competition/update-competition.command';
-import { CompetitionWriteEntity } from './entities/competition-write.entity';
 import { CompetitionCreatedEvent } from './events/competition-created/competition-created.event';
 import { CompetitionDeletedEvent } from './events/competition-deleted/competition-deleted.event';
 import { CompetitionStateUpdatedEvent } from './events/competition-state-updated/competition-state-updated.event';
@@ -16,9 +15,10 @@ import { CompetitionUpdatedEvent } from './events/competition-updated/competitio
 import { CreateCompetitionInput } from './inputs/create-competition.input';
 import { UpdateCompetitionStateInput } from './inputs/update-competition-state.input';
 import { UpdateCompetitionInput } from './inputs/update-competition.input';
+import { CompetitionWriteModel } from './models/competition-write.model';
 import { competitionStateStateMachine } from './state-machines/competition-state.state-machine';
 
-export type State = InitialState | ExistsState<'competition', CompetitionWriteEntity>;
+export type State = InitialState | ExistsState<'competition', CompetitionWriteModel>;
 type Command =
   | CreateCompetitionCommand
   | UpdateCompetitionCommand

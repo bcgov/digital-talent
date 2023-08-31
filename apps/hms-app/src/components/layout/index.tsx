@@ -52,6 +52,16 @@ export const Layout = () => {
                   key: '/settings',
                   icon: <SettingOutlined />,
                   label: <Link to="/settings">Settings</Link>,
+                  children: [
+                    {
+                      key: '/classifications',
+                      label: <Link to="/settings/classifications">Classifications</Link>,
+                    },
+                    {
+                      key: '/job-descriptions',
+                      label: <Link to="/settings/job-descriptions">Job Descriptions</Link>,
+                    },
+                  ],
                 },
               ]}
             />

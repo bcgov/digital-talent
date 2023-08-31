@@ -4,7 +4,7 @@ export const CompetitionDetailPage = () => {
   const loaderData = useLoaderData() as Record<string, any>;
 
   return (
-    <div style={{ margin: '1rem 2rem' }}>
+    <div>
       <h1>Competition #{loaderData.id}</h1>
     </div>
   );

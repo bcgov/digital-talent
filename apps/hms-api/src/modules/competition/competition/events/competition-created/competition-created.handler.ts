@@ -9,15 +9,15 @@ export class CompetitionCreatedHandler implements IEventHandler<CompetitionCreat
 
   async handle(event: CompetitionCreatedEvent) {
     const {
-      data: { id, classification_id, recruiter_id, deltek_id, category },
+      data: { id, job_description_id, recruiter_id, deltek_id, category },
       metadata,
     } = event;
 
     await this.prisma.competition.create({
       data: {
         id,
-        classification: {
-          connect: { id: classification_id },
+        job_description: {
+          connect: { id: job_description_id },
         },
         recruiter: {
           connect: { id: recruiter_id },

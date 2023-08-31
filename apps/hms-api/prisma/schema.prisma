@@ -11,6 +11,50 @@ datasource db {
 }
 
 // Common Models
+model Classification {
+  id                  String    @id @db.Uuid
+  grid_id             String    @db.Uuid
+  occupation_group_id String    @db.Uuid
+  rate_adjustment     Decimal   @default(0.0)
+  created_at          DateTime
+  updated_at          DateTime?
+  deleted_at          DateTime?
+
+  job_descriptions JobDescription[]
+  grid             Grid             @relation(fields: [grid_id], references: [id])
+  occupation_group OccupationGroup  @relation(fields: [occupation_group_id], references: [id])
+
+  @@map("classification")
+}
+
+model Grid {
+  id         String    @id @db.Uuid
+  name       String
+  steps      Json[]
+  created_at DateTime
+  updated_at DateTime?
+  deleted_at DateTime?
+
+  classifications Classification[]
+
+  @@map("grid")
+}
+
+model JobDescription {
+  id                String    @id @db.Uuid
+  classification_id String    @db.Uuid
+  e_class_id        String?
+  name              String
+  created_at        DateTime
+  updated_at        DateTime?
+  deleted_at        DateTime?
+
+  classification Classification @relation(fields: [classification_id], references: [id])
+  Competition    Competition[]
+
+  @@map("job_description")
+}
+
 model Ministry {
   id          String        @id @db.Uuid
   deltek_id   String
@@ -21,6 +65,20 @@ model Ministry {
   Opportunity Opportunity[]
 
   @@map("ministry")
+}
+
+model OccupationGroup {
+  id         String    @id @db.Uuid
+  code       String
+  name       String
+  created_at DateTime
+  updated_at DateTime?
+  deleted_at DateTime?
+
+  classifications Classification[]
+
+  @@unique([code])
+  @@map("occupation_group")
 }
 
 enum SkillCategory {
@@ -53,63 +111,6 @@ model Skill {
   @@map("skill")
 }
 
-// Classification Models
-model Classification {
-  id              String    @id @db.Uuid
-  grid_id         String    @db.Uuid
-  position_id     String    @db.Uuid
-  rate_adjustment Decimal
-  created_at      DateTime
-  updated_at      DateTime?
-  deleted_at      DateTime?
-
-  competitions Competition[]
-  grid         Grid          @relation(fields: [grid_id], references: [id])
-  position     Position      @relation(fields: [position_id], references: [id])
-
-  @@map("classification")
-}
-
-enum GridAffiliation {
-  BCGEU
-  MCCF
-  PEA
-}
-
-model Grid {
-  id          String          @id @db.Uuid
-  affiliation GridAffiliation
-  name        String          @unique
-  steps       Json[]
-  created_at  DateTime
-  updated_at  DateTime?
-  deleted_at  DateTime?
-
-  classifications Classification[]
-
-  @@map("grid")
-}
-
-enum PositionCategory {
-  BAND
-  AO
-  IS
-}
-
-model Position {
-  id          String           @id @db.Uuid
-  category    PositionCategory
-  name        String
-  description String?
-  created_at  DateTime
-  updated_at  DateTime?
-  deleted_at  DateTime?
-
-  classifications Classification[]
-
-  @@map("position")
-}
-
 // Competition Models
 enum CompetitionCategory {
   CMH
@@ -130,24 +131,23 @@ enum CompetitionState {
 }
 
 model Competition {
-  id                String              @id @db.Uuid
-  classification_id String              @db.Uuid
-  deltek_id         String?
-  recruiter_id      String              @db.Uuid
-  category          CompetitionCategory
-  state             CompetitionState
-  metadata          Json
-  created_at        DateTime
-  updated_at        DateTime?
-  deleted_at        DateTime?
+  id                 String              @id @db.Uuid
+  deltek_id          String?
+  job_description_id String              @db.Uuid
+  recruiter_id       String              @db.Uuid
+  category           CompetitionCategory
+  state              CompetitionState
+  metadata           Json
+  created_at         DateTime
+  updated_at         DateTime?
+  deleted_at         DateTime?
 
-  // opportunities  Opportunity[]
-  skills         CompetitionSkill[]
-  elist          Elist[]
-  classification Classification       @relation(fields: [classification_id], references: [id])
-  recruiter      User                 @relation(fields: [recruiter_id], references: [id])
-  schedule       CompetitionSchedule?
-  Opportunity    Opportunity[]
+  opportunities   Opportunity[]
+  elist           Elist[]
+  skills          CompetitionSkill[]
+  job_description JobDescription       @relation(fields: [job_description_id], references: [id])
+  recruiter       User                 @relation(fields: [recruiter_id], references: [id])
+  schedule        CompetitionSchedule?
 
   @@map("competition")
 }

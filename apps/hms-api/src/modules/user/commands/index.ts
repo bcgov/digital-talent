@@ -1,3 +1,3 @@
 import { SyncUserHandler } from './sync-user/sync-user.handler';
 
-export const CommandHandlers = [SyncUserHandler];
+export const UserCommandHandlers = [SyncUserHandler];

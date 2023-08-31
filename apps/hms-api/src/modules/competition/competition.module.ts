@@ -7,12 +7,12 @@ import { CompetitionSkillCommandResolver } from './competition-skill/resolvers/c
 import { CompetitionCommandHandlers } from './competition/commands';
 import { CompetitionEventHandlers } from './competition/events';
 import { CompetitionQueryHandlers } from './competition/queries';
-import { CompetitionCommandResolver } from './competition/resolvers/competition-command.resolver';
+import { CompetitionResolver } from './competition/resolvers/competition.resolver';
 
 @Module({
   imports: [CqrsModule, PrismaModule],
   providers: [
-    CompetitionCommandResolver,
+    CompetitionResolver,
     ...CompetitionCommandHandlers,
     ...CompetitionEventHandlers,
     ...CompetitionQueryHandlers,
