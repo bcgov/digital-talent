@@ -1,19 +1,19 @@
-import { BadRequestException } from '@nestjs/common';
 import assert from 'assert';
+import { BadRequestException } from '@nestjs/common';
 import { ExistsState, InitialState } from '../event-store/types/decider-state.type';
 import { Decider } from '../event-store/utils/create-command-handler.util';
 import { decideUpdateEventData } from '../event-store/utils/decide-update-event-data.util';
 import { CreateMinistryCommand } from './commands/create-ministry/create-ministry.command';
 import { DeleteMinistryCommand } from './commands/delete-ministry/delete-ministry.command';
 import { UpdateMinistryCommand } from './commands/update-ministry/update-ministry.command';
-import { MinistryWriteEntity } from './entities/ministry.write.entity';
 import { MinistryCreatedEvent } from './events/ministry-created/ministry-created.event';
 import { MinistryDeletedEvent } from './events/ministry-deleted/ministry-deleted.event';
 import { MinistryUpdatedEvent } from './events/ministry-updated/ministry-updated.event';
 import { CreateMinistryInput } from './inputs/create-ministry.input';
 import { UpdateMinistryInput } from './inputs/update-ministry.input';
+import { MinistryWriteModel } from './models/ministry-write.model';
 
-type State = InitialState | ExistsState<'ministry', MinistryWriteEntity>;
+type State = InitialState | ExistsState<'ministry', MinistryWriteModel>;
 type Command = CreateMinistryCommand | UpdateMinistryCommand | DeleteMinistryCommand;
 type Event = MinistryCreatedEvent | MinistryUpdatedEvent | MinistryDeletedEvent;
 

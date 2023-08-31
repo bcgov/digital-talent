@@ -5,10 +5,10 @@ import { LocationDeletedHandler } from './location-deleted/location-deleted.hand
 import { LocationUpdatedEvent } from './location-updated/location-updated.event';
 import { LocationUpdatedHandler } from './location-updated/location-updated.handler';
 
-export const Events = {
+export const LocationEvents = {
   LocationCreatedEvent,
   LocationUpdatedEvent,
   LocationDeletedEvent,
 };
 
-export const EventHandlers = [LocationCreatedHandler, LocationUpdatedHandler, LocationDeletedHandler];
+export const LocationEventHandlers = [LocationCreatedHandler, LocationUpdatedHandler, LocationDeletedHandler];

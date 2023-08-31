@@ -18,7 +18,7 @@ interface JobDescriptionGqlModel {
 }
 
 interface GetJobDescriptionsGqlResponse {
-  jobDescriptions: JobDescriptionGqlModel;
+  jobDescriptions: JobDescriptionGqlModel[];
 }
 
 export const jobDescriptionApi = graphqlApi.injectEndpoints({
