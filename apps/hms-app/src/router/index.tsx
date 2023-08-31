@@ -67,11 +67,7 @@ export const router = createBrowserRouter(
                   },
                   handle: {
                     breadcrumb: (data: Record<string, any>) => {
-<<<<<<< HEAD
                       return `Competition #${data.id}`;
-=======
-                      return `Competition ${data.id}`;
->>>>>>> ba48dbb (Fix routing to /app)
                     },
                   },
                 },
@@ -98,7 +94,6 @@ export const router = createBrowserRouter(
                   index: true,
                   element: <SettingsPage />,
                 },
-<<<<<<< HEAD
                 {
                   path: 'classifications',
                   element: <ClassificationPage />,
@@ -117,8 +112,6 @@ export const router = createBrowserRouter(
                     },
                   },
                 },
-=======
->>>>>>> ba48dbb (Fix routing to /app)
               ],
             },
           ],
