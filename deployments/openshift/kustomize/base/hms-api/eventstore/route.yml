@@ -8,3 +8,7 @@ spec:
     name: hms-api-eventstore
   port:
     targetPort: 2113
+  tls:
+    termination: edge
+    insecureEdgeTerminationPolicy: Redirect
+  wildcardPolicy: None
