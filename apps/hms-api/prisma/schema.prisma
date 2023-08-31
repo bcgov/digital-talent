@@ -56,13 +56,14 @@ model JobDescription {
 }
 
 model Ministry {
-  id          String        @id @db.Uuid
-  deltek_id   String
-  name        String
-  created_at  DateTime
-  updated_at  DateTime?
-  deleted_at  DateTime?
-  Opportunity Opportunity[]
+  id         String    @id @db.Uuid
+  deltek_id  String
+  name       String
+  created_at DateTime
+  updated_at DateTime?
+  deleted_at DateTime?
+
+  opportunities Opportunity[]
 
   @@map("ministry")
 }
