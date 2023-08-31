@@ -31,7 +31,7 @@ export const Breadcrumbs = () => {
       };
     });
 
-  const itemRender = (route: ItemType, params: Record<PropertyKey, any>, routes: ItemType[], paths: string[]) => {
+  const itemRender = (route: ItemType, _params: Record<PropertyKey, any>, routes: ItemType[], _paths: string[]) => {
     const last = routes.indexOf(route) === routes.length - 1;
 
     if (!last && route.path) {
