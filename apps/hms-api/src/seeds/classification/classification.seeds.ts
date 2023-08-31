@@ -1,133 +1,65 @@
 import { EventStoreDBClient, FORWARDS, START } from '@eventstore/db-client';
 import { CommandBus, ICommand } from '@nestjs/cqrs';
-import { IsNumber, IsUUID, Max, Min } from 'class-validator';
 import { SYSTEM_USER_ID } from '../../modules/auth/auth.constants';
-import { CreateClassificationCommand } from '../../modules/classification/classification/commands/create-classification/create-classification.command';
-import { DeleteClassificationCommand } from '../../modules/classification/classification/commands/delete-classification/delete-classification.command';
-import { UpdateClassificationCommand } from '../../modules/classification/classification/commands/update-classification/update-classification.command';
+import { CreateClassificationCommand } from '../../modules/classification/commands/create-classification/create-classification.command';
+import { DeleteClassificationCommand } from '../../modules/classification/commands/delete-classification/delete-classification.command';
+import { UpdateClassificationCommand } from '../../modules/classification/commands/update-classification/update-classification.command';
+import { CreateClassificationInput } from '../../modules/classification/inputs/create-classification.input';
 import { handleEmpty } from '../../modules/event-store/utils/create-command-handler.util';
 import { validateObject } from '../../utils/validate-object.dto';
 import { SeedType } from '../seeds.type';
 
-export class ClassificationSeed {
-  @IsUUID()
-  id: string;
-
-  @IsUUID()
-  grid_id: string;
-
-  @IsUUID()
-  position_id: string;
-
-  @Min(0)
-  @Max(1)
-  @IsNumber({ maxDecimalPlaces: 3 })
-  rate_adjustment: number;
-}
-
-export const classificationSeeds: SeedType<ClassificationSeed> = {
+export const classificationSeeds: SeedType<CreateClassificationInput> = {
   upsert: [
-    // Full Stack Developer 18, 21, 24, 27, 30
+    // BAND 3
     {
-      id: 'f72b571f-ffa5-4bb8-86b2-9bfa4edc80b6',
-      grid_id: '7a22c548-26a9-4bf3-96d1-b8b0bda28eab',
-      position_id: '8b98f19d-85df-40f2-819b-bdf8eae68813',
-      rate_adjustment: 0,
-    },
-    {
-      id: '308840a4-0ef4-4bc4-8bcf-ed3d4f5239e0',
-      grid_id: '97203bf7-46f4-4b8d-9cd9-a0a0b8bb9560',
-      position_id: '8b98f19d-85df-40f2-819b-bdf8eae68813',
-      rate_adjustment: 0,
-    },
-    {
-      id: '8b140e95-5969-4a5a-bc1c-86469ab064e1',
-      grid_id: '6dd3345c-00b1-410e-b584-11315af2b3db',
-      position_id: '8b98f19d-85df-40f2-819b-bdf8eae68813',
-      rate_adjustment: 0.033,
-    },
-    {
-      id: 'e3ab5e72-7fab-4ad8-b8dd-9d455885b1c0',
-      grid_id: '6410100c-2c34-4f0e-baad-ed9de5299dd8',
-      position_id: '8b98f19d-85df-40f2-819b-bdf8eae68813',
-      rate_adjustment: 0.066,
-    },
-    {
-      id: '269f6416-0aa6-4b42-a95e-5876568d54d6',
-      grid_id: '851f9d71-fc20-4055-becd-41ecf50d6750',
-      position_id: '8b98f19d-85df-40f2-819b-bdf8eae68813',
-      rate_adjustment: 0.099,
-    },
-    // Dev Ops 27
-    {
-      id: '15886889-2063-4db3-9ff2-59d61db8b040',
-      grid_id: '6410100c-2c34-4f0e-baad-ed9de5299dd8',
-      position_id: 'fa931d17-41cb-4967-b9aa-ada43391674c',
-      rate_adjustment: 0.066,
-    },
-    // Product Manager 30, Band 3
-    {
-      id: 'b08fcb13-9b25-41a3-84f3-acbd85734fd5',
-      grid_id: '851f9d71-fc20-4055-becd-41ecf50d6750',
-      position_id: '69982e41-3557-4c86-bfed-ff2f09574823',
-      rate_adjustment: 0.099,
-    },
-    {
-      id: 'ebe0ea1f-6908-444c-b724-18eaa3c4e0b5',
+      id: '6c19f536-b8ab-4e2c-9e94-f20cd550a7ba',
       grid_id: 'dcca8de3-bc01-4e24-84b0-3e89be512c1a',
-      position_id: '8212a5b1-5efb-4e45-a48c-070043f83121',
+      occupation_group_id: 'dc56bc3a-32c6-48ae-9771-81344329640b',
       rate_adjustment: 0,
     },
-    // Scrum Master 24, 27
+    // AO 24, 27
     {
-      id: 'e5980187-40b6-44eb-a2c6-3058c496b8a7',
+      id: '2e1b710b-b04f-4430-a045-9afd89d01593',
       grid_id: '6dd3345c-00b1-410e-b584-11315af2b3db',
-      position_id: '92588e9b-4722-4579-af4a-c98311ae182b',
+      occupation_group_id: '6ff04898-6a78-41af-b47b-ae30e39e4be9',
+      rate_adjustment: 0,
+    },
+    {
+      id: '74b07121-e910-473f-b0d7-2fbf292c7a1d',
+      grid_id: '6410100c-2c34-4f0e-baad-ed9de5299dd8',
+      occupation_group_id: '6ff04898-6a78-41af-b47b-ae30e39e4be9',
+      rate_adjustment: 0,
+    },
+    // IS 18, 21, 24, 27, 30
+    {
+      id: '7e2a2c26-7a77-4dbe-8d9c-eafa37ebbeb7',
+      grid_id: '7a22c548-26a9-4bf3-96d1-b8b0bda28eab',
+      occupation_group_id: 'a54de04d-620a-40e3-b57a-a28aab04566d',
+      rate_adjustment: 0,
+    },
+    {
+      id: 'a07800b6-db39-4bc1-94f6-996c7d05e938',
+      grid_id: '97203bf7-46f4-4b8d-9cd9-a0a0b8bb9560',
+      occupation_group_id: 'a54de04d-620a-40e3-b57a-a28aab04566d',
+      rate_adjustment: 0,
+    },
+    {
+      id: '8c771981-8e49-401d-887d-542dcc64451c',
+      grid_id: '6dd3345c-00b1-410e-b584-11315af2b3db',
+      occupation_group_id: 'a54de04d-620a-40e3-b57a-a28aab04566d',
       rate_adjustment: 0.066,
     },
     {
-      id: '7ad7f4ef-72b4-4854-a5ae-b981b1cfb56d',
+      id: '343fb017-e759-4e43-9438-6c0576600a7a',
       grid_id: '6410100c-2c34-4f0e-baad-ed9de5299dd8',
-      position_id: '92588e9b-4722-4579-af4a-c98311ae182b',
+      occupation_group_id: 'a54de04d-620a-40e3-b57a-a28aab04566d',
       rate_adjustment: 0.099,
     },
-    // Site Reliability Specialist 27, 30
     {
-      id: '17a89f02-95b0-4ab8-b44a-65a1680e2b34',
-      grid_id: '6410100c-2c34-4f0e-baad-ed9de5299dd8',
-      position_id: 'd1de1a6b-5277-4ae1-978c-0ad28ebf72da',
-      rate_adjustment: 0.066,
-    },
-    {
-      id: '3952883b-5cc5-4e8d-98b4-b5af03ef1772',
+      id: '28bf5d98-d737-485c-b1bd-00a84900e8fe',
       grid_id: '851f9d71-fc20-4055-becd-41ecf50d6750',
-      position_id: 'd1de1a6b-5277-4ae1-978c-0ad28ebf72da',
-      rate_adjustment: 0.099,
-    },
-    // User Experience Designer 24, 27
-    {
-      id: 'd7f7c1f0-e051-4e94-a2d5-c0edb569bef7',
-      grid_id: '6dd3345c-00b1-410e-b584-11315af2b3db',
-      position_id: '458e6de8-b90a-4983-977f-580001c2d96a',
-      rate_adjustment: 0,
-    },
-    {
-      id: 'a11e4886-4d5b-4ae2-9eba-968c0a193f52',
-      grid_id: '6410100c-2c34-4f0e-baad-ed9de5299dd8',
-      position_id: '458e6de8-b90a-4983-977f-580001c2d96a',
-      rate_adjustment: 0,
-    },
-    // User Experience Researcher 24, 27
-    {
-      id: 'abc74224-a5cf-47b5-8bc8-aff44fc7232d',
-      grid_id: '6dd3345c-00b1-410e-b584-11315af2b3db',
-      position_id: '5078204f-03c7-4d9d-a144-8c646aeda40b',
-      rate_adjustment: 0.066,
-    },
-    {
-      id: '062a2580-f9ea-4258-9882-23a3642e377b',
-      grid_id: '6410100c-2c34-4f0e-baad-ed9de5299dd8',
-      position_id: '5078204f-03c7-4d9d-a144-8c646aeda40b',
+      occupation_group_id: 'a54de04d-620a-40e3-b57a-a28aab04566d',
       rate_adjustment: 0.099,
     },
   ],
@@ -138,7 +70,7 @@ export const applyClassificationSeeds = async (commandBus: CommandBus<ICommand>,
   const { upsert, remove } = classificationSeeds;
 
   for await (const seed of upsert) {
-    validateObject(seed, ClassificationSeed);
+    validateObject(seed, CreateClassificationInput);
 
     // Check if the stream exists
     const events = handleEmpty(

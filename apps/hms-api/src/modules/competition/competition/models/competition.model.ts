@@ -1,7 +1,7 @@
 import { Field, HideField, ObjectType, registerEnumType } from '@nestjs/graphql';
 import { CompetitionCategory, CompetitionState } from '@prisma/client';
 import { GraphQLUUID } from 'graphql-scalars';
-import { ClassificationModel } from '../../../classification/classification/models/classification.model';
+import { ClassificationModel } from '../../../classification/models/classification.model';
 import { UserModel } from '../../../user/models/user.model';
 
 registerEnumType(CompetitionCategory, {
