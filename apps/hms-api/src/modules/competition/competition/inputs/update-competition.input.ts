@@ -9,15 +9,15 @@ export class UpdateCompetitionInput {
   @IsUUID()
   id: string;
 
-  @Field((type) => GraphQLUUID)
-  @IsOptional()
-  @IsUUID()
-  classification_id?: string;
-
   @IsOptional()
   @IsString()
   @IsNotEmpty()
   deltek_id?: string;
+
+  @Field((type) => GraphQLUUID)
+  @IsOptional()
+  @IsUUID()
+  job_description_id?: string;
 
   @Field((type) => GraphQLUUID)
   @IsOptional()

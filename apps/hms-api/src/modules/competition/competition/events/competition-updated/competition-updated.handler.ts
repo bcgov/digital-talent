@@ -8,16 +8,16 @@ export class CompetitionUpdatedHandler implements IEventHandler<CompetitionUpdat
 
   async handle(event: CompetitionUpdatedEvent) {
     const {
-      data: { id, classification_id, recruiter_id, deltek_id, category },
+      data: { id, job_description_id, recruiter_id, deltek_id, category },
       metadata,
     } = event;
 
     await this.prisma.competition.update({
       where: { id },
       data: {
-        ...(classification_id != null && {
-          classification: {
-            connect: { id: classification_id },
+        ...(job_description_id != null && {
+          job_description: {
+            connect: { id: job_description_id },
           },
         }),
         ...(recruiter_id != null && {

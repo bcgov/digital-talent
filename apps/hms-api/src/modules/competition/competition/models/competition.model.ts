@@ -1,7 +1,7 @@
 import { Field, HideField, ObjectType, registerEnumType } from '@nestjs/graphql';
 import { CompetitionCategory, CompetitionState } from '@prisma/client';
 import { GraphQLUUID } from 'graphql-scalars';
-import { ClassificationModel } from '../../../classification/models/classification.model';
+import { JobDescriptionModel } from '../../../job-description/models/job-description.model';
 import { UserModel } from '../../../user/models/user.model';
 
 registerEnumType(CompetitionCategory, {
@@ -10,11 +10,11 @@ registerEnumType(CompetitionCategory, {
 
 export interface ICompetitionModel {
   id: string;
-  classification_id: string;
+  job_description_id: string;
   deltek_id?: string;
   recruiter_id?: string;
   category: CompetitionCategory;
-  classification: ClassificationModel;
+  job_description: JobDescriptionModel;
   recruiter: UserModel;
   state: CompetitionState;
   created_at: Date;
@@ -27,10 +27,10 @@ export class CompetitionModel implements ICompetitionModel {
   @Field((type) => GraphQLUUID)
   id: string;
 
-  @HideField()
-  classification_id: string;
-
   deltek_id?: string;
+
+  @HideField()
+  job_description_id: string;
 
   @HideField()
   recruiter_id?: string;
@@ -38,8 +38,8 @@ export class CompetitionModel implements ICompetitionModel {
   @Field((type) => CompetitionCategory)
   category: CompetitionCategory;
 
-  @Field((type) => ClassificationModel)
-  classification: ClassificationModel;
+  @Field((type) => JobDescriptionModel)
+  job_description: JobDescriptionModel;
 
   @Field((type) => UserModel)
   recruiter: UserModel;

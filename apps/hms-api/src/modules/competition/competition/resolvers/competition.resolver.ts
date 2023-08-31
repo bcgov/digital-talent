@@ -2,8 +2,8 @@ import { CommandBus, QueryBus } from '@nestjs/cqrs';
 import { Args, Mutation, Parent, Query, ResolveField, Resolver } from '@nestjs/graphql';
 import { GraphQLUUID } from 'graphql-scalars';
 import { CurrentUser } from '../../../auth/decorators/current-user.decorator';
-import { ClassificationModel } from '../../../classification/models/classification.model';
-import { GetClassificationQuery } from '../../../classification/queries/get-classification/get-classification.query';
+import { JobDescriptionModel } from '../../../job-description/models/job-description.model';
+import { GetJobDescriptionQuery } from '../../../job-description/queries/get-job-description/get-job-description.query';
 import { UserModel } from '../../../user/models/user.model';
 import { GetUserQuery } from '../../../user/queries/get-user/get-user.query';
 import { CreateCompetitionCommand } from '../commands/create-competition/create-competition.command';
@@ -82,9 +82,9 @@ export class CompetitionResolver {
     return command.data.id;
   }
 
-  @ResolveField('classification', (returns) => ClassificationModel)
+  @ResolveField('job_description', (returns) => JobDescriptionModel)
   async getClassification(@Parent() competition: CompetitionModel) {
-    return this.queryBus.execute(new GetClassificationQuery(competition.classification_id));
+    return this.queryBus.execute(new GetJobDescriptionQuery(competition.job_description_id));
   }
 
   @ResolveField('recruiter', (returns) => UserModel)

@@ -14,14 +14,14 @@ export class CreateCompetitionInput {
   @IsUUID()
   id: string;
 
-  @Field((type) => GraphQLUUID)
-  @IsUUID()
-  classification_id: string;
-
   @IsOptional()
   @IsString()
   @IsNotEmpty()
   deltek_id?: string;
+
+  @Field((type) => GraphQLUUID)
+  @IsUUID()
+  job_description_id: string;
 
   @Field((type) => GraphQLUUID)
   @IsOptional()

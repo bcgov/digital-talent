@@ -20,7 +20,6 @@ model Classification {
   updated_at          DateTime?
   deleted_at          DateTime?
 
-  competitions     Competition[]
   job_descriptions JobDescription[]
   grid             Grid             @relation(fields: [grid_id], references: [id])
   occupation_group OccupationGroup  @relation(fields: [occupation_group_id], references: [id])
@@ -51,6 +50,7 @@ model JobDescription {
   deleted_at        DateTime?
 
   classification Classification @relation(fields: [classification_id], references: [id])
+  Competition    Competition[]
 
   @@map("job_description")
 }
@@ -131,24 +131,23 @@ enum CompetitionState {
 }
 
 model Competition {
-  id                String              @id @db.Uuid
-  classification_id String              @db.Uuid
-  deltek_id         String?
-  recruiter_id      String              @db.Uuid
-  category          CompetitionCategory
-  state             CompetitionState
-  metadata          Json
-  created_at        DateTime
-  updated_at        DateTime?
-  deleted_at        DateTime?
+  id                 String              @id @db.Uuid
+  deltek_id          String?
+  job_description_id String              @db.Uuid
+  recruiter_id       String              @db.Uuid
+  category           CompetitionCategory
+  state              CompetitionState
+  metadata           Json
+  created_at         DateTime
+  updated_at         DateTime?
+  deleted_at         DateTime?
 
-  // opportunities  Opportunity[]
-  skills         CompetitionSkill[]
-  elist          Elist[]
-  classification Classification       @relation(fields: [classification_id], references: [id])
-  recruiter      User                 @relation(fields: [recruiter_id], references: [id])
-  schedule       CompetitionSchedule?
-  Opportunity    Opportunity[]
+  opportunities   Opportunity[]
+  elist           Elist[]
+  skills          CompetitionSkill[]
+  job_description JobDescription       @relation(fields: [job_description_id], references: [id])
+  recruiter       User                 @relation(fields: [recruiter_id], references: [id])
+  schedule        CompetitionSchedule?
 
   @@map("competition")
 }
