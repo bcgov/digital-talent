@@ -15,12 +15,12 @@ The diversity of these lands shapes our team members and impacts the foundation 
 
 {% our-numbers /%}
 
-Other key areas we help with includes:
+Other key areas our teams helps with includes:
 
-**How we hire**: improving hiring experience for candidates and hiring managers
+**How BC Gov hires**: improving hiring experience for candidates and hiring managers
 
-**How we are structured**: creation of job descriptions, classifications, and organizational design and development
+**How BC Gov is structured**: creation of job descriptions, classifications, and organizational design and development
 
-**How we plan to retain**: career paths, succession planning, up-skilling, and re-skilling
+**How BC Gov plans to retain**: career paths, succession planning, up-skilling, and re-skilling
 
-This page hosts more information about hiring options. If any of them apply to the hiring needs in your area, let's connect. We want this Province to thrive!
+The [Hiring Options](https://talent.digital.gov.bc.ca/hiring-managers/hiring-options) page offers more information about different ways to hire. If any of them apply to the hiring needs in your area, let's connect. We want this Province to thrive!
