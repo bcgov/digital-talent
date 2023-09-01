@@ -1,0 +1,75 @@
+apiVersion: apps.openshift.io/v1
+kind: DeploymentConfig
+metadata:
+  name: hms-api-postgres
+spec:
+  replicas: 1
+  selector:
+    name: hms-api-postgres
+  strategy:
+    type: Recreate
+    recreateParams:
+      post:
+        failurePolicy: Ignore
+        execNewPod:
+          containerName: hms-api-postgres
+          command:
+            - "/bin/sh"
+            - "-c"
+            - >-
+              sleep 20 && psql postgresql://postgres:$POSTGRESQL_ADMIN_PASSWORD@hms-api-postgres:5432/$POSTGRES_DB -c "ALTER USER $POSTGRESQL_USER WITH CREATEDB;"
+
+  template:
+    metadata:
+      labels:
+        name: hms-api-postgres
+    spec:
+      containers:
+      - env:
+        - name: POSTGRESQL_DATABASE
+          valueFrom:
+            secretKeyRef:
+              name: hms-secrets
+              key: POSTGRES_DB        
+        - name: DATABASE_URL
+          valueFrom:
+            secretKeyRef:
+              name: hms-secrets
+              key: DATABASE_URL
+        - name: POSTGRESQL_USER
+          valueFrom:
+            secretKeyRef:
+              name: hms-secrets
+              key: POSTGRES_USER
+        - name: POSTGRESQL_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: hms-secrets
+              key: POSTGRES_PASSWORD
+        # Added the following environment variable for superuser
+        - name: POSTGRESQL_ADMIN_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: hms-secrets
+              key: POSTGRES_ADMIN_PASSWORD
+        image: 'registry.access.redhat.com/rhscl/postgresql-10-rhel7:latest'
+        name: hms-api-postgres
+        ports:
+        - containerPort: 5432
+        volumeMounts:
+        - mountPath: /var/lib/pgsql/data
+          name: hms-api-postgres-data
+      # lifecycle:
+      #   postStart:
+      #     exec:
+      #       command:
+      #         - "/bin/sh"
+      #         - "-c"
+      #         - >-
+      #           sleep 20 && psql -U $POSTGRESQL_USER -d $POSTGRESQL_DATABASE -c "ALTER USER $POSTGRESQL_USER WITH CREATEDB;"
+      volumes:
+      - name: hms-api-postgres-data
+        persistentVolumeClaim:
+          claimName: hms-api-postgres-data
+  triggers:
+  - type: ConfigChange

@@ -23,7 +23,7 @@ export default function Page() {
           </p>
           <p>
             Hiring managers have three options for hiring staff. Each option gets support from either our team, the
-            Digital Talent Attraction and Development Team (DTAD), or guidance from the Public Service Agency (PSA).
+            Digital Talent Careers Team (DTC), or guidance from the Public Service Agency (PSA).
           </p>
         </div>
 
@@ -36,7 +36,7 @@ export default function Page() {
                   <div className="grow text-bcgov-blue-dark mb-2 font-semibold text-2xl leading-8">
                     The Cross-Ministry Hiring Program
                   </div>
-                  <div className="font-bold text-base text-bcgov-blue-dark">with the DTAD</div>
+                  <div className="font-bold text-base text-bcgov-blue-dark">with the DTC</div>
                 </div>
               </Link>
 
@@ -48,7 +48,7 @@ export default function Page() {
                   <div className="grow text-bcgov-blue-dark mb-2 font-semibold text-2xl leading-8">
                     Access Eligibility Lists
                   </div>
-                  <div className="font-bold text-base text-bcgov-blue-dark">with the DTAD</div>
+                  <div className="font-bold text-base text-bcgov-blue-dark">with the DTC</div>
                 </div>
               </Link>
 
@@ -97,7 +97,7 @@ export default function Page() {
               <div className="">
                 <Icon icon="ListChecks" />
               </div>
-              <div>DTAD handles administrative processes</div>
+              <div>DTC handles administrative processes</div>
             </div>
           </div>
           <Link href="/hiring-managers/hiring-options/cross-ministry-hiring">

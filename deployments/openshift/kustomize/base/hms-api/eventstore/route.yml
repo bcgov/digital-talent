@@ -1,0 +1,14 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: hms-api-eventstore-route
+spec:
+  to:
+    kind: Service
+    name: hms-api-eventstore
+  port:
+    targetPort: 2113
+  tls:
+    termination: edge
+    insecureEdgeTerminationPolicy: Redirect
+  wildcardPolicy: None
