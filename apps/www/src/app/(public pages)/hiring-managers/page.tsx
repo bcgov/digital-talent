@@ -1,4 +1,3 @@
-import { Mailbox } from 'lucide-react';
 import { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -179,15 +178,15 @@ export default function Page() {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="flex flex-col gap-4">
                 <p>
-                  Welcome to the homepage for the Digital Talent Attraction and Development Team! This website serves as
-                  a hub of our hiring programs and pilots, current and upcoming hiring, and who we are.
+                  Welcome to the new home for the Digital Talent Careers Team (DTC). You can learn about hiring options,
+                  join pilot programs, and discover what we’re working on.
                 </p>
                 <p>
-                  Our team works with Agile principles, inclusive of product iterations. Please expect updates as the
-                  team gets feedback from users.
+                  We work in an agile environment, so please expect changes on this website as we grow and publish more
+                  information.
                 </p>
                 <div className="flex flex-row gap-2 mt-4">
-                  <Mailbox /> <span className="font-bold">Have questions?</span>{' '}
+                  <span className="font-bold">Have questions?</span>{' '}
                   <a className="text-bcgov-blue-dark underline" href="mailto:digital.talent@gov.bc.ca">
                     digital.talent@gov.bc.ca
                   </a>
@@ -196,9 +195,10 @@ export default function Page() {
               <div>
                 <span className="font-bold">Coming soon:</span>
                 <ul className="list-disc ml-8">
-                  <li>Process for online approvals to use Digital Talent Job Profiles.</li>
+                  <li>Process for using Eligibilty Lists from the Cross-Ministry Hiring Program</li>
                   <li>Process for suggesting Job Profiles to our inventory.</li>
                   <li>Overview of Advisory services of organization design and development for Agile teams.</li>
+                  <li>Competition Calendar</li>
                 </ul>
               </div>
             </div>
