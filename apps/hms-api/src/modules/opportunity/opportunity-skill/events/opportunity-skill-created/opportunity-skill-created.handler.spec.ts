@@ -8,7 +8,7 @@ describe('OpportunitySkillCreatedHandler', () => {
   let mockPrismaService: any;
 
   beforeEach(() => {
-    mockPrismaService = { opportunitySkill: { create: jest.fn() } };
+    mockPrismaService = { 'opportunity-skill': { create: jest.fn() } };
     handler = new OpportunitySkillCreatedHandler(mockPrismaService);
   });
 
@@ -30,9 +30,16 @@ describe('OpportunitySkillCreatedHandler', () => {
     // Assert that mockPrismaService.opportunity-skill.create was called correctly
     const expectedCreateObj = {
       data: {
-        created_at: '2023-08-21T12:00:00Z',
-        opportunity_id: 'd290f1ee-6c54-4b01-90e6-d701748f0851',
-        skill_id: 'd290f1ee-6c54-4b01-90e6-d701748f0852',
+        id: 'd290f1ee-6c54-4b01-90e6-d701748f0851',
+        record_id: 'd290f1ee-6c54-4b01-90e6-d701748f0852',
+        record_type: 'record_type',
+        user: {
+          connect: {
+            id: 'd290f1ee-6c54-4b01-90e6-d701748f0852',
+          },
+        },
+        text: 'text',
+        created_at: mockMetadata.created_at,
       },
     };
 

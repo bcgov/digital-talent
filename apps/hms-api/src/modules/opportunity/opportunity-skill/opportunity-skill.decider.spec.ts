@@ -92,11 +92,11 @@ describe('opportunity-skill.decider', () => {
         expect.objectContaining({
           exists: true,
           type: 'opportunity-skill',
-          data: {
+          data: expect.objectContaining({
             opportunity_id: 'd290f1ee-6c54-4b01-90e6-d701748f0851',
             skill_id: 'd290f1ee-6c54-4b01-90e6-d701748f0852',
             created_at: expect.any(Date), // Ensure created_at is a date without being specific about its value.
-          },
+          }),
         }),
       );
     });

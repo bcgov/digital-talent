@@ -8,7 +8,7 @@ describe('OpportunitySkillDeletedHandler', () => {
   let mockPrismaService: any;
 
   beforeEach(() => {
-    mockPrismaService = { opportunitySkill: { update: jest.fn() } };
+    mockPrismaService = { 'opportunity-skill': { update: jest.fn() } };
     handler = new OpportunitySkillDeletedHandler(mockPrismaService);
   });
 
@@ -33,10 +33,8 @@ describe('OpportunitySkillDeletedHandler', () => {
         deleted_at: mockMetadata.created_at,
       },
       where: {
-        opportunity_id_skill_id: {
-          opportunity_id: 'd290f1ee-6c54-4b01-90e6-d701748f0851',
-          skill_id: 'd290f1ee-6c54-4b01-90e6-d701748f0852',
-        },
+        opportunity_id: 'd290f1ee-6c54-4b01-90e6-d701748f0851',
+        skill_id: 'd290f1ee-6c54-4b01-90e6-d701748f0852',
       },
     };
 
