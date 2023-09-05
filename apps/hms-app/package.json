@@ -1,6 +1,6 @@
 {
   "name": "@bcgov-dt/hms-app",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "private": true,
   "description": "Digital Talent HMS Application",
   "license": "Apache-2.0",
