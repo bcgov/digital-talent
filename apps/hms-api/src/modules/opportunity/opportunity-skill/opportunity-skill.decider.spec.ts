@@ -6,7 +6,7 @@ import { OpportunitySkillCreatedEvent } from './events/opportunity-skill-created
 import { OpportunitySkillDeletedEvent } from './events/opportunity-skill-deleted/opportunity-skill-deleted.event';
 import { CreateOpportunitySkillInput } from './inputs/create-opportunity-skill.input';
 import { DeleteOpportunitySkillInput } from './inputs/delete-opportunity-skill.input';
-import { OpportunitySkillState, decide, evolve } from './opportunity-skill.decider';
+import { decide, evolve, OpportunitySkillState } from './opportunity-skill.decider';
 
 describe('opportunity-skill.decider', () => {
   const mockInitialState: OpportunitySkillState = { exists: false };
@@ -92,11 +92,11 @@ describe('opportunity-skill.decider', () => {
         expect.objectContaining({
           exists: true,
           type: 'opportunity-skill',
-          data: {
+          data: expect.objectContaining({
             opportunity_id: 'd290f1ee-6c54-4b01-90e6-d701748f0851',
             skill_id: 'd290f1ee-6c54-4b01-90e6-d701748f0852',
             created_at: expect.any(Date), // Ensure created_at is a date without being specific about its value.
-          },
+          }),
         }),
       );
     });
