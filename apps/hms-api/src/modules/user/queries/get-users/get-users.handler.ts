@@ -10,6 +10,7 @@ export class GetUsersHandler implements IQueryHandler<GetUsersQuery> {
     return this.prisma.user.findMany({
       where: {
         deleted_at: null,
+        ...query.where,
       },
     });
   }
