@@ -10,7 +10,7 @@ import { IdentityCreatedEvent } from './events/identity-created/identity-created
 import { IdentityDeletedEvent } from './events/identity-deleted/identity-deleted.event';
 import { CreateIdentityInput } from './inputs/create-identity.input';
 
-type State = InitialState | ExistsState<'identity', IdentityWriteEntity>;
+export type State = InitialState | ExistsState<'identity', IdentityWriteEntity>;
 type Command = CreateIdentityCommand | DeleteIdentityCommand;
 type Event = IdentityCreatedEvent | IdentityDeletedEvent;
 

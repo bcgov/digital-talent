@@ -25,7 +25,6 @@ export class AddCompetitionSkillHandler implements ICommandHandler<AddCompetitio
       const nestEvents = events.map(({ type, data, metadata }) =>
         plainToInstance(CompetitionSkillEvents[type], { type, data, metadata }),
       );
-
       this.eventBus.publishAll(nestEvents);
     }
 

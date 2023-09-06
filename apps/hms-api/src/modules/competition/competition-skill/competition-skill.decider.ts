@@ -9,7 +9,7 @@ import { CompetitionSkillAddedEvent } from './events/competition-skill-added/com
 import { CompetitionSkillRemovedEvent } from './events/competition-skill-removed/competition-skill-removed.event';
 import { AddCompetitionSkillInput } from './inputs/add-competition-skill.input';
 
-type State = InitialState | ExistsState<'competition-skill', CompetitionSkillCommandEntity>;
+export type State = InitialState | ExistsState<'competition-skill', CompetitionSkillCommandEntity>;
 type Command = AddCompetitionSkillCommand | RemoveCompetitionSkillCommand;
 type Event = CompetitionSkillAddedEvent | CompetitionSkillRemovedEvent;
 
@@ -57,6 +57,7 @@ export function evolve(state: State, event: Event): State {
 export function decide(state: State, command: Command): Event[] {
   switch (command.type) {
     case 'AddCompetitionSkillCommand': {
+      assert(state.exists === false, 'The Competition Skill already exist');
       const data: AddCompetitionSkillInput = decideUpdateEventData(command, state);
       if (data == null) return [];
 
