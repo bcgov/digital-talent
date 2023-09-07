@@ -15,7 +15,7 @@ export class MinistryResolver {
   }
 
   @Query((returns) => MinistryModel, { name: 'ministry' })
-  getGrid(@Args({ name: 'id', type: () => GraphQLUUID }) id: string) {
+  getMinistry(@Args({ name: 'id', type: () => GraphQLUUID }) id: string) {
     return this.queryBus.execute(new GetMinistryQuery(id));
   }
 }
