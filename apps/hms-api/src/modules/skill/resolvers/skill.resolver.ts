@@ -1,18 +1,20 @@
-import { CommandBus } from '@nestjs/cqrs';
+import { CommandBus, QueryBus } from '@nestjs/cqrs';
 import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { GraphQLString } from 'graphql';
-import { CurrentUser } from '../auth/decorators/current-user.decorator';
-import { CreateSkillCommand } from './commands/create-skill/create-skill.command';
-import { UpdateSkillCommand } from './commands/update-skill/update-skill.command';
-import { SkillWriteEntity } from './entities/skill-write.entity';
-import { CreateSkillInput } from './inputs/create-skill.input';
-import { UpdateSkillInput } from './inputs/update-skill.input';
-import { DeleteSkillCommand } from './commands/delete-skill/delete-skill.command';
-import { PrismaService } from '../prisma/prisma.service';
+import { GraphQLUUID } from 'graphql-scalars';
+import { CurrentUser } from '../../auth/decorators/current-user.decorator';
+import { CreateSkillCommand } from '../commands/create-skill/create-skill.command';
+import { DeleteSkillCommand } from '../commands/delete-skill/delete-skill.command';
+import { UpdateSkillCommand } from '../commands/update-skill/update-skill.command';
+import { CreateSkillInput } from '../inputs/create-skill.input';
+import { UpdateSkillInput } from '../inputs/update-skill.input';
+import { SkillModel } from '../models/skill.model';
+import { GetSkillQuery } from '../queries/get-skill/get-skill.query';
+import { GetSkillsQuery } from '../queries/get-skills/get-skills.query';
 
-@Resolver((of) => SkillWriteEntity)
+@Resolver((of) => SkillModel)
 export class SkillResolver {
-  constructor(private readonly commandBus: CommandBus, private readonly prisma: PrismaService) {}
+  constructor(private readonly commandBus: CommandBus, private readonly queryBus: QueryBus) {}
 
   @Mutation((returns) => GraphQLString)
   async createSkill(
@@ -45,17 +47,13 @@ export class SkillResolver {
     return command.data.id;
   }
 
-  @Query((returns) => [SkillWriteEntity])
+  @Query((returns) => [SkillModel])
   async skills() {
-    return this.prisma.skill.findMany();
+    return this.queryBus.execute(new GetSkillsQuery());
   }
 
-  @Query((returns) => SkillWriteEntity)
-  async skill(@Args({ name: 'id', type: () => String }) id: string) {
-    return this.prisma.skill.findUnique({
-      where: {
-        id,
-      },
-    });
+  @Query((returns) => SkillModel)
+  async skill(@Args({ name: 'id', type: () => GraphQLUUID }) id: string) {
+    return this.queryBus.execute(new GetSkillQuery(id));
   }
 }
