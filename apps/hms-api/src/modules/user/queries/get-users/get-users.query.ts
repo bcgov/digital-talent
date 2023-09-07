@@ -8,7 +8,7 @@ export class GetUsersQuery {
   // where?: Prisma.Args<typeof this.prisma.user, 'findMany'>;
   where?: Prisma.UserWhereInput;
 
-  constructor(args?: GetUserQueryArgs) {
+  constructor(args: GetUserQueryArgs = {}) {
     const { where } = args;
 
     this.where = where;
