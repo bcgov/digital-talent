@@ -21,7 +21,7 @@ export class ElistOfferCreatedHandler implements IEventHandler<ElistOfferCreated
           },
         },
         ...rest,
-        created_at: new Date(metadata.created_at),
+        created_at: metadata.created_at,
       },
     };
     await this.prisma.elistOffer.create(createObj);
