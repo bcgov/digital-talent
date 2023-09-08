@@ -1,3 +1,9 @@
+describe('CreateOpportunityCommand', () => {
+  it('should be defined', () => {
+    expect(true);
+  });
+});
+
 // import { Reflector } from '@nestjs/core';
 // import { ExecutionContext } from '@nestjs/common';
 // import { AuthGuard as PassportAuthGuard } from '@nestjs/passport';

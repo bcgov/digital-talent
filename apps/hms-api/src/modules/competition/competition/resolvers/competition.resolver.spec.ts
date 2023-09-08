@@ -1,99 +1,161 @@
-import { CreateCompetitionCommand } from '../commands/create-competition/create-competition.command';
-import { DeleteCompetitionCommand } from '../commands/delete-competition/delete-competition.command';
-import { UpdateCompetitionCommand } from '../commands/update-competition/update-competition.command';
-import { CreateCompetitionInput } from '../inputs/create-competition.input';
-import { DeleteCompetitionInput } from '../inputs/delete-competition.input';
-import { UpdateCompetitionInput } from '../inputs/update-competition.input';
+import { Test, TestingModule } from '@nestjs/testing';
+import { CommandBus, QueryBus } from '@nestjs/cqrs';
+import { CompetitionCategory, CompetitionState } from '@prisma/client';
+import { PrismaService } from '../../../prisma/prisma.service';
+import { GetCompetitionsQuery } from '../queries/get-competitions/get-competitions.query';
+import { GetCompetitionQuery } from '../queries/get-competition/get-competition.query';
 import { CompetitionResolver } from './competition.resolver';
+import { CreateCompetitionCommand } from '../commands/create-competition/create-competition.command';
+import { UpdateCompetitionCommand } from '../commands/update-competition/update-competition.command';
+import { UpdateCompetitionStateCommand } from '../commands/update-competition-state/update-competition-state.command';
+import { DeleteCompetitionCommand } from '../commands/delete-competition/delete-competition.command';
 
 describe('CompetitionResolver', () => {
   let resolver: CompetitionResolver;
-  let mockCommandBus: any;
-  // let mockPrismaService: any;
+  let queryBus: QueryBus;
+  let commandBus: CommandBus;
 
-  beforeEach(() => {
-    mockCommandBus = { execute: jest.fn() };
-    // mockPrismaService = {
-    //   competition: {
-    //     findMany: jest.fn(),
-    //     findUnique: jest.fn(),
-    //   },
-    // };
-    resolver = new CompetitionResolver(mockCommandBus);
+  beforeEach(async () => {
+    const module: TestingModule = await Test.createTestingModule({
+      providers: [
+        CompetitionResolver,
+        {
+          provide: QueryBus,
+          useValue: {
+            execute: jest.fn(),
+          },
+        },
+        {
+          provide: CommandBus,
+          useValue: {
+            execute: jest.fn(),
+          },
+        },
+        {
+          provide: PrismaService, // This mock provides the PrismaService in the testing context.
+          useValue: {
+            // Mock any methods of PrismaService that are used in your services.
+            // If none of the methods are used directly in this test, you can leave it as an empty object.
+          },
+        },
+      ],
+    }).compile();
+
+    resolver = module.get<CompetitionResolver>(CompetitionResolver);
+    queryBus = module.get<QueryBus>(QueryBus);
+    commandBus = module.get<CommandBus>(CommandBus);
   });
 
-  it('should create an competition correctly', async () => {
-    const input: CreateCompetitionInput = {
-      id: 'd290f1ee-6c54-4b01-90e6-d701748f0851',
-      classification_id: 'd290f1ee-6c54-4b01-90e6-d701748f0852',
-      deltek_id: 'd290f1ee-6c54-4b01-90e6-d701748f0852',
-      recruiter_id: 'd290f1ee-6c54-4b01-90e6-d701748f0852',
-      category: 'CMH',
-    };
-    const userId = 'd290f1ee-6c54-4b01-90e6-d701748f0853';
-
-    await resolver.createCompetition({ id: userId } as any, input);
-
-    expect(mockCommandBus.execute).toHaveBeenCalledWith(
-      expect.objectContaining({
-        ...new CreateCompetitionCommand({ ...input }, { created_by: userId }),
-      }),
-    );
+  it('should be defined', () => {
+    expect(resolver).toBeDefined();
   });
 
-  it('should update an competition correctly', async () => {
-    const input: UpdateCompetitionInput = {
-      id: 'd290f1ee-6c54-4b01-90e6-d701748f0851',
-      classification_id: 'd290f1ee-6c54-4b01-90e6-d701748f0852',
-      deltek_id: 'd290f1ee-6c54-4b01-90e6-d701748f0852',
-      recruiter_id: 'd290f1ee-6c54-4b01-90e6-d701748f0852',
-      category: 'CMH',
-    };
-    const userId = 'd290f1ee-6c54-4b01-90e6-d701748f0853';
+  describe('getCompetitions', () => {
+    it('should get all competitions', async () => {
+      const expectedResult = [{ id: 'some-uuid', name: 'Some Competition' }];
+      (queryBus.execute as jest.Mock).mockResolvedValueOnce(expectedResult);
 
-    await resolver.updateCompetition({ id: userId } as any, input);
-
-    expect(mockCommandBus.execute).toHaveBeenCalledWith(
-      expect.objectContaining({
-        ...new UpdateCompetitionCommand(input, { created_by: userId }),
-      }),
-    );
+      expect(await resolver.competitions()).toBe(expectedResult);
+      expect(queryBus.execute).toHaveBeenCalledWith(new GetCompetitionsQuery());
+    });
   });
 
-  it('should delete an competition correctly', async () => {
-    const userId = 'd290f1ee-6c54-4b01-90e6-d701748f0853';
+  describe('getCompetition', () => {
+    it('should get a single competition by ID', async () => {
+      const id = 'some-uuid';
+      const expectedResult = { id, name: 'Some Competition' };
+      (queryBus.execute as jest.Mock).mockResolvedValueOnce(expectedResult);
 
-    const mockDeleteCompetitionInput: DeleteCompetitionInput = {
-      id: 'd290f1ee-6c54-4b01-90e6-d701748f0851',
-    };
-
-    await resolver.deleteCompetition({ id: userId } as any, mockDeleteCompetitionInput);
-
-    expect(mockCommandBus.execute).toHaveBeenCalledWith(
-      expect.objectContaining({
-        ...new DeleteCompetitionCommand({ id: 'd290f1ee-6c54-4b01-90e6-d701748f0851' }, { created_by: userId }),
-      }),
-    );
+      expect(await resolver.competition(id)).toBe(expectedResult);
+      expect(queryBus.execute).toHaveBeenCalledWith(new GetCompetitionQuery(id));
+    });
   });
 
-  // it('should get all competitions correctly', async () => {
-  //   const mockCompetitions = [{ id: '1' }, { id: '2' }];
-  //   mockPrismaService.competition.findMany.mockResolvedValueOnce(mockCompetitions);
+  describe('createCompetition', () => {
+    it('should create a competition', async () => {
+      const mockUser = { id: 'user-uuid', name: 'test_name', email: 'test_email@email.com', roles: ['role1', 'role2'] };
+      const input = {
+        id: 'some-uuid',
+        name: 'Some Competition',
+        job_description_id: 'test_id',
+        category: CompetitionCategory.CMH,
+      };
+      const expectedResult = input.id;
 
-  //   const result = await resolver.competitions();
+      (commandBus.execute as jest.Mock).mockResolvedValueOnce(null);
 
-  //   expect(result).toEqual(mockCompetitions);
-  //   expect(mockPrismaService.competition.findMany).toHaveBeenCalled();
-  // });
+      expect(await resolver.createCompetition(mockUser, input)).toBe(expectedResult);
+      expect(commandBus.execute).toHaveBeenCalledWith(
+        new CreateCompetitionCommand({ ...input, recruiter_id: mockUser.id }, { created_by: mockUser.id }),
+      );
+    });
+  });
 
-  // it('should get a specific competition by id correctly', async () => {
-  //   const appId = 'mockAppId';
-  //   const mockCompetition = { id: appId };
-  //   mockPrismaService.competition.findUnique.mockResolvedValueOnce(mockCompetition);
+  describe('updateCompetition', () => {
+    it('should update a competition', async () => {
+      const mockUser = {
+        id: 'user-uuid',
+        name: 'test_name',
+        email: 'test_email@email.com',
+        roles: ['role1', 'role2'],
+      };
+      const input = {
+        id: 'some-uuid',
+        name: 'Updated Competition',
+        job_description_id: 'test_id',
+        category: CompetitionCategory.CMH,
+      };
+      const expectedResult = input.id;
 
-  //   const result = await resolver.competition(appId);
+      (commandBus.execute as jest.Mock).mockResolvedValueOnce(null);
 
-  //   expect(result).toEqual(mockCompetition);
-  //   expect(mockPrismaService.competition.findUnique).toHaveBeenCalledWith({ where: { id: appId } });
-  // });
+      expect(await resolver.updateCompetition(mockUser, input)).toBe(expectedResult);
+      expect(commandBus.execute).toHaveBeenCalledWith(
+        new UpdateCompetitionCommand({ ...input, recruiter_id: mockUser.id }, { created_by: mockUser.id }),
+      );
+    });
+  });
+
+  describe('updateCompetitionState', () => {
+    it('should update a competition state', async () => {
+      const mockUser = {
+        id: 'user-uuid',
+        name: 'test_name',
+        email: 'test_email@email.com',
+        roles: ['role1', 'role2'],
+      };
+      const input = {
+        id: 'some-uuid',
+        state: CompetitionState.DRAFT,
+      };
+      const expectedResult = input.id;
+
+      (commandBus.execute as jest.Mock).mockResolvedValueOnce(null);
+
+      expect(await resolver.updateCompetitionState(mockUser, input)).toBe(expectedResult);
+      expect(commandBus.execute).toHaveBeenCalledWith(
+        new UpdateCompetitionStateCommand(input, { created_by: mockUser.id }),
+      );
+    });
+  });
+
+  describe('deleteCompetition', () => {
+    it('should delete a competition', async () => {
+      const mockUser = {
+        id: 'user-uuid',
+        name: 'test_name',
+        email: 'test_email@email.com',
+        roles: ['role1', 'role2'],
+      };
+      const input = {
+        id: 'some-uuid',
+      };
+      const expectedResult = input.id;
+
+      (commandBus.execute as jest.Mock).mockResolvedValueOnce(null);
+
+      expect(await resolver.deleteCompetition(mockUser, input)).toBe(expectedResult);
+      expect(commandBus.execute).toHaveBeenCalledWith(new DeleteCompetitionCommand(input, { created_by: mockUser.id }));
+    });
+  });
 });

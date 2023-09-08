@@ -23,9 +23,9 @@ describe('UserSyncdEvent', () => {
     expect(event.metadata).toEqual(mockMetadata);
   });
 
-  it('should always set type to "UserSyncdEvent"', () => {
+  it('should always set type to "UserSyncedEvent"', () => {
     const event = new UserSyncedEvent(mockData, mockMetadata);
 
-    expect(event.type).toBe('UserSyncdEvent');
+    expect(event.type).toBe('UserSyncedEvent');
   });
 });
