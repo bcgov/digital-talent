@@ -1,7 +1,31 @@
+import { Metadata } from '../../../../event-store/types/metadata.type';
+import { UpdateCompetitionInput } from '../../inputs/update-competition.input';
 import { UpdateCompetitionCommand } from './update-competition.command';
 
 describe('UpdateCompetitionCommand', () => {
-  it('should be defined', () => {
-    expect(new UpdateCompetitionCommand()).toBeDefined();
+  const mockData: UpdateCompetitionInput = {
+    id: 'd290f1ee-6c54-4b01-90e6-d701748f0851',
+    job_description_id: 'd290f1ee-6c54-4b01-90e6-d701748f0852',
+    deltek_id: 'd290f1ee-6c54-4b01-90e6-d701748f0852',
+    recruiter_id: 'd290f1ee-6c54-4b01-90e6-d701748f0852',
+    category: 'CMH',
+  };
+
+  const mockMetadata: Metadata = {
+    created_at: '2023-08-21T12:00:00Z',
+    created_by: 'test-user-id',
+  };
+
+  it('should correctly set data and metadata using constructor', () => {
+    const command = new UpdateCompetitionCommand(mockData, mockMetadata);
+
+    expect(command.data).toEqual(mockData);
+    expect(command.metadata).toEqual(mockMetadata);
+  });
+
+  it('should always set type to "UpdateCompetitionCommand"', () => {
+    const command = new UpdateCompetitionCommand(mockData, mockMetadata);
+
+    expect(command.type).toBe('UpdateCompetitionCommand');
   });
 });

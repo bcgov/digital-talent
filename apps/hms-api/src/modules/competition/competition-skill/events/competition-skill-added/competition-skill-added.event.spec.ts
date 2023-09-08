@@ -25,6 +25,6 @@ describe('CompetitionSkillAdddEvent', () => {
   it('should always set type to "CompetitionSkillAdddEvent"', () => {
     const event = new CompetitionSkillAddedEvent(mockData, mockMetadata);
 
-    expect(event.type).toBe('CompetitionSkillAdddEvent');
+    expect(event.type).toBe('CompetitionSkillAddedEvent');
   });
 });

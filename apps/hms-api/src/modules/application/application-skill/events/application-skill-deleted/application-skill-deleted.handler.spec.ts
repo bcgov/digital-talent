@@ -15,8 +15,8 @@ describe('ApplicationSkillDeletedHandler', () => {
   it('should handle ApplicationSkillDeletedEvent correctly', async () => {
     // Mock the data for DeleteApplicationSkillInput and Metadata
     const mockDeleteApplicationSkillInput: DeleteApplicationSkillInput = {
-      application_id: 'd290f1ee-6c54-4b01-90e6-d701748f0851', // example UUID
-      skill_id: 'd290f1ee-6c54-4b01-90e6-d701748f0851', // example UUID
+      application_id: 'd290f1ee-6c54-4b01-90e6-d701748f0851',
+      skill_id: 'd290f1ee-6c54-4b01-90e6-d701748f0851',
     };
     const mockMetadata: Metadata = {
       created_at: '2023-08-21T12:00:00Z',

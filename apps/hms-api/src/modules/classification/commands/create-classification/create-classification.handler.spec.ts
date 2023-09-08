@@ -71,7 +71,7 @@ describe('CreateClassificationHandler', () => {
         data: {
           id: 'd290f1ee-6c54-4b01-90e6-d701748f0851',
           grid_id: 'd290f1ee-6c54-4b01-90e6-d701748f0852',
-          position_id: 'd290f1ee-6c54-4b01-90e6-d701748f0852',
+          occupation_group_id: 'd290f1ee-6c54-4b01-90e6-d701748f0852',
           rate_adjustment: 0.123,
         },
         metadata: expect.objectContaining({
