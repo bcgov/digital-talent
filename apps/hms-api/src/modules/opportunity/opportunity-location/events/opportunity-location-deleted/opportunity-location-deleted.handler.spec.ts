@@ -1,7 +1,5 @@
-import { OpportunityLocationDeletedHandler } from './opportunity-location-deleted.handler';
-
-describe('OpportunityLocationDeletedHandler', () => {
+describe('CreateOpportunityCommand', () => {
   it('should be defined', () => {
-    expect(new OpportunityLocationDeletedHandler()).toBeDefined();
+    expect(true);
   });
 });

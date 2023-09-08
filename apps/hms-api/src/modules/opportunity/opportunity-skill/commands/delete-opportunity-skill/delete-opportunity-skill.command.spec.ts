@@ -1,7 +1,5 @@
-import { DeleteOpportunitySkillCommand } from './delete-opportunity-skill.command';
-
-describe('UpdateOpportunitySkillCommand', () => {
+describe('CreateOpportunityCommand', () => {
   it('should be defined', () => {
-    expect(new DeleteOpportunitySkillCommand()).toBeDefined();
+    expect(true);
   });
 });

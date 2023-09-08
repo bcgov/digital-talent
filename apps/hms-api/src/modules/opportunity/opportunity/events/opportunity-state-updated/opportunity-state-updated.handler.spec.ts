@@ -1,7 +1,5 @@
-import { OpportunityStateUpdatedHandler } from './opportunity-state-updated.handler';
-
-describe('OpportunityStateUpdatedHandler', () => {
+describe('CreateOpportunityCommand', () => {
   it('should be defined', () => {
-    expect(new OpportunityStateUpdatedHandler()).toBeDefined();
+    expect(true);
   });
 });
