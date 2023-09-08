@@ -43,7 +43,7 @@ describe('UpdateCompetitionHandler', () => {
           type: 'CompetitionCreatedEvent',
           data: JSON.stringify({
             id: 'd290f1ee-6c54-4b01-90e6-d701748f0851',
-            classification_id: 'd290f1ee-6c54-4b01-90e6-d701748f0852',
+            job_description_id: 'd290f1ee-6c54-4b01-90e6-d701748f0852',
             deltek_id: 'd290f1ee-6c54-4b01-90e6-d701748f0852',
             recruiter_id: 'd290f1ee-6c54-4b01-90e6-d701748f0852',
             category: 'CMH',
@@ -71,10 +71,10 @@ describe('UpdateCompetitionHandler', () => {
     // Mock for UpdateCompetitionInput
     const mockUpdateCompetitionInput: UpdateCompetitionInput = {
       id: 'd290f1ee-6c54-4b01-90e6-d701748f0851',
-      classification_id: 'd290f1ee-6c54-4b01-9026-d701748f0852',
-      deltek_id: 'd290f1ee-6c54-4b01-90e6-d701742f0852',
-      recruiter_id: 'd290f1ee-6c54-4b01-90e6-d70248f0852',
-      category: 'CMH',
+      job_description_id: 'd290f1ee-6c54-4b01-90e6-d701748f0853',
+      deltek_id: 'd290f1ee-6c54-4b01-90e6-d701748f0853',
+      recruiter_id: 'd290f1ee-6c54-4b01-90e6-d701748f0853',
+      category: 'RH',
     };
 
     const command = new UpdateCompetitionCommand(mockUpdateCompetitionInput, mockMetadata);
@@ -86,10 +86,10 @@ describe('UpdateCompetitionHandler', () => {
         type: 'CompetitionUpdatedEvent',
         data: {
           id: 'd290f1ee-6c54-4b01-90e6-d701748f0851',
-          classification_id: 'd290f1ee-6c54-4b01-9026-d701748f0852',
-          deltek_id: 'd290f1ee-6c54-4b01-90e6-d701742f0852',
-          recruiter_id: 'd290f1ee-6c54-4b01-90e6-d70248f0852',
-          category: 'CMH',
+          job_description_id: 'd290f1ee-6c54-4b01-90e6-d701748f0853',
+          deltek_id: 'd290f1ee-6c54-4b01-90e6-d701748f0853',
+          recruiter_id: 'd290f1ee-6c54-4b01-90e6-d701748f0853',
+          category: 'RH',
         },
         metadata: expect.objectContaining({
           created_at: expect.any(String),

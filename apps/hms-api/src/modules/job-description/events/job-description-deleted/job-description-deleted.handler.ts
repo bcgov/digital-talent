@@ -3,7 +3,7 @@ import { PrismaService } from '../../../prisma/prisma.service';
 import { JobDescriptionDeletedEvent } from './job-description-deleted.event';
 
 @EventsHandler(JobDescriptionDeletedEvent)
-export class ClassificationDeletedHandler implements IEventHandler<JobDescriptionDeletedEvent> {
+export class JobDescriptionDeletedHandler implements IEventHandler<JobDescriptionDeletedEvent> {
   constructor(private readonly prisma: PrismaService) {}
 
   async handle(event: JobDescriptionDeletedEvent) {
