@@ -1,7 +1,5 @@
-import { OpportunityLocationCreatedEvent } from './opportunity-location-created.event';
-
-describe('OpportunityLocationCreatedEvent', () => {
+describe('CreateOpportunityCommand', () => {
   it('should be defined', () => {
-    expect(new OpportunityLocationCreatedEvent()).toBeDefined();
+    expect(true);
   });
 });

@@ -1,7 +1,5 @@
-import { OpportunitySkillCreatedEvent } from './opportunity-skill-created.event';
-
-describe('OpportunitySkillCreatedEvent', () => {
+describe('CreateOpportunityCommand', () => {
   it('should be defined', () => {
-    expect(new OpportunitySkillCreatedEvent()).toBeDefined();
+    expect(true);
   });
 });

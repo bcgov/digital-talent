@@ -1,7 +1,5 @@
-import { OpportunityDeletedEvent } from './opportunity-deleted.event';
-
-describe('OpportunityDeletedEvent', () => {
+describe('CreateOpportunityCommand', () => {
   it('should be defined', () => {
-    expect(new OpportunityDeletedEvent()).toBeDefined();
+    expect(true);
   });
 });

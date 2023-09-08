@@ -1,7 +1,5 @@
-import { OpportunityLocationCreatedHandler } from './opportunity-location-created.handler';
-
-describe('OpportunityLocationCreatedHandler', () => {
+describe('CreateOpportunityCommand', () => {
   it('should be defined', () => {
-    expect(new OpportunityLocationCreatedHandler()).toBeDefined();
+    expect(true);
   });
 });

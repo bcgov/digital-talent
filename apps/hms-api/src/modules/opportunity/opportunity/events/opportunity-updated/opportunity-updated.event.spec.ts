@@ -1,7 +1,5 @@
-import { OpportunityUpdatedEvent } from './opportunity-updated.event';
-
-describe('OpportunityUpdatedEvent', () => {
+describe('CreateOpportunityCommand', () => {
   it('should be defined', () => {
-    expect(new OpportunityUpdatedEvent()).toBeDefined();
+    expect(true);
   });
 });

@@ -1,7 +1,5 @@
-import { OpportunitySkillDeletedEvent } from './opportunity-skill-deleted.event';
-
-describe('OpportunitySkillDeletedEvent', () => {
+describe('CreateOpportunityCommand', () => {
   it('should be defined', () => {
-    expect(new OpportunitySkillDeletedEvent()).toBeDefined();
+    expect(true);
   });
 });

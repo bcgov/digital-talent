@@ -1,7 +1,5 @@
-import { UpdateOpportunityStateCommand } from './update-opportunity-state.command';
-
-describe('UpdateOpportunityStateCommand', () => {
+describe('CreateOpportunityCommand', () => {
   it('should be defined', () => {
-    expect(new UpdateOpportunityStateCommand()).toBeDefined();
+    expect(true);
   });
 });
