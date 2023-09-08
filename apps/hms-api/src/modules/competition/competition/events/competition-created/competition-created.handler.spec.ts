@@ -1,7 +1,7 @@
 import { CompetitionCreatedEvent } from './competition-created.event';
-import { CompetitionCreatedHandler } from './competition-created.handler';
-import { CreateCompetitionInput } from '../../inputs/create-competition.input';
 import { Metadata } from '../../../../event-store/types/metadata.type';
+import { CreateCompetitionInput } from '../../inputs/create-competition.input';
+import { CompetitionCreatedHandler } from './competition-created.handler';
 
 describe('CompetitionCreatedHandler', () => {
   let handler: CompetitionCreatedHandler;
@@ -16,7 +16,7 @@ describe('CompetitionCreatedHandler', () => {
     // Mock the data for CreateCompetitionInput and Metadata
     const mockCreateCompetitionInput: CreateCompetitionInput = {
       id: 'd290f1ee-6c54-4b01-90e6-d701748f0851',
-      classification_id: 'd290f1ee-6c54-4b01-90e6-d701748f0852',
+      job_description_id: 'd290f1ee-6c54-4b01-90e6-d701748f0852',
       deltek_id: 'd290f1ee-6c54-4b01-90e6-d701748f0852',
       recruiter_id: 'd290f1ee-6c54-4b01-90e6-d701748f0852',
       category: 'CMH',
@@ -34,7 +34,7 @@ describe('CompetitionCreatedHandler', () => {
     const expectedCreateObj = {
       data: {
         id: 'd290f1ee-6c54-4b01-90e6-d701748f0851',
-        classification: {
+        job_description: {
           connect: {
             id: 'd290f1ee-6c54-4b01-90e6-d701748f0852',
           },

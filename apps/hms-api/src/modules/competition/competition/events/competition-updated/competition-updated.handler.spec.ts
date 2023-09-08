@@ -1,7 +1,7 @@
 import { CompetitionUpdatedEvent } from './competition-updated.event';
+import { Metadata } from '../../../../event-store/types/metadata.type';
 import { CompetitionUpdatedHandler } from './competition-updated.handler';
 import { UpdateCompetitionInput } from '../../inputs/update-competition.input';
-import { Metadata } from '../../../../event-store/types/metadata.type';
 
 describe('CompetitionUpdatedHandler', () => {
   let handler: CompetitionUpdatedHandler;
@@ -16,7 +16,7 @@ describe('CompetitionUpdatedHandler', () => {
     // Mock the data for UpdateCompetitionInput and Metadata
     const mockUpdateCompetitionInput: UpdateCompetitionInput = {
       id: 'd290f1ee-6c54-4b01-90e6-d701748f0851',
-      classification_id: 'd290f1ee-6c54-4b01-90e6-d701748f0852',
+      job_description_id: 'd290f1ee-6c54-4b01-90e6-d701748f0852',
       deltek_id: 'd290f1ee-6c54-4b01-90e6-d701748f0852',
       recruiter_id: 'd290f1ee-6c54-4b01-90e6-d701748f0852',
       category: 'CMH',
@@ -33,7 +33,7 @@ describe('CompetitionUpdatedHandler', () => {
     // Assert that mockPrismaService.competition.create was called correctly
     const expectedCreateObj = {
       data: {
-        classification: {
+        job_description: {
           connect: {
             id: 'd290f1ee-6c54-4b01-90e6-d701748f0852',
           },
