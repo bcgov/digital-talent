@@ -48,7 +48,7 @@ describe('CompetitionCreatedHandler', () => {
         state: 'DRAFT',
         category: 'CMH',
         created_at: mockMetadata.created_at,
-        // metadata: {}, // todo: why is this here?
+        metadata: {},
       },
     };
 

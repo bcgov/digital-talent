@@ -33,8 +33,16 @@ describe('ClassificationCreatedHandler', () => {
     const expectedCreateObj = {
       data: {
         id: 'd290f1ee-6c54-4b01-90e6-d701748f0851',
-        grid_id: 'd290f1ee-6c54-4b01-90e6-d701748f0853',
-        occupation_group_id: 'd290f1ee-6c54-4b01-90e6-d701748f0853',
+        grid: {
+          connect: {
+            id: 'd290f1ee-6c54-4b01-90e6-d701748f0853',
+          },
+        },
+        occupation_group: {
+          connect: {
+            id: 'd290f1ee-6c54-4b01-90e6-d701748f0853',
+          },
+        },
         rate_adjustment: 0.124,
         created_at: mockMetadata.created_at,
       },

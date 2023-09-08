@@ -1,4 +1,4 @@
-import { BadRequestException } from '@nestjs/common';
+import { AssertionError } from 'assert';
 import { Metadata } from '../event-store/types/metadata.type';
 import { State, decide, evolve } from './classification.decider';
 import { CreateClassificationCommand } from './commands/create-classification/create-classification.command';
@@ -56,7 +56,7 @@ describe('classification.decider', () => {
     it('throws error if trying to create an existing classification', () => {
       expect(() => {
         decide(mockExistingState, mockCreateClassificationCommand);
-      }).toThrow(BadRequestException);
+      }).toThrow(AssertionError);
     });
 
     it('creates an ClassificationCreatedEvent correctly', () => {
@@ -73,7 +73,7 @@ describe('classification.decider', () => {
     it('throws error if trying to update a non-existing classification', () => {
       expect(() => {
         decide(mockInitialState, mockUpdateClassificationCommand);
-      }).toThrow(BadRequestException);
+      }).toThrow(AssertionError);
     });
 
     it('updates an existing Classification correctly', () => {
@@ -90,7 +90,7 @@ describe('classification.decider', () => {
     it('throws error if trying to delete a non-existing classification', () => {
       expect(() => {
         decide(mockInitialState, mockDeleteClassificationCommand);
-      }).toThrow(BadRequestException);
+      }).toThrow(AssertionError);
     });
 
     it('deletes an existing Classification correctly', () => {

@@ -22,7 +22,7 @@ describe('competition.decider', () => {
     data: {
       created_at: new Date('2023-08-21T12:00:00Z'),
       id: 'd290f1ee-6c54-4b01-90e6-d701748f0851',
-      classification_id: 'd290f1ee-6c54-4b01-90e6-d701748f0852',
+      job_description_id: 'd290f1ee-6c54-4b01-90e6-d701748f0852',
       deltek_id: 'd290f1ee-6c54-4b01-90e6-d701748f0852',
       recruiter_id: 'd290f1ee-6c54-4b01-90e6-d701748f0852',
       category: 'CMH',
@@ -37,7 +37,7 @@ describe('competition.decider', () => {
 
   const mockCreateCompetitionInput: CreateCompetitionInput = {
     id: 'd290f1ee-6c54-4b01-90e6-d701748f0851',
-    classification_id: 'd290f1ee-6c54-4b01-90e6-d701748f0852',
+    job_description_id: 'd290f1ee-6c54-4b01-90e6-d701748f0852',
     deltek_id: 'd290f1ee-6c54-4b01-90e6-d701748f0852',
     recruiter_id: 'd290f1ee-6c54-4b01-90e6-d701748f0852',
     category: 'CMH',
@@ -47,7 +47,7 @@ describe('competition.decider', () => {
 
   const mockUpdateCompetitionInput: UpdateCompetitionInput = {
     id: 'd290f1ee-6c54-4b01-90e6-d701748f0851',
-    classification_id: 'd290f1ee-6c54-4b01-90e6-d703748f0852',
+    job_description_id: 'd290f1ee-6c54-4b01-90e6-d703748f0852',
     deltek_id: 'd290f1ee-6c54-4b01-90e6-d70173f0852',
     recruiter_id: 'd290f1ee-6c54-4b01-90e6-d301748f0852',
     category: 'RH',
@@ -81,7 +81,7 @@ describe('competition.decider', () => {
       expect(events[0]).toBeInstanceOf(CompetitionCreatedEvent);
       expect(events[0].data).toEqual({
         id: 'd290f1ee-6c54-4b01-90e6-d701748f0851',
-        classification_id: 'd290f1ee-6c54-4b01-90e6-d701748f0852',
+        job_description_id: 'd290f1ee-6c54-4b01-90e6-d701748f0852',
         deltek_id: 'd290f1ee-6c54-4b01-90e6-d701748f0852',
         recruiter_id: 'd290f1ee-6c54-4b01-90e6-d701748f0852',
         category: 'CMH',
@@ -99,7 +99,7 @@ describe('competition.decider', () => {
       expect(events[0]).toBeInstanceOf(CompetitionUpdatedEvent);
       expect(events[0].data).toEqual({
         id: 'd290f1ee-6c54-4b01-90e6-d701748f0851',
-        classification_id: 'd290f1ee-6c54-4b01-90e6-d703748f0852',
+        job_description_id: 'd290f1ee-6c54-4b01-90e6-d703748f0852',
         deltek_id: 'd290f1ee-6c54-4b01-90e6-d70173f0852',
         recruiter_id: 'd290f1ee-6c54-4b01-90e6-d301748f0852',
         category: 'RH',
@@ -133,7 +133,7 @@ describe('competition.decider', () => {
       const mockEvent = new CompetitionCreatedEvent(
         {
           id: 'd290f1ee-6c54-4b01-90e6-d701748f0851',
-          classification_id: 'd290f1ee-6c54-4b01-90e6-d703748f0852',
+          job_description_id: 'd290f1ee-6c54-4b01-90e6-d703748f0852',
           deltek_id: 'd290f1ee-6c54-4b01-90e6-d70173f0852',
           recruiter_id: 'd290f1ee-6c54-4b01-90e6-d301748f0852',
           category: 'RH',
@@ -148,7 +148,7 @@ describe('competition.decider', () => {
           type: 'competition',
           data: expect.objectContaining({
             id: 'd290f1ee-6c54-4b01-90e6-d701748f0851',
-            classification_id: 'd290f1ee-6c54-4b01-90e6-d703748f0852',
+            job_description_id: 'd290f1ee-6c54-4b01-90e6-d703748f0852',
             deltek_id: 'd290f1ee-6c54-4b01-90e6-d70173f0852',
             recruiter_id: 'd290f1ee-6c54-4b01-90e6-d301748f0852',
             category: 'RH',
@@ -165,7 +165,7 @@ describe('competition.decider', () => {
         type: 'competition',
         data: {
           id: 'd290f1ee-6c54-4b01-90e6-d701748f0851',
-          classification_id: 'd290f1ee-6c54-4b01-90e6-d703748f0852',
+          job_description_id: 'd290f1ee-6c54-4b01-90e6-d703748f0852',
           deltek_id: 'd290f1ee-6c54-4b01-90e6-d70173f0852',
           recruiter_id: 'd290f1ee-6c54-4b01-90e6-d301748f0852',
           category: 'RH',
@@ -177,7 +177,7 @@ describe('competition.decider', () => {
       const mockEvent = new CompetitionUpdatedEvent(
         {
           id: 'd290f1ee-6c54-4b01-90e6-d701743f0851',
-          classification_id: 'd290f1ee-6c54-4b01-90e6-d743748f0852',
+          job_description_id: 'd290f1ee-6c54-4b01-90e6-d743748f0852',
           deltek_id: 'd290f1ee-6c54-4b01-90e6-d7017350852',
           recruiter_id: 'd290f1ee-6c54-4b01-90e6-d301748s0852',
           category: 'CMH',
@@ -192,7 +192,7 @@ describe('competition.decider', () => {
           type: 'competition',
           data: expect.objectContaining({
             id: 'd290f1ee-6c54-4b01-90e6-d701743f0851',
-            classification_id: 'd290f1ee-6c54-4b01-90e6-d743748f0852',
+            job_description_id: 'd290f1ee-6c54-4b01-90e6-d743748f0852',
             deltek_id: 'd290f1ee-6c54-4b01-90e6-d7017350852',
             recruiter_id: 'd290f1ee-6c54-4b01-90e6-d301748s0852',
             category: 'CMH',
@@ -209,7 +209,7 @@ describe('competition.decider', () => {
         type: 'competition',
         data: {
           id: 'd290f1ee-6c54-4b01-90e6-d701748f0851',
-          classification_id: 'd290f1ee-6c54-4b01-90e6-d703748f0852',
+          job_description_id: 'd290f1ee-6c54-4b01-90e6-d703748f0852',
           deltek_id: 'd290f1ee-6c54-4b01-90e6-d70173f0852',
           recruiter_id: 'd290f1ee-6c54-4b01-90e6-d301748f0852',
           category: 'RH',
@@ -233,7 +233,7 @@ describe('competition.decider', () => {
           type: 'competition',
           data: expect.objectContaining({
             id: 'd290f1ee-6c54-4b01-90e6-d701748f0851',
-            classification_id: 'd290f1ee-6c54-4b01-90e6-d703748f0852',
+            job_description_id: 'd290f1ee-6c54-4b01-90e6-d703748f0852',
             deltek_id: 'd290f1ee-6c54-4b01-90e6-d70173f0852',
             recruiter_id: 'd290f1ee-6c54-4b01-90e6-d301748f0852',
             category: 'RH',
@@ -251,7 +251,7 @@ describe('competition.decider', () => {
         type: 'competition',
         data: {
           id: 'd290f1ee-6c54-4b01-90e6-d701743f0851',
-          classification_id: 'd290f1ee-6c54-4b01-90e6-d743748f0852',
+          job_description_id: 'd290f1ee-6c54-4b01-90e6-d743748f0852',
           deltek_id: 'd290f1ee-6c54-4b01-90e6-d7017350852',
           recruiter_id: 'd290f1ee-6c54-4b01-90e6-d301748s0852',
           category: 'CMH',
