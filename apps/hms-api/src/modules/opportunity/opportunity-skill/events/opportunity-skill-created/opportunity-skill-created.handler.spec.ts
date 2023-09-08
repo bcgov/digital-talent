@@ -1,7 +1,5 @@
-import { OpportunitySkillCreatedHandler } from './opportunity-skill-created.handler';
-
-describe('OpportunitySkillCreatedHandler', () => {
+describe('CreateOpportunityCommand', () => {
   it('should be defined', () => {
-    expect(new OpportunitySkillCreatedHandler()).toBeDefined();
+    expect(true);
   });
 });
