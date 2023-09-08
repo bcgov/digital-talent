@@ -3,7 +3,14 @@ FROM node:18-alpine AS base
 # Create and change to the app directory.
 FROM base AS builder
 WORKDIR /tmp/build
-
+ARG VITE_BACKEND_URL
+ARG VITE_KEYCLOAK_REALM_URL
+ARG VITE_KEYCLOAK_CLIENT_ID
+ARG VITE_KEYCLOAK_REDIRECT_URL
+RUN test -n "$VITE_BACKEND_URL"
+RUN test -n "$VITE_KEYCLOAK_REALM_URL"
+RUN test -n "$VITE_KEYCLOAK_CLIENT_ID"
+RUN test -n "$VITE_KEYCLOAK_REDIRECT_URL"
 # Copy application dependency manifests to the container image.
 COPY package*.json ./
 COPY apps/hms-app/package.json ./apps/hms-app/
@@ -19,19 +26,16 @@ RUN mkdir /.npm
 RUN chgrp -R 0 /.npm && chmod -R g=u /.npm
 #RUN chgrp -R 0 /usr/src/app/node_modules/ && chmod -R g=u /usr/src/app/node_modules
 # Copy local code to the container image.
-
 # Serve the app with Nginx
 FROM nginx:alpine AS runner
-ARG NEXTAUTH_SECRET
-ARG NEXTAUTH_URL
-ARG KEYCLOAK_CLIENT_ID
-ARG KEYCLOAK_CLIENT_SECRET
-ARG KEYCLOAK_ISSUER
-ENV NEXTAUTH_SECRET $NEXTAUTH_SECRET
-ENV NEXTAUTH_URL $NEXTAUTH_URL
-ENV KEYCLOAK_CLIENT_ID $KEYCLOAK_CLIENT_ID
-ENV KEYCLOAK_CLIENT_SECRET $KEYCLOAK_CLIENT_SECRET
-ENV KEYCLOAK_ISSUER $KEYCLOAK_ISSUER
+ARG VITE_BACKEND_URL
+ARG VITE_KEYCLOAK_REALM_URL
+ARG VITE_KEYCLOAK_CLIENT_ID
+ARG VITE_KEYCLOAK_REDIRECT_URL
+ENV VITE_KEYCLOAK_REDIRECT_URL $VITE_KEYCLOAK_REDIRECT_URL
+ENV VITE_BACKEND_URL $VITE_BACKEND_URL
+ENV VITE_KEYCLOAK_CLIENT_ID $VITE_KEYCLOAK_CLIENT_ID
+ENV VITE_KEYCLOAK_REALM_URL $VITE_KEYCLOAK_REALM_URL
 COPY --from=builder /tmp/build/apps/hms-app/dist /usr/share/nginx/html
 COPY /apps/hms-app/nginx.conf /etc/nginx/conf.d/default.conf
 
