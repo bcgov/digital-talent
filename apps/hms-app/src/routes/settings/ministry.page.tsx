@@ -1,4 +1,5 @@
 import { Space, Table } from 'antd';
+import dayjs from 'dayjs';
 import { useGetMinistriesQuery } from '../../redux/services/graphql-api/ministry-api.service';
 
 export const MinistryPage = () => {
@@ -19,6 +20,30 @@ export const MinistryPage = () => {
       title: 'Name',
       dataIndex: 'name',
       key: 'name',
+    },
+    {
+      title: 'Created Date',
+      dataIndex: 'created_at',
+      key: 'created_at',
+      render: (value?: string) => {
+        return (
+          <span title={value != null ? dayjs(value).format('MMM d, YYYY @ h:mm:ss.SSS A') : ''}>
+            {value != null ? dayjs(value).format('MMM d, YYYY') : ''}
+          </span>
+        );
+      },
+    },
+    {
+      title: 'Updated Date',
+      dataIndex: 'updated_at',
+      key: 'updated_at',
+      render: (value?: string) => {
+        return (
+          <span title={value != null ? dayjs(value).format('MMM d, YYYY @ h:mm:ss.SSS A') : ''}>
+            {value != null ? dayjs(value).format('MMM d, YYYY') : ''}
+          </span>
+        );
+      },
     },
   ];
 

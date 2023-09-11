@@ -16,6 +16,8 @@ interface JobDescriptionGqlModel {
     };
     rate_adjstment: number;
   };
+  created_at: Date;
+  updated_at?: Date;
 }
 
 interface GetJobDescriptionsGqlResponse {
@@ -44,6 +46,8 @@ export const jobDescriptionApi = graphqlApi.injectEndpoints({
                 }
                 rate_adjustment
               }
+              created_at
+              updated_at
             }
           }
         `,

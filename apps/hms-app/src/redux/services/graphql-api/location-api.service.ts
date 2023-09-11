@@ -9,6 +9,8 @@ interface LocationGqlModel {
   postal_code: string;
   lat: number;
   lon: number;
+  created_at: Date;
+  updated_at?: Date;
 }
 
 interface GetLocationGqlResponse {
@@ -29,6 +31,8 @@ export const locationApi = graphqlApi.injectEndpoints({
               postal_code
               lat
               lon
+              created_at
+              updated_at
             }
           }
         `,
