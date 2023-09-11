@@ -5,6 +5,8 @@ interface MinistryGqlModel {
   id: string;
   deltek_id: string;
   name: string;
+  created_at: Date;
+  updated_at?: Date;
 }
 
 interface GetMinistryGqlResponse {
@@ -21,6 +23,8 @@ export const ministryApi = graphqlApi.injectEndpoints({
               id
               deltek_id
               name
+              created_at
+              updated_at
             }
           }
         `,

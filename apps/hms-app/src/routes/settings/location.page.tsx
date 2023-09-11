@@ -1,4 +1,5 @@
 import { Space, Table } from 'antd';
+import dayjs from 'dayjs';
 import { useGetLocationsQuery } from '../../redux/services/graphql-api/location-api.service';
 
 export const LocationPage = () => {
@@ -39,6 +40,30 @@ export const LocationPage = () => {
       title: 'Lon',
       dataIndex: 'lon',
       key: 'lon',
+    },
+    {
+      title: 'Created Date',
+      dataIndex: 'created_at',
+      key: 'created_at',
+      render: (value?: string) => {
+        return (
+          <span title={value != null ? dayjs(value).format('MMM d, YYYY @ h:mm:ss.SSS A') : ''}>
+            {value != null ? dayjs(value).format('MMM d, YYYY') : ''}
+          </span>
+        );
+      },
+    },
+    {
+      title: 'Updated Date',
+      dataIndex: 'updated_at',
+      key: 'updated_at',
+      render: (value?: string) => {
+        return (
+          <span title={value != null ? dayjs(value).format('MMM d, YYYY @ h:mm:ss.SSS A') : ''}>
+            {value != null ? dayjs(value).format('MMM d, YYYY') : ''}
+          </span>
+        );
+      },
     },
   ];
 

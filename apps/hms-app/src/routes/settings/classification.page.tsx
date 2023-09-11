@@ -1,4 +1,5 @@
 import { Space, Table } from 'antd';
+import dayjs from 'dayjs';
 import { useGetClassificationsQuery } from '../../redux/services/graphql-api/classification-api.service';
 
 export const ClassificationPage = () => {
@@ -31,6 +32,30 @@ export const ClassificationPage = () => {
       key: 'rate_adjustment',
       render: (value: any) => {
         return <span>{(value * 100).toFixed(1)}%</span>;
+      },
+    },
+    {
+      title: 'Created Date',
+      dataIndex: 'created_at',
+      key: 'created_at',
+      render: (value?: string) => {
+        return (
+          <span title={value != null ? dayjs(value).format('MMM d, YYYY @ h:mm:ss.SSS A') : ''}>
+            {value != null ? dayjs(value).format('MMM d, YYYY') : ''}
+          </span>
+        );
+      },
+    },
+    {
+      title: 'Updated Date',
+      dataIndex: 'updated_at',
+      key: 'updated_at',
+      render: (value?: string) => {
+        return (
+          <span title={value != null ? dayjs(value).format('MMM d, YYYY @ h:mm:ss.SSS A') : ''}>
+            {value != null ? dayjs(value).format('MMM d, YYYY') : ''}
+          </span>
+        );
       },
     },
   ];
