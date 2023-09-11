@@ -74,6 +74,10 @@ export const Layout = () => {
                       key: '/ministries',
                       label: <Link to="/settings/ministries">Ministries</Link>,
                     },
+                    {
+                      key: '/skills',
+                      label: <Link to="/settings/skills">Skills</Link>,
+                    },
                   ],
                 },
               ]}

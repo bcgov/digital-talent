@@ -16,6 +16,7 @@ import { JobDescriptionPage } from '../routes/settings/job-description.page';
 import { LocationPage } from '../routes/settings/location.page';
 import { MinistryPage } from '../routes/settings/ministry.page';
 import { SettingsPage } from '../routes/settings/settings.page';
+import { SkillPage } from '../routes/settings/skill.page';
 import { UserRoute } from '../routes/user';
 import { UserListPage } from '../routes/user/user-list.page';
 
@@ -145,6 +146,15 @@ export const router = createBrowserRouter(
                   handle: {
                     breadcrumb: () => {
                       return 'Ministries';
+                    },
+                  },
+                },
+                {
+                  path: 'skills',
+                  element: <SkillPage />,
+                  handle: {
+                    breadcrumb: () => {
+                      return 'Skills';
                     },
                   },
                 },
