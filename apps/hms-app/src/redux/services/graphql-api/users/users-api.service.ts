@@ -3,6 +3,7 @@ import { graphqlApi } from '..';
 import { FormSelectOption } from '../../../../components/form/inputs/select/select.component';
 import { GetHiringManagersGqlResponse } from './hiring-manager.interfaces';
 import { GetRecruitersGqlResponse } from './recruiter.interfaces';
+import { GetUsersGqlResponse } from './user.interfaces';
 
 export const usersApi = graphqlApi.injectEndpoints({
   endpoints: (build) => ({
@@ -48,6 +49,22 @@ export const usersApi = graphqlApi.injectEndpoints({
         }));
       },
     }),
+    getUsers: build.query<GetUsersGqlResponse, void>({
+      query: () => ({
+        document: gql`
+          query Users {
+            users {
+              id
+              name
+              email
+              roles
+              created_at
+              updated_at
+            }
+          }
+        `,
+      }),
+    }),
   }),
 });
 
@@ -56,4 +73,6 @@ export const {
   useLazyGetHiringManagersPicklistQuery,
   useGetRecruitersPicklistQuery,
   useLazyGetRecruitersPicklistQuery,
+  useGetUsersQuery,
+  useLazyGetUsersQuery,
 } = usersApi;
