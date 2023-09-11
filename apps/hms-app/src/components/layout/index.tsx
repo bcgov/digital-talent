@@ -49,6 +49,11 @@ export const Layout = () => {
                   label: <Link to="/competitions">Competitions</Link>,
                 },
                 {
+                  key: '/users',
+                  icon: <UserOutlined />,
+                  label: <Link to="/users">Users</Link>,
+                },
+                {
                   key: '/settings',
                   icon: <SettingOutlined />,
                   label: <Link to="/settings">Settings</Link>,

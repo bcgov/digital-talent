@@ -1,4 +1,4 @@
-import { AppstoreOutlined, HomeOutlined, SettingOutlined } from '@ant-design/icons';
+import { AppstoreOutlined, HomeOutlined, SettingOutlined, UserOutlined } from '@ant-design/icons';
 import { createBrowserRouter } from 'react-router-dom';
 import { RouteGuard } from '../components/guards/route.guard';
 import { Layout } from '../components/layout';
@@ -16,6 +16,8 @@ import { JobDescriptionPage } from '../routes/settings/job-description.page';
 import { LocationPage } from '../routes/settings/location.page';
 import { MinistryPage } from '../routes/settings/ministry.page';
 import { SettingsPage } from '../routes/settings/settings.page';
+import { UserRoute } from '../routes/user';
+import { UserListPage } from '../routes/user/user-list.page';
 
 export const router = createBrowserRouter(
   [
@@ -81,6 +83,20 @@ export const router = createBrowserRouter(
                       return 'Create Competition';
                     },
                   },
+                },
+              ],
+            },
+            {
+              path: 'users',
+              element: <UserRoute />,
+              handle: {
+                breadcrumb: () => 'Users',
+                icon: <UserOutlined />,
+              },
+              children: [
+                {
+                  index: true,
+                  element: <UserListPage />,
                 },
               ],
             },
