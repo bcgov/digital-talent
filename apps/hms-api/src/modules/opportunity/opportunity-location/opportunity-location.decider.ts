@@ -37,7 +37,7 @@ export function evolve(state: OpportunityLocationState, event: OpportunityLocati
         type: 'opportunity-location',
         data: {
           ...(state.exists === true && { ...state.data }),
-          deleted_at: new Date(metadata.created_at as string),
+          deleted_at: new Date(metadata.created_at),
         },
       };
     }
@@ -69,17 +69,13 @@ export function decide(
     case 'DeleteOpportunityLocationCommand': {
       if (!state.exists) throw new BadRequestException('OpportunityLocation does not exist');
 
-      const data: CreateOpportunityLocationInput = decideUpdateEventData(command, state);
+      if (state.data.deleted_at != null) return [];
 
-      if (data == null) return [];
       return [
-        new OpportunityLocationDeletedEvent(
-          { ...data, deleted_at: command.data.deleted_at },
-          {
-            ...command.metadata,
-            deleted_at: command.data.deleted_at,
-          },
-        ),
+        new OpportunityLocationDeletedEvent(command.data, {
+          ...command.metadata,
+          created_at: new Date().toISOString(),
+        }),
       ];
     }
     default: {
