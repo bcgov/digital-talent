@@ -3,10 +3,11 @@ import { CqrsModule } from '@nestjs/cqrs';
 import { PrismaModule } from '../prisma/prisma.module';
 import { CommandHandlers } from './commands';
 import { EventHandlers } from './events';
-import { CompetitionScheduleResolver } from './competition-schedule.resolver';
+import { QueryHandlers } from './queries';
+import { CompetitionScheduleResolver } from './resolvers/competition-schedule.resolver';
 
 @Module({
   imports: [CqrsModule, PrismaModule],
-  providers: [CompetitionScheduleResolver, ...CommandHandlers, ...EventHandlers],
+  providers: [CompetitionScheduleResolver, ...CommandHandlers, ...EventHandlers, ...QueryHandlers],
 })
 export class CompetitionScheduleModule {}
