@@ -2,6 +2,8 @@ import { CommandBus, QueryBus } from '@nestjs/cqrs';
 import { Args, Mutation, Parent, Query, ResolveField, Resolver } from '@nestjs/graphql';
 import { GraphQLUUID } from 'graphql-scalars';
 import { CurrentUser } from '../../../auth/decorators/current-user.decorator';
+import { CompetitionScheduleModel } from '../../../competition-schedule/models/competition-schedule.model';
+import { GetCompetitionSchedulesQuery } from '../../../competition-schedule/queries/get-competition-schedules/get-competition-schedules.query';
 import { JobDescriptionModel } from '../../../job-description/models/job-description.model';
 import { GetJobDescriptionQuery } from '../../../job-description/queries/get-job-description/get-job-description.query';
 import { UserModel } from '../../../user/models/user.model';
@@ -90,5 +92,10 @@ export class CompetitionResolver {
   @ResolveField('recruiter', (returns) => UserModel)
   async getRecruiter(@Parent() competition: CompetitionModel) {
     return this.queryBus.execute(new GetUserQuery(competition.recruiter_id));
+  }
+
+  @ResolveField('schedule', (returns) => [CompetitionScheduleModel])
+  async getSchedule(@Parent() competition: CompetitionModel) {
+    return this.queryBus.execute(new GetCompetitionSchedulesQuery({ where: { competition_id: competition.id } }));
   }
 }
