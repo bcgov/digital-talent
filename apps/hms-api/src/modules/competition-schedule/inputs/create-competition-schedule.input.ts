@@ -22,15 +22,13 @@ export class CreateCompetitionScheduleInput {
   @IsUUID()
   competition_id: string;
 
+  @Field((type) => CompetitionState)
+  @IsEnum(CompetitionState)
+  state: CompetitionState;
+
   @IsDate()
   start_at: Date;
 
   @IsDate()
   end_at: Date;
-
-  @Field((type) => CompetitionState)
-  // not looking for enum, looking for string. Key value are the same. Test with "isEnum" (elswhere) - capitalized is decorator, camelcase is function that decorator calls
-  // other - have type as string, do isArray - spread values of competition state
-  @IsEnum(CompetitionState)
-  state: CompetitionState;
 }
