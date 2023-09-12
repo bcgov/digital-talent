@@ -1,4 +1,8 @@
-import { decideUpdateEventData, extractIdentifiersFromCommandData } from './decide-update-event-data.util';
+import {
+  decideUpdateEventData,
+  extractIdentifiersFromCommandData,
+  processJsonFields,
+} from './decide-update-event-data.util';
 
 describe('decideUpdateEventData', () => {
   it('should call processJsonFields', () => {
@@ -126,5 +130,82 @@ describe('extractIdentifiersFromCommandData', () => {
     };
     const expected = {};
     expect(extractIdentifiersFromCommandData(data)).toEqual(expected);
+  });
+});
+
+describe('processJsonFields', () => {
+  it('should return early if state.exists is false', () => {
+    const command = { data: { id: 1, someField: { foo: 'bar' } } };
+    const state = { exists: false, data: {} } as any;
+    const delta: any = {};
+
+    processJsonFields(command, state, delta);
+
+    expect(delta).toEqual({});
+  });
+
+  it('should overwrite delta with command JSON-like field if they differ', () => {
+    const command = { data: { id: 1, jsonField: { foo: 'new' } } };
+    const state = { exists: true, data: { jsonField: { foo: 'old' } } } as any;
+    const delta: any = {};
+
+    processJsonFields(command, state, delta);
+
+    expect(delta).toEqual({ jsonField: { foo: 'new' } });
+  });
+
+  it('should not modify delta if JSON-like fields are the same', () => {
+    const command = { data: { id: 1, jsonField: { foo: 'same' } } };
+    const state = { exists: true, data: { jsonField: { foo: 'same' } } } as any;
+    const delta: any = {};
+
+    processJsonFields(command, state, delta);
+
+    expect(delta).toEqual({});
+  });
+
+  it('should not modify delta for non-object fields', () => {
+    const command = { data: { id: 1, stringField: 'value', numberField: 42 } };
+    const state = { exists: true, data: { stringField: 'oldValue', numberField: 24 } } as any;
+    const delta: any = {};
+
+    processJsonFields(command, state, delta);
+
+    expect(delta).toEqual({});
+  });
+
+  it('should not add to delta if command has a JSON-like field not in state', () => {
+    const command = { data: { id: 1, jsonField: { foo: 'bar' } } };
+    const state = { exists: true, data: {} } as any;
+    const delta: any = {};
+
+    processJsonFields(command, state, delta);
+
+    expect(delta).toEqual({});
+  });
+
+  it('should handle nested objects correctly', () => {
+    const command = {
+      data: { id: 1, nestedField: { first: { second: 'new' } } },
+    };
+    const state = {
+      exists: true,
+      data: { nestedField: { first: { second: 'old' } } },
+    } as any;
+    const delta: any = {};
+
+    processJsonFields(command, state, delta);
+
+    expect(delta).toEqual({ nestedField: { first: { second: 'new' } } });
+  });
+
+  it('should not treat null values or arrays as JSON-like fields', () => {
+    const command = { data: { id: 1, nullField: null, arrayField: [1, 2, 3] } };
+    const state = { exists: true, data: { nullField: null, arrayField: [4, 5, 6] } } as any;
+    const delta: any = {};
+
+    processJsonFields(command, state, delta);
+
+    expect(delta).toEqual({});
   });
 });
