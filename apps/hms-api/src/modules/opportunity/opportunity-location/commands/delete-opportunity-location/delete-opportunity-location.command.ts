@@ -13,7 +13,7 @@ export class DeleteOpportunityLocationCommand
 
   constructor(data: DeleteOpportunityLocationInput, metadata: Metadata) {
     this.type = 'DeleteOpportunityLocationCommand';
-    this.data = { ...data, deleted_at: new Date() };
+    this.data = data;
     this.metadata = metadata;
   }
 }
