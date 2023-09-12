@@ -57,7 +57,15 @@ describe('OpportunitySkillResolver', () => {
   const skill_id = 'd290f1ee-6c54-4b01-90e6-d701748f0852';
   const opportunity_id2 = 'd290f1ee-6c54-4b01-90e6-d701748f0852';
   const skill_id2 = 'd290f1ee-6c54-4b01-90e6-d701748f0853';
+  const input: CreateOpportunitySkillInput = {
+    opportunity_id,
+    skill_id,
+  };
 
+  const input2: CreateOpportunitySkillInput = {
+    opportunity_id: opportunity_id2,
+    skill_id: skill_id2,
+  };
   it('should be defined', () => {
     expect(true);
   });
@@ -261,16 +269,6 @@ describe('OpportunitySkillResolver', () => {
   });
 
   it('should create an opportunitySkill correctly', async () => {
-    const input: CreateOpportunitySkillInput = {
-      opportunity_id,
-      skill_id,
-    };
-
-    const input2: CreateOpportunitySkillInput = {
-      opportunity_id: opportunity_id2,
-      skill_id: skill_id2,
-    };
-
     await resolver.createOpportunitySkill({ id: userId } as any, input);
 
     await resolver.createOpportunitySkill({ id: userId } as any, input2);
@@ -294,14 +292,15 @@ describe('OpportunitySkillResolver', () => {
   });
 
   it('should get a specific opportunitySkill by id correctly', async () => {
-    const appId = 'mockAppId';
-    const mockOpportunitySkill = { id: appId };
+    const mockOpportunitySkill = { input };
     mockPrismaService.opportunitySkill.findUnique.mockResolvedValueOnce(mockOpportunitySkill);
 
     const result = await resolver.opportunitySkill(opportunity_id, skill_id);
 
     expect(result).toEqual(mockOpportunitySkill);
-    expect(mockPrismaService.opportunitySkill.findUnique).toHaveBeenCalledWith({ where: { id: appId } });
+    expect(mockPrismaService.opportunitySkill.findUnique).toHaveBeenCalledWith({
+      where: { opportunity_id_skill_id: { opportunity_id, skill_id } },
+    });
   });
 
   it('should delete an opportunitySkill correctly', async () => {
