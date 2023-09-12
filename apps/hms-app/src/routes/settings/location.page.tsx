@@ -47,8 +47,8 @@ export const LocationPage = () => {
       key: 'created_at',
       render: (value?: string) => {
         return (
-          <span title={value != null ? dayjs(value).format('MMM d, YYYY @ h:mm:ss.SSS A') : ''}>
-            {value != null ? dayjs(value).format('MMM d, YYYY') : ''}
+          <span title={value != null ? dayjs(value).format('MMM D, YYYY @ h:mm:ss.SSS A') : ''}>
+            {value != null ? dayjs(value).format('MMM D, YYYY') : ''}
           </span>
         );
       },
@@ -59,8 +59,8 @@ export const LocationPage = () => {
       key: 'updated_at',
       render: (value?: string) => {
         return (
-          <span title={value != null ? dayjs(value).format('MMM d, YYYY @ h:mm:ss.SSS A') : ''}>
-            {value != null ? dayjs(value).format('MMM d, YYYY') : ''}
+          <span title={value != null ? dayjs(value).format('MMM D, YYYY @ h:mm:ss.SSS A') : ''}>
+            {value != null ? dayjs(value).format('MMM D, YYYY') : ''}
           </span>
         );
       },
