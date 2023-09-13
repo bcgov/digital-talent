@@ -54,8 +54,8 @@ export class AuthService {
     return pk;
   }
 
-  getExpectedKeyCloakClientId() {
-    return this.configService.get('KEYCLOAK_CLIENT_ID');
+  getExpectedKeyCloakClientIds(): string[] {
+    return [this.configService.get('KEYCLOAK_CLIENT_ID_PRIVATE'), this.configService.get('KEYCLOAK_CLIENT_ID_PUBLIC')];
   }
 
   async getUserFromPayload(data: JwtPayload) {
