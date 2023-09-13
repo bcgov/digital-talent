@@ -18,5 +18,8 @@ export class AppConfigDto {
   KEYCLOAK_REALM_URL: string;
 
   @IsNotEmpty()
-  KEYCLOAK_CLIENT_ID: string;
+  KEYCLOAK_CLIENT_ID_PRIVATE: string;
+
+  @IsNotEmpty()
+  KEYCLOAK_CLIENT_ID_PUBLIC: string;
 }

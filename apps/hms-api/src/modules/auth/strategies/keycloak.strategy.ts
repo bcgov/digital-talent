@@ -12,13 +12,13 @@ export class KeycloakStrategy extends PassportStrategy(Strategy, 'keycloak') {
 
   async validate(payload: string, done: (err, user) => void) {
     const publicKey = await this.authService.getKeycloakPublicKey();
-    const expectedAudience = this.authService.getExpectedKeyCloakClientId();
+    const expectedAudiences = this.authService.getExpectedKeyCloakClientIds();
 
     try {
       const data = verifyJwt(payload, publicKey, {
         complete: false,
         ignoreExpiration: false,
-        audience: expectedAudience,
+        audience: expectedAudiences,
       }) as JwtPayload;
       const user = await this.authService.getUserFromPayload(data);
 
