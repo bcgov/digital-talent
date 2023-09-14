@@ -5,3 +5,4 @@ resources:
 - route.yml
 - statefulset.yml
 - volumes.yml
+- np.yml

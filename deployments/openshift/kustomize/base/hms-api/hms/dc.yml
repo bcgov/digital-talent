@@ -18,11 +18,11 @@ spec:
         type: ImageChange
   replicas: 1
   selector:
-    app: nestjs-app
+    name: nestjs-app
   template:
     metadata:
       labels:
-        app: nestjs-app
+        name: nestjs-app
     spec:
       containers:
       - name: nestjs-app
