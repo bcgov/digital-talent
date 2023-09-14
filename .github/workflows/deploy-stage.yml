@@ -1,0 +1,59 @@
+name: Deploy to Stage
+
+on:
+  workflow_dispatch:
+    inputs:
+      appName:
+        description: 'App to migrate to stage branch (e.g. www, hms-api)'
+        required: true
+
+jobs:
+  merge:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+          ref: develop
+
+      - name: Set up Git
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+
+      - name: Apply changes from root (excluding apps) and specific folder
+        run: |
+          APP=${{ github.event.inputs.appName }}
+          FOLDER="apps/$APP"
+          COMMIT_HASH=$(git rev-parse --short HEAD)
+
+          # Switch to stage branch
+          git checkout stage
+
+          # Create a temporary branch from stage
+          git checkout -b temp-branch
+
+          # Use rsync to copy root-level items excluding apps/ folder and the specific folder from develop
+          git checkout develop
+          rsync -av --progress ./* ./ --exclude apps/ --exclude $FOLDER/ --exclude .git/
+
+          # Switch back to temporary branch and add the changes
+          git checkout temp-branch
+          git add .
+
+          # Checkout the specific folder
+          git checkout develop -- $FOLDER/
+
+          # Commit the changes
+          git commit -m "Merged changes from root (excluding apps) and $FOLDER"
+
+          # Push the temporary branch to remote
+          git push origin temp-branch:$APP-to-stage-$COMMIT_HASH
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v5
+        with:
+          title: 'Deploy $APP to stage'
+          base: stage
+          branch: '$APP-to-stage-$COMMIT_HASH'

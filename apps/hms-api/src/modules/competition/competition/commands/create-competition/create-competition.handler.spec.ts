@@ -55,7 +55,7 @@ describe('CreateCompetitionHandler', () => {
     // Mock for CreateCompetitionInput
     const mockCreateCompetitionInput: CreateCompetitionInput = {
       id: 'd290f1ee-6c54-4b01-90e6-d701748f0851',
-      classification_id: 'd290f1ee-6c54-4b01-90e6-d701748f0852',
+      job_description_id: 'd290f1ee-6c54-4b01-90e6-d701748f0852',
       deltek_id: 'd290f1ee-6c54-4b01-90e6-d701748f0852',
       recruiter_id: 'd290f1ee-6c54-4b01-90e6-d701748f0852',
       category: 'CMH',
@@ -71,7 +71,7 @@ describe('CreateCompetitionHandler', () => {
         type: 'CompetitionCreatedEvent',
         data: {
           id: 'd290f1ee-6c54-4b01-90e6-d701748f0851',
-          classification_id: 'd290f1ee-6c54-4b01-90e6-d701748f0852',
+          job_description_id: 'd290f1ee-6c54-4b01-90e6-d701748f0852',
           deltek_id: 'd290f1ee-6c54-4b01-90e6-d701748f0852',
           recruiter_id: 'd290f1ee-6c54-4b01-90e6-d701748f0852',
           category: 'CMH',

@@ -56,13 +56,14 @@ model JobDescription {
 }
 
 model Ministry {
-  id          String        @id @db.Uuid
-  deltek_id   String
-  name        String
-  created_at  DateTime
-  updated_at  DateTime?
-  deleted_at  DateTime?
-  Opportunity Opportunity[]
+  id         String    @id @db.Uuid
+  deltek_id  String
+  name       String
+  created_at DateTime
+  updated_at DateTime?
+  deleted_at DateTime?
+
+  opportunities Opportunity[]
 
   @@map("ministry")
 }
@@ -234,20 +235,30 @@ model Application {
   @@map("application")
 }
 
+enum LocationRegion {
+  CARIBOO
+  KOOTENAY
+  MAINLAND_SOUTHWEST
+  NORTH_COAST
+  NORTHEAST
+  THOMPSON_OKANAGAN
+  VANCOUVER_ISLAND_COAST
+}
+
 model Location {
-  id          String    @id @db.Uuid
+  id          String         @id @db.Uuid
   deltek_id   String
   name        String
   postal_code String
   lat         Float
   lon         Float
+  region      LocationRegion
   created_at  DateTime
   updated_at  DateTime?
   deleted_at  DateTime?
 
-  applications        ApplicationLocation[]
-  // opportunities OpportunityLocation[]
-  OpportunityLocation OpportunityLocation[]
+  applications  ApplicationLocation[]
+  opportunities OpportunityLocation[]
 
   @@map("location")
 }
@@ -320,10 +331,8 @@ model OpportunityLocation {
   created_at     DateTime
   deleted_at     DateTime?
 
-  location      Location     @relation(fields: [location_id], references: [id])
-  // opportunity Opportunity @relation(fields: [opportunity_id], references: [id])
-  Opportunity   Opportunity? @relation(fields: [opportunityId], references: [id])
-  opportunityId String?      @db.Uuid
+  location    Location    @relation(fields: [location_id], references: [id])
+  opportunity Opportunity @relation(fields: [opportunity_id], references: [id])
 
   @@id([opportunity_id, location_id])
 }

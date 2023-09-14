@@ -13,6 +13,8 @@ import { HomePage } from '../routes/home/home.page';
 import { SettingsRoute } from '../routes/settings';
 import { ClassificationPage } from '../routes/settings/classification.page';
 import { JobDescriptionPage } from '../routes/settings/job-description.page';
+import { LocationPage } from '../routes/settings/location.page';
+import { MinistryPage } from '../routes/settings/ministry.page';
 import { SettingsPage } from '../routes/settings/settings.page';
 
 export const router = createBrowserRouter(
@@ -109,6 +111,24 @@ export const router = createBrowserRouter(
                   handle: {
                     breadcrumb: () => {
                       return 'Job Descriptions';
+                    },
+                  },
+                },
+                {
+                  path: 'locations',
+                  element: <LocationPage />,
+                  handle: {
+                    breadcrumb: () => {
+                      return 'Locations';
+                    },
+                  },
+                },
+                {
+                  path: 'ministries',
+                  element: <MinistryPage />,
+                  handle: {
+                    breadcrumb: () => {
+                      return 'Ministries';
                     },
                   },
                 },

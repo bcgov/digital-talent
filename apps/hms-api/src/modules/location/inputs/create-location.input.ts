@@ -1,5 +1,6 @@
 import { Field, InputType } from '@nestjs/graphql';
-import { IsNotEmpty, IsNumber, IsString, IsUUID } from 'class-validator';
+import { LocationRegion } from '@prisma/client';
+import { IsEnum, IsNotEmpty, IsNumber, IsString, IsUUID } from 'class-validator';
 import { GraphQLUUID } from 'graphql-scalars';
 
 @InputType()
@@ -27,4 +28,8 @@ export class CreateLocationInput {
   @IsNumber()
   @IsNotEmpty()
   lon: number;
+
+  @Field((type) => LocationRegion)
+  @IsEnum(LocationRegion)
+  region: LocationRegion;
 }

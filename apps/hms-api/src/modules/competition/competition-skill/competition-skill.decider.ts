@@ -57,6 +57,7 @@ export function evolve(state: State, event: Event): State {
 export function decide(state: State, command: Command): Event[] {
   switch (command.type) {
     case 'AddCompetitionSkillCommand': {
+      assert(state.exists === false, 'The Competition Skill already exist');
       const data: AddCompetitionSkillInput = decideUpdateEventData(command, state);
       if (data == null) return [];
 

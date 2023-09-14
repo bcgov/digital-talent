@@ -1,5 +1,19 @@
 # @bcgov-dt/www
 
+## 1.1.0
+
+### Minor Changes
+
+- [#140](https://github.com/bcgov/digital-talent/pull/140) [`56ceab5`](https://github.com/bcgov/digital-talent/commit/56ceab5bdb34f0da6a7a6a35ee1d32a9ed405275) Thanks [@sidmclaughlin](https://github.com/sidmclaughlin)! - close current round of cross-ministry hiring
+
+- [#148](https://github.com/bcgov/digital-talent/pull/148) [`d7666cb`](https://github.com/bcgov/digital-talent/commit/d7666cb7fe1d281deecc8048ea26da67cc5d43ba) Thanks [@sidmclaughlin](https://github.com/sidmclaughlin)! - Add new page for Hiring Managers to request use of Digital Talent job profiles
+
+### Patch Changes
+
+- [#149](https://github.com/bcgov/digital-talent/pull/149) [`9498625`](https://github.com/bcgov/digital-talent/commit/9498625b3ce4f4a60dbfb539fe04c27cae11e1f5) Thanks [@sidmclaughlin](https://github.com/sidmclaughlin)! - Reduce text size in certain buttons to prevent overflow.
+
+- [#152](https://github.com/bcgov/digital-talent/pull/152) [`7233230`](https://github.com/bcgov/digital-talent/commit/72332301559ae8844bc5994de7daa00f88e873e3) Thanks [@kmandryk](https://github.com/kmandryk)! - update website information
+
 ## 1.0.6
 
 ### Patch Changes

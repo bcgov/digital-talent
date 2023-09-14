@@ -1,6 +1,6 @@
 {
   "name": "@bcgov-dt/hms-app",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "private": true,
   "description": "Digital Talent HMS Application",
   "license": "Apache-2.0",
@@ -13,18 +13,26 @@
   },
   "dependencies": {
     "@ant-design/icons": "^5.2.5",
+    "@hookform/resolvers": "^3.3.1",
     "@reduxjs/toolkit": "^1.9.5",
     "@rtk-query/graphql-request-base-query": "^2.2.0",
     "antd": "^5.8.2",
+    "class-transformer": "^0.5.1",
+    "class-validator": "^0.14.0",
+    "dayjs": "^1.11.9",
     "graphql": "^16.8.0",
     "graphql-request": "^6.1.0",
     "oidc-client-ts": "^2.2.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-helmet-async": "^1.3.0",
+    "react-hook-form": "^7.46.1",
     "react-oidc-context": "^2.2.2",
     "react-redux": "^8.1.2",
-    "react-router-dom": "^6.14.2"
+    "react-router-dom": "^6.14.2",
+    "react-select": "^5.7.4",
+    "reflect-metadata": "^0.1.13",
+    "uuid": "^9.0.0"
   },
   "devDependencies": {
     "@types/react": "^18.2.15",

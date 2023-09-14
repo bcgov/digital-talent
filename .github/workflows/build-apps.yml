@@ -39,6 +39,7 @@ jobs:
     environment:
       name: ${{ github.ref_name == 'main' && 'prod' || github.ref_name == 'stage' && 'test' || 'dev' }}
     strategy:
+      fail-fast: false # Continue with other matrix jobs even if one fails
       matrix:
         app: ${{ fromJSON(needs.metadata.outputs.changed-apps) }}
     env:

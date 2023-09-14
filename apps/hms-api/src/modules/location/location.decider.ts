@@ -5,14 +5,14 @@ import { decideUpdateEventData } from '../event-store/utils/decide-update-event-
 import { CreateLocationCommand } from './commands/create-location/create-location.command';
 import { DeleteLocationCommand } from './commands/delete-location/delete-location.command';
 import { UpdateLocationCommand } from './commands/update-location/update-location.command';
-import { LocationEntity } from './entities/location.entity';
 import { LocationCreatedEvent } from './events/location-created/location-created.event';
 import { LocationDeletedEvent } from './events/location-deleted/location-deleted.event';
 import { LocationUpdatedEvent } from './events/location-updated/location-updated.event';
 import { CreateLocationInput } from './inputs/create-location.input';
 import { UpdateLocationInput } from './inputs/update-location.input';
+import { LocationWriteModel } from './models/location-write.model';
 
-export type LocationState = InitialState | ExistsState<'location', LocationEntity>;
+export type LocationState = InitialState | ExistsState<'location', LocationWriteModel>;
 export type LocationCommand = CreateLocationCommand | UpdateLocationCommand | DeleteLocationCommand;
 export type LocationEvent = LocationCreatedEvent | LocationUpdatedEvent | LocationDeletedEvent;
 

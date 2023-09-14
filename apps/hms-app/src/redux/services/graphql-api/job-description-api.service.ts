@@ -1,5 +1,6 @@
 import { gql } from 'graphql-request';
 import { graphqlApi } from '.';
+import { FormSelectOption } from '../../../components/form/inputs/select/select.component';
 
 interface JobDescriptionGqlModel {
   id: string;
@@ -18,7 +19,7 @@ interface JobDescriptionGqlModel {
 }
 
 interface GetJobDescriptionsGqlResponse {
-  jobDescriptions: JobDescriptionGqlModel;
+  jobDescriptions: JobDescriptionGqlModel[];
 }
 
 export const jobDescriptionApi = graphqlApi.injectEndpoints({
@@ -48,7 +49,39 @@ export const jobDescriptionApi = graphqlApi.injectEndpoints({
         `,
       }),
     }),
+    getJobDescriptionsPicklist: build.query<FormSelectOption[], void>({
+      query: () => ({
+        document: gql`
+          query JobDescriptions {
+            jobDescriptions {
+              id
+              name
+              classification {
+                occupation_group {
+                  code
+                }
+                grid {
+                  name
+                }
+                rate_adjustment
+              }
+            }
+          }
+        `,
+      }),
+      transformResponse: (res: GetJobDescriptionsGqlResponse): FormSelectOption[] => {
+        return res.jobDescriptions.map((jd) => ({
+          label: jd.name,
+          value: jd.id,
+          description: `${jd.classification.occupation_group.code} ${jd.classification.grid.name}`,
+        })) as FormSelectOption[];
+      },
+    }),
   }),
 });
 
-export const { useGetJobDescriptionsQuery } = jobDescriptionApi;
+export const {
+  useGetJobDescriptionsQuery,
+  useGetJobDescriptionsPicklistQuery,
+  useLazyGetJobDescriptionsPicklistQuery,
+} = jobDescriptionApi;

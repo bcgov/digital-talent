@@ -1,10 +1,14 @@
 import { PlusOutlined } from '@ant-design/icons';
 import { Button, Space, Table } from 'antd';
 import { Link } from 'react-router-dom';
-import { useGetCompetitionsQuery } from '../../redux/services/graphql-api/competition-api.service';
+import {
+  useDeleteCompetitionMutation,
+  useGetCompetitionsQuery,
+} from '../../redux/services/graphql-api/competitions/competition-api.service';
 
 export const CompetitionListPage = () => {
   const { data, isLoading } = useGetCompetitionsQuery();
+  const [deleteCompetition] = useDeleteCompetitionMutation();
 
   const columns = [
     {
@@ -67,16 +71,14 @@ export const CompetitionListPage = () => {
     {
       title: 'Action',
       key: 'action',
-      // render: (text: string, record: any) => (
-      render: () => (
+      render: (_: any, record: any) => (
         <span>
           <Button
             danger
             type="primary"
-            // onClick={(e) => {
-            //   e.stopPropagation(); // Stop the event propagation here
-            //   handleDelete(record.id);
-            // }}
+            onClick={() => {
+              deleteCompetition(record.id);
+            }}
           >
             Delete
           </Button>

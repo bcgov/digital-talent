@@ -1,11 +1,14 @@
+import { Space } from 'antd';
 import { useLoaderData } from 'react-router-dom';
+import { CompetitionOverview } from './components/competition-overview.component';
 
 export const CompetitionDetailPage = () => {
   const loaderData = useLoaderData() as Record<string, any>;
 
   return (
-    <div>
-      <h1>Competition #{loaderData.id}</h1>
-    </div>
+    <Space direction="vertical" size="middle" style={{ width: '100%' }}>
+      <h1 style={{ marginBottom: 0 }}>Competition #{loaderData.id}</h1>
+      <CompetitionOverview />
+    </Space>
   );
 };
