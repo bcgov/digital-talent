@@ -59,16 +59,7 @@ describe('AuthGuard', () => {
 
     // Mocking the ExecutionContext which will be passed to `canActivate`.
     context = {
-      switchToHttp: jest.fn().mockReturnValue({
-        getResponse: jest.fn(),
-        getRequest: jest.fn(),
-      }),
       getHandler: jest.fn(),
-      getClass: jest.fn(),
-      switchToWs: jest.fn(),
-      switchToRpc: jest.fn(),
-      getType: jest.fn(),
-      getArgs: jest.fn(),
     } as any;
 
     // Mocking a GraphQL context. This is used internally by our guard
