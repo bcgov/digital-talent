@@ -4,7 +4,7 @@ import { GraphQLUUID } from 'graphql-scalars';
 
 registerEnumType(OpportunityInvolvement, {
   name: 'OpportunityInvolvement',
-  description: 'The competition categories',
+  description: 'The opportunity categories',
 });
 
 registerEnumType(WorkOption, {
