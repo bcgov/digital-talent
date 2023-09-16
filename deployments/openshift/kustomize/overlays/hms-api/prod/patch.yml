@@ -9,6 +9,7 @@ spec:
             kind: ImageStreamTag
             name: hms-api:latest
             namespace: f15899-tools
+          type: ImageChange
 ---
 apiVersion: route.openshift.io/v1
 kind: Route

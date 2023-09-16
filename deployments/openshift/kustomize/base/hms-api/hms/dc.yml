@@ -26,7 +26,7 @@ spec:
     spec:
       containers:
       - name: nestjs-app
-        image: nestjs-app:latest
+        image: hms-api:develop-latest
         ports:
         - containerPort: 3000
           protocol: TCP
