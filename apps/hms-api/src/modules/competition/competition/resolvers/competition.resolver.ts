@@ -2,10 +2,14 @@ import { CommandBus, QueryBus } from '@nestjs/cqrs';
 import { Args, Mutation, Parent, Query, ResolveField, Resolver } from '@nestjs/graphql';
 import { GraphQLUUID } from 'graphql-scalars';
 import { CurrentUser } from '../../../auth/decorators/current-user.decorator';
+import { CompetitionScheduleModel } from '../../../competition-schedule/models/competition-schedule.model';
+import { GetCompetitionSchedulesQuery } from '../../../competition-schedule/queries/get-competition-schedules/get-competition-schedules.query';
 import { JobDescriptionModel } from '../../../job-description/models/job-description.model';
 import { GetJobDescriptionQuery } from '../../../job-description/queries/get-job-description/get-job-description.query';
 import { UserModel } from '../../../user/models/user.model';
 import { GetUserQuery } from '../../../user/queries/get-user/get-user.query';
+import { CompetitionSkillModel } from '../../competition-skill/models/competition-skill.model';
+import { GetCompetitionSkillsQuery } from '../../competition-skill/queries/get-competition-skills/get-competition-skills.query';
 import { CreateCompetitionCommand } from '../commands/create-competition/create-competition.command';
 import { DeleteCompetitionCommand } from '../commands/delete-competition/delete-competition.command';
 import { UpdateCompetitionStateCommand } from '../commands/update-competition-state/update-competition-state.command';
@@ -90,5 +94,15 @@ export class CompetitionResolver {
   @ResolveField('recruiter', (returns) => UserModel)
   async getRecruiter(@Parent() competition: CompetitionModel) {
     return this.queryBus.execute(new GetUserQuery(competition.recruiter_id));
+  }
+
+  @ResolveField('schedule', (returns) => [CompetitionScheduleModel])
+  async getSchedule(@Parent() competition: CompetitionModel) {
+    return this.queryBus.execute(new GetCompetitionSchedulesQuery({ where: { competition_id: competition.id } }));
+  }
+
+  @ResolveField('skills', (returns) => [CompetitionSkillModel])
+  async getSkills(@Parent() competition: CompetitionModel) {
+    return this.queryBus.execute(new GetCompetitionSkillsQuery({ where: { competition_id: competition.id } }));
   }
 }

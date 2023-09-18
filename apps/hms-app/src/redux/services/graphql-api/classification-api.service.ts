@@ -11,6 +11,8 @@ interface ClassificationGqlModel {
     name: string;
   };
   rate_adjstment: number;
+  created_at: Date;
+  updated_at?: Date;
 }
 
 interface GetClassificationsGqlResponse {
@@ -33,6 +35,8 @@ export const classificationApi = graphqlApi.injectEndpoints({
                 name
               }
               rate_adjustment
+              created_at
+              updated_at
             }
           }
         `,

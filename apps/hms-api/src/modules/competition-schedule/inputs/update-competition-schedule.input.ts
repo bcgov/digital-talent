@@ -14,6 +14,11 @@ export class UpdateCompetitionScheduleInput {
   @IsOptional()
   competition_id?: string;
 
+  @Field((type) => CompetitionState)
+  @IsOptional()
+  @IsEnum(CompetitionState)
+  state?: CompetitionState;
+
   @IsDate()
   @IsOptional()
   start_at?: Date;
@@ -21,9 +26,4 @@ export class UpdateCompetitionScheduleInput {
   @IsDate()
   @IsOptional()
   end_at?: Date;
-
-  @Field((type) => CompetitionState)
-  @IsOptional()
-  @IsEnum(CompetitionState)
-  state?: CompetitionState;
 }

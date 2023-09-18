@@ -1,8 +1,8 @@
-import { CreateCompetitionScheduleInput } from './inputs/create-competition-schedule.input';
-import { UpdateCompetitionScheduleInput } from './inputs/update-competition-schedule.input';
-import { CreateCompetitionScheduleCommand } from './commands/create-competition-schedule/create-competition-schedule.command';
-import { UpdateCompetitionScheduleCommand } from './commands/update-competition-schedule/update-competition-schedule.command';
-import { DeleteCompetitionScheduleCommand } from './commands/delete-competition-schedule/delete-competition-schedule.command';
+import { CreateCompetitionScheduleCommand } from '../commands/create-competition-schedule/create-competition-schedule.command';
+import { DeleteCompetitionScheduleCommand } from '../commands/delete-competition-schedule/delete-competition-schedule.command';
+import { UpdateCompetitionScheduleCommand } from '../commands/update-competition-schedule/update-competition-schedule.command';
+import { CreateCompetitionScheduleInput } from '../inputs/create-competition-schedule.input';
+import { UpdateCompetitionScheduleInput } from '../inputs/update-competition-schedule.input';
 import { CompetitionScheduleResolver } from './competition-schedule.resolver';
 
 describe('CompetitionScheduleResolver', () => {

@@ -6,14 +6,14 @@ import { decideUpdateEventData } from '../event-store/utils/decide-update-event-
 import { CreateSkillCommand } from './commands/create-skill/create-skill.command';
 import { DeleteSkillCommand } from './commands/delete-skill/delete-skill.command';
 import { UpdateSkillCommand } from './commands/update-skill/update-skill.command';
-import { SkillWriteEntity } from './entities/skill-write.entity';
 import { SkillCreatedEvent } from './events/skill-created/skill-created.event';
 import { SkillDeletedEvent } from './events/skill-deleted/skill-deleted.event';
 import { SkillUpdatedEvent } from './events/skill-updated/skill-updated.event';
 import { CreateSkillInput } from './inputs/create-skill.input';
 import { UpdateSkillInput } from './inputs/update-skill.input';
+import { SkillWriteModel } from './models/skill-write.model';
 
-type State = InitialState | ExistsState<'skill', SkillWriteEntity>;
+type State = InitialState | ExistsState<'skill', SkillWriteModel>;
 type Command = CreateSkillCommand | UpdateSkillCommand | DeleteSkillCommand;
 type Event = SkillCreatedEvent | SkillUpdatedEvent | SkillDeletedEvent;
 

@@ -7,8 +7,18 @@ registerEnumType(SkillCategory, {
   description: 'Possible Skill categories',
 });
 
+export interface ISkillModel {
+  id: string;
+  category: SkillCategory;
+  name: string;
+  description?: string;
+  created_at: Date;
+  updated_at?: Date;
+  deleted_at?: Date;
+}
+
 @ObjectType()
-export class SkillWriteEntity {
+export class SkillModel implements ISkillModel {
   @Field((type) => GraphQLUUID)
   id: string;
 
