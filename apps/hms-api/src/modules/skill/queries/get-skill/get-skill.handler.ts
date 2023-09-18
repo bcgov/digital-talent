@@ -7,6 +7,6 @@ export class GetSkillHandler implements IQueryHandler<GetSkillQuery> {
   constructor(private readonly prisma: PrismaService) {}
 
   async execute(query: GetSkillQuery): Promise<any> {
-    return this.prisma.classification.findUnique({ where: { id: query.id } });
+    return this.prisma.skill.findUnique({ where: { id: query.id } });
   }
 }

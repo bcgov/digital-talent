@@ -4,6 +4,7 @@ import { GraphQLUUID } from 'graphql-scalars';
 import { CompetitionScheduleModel } from '../../../competition-schedule/models/competition-schedule.model';
 import { JobDescriptionModel } from '../../../job-description/models/job-description.model';
 import { UserModel } from '../../../user/models/user.model';
+import { CompetitionSkillModel } from '../../competition-skill/models/competition-skill.model';
 
 registerEnumType(CompetitionCategory, {
   name: 'CompetitionCategory',
@@ -19,6 +20,7 @@ export interface ICompetitionModel {
   recruiter: UserModel;
   schedule?: CompetitionScheduleModel[];
   state: CompetitionState;
+  skills: CompetitionSkillModel[];
   created_at: Date;
   updated_at?: Date;
   deleted_at?: Date;
@@ -51,6 +53,9 @@ export class CompetitionModel implements ICompetitionModel {
 
   @Field((type) => CompetitionState)
   state: CompetitionState;
+
+  @Field((type) => [CompetitionSkillModel])
+  skills: CompetitionSkillModel[];
 
   created_at: Date;
 
