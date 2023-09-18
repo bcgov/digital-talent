@@ -6,7 +6,7 @@ import { Logger } from 'nestjs-pino';
 import { AppModule } from './app.module';
 import { applySeeds } from './seeds';
 
-async function bootstrap() {
+export async function bootstrap() {
   const app = await NestFactory.create(AppModule, { bufferLogs: true });
 
   app.enableCors();
