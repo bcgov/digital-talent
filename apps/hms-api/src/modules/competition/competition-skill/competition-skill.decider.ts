@@ -4,12 +4,12 @@ import { Decider } from '../../event-store/utils/create-command-handler.util';
 import { decideUpdateEventData } from '../../event-store/utils/decide-update-event-data.util';
 import { AddCompetitionSkillCommand } from './commands/add-competition-skill/add-competition-skill.command';
 import { RemoveCompetitionSkillCommand } from './commands/remove-competition-skill/remove-competition-skill.command';
-import { CompetitionSkillCommandEntity } from './entities/competition-skill-command.entity';
 import { CompetitionSkillAddedEvent } from './events/competition-skill-added/competition-skill-added.event';
 import { CompetitionSkillRemovedEvent } from './events/competition-skill-removed/competition-skill-removed.event';
 import { AddCompetitionSkillInput } from './inputs/add-competition-skill.input';
+import { CompetitionSkillWriteModel } from './models/competition-skill-write.model';
 
-type State = InitialState | ExistsState<'competition-skill', CompetitionSkillCommandEntity>;
+type State = InitialState | ExistsState<'competition-skill', CompetitionSkillWriteModel>;
 type Command = AddCompetitionSkillCommand | RemoveCompetitionSkillCommand;
 type Event = CompetitionSkillAddedEvent | CompetitionSkillRemovedEvent;
 
