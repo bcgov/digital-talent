@@ -4,7 +4,7 @@ metadata:
   name: nestjs-app
 spec:
   selector:
-    app: nestjs-app
+    name: nestjs-app
   ports:
   - protocol: TCP
     port: 4000

@@ -2,7 +2,7 @@
 kind: ImageStream
 apiVersion: image.openshift.io/v1
 metadata:
-  name: hms-api
+  name: hms-app
 spec:
   # lookupPolicy:
   #   local: true
@@ -10,15 +10,15 @@ spec:
     - name: develop-latest
       from:
         kind: DockerImage
-        name: artifacts.developer.gov.bc.ca/tf15-images/hms-api:develop-latest
+        name: artifacts.developer.gov.bc.ca/tf15-images/hms-app:develop-latest
       importPolicy:
         scheduled: true
       referencePolicy:
         type: Source
-    - name: test
+    - name: stage-latest
       from:
         kind: DockerImage
-        name: artifacts.developer.gov.bc.ca/tf15-images/hms-api:stage-latest
+        name: artifacts.developer.gov.bc.ca/tf15-images/hms-app:stage-latest
       importPolicy:
         scheduled: true
       referencePolicy:
@@ -26,7 +26,7 @@ spec:
     - name: latest
       from:
         kind: DockerImage
-        name: artifacts.developer.gov.bc.ca/tf15-images/hms-api:latest
+        name: artifacts.developer.gov.bc.ca/tf15-images/hms-app:latest
       importPolicy:
         scheduled: true
       referencePolicy:
