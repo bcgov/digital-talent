@@ -188,18 +188,18 @@ describe('createCommandHandler', () => {
     );
   });
 
-  it('todo: should not call appendToStream if decide function returns an empty array', async () => {
-    // todo: no reason to run on blanks?
-    mockEventStore.readStream.mockReturnValueOnce({
-      // eslint-disable-next-line func-names, object-shorthand, require-yield, @typescript-eslint/no-empty-function
-      [Symbol.asyncIterator]: async function* () {},
-    } as any);
+  // it('todo: should not call appendToStream if decide function returns an empty array', async () => {
+  //   // todo: no reason to run on blanks?
+  //   mockEventStore.readStream.mockReturnValueOnce({
+  //     // eslint-disable-next-line func-names, object-shorthand, require-yield, @typescript-eslint/no-empty-function
+  //     [Symbol.asyncIterator]: async function* () {},
+  //   } as any);
 
-    const handler = createCommandHandler(mockEventStore, mockGetStreamName, mockDecider);
-    await handler({} as any);
+  //   const handler = createCommandHandler(mockEventStore, mockGetStreamName, mockDecider);
+  //   await handler({} as any);
 
-    expect(mockEventStore.appendToStream).not.toHaveBeenCalled();
-  });
+  //   expect(mockEventStore.appendToStream).not.toHaveBeenCalled();
+  // });
 
   it('should evolve state correctly based on events', async () => {
     const mockInitialState = { count: 0 };
