@@ -1,13 +1,11 @@
-import { EventStoreDBClient, FORWARDS, START } from '@eventstore/db-client';
+import { EventStoreDBClient } from '@eventstore/db-client';
 import { CommandBus, ICommand } from '@nestjs/cqrs';
-import { SYSTEM_USER_ID } from '../../modules/auth/auth.constants';
 import { CreateClassificationCommand } from '../../modules/classification/commands/create-classification/create-classification.command';
 import { DeleteClassificationCommand } from '../../modules/classification/commands/delete-classification/delete-classification.command';
 import { UpdateClassificationCommand } from '../../modules/classification/commands/update-classification/update-classification.command';
 import { CreateClassificationInput } from '../../modules/classification/inputs/create-classification.input';
-import { handleEmpty } from '../../modules/event-store/utils/create-command-handler.util';
-import { validateObject } from '../../utils/validate-object.dto';
 import { SeedType } from '../seeds.type';
+import { applySeeds } from '../util/util';
 
 export const classificationSeeds: SeedType<CreateClassificationInput> = {
   upsert: [
@@ -67,34 +65,14 @@ export const classificationSeeds: SeedType<CreateClassificationInput> = {
 };
 
 export const applyClassificationSeeds = async (commandBus: CommandBus<ICommand>, eventStore: EventStoreDBClient) => {
-  const { upsert, remove } = classificationSeeds;
-
-  for await (const seed of upsert) {
-    validateObject(seed, CreateClassificationInput);
-
-    // Check if the stream exists
-    const events = handleEmpty(
-      eventStore.readStream(`classification-${seed.id}`, {
-        direction: FORWARDS,
-        fromRevision: START,
-        maxCount: 1,
-      }),
-    );
-
-    const { value } = await events.next();
-    if (value == null) {
-      // Stream doesn't exist -- create it
-      const command = new CreateClassificationCommand(seed, { created_by: SYSTEM_USER_ID });
-      await commandBus.execute(command);
-    } else {
-      // Stream exists -- update it
-      const command = new UpdateClassificationCommand(seed, { created_by: SYSTEM_USER_ID });
-      await commandBus.execute(command);
-    }
-  }
-
-  for await (const seed of remove) {
-    const command = new DeleteClassificationCommand(seed, { created_by: SYSTEM_USER_ID });
-    await commandBus.execute(command);
-  }
+  applySeeds(
+    classificationSeeds,
+    commandBus,
+    eventStore,
+    CreateClassificationInput,
+    CreateClassificationCommand,
+    UpdateClassificationCommand,
+    DeleteClassificationCommand,
+    'classification',
+  );
 };

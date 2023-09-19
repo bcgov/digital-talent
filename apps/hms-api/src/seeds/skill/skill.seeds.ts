@@ -1,14 +1,12 @@
-import { EventStoreDBClient, FORWARDS, START } from '@eventstore/db-client';
+import { EventStoreDBClient } from '@eventstore/db-client';
 import { CommandBus, ICommand } from '@nestjs/cqrs';
 import { SkillCategory } from '@prisma/client';
-import { SYSTEM_USER_ID } from '../../modules/auth/auth.constants';
-import { handleEmpty } from '../../modules/event-store/utils/create-command-handler.util';
 import { CreateSkillCommand } from '../../modules/skill/commands/create-skill/create-skill.command';
 import { DeleteSkillCommand } from '../../modules/skill/commands/delete-skill/delete-skill.command';
 import { UpdateSkillCommand } from '../../modules/skill/commands/update-skill/update-skill.command';
 import { CreateSkillInput } from '../../modules/skill/inputs/create-skill.input';
-import { validateObject } from '../../utils/validate-object.dto';
 import { SeedType } from '../seeds.type';
+import { applySeeds } from '../util/util';
 
 export const skillSeeds: SeedType<CreateSkillInput> = {
   upsert: [
@@ -619,34 +617,14 @@ export const skillSeeds: SeedType<CreateSkillInput> = {
 };
 
 export const applySkillSeeds = async (commandBus: CommandBus<ICommand>, eventStore: EventStoreDBClient) => {
-  const { upsert, remove } = skillSeeds;
-
-  for await (const seed of upsert) {
-    validateObject(seed, CreateSkillInput);
-
-    // Check if the stream exists
-    const events = handleEmpty(
-      eventStore.readStream(`skill-${seed.id}`, {
-        direction: FORWARDS,
-        fromRevision: START,
-        maxCount: 1,
-      }),
-    );
-
-    const { value } = await events.next();
-    if (value == null) {
-      // Stream doesn't exist -- create it
-      const command = new CreateSkillCommand(seed, { created_by: SYSTEM_USER_ID });
-      await commandBus.execute(command);
-    } else {
-      // Stream exists -- update it
-      const command = new UpdateSkillCommand(seed, { created_by: SYSTEM_USER_ID });
-      await commandBus.execute(command);
-    }
-  }
-
-  for await (const seed of remove) {
-    const command = new DeleteSkillCommand(seed, { created_by: SYSTEM_USER_ID });
-    await commandBus.execute(command);
-  }
+  applySeeds(
+    skillSeeds,
+    commandBus,
+    eventStore,
+    CreateSkillInput,
+    CreateSkillCommand,
+    UpdateSkillCommand,
+    DeleteSkillCommand,
+    'skill',
+  );
 };
