@@ -1,8 +1,8 @@
-import { CreateSkillInput } from './inputs/create-skill.input';
-import { UpdateSkillInput } from './inputs/update-skill.input';
-import { CreateSkillCommand } from './commands/create-skill/create-skill.command';
-import { UpdateSkillCommand } from './commands/update-skill/update-skill.command';
-import { DeleteSkillCommand } from './commands/delete-skill/delete-skill.command';
+import { CreateSkillInput } from '../inputs/create-skill.input';
+import { UpdateSkillInput } from '../inputs/update-skill.input';
+import { CreateSkillCommand } from '../commands/create-skill/create-skill.command';
+import { UpdateSkillCommand } from '../commands/update-skill/update-skill.command';
+import { DeleteSkillCommand } from '../commands/delete-skill/delete-skill.command';
 import { SkillResolver } from './skill.resolver';
 
 describe('SkillResolver', () => {
@@ -70,7 +70,7 @@ describe('SkillResolver', () => {
     );
   });
 
-  it('should get all skills correctly', async () => {
+  it('should get all skills correctly todo: rewrite as it uses query now', async () => {
     const mockSkills = [{ id: '1' }, { id: '2' }];
     mockPrismaService.skill.findMany.mockResolvedValueOnce(mockSkills);
 
@@ -80,7 +80,7 @@ describe('SkillResolver', () => {
     expect(mockPrismaService.skill.findMany).toHaveBeenCalled();
   });
 
-  it('should get a specific skill by id correctly', async () => {
+  it('should get a specific skill by id correctly todo: rewrite as it uses query now', async () => {
     const appId = 'mockAppId';
     const mockSkill = { id: appId };
     mockPrismaService.skill.findUnique.mockResolvedValueOnce(mockSkill);

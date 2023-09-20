@@ -72,7 +72,7 @@ describe('CompetitionScheduleResolver', () => {
     );
   });
 
-  it('should get all competition-schedules correctly', async () => {
+  it('should get all competition-schedules correctly todo: rewrite as it uses query now', async () => {
     const mockCompetitionSchedules = [{ id: '1' }, { id: '2' }];
     mockPrismaService.competitionSchedule.findMany.mockResolvedValueOnce(mockCompetitionSchedules);
 
@@ -82,7 +82,7 @@ describe('CompetitionScheduleResolver', () => {
     expect(mockPrismaService.competitionSchedule.findMany).toHaveBeenCalled();
   });
 
-  it('should get a specific competition-schedule by id correctly', async () => {
+  it('should get a specific competition-schedule by id correctly todo: rewrite as it uses query now', async () => {
     const appId = 'mockAppId';
     const mockCompetitionSchedule = { id: appId };
     mockPrismaService.competitionSchedule.findUnique.mockResolvedValueOnce(mockCompetitionSchedule);

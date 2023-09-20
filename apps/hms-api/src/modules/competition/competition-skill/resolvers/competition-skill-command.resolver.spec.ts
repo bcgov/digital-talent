@@ -10,7 +10,7 @@ describe('CompetitionSkillCommandResolver', () => {
 
   beforeEach(() => {
     mockCommandBus = { execute: jest.fn() };
-    resolver = new CompetitionSkillCommandResolver(mockCommandBus);
+    resolver = new CompetitionSkillCommandResolver(mockCommandBus, null);
   });
 
   it('should add an competition-skill correctly', async () => {

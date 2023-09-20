@@ -17,6 +17,7 @@ describe('competition-schedule.decider', () => {
     exists: true,
     type: 'competition-schedule',
     data: {
+      created_at: new Date('2023-08-21T12:00:00Z'),
       id: 'd290f1ee-6c54-4b01-90e6-d701748f0851',
       competition_id: 'd290f1ee-6c54-4b01-90e6-d701748f0852',
       start_at: new Date('2023-08-21T12:00:00Z'),

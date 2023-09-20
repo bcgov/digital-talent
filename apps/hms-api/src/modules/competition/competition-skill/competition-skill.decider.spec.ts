@@ -8,9 +8,9 @@ import { CompetitionSkillAddedEvent } from './events/competition-skill-added/com
 import { CompetitionSkillRemovedEvent } from './events/competition-skill-removed/competition-skill-removed.event';
 import { AddCompetitionSkillInput } from './inputs/add-competition-skill.input';
 import { RemoveCompetitionSkillInput } from './inputs/remove-competition-skill.input';
-import { CompetitionSkillCommandEntity } from './entities/competition-skill-command.entity';
+import { CompetitionSkillWriteModel } from './models/competition-skill-write.model';
 
-type State = InitialState | ExistsState<'competition-skill', CompetitionSkillCommandEntity>;
+type State = InitialState | ExistsState<'competition-skill', CompetitionSkillWriteModel>;
 
 describe('competition-skill.decider', () => {
   const mockInitialState: State = { exists: false };

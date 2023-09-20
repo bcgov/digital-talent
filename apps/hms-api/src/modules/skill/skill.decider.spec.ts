@@ -10,10 +10,10 @@ import { SkillDeletedEvent } from './events/skill-deleted/skill-deleted.event';
 import { CreateSkillInput } from './inputs/create-skill.input';
 import { UpdateSkillInput } from './inputs/update-skill.input';
 import { ExistsState, InitialState } from '../event-store/types/decider-state.type';
-import { SkillWriteEntity } from './entities/skill-write.entity';
 import { DeleteSkillInput } from './inputs';
+import { SkillWriteModel } from './models/skill-write.model';
 
-type SkillState = InitialState | ExistsState<'skill', SkillWriteEntity>;
+type SkillState = InitialState | ExistsState<'skill', SkillWriteModel>;
 
 describe('skill.decider', () => {
   const mockInitialState: SkillState = { exists: false };
