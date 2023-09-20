@@ -1,170 +1,46 @@
 import { EventStoreDBClient } from '@eventstore/db-client';
-import { ModuleRef } from '@nestjs/core';
-import { CqrsModule, QueryBus as NestQueryBus } from '@nestjs/cqrs';
+import { INestApplication } from '@nestjs/common';
+import { CqrsModule, QueryBus } from '@nestjs/cqrs';
 import { Test, TestingModule } from '@nestjs/testing';
+import { GridCommandHandlers } from '../../grid/commands';
+import { GridEventHandlers } from '../../grid/events';
+import { GridQueryHandlers } from '../../grid/queries';
 import { GetGridQuery } from '../../grid/queries/get-grid/get-grid.query';
-import { OccupationGroupModel } from '../../occupation-group/models/occupation-group.model';
+import { OccupationGroupCommandHandlers } from '../../occupation-group/commands';
+import { OccupationGroupEventHandlers } from '../../occupation-group/events';
+import { OccupationGroupQueryHandlers } from '../../occupation-group/queries';
 import { GetOccupationGroupQuery } from '../../occupation-group/queries/get-occupation-group/get-occupation-group.query';
 import { PrismaService } from '../../prisma/prisma.service';
 import { ClassificationCommandHandlers } from '../commands';
 import { ClassificationEventHandlers } from '../events';
 import { ClassificationModel } from '../models/classification.model';
 import { ClassificationQueryHandlers } from '../queries';
-import { GetClassificationHandler } from '../queries/get-classification/get-classification.handler';
 import { GetClassificationQuery } from '../queries/get-classification/get-classification.query';
 import { GetClassificationsQuery } from '../queries/get-classifications/get-classifications.query';
 import { ClassificationResolver } from './classification.resolver';
-
-describe('ClassificationResolver', () => {
-  let resolver: ClassificationResolver;
-  let queryBus: NestQueryBus;
-
-  beforeEach(async () => {
-    const module: TestingModule = await Test.createTestingModule({
-      providers: [
-        ClassificationResolver,
-        {
-          provide: NestQueryBus,
-          useValue: {
-            execute: jest.fn(),
-          },
-        },
-        {
-          provide: PrismaService, // This mock provides the PrismaService in the testing context.
-          useValue: {
-            // Mock any methods of PrismaService that are used in your services.
-            // If none of the methods are used directly in this test, you can leave it as an empty object.
-          },
-        },
-      ],
-    }).compile();
-
-    resolver = module.get<ClassificationResolver>(ClassificationResolver);
-    queryBus = module.get<NestQueryBus>(NestQueryBus);
-  });
-
-  it('should be defined', () => {
-    expect(resolver).toBeDefined();
-  });
-
-  describe('getClassifications', () => {
-    it('should get all classifications', async () => {
-      const expectedResult = [{ id: 'some-uuid', name: 'Some Classification' }];
-      (queryBus.execute as jest.Mock).mockResolvedValueOnce(expectedResult);
-
-      expect(await resolver.getClassifications()).toBe(expectedResult);
-      expect(queryBus.execute).toHaveBeenCalledWith(new GetClassificationsQuery());
-    });
-  });
-
-  describe('getClassification', () => {
-    it('should get a single classification by ID', async () => {
-      const id = 'some-uuid';
-      const expectedResult = { id, name: 'Some Classification' };
-      (queryBus.execute as jest.Mock).mockResolvedValueOnce(expectedResult);
-
-      expect(await resolver.getClassification(id)).toBe(expectedResult);
-      expect(queryBus.execute).toHaveBeenCalledWith(new GetClassificationQuery(id));
-    });
-  });
-
-  describe('getGrid', () => {
-    it('should get grid by grid id', async () => {
-      const inpt: ClassificationModel = {
-        id: 'id',
-        grid_id: 'gird_id',
-        occupation_group_id: 'string',
-        rate_adjustment: 0.123,
-        grid: {
-          id: 'id',
-          name: 'name',
-          steps: [],
-          created_at: new Date(),
-        },
-        occupation_group: {
-          id: 'id',
-          code: 'code',
-          name: 'name',
-          created_at: new Date(),
-        },
-        created_at: new Date(),
-      };
-
-      const expectedResult = { result: 'expected' };
-
-      (queryBus.execute as jest.Mock).mockResolvedValueOnce(expectedResult);
-
-      expect(await resolver.getGrid(inpt)).toBe(expectedResult);
-      expect(queryBus.execute).toHaveBeenCalledWith(new GetGridQuery(inpt.grid_id));
-    });
-  });
-
-  describe('getOccupationGroup', () => {
-    it('should get an occupation group associated with a classification', async () => {
-      const inpt: ClassificationModel = {
-        id: 'id',
-        grid_id: 'gird_id',
-        occupation_group_id: 'string',
-        rate_adjustment: 0.123,
-        grid: {
-          id: 'id',
-          name: 'name',
-          steps: [],
-          created_at: new Date(),
-        },
-        occupation_group: {
-          id: 'id',
-          code: 'code',
-          name: 'name',
-          created_at: new Date(),
-        },
-        created_at: new Date(),
-      };
-
-      const expectedResult: OccupationGroupModel = {
-        id: 'occupation-group-uuid',
-        code: 'some-code',
-        name: 'Some Occupation Group',
-        created_at: new Date(),
-      };
-
-      (queryBus.execute as jest.Mock).mockResolvedValueOnce(expectedResult);
-
-      expect(await resolver.getOccupationGroup(inpt)).toBe(expectedResult);
-      expect(queryBus.execute).toHaveBeenCalledWith(new GetOccupationGroupQuery(inpt.occupation_group_id));
-    });
-  });
-});
-
-class CustomQueryBus extends NestQueryBus {
-  constructor(private customModuleRef: ModuleRef) {
-    super(customModuleRef);
-  }
-
-  execute(query): Promise<any> {
-    if (query instanceof GetClassificationQuery) {
-      const handler = this.customModuleRef.get(GetClassificationHandler, { strict: false });
-      if (handler) {
-        return handler.execute(query);
-      }
-    }
-    // For other queries, fallback to the default behavior
-    return super.execute(query);
-  }
-}
 
 describe('ClassificationResolver Integration Tests', () => {
   let resolver: ClassificationResolver;
   let mockPrismaService: Partial<PrismaService>;
   let mockEventStore: Partial<EventStoreDBClient>;
+  let queryBus: QueryBus;
+  let executeSpy: jest.SpyInstance;
+  let app: INestApplication;
+
+  afterEach(async () => {
+    executeSpy.mockClear();
+    if (app) await app.close();
+  });
 
   beforeEach(async () => {
     // Mock PrismaService
     mockPrismaService = {
       classification: {
         findUnique: jest.fn(),
-        // ... add other necessary mocks
+        findMany: jest.fn(),
       },
+      grid: { findUnique: jest.fn() },
+      occupationGroup: { findUnique: jest.fn() },
     } as any;
 
     // Mock EventStoreDBClient's readStream
@@ -179,6 +55,12 @@ describe('ClassificationResolver Integration Tests', () => {
         ...ClassificationCommandHandlers,
         ...ClassificationEventHandlers,
         ...ClassificationQueryHandlers,
+        ...GridCommandHandlers,
+        ...GridEventHandlers,
+        ...GridQueryHandlers,
+        ...OccupationGroupCommandHandlers,
+        ...OccupationGroupEventHandlers,
+        ...OccupationGroupQueryHandlers,
         {
           provide: PrismaService,
           useValue: mockPrismaService,
@@ -187,27 +69,40 @@ describe('ClassificationResolver Integration Tests', () => {
           provide: EventStoreDBClient,
           useValue: mockEventStore,
         },
-        {
-          provide: NestQueryBus,
-          useClass: CustomQueryBus,
-        },
       ],
     }).compile();
 
     resolver = module.get<ClassificationResolver>(ClassificationResolver);
+    queryBus = module.get<QueryBus>(QueryBus);
+    executeSpy = jest.spyOn(queryBus, 'execute');
+
+    app = module.createNestApplication<INestApplication>();
+
+    await app.init();
   });
 
-  // it('should fetch classifications', async () => {
-  //   // mock the return value for the necessary methods
-  //   (mockEventStore.readStream as jest.Mock).mockReturnValueOnce([
-  //     /* mocked event data */
-  //   ]);
+  it('should be defined', () => {
+    expect(resolver).toBeDefined();
+  });
 
-  //   const result = await resolver.getClassifications();
+  it('should fetch classifications', async () => {
+    const mockClassifications = [{ id: 'mockId1' }, { id: 'mockId2' }];
+    (mockPrismaService.classification.findMany as jest.Mock).mockResolvedValueOnce(mockClassifications);
 
-  //   expect(result).toBeDefined();
-  //   // Add more assertions based on your expected return values.
-  // });
+    const result = await resolver.getClassifications();
+
+    expect(executeSpy).toHaveBeenCalledWith(new GetClassificationsQuery());
+    expect(result).toEqual(mockClassifications);
+  });
+
+  it('should handle [] when fetching classifications', async () => {
+    const mockClassifications = [];
+    (mockPrismaService.classification.findMany as jest.Mock).mockResolvedValueOnce(mockClassifications);
+
+    const result = await resolver.getClassifications();
+
+    expect(result).toEqual(mockClassifications);
+  });
 
   it('should fetch a single classification', async () => {
     const mockId = 'd290f1ee-6c54-4b01-90e6-d701748f0851';
@@ -216,68 +111,127 @@ describe('ClassificationResolver Integration Tests', () => {
 
     const result = await resolver.getClassification(mockId);
 
+    expect(executeSpy).toHaveBeenCalledWith(new GetClassificationQuery(mockId));
     expect(result).toEqual(mockClassification);
   });
 
-  // it('should resolve grid for a classification', async () => {
-  //   const mockClassification: ClassificationModel = {
-  //     id: 'id',
-  //     grid_id: 'gird_id',
-  //     occupation_group_id: 'string',
-  //     rate_adjustment: 0.123,
-  //     grid: {
-  //       id: 'id',
-  //       name: 'name',
-  //       steps: [],
-  //       created_at: new Date(),
-  //     },
-  //     occupation_group: {
-  //       id: 'id',
-  //       code: 'code',
-  //       name: 'name',
-  //       created_at: new Date(),
-  //     },
-  //     created_at: new Date(),
-  //   };
+  it('should handle null when fetching a single classification', async () => {
+    const mockId = 'd290f1ee-6c54-4b01-90e6-d701748f0851';
+    const mockClassification = null;
+    (mockPrismaService.classification.findUnique as jest.Mock).mockResolvedValueOnce(mockClassification);
 
-  //   (mockEventStore.readStream as jest.Mock).mockReturnValueOnce([
-  //     /* mocked event data */
-  //   ]);
+    const result = await resolver.getClassification(mockId);
 
-  //   const result = await resolver.getGrid(mockClassification);
+    expect(result).toEqual(mockClassification);
+  });
 
-  //   expect(result).toBeDefined();
-  //   // Add more assertions based on your expected return values.
-  // });
+  it('should resolve grid for a classification', async () => {
+    const mockGrid = { id: 'mockId' };
+    const mockClassification: ClassificationModel = {
+      id: 'id',
+      grid_id: 'gird_id',
+      occupation_group_id: 'string',
+      rate_adjustment: 0.123,
+      grid: {
+        id: 'id',
+        name: 'name',
+        steps: [],
+        created_at: new Date(),
+      },
+      occupation_group: {
+        id: 'id',
+        code: 'code',
+        name: 'name',
+        created_at: new Date(),
+      },
+      created_at: new Date(),
+    };
+    (mockPrismaService.grid.findUnique as jest.Mock).mockResolvedValueOnce(mockGrid);
+    const result = await resolver.getGrid(mockClassification);
 
-  // it('should resolve occupation group for a classification', async () => {
-  //   const mockClassification: ClassificationModel = {
-  //     id: 'id',
-  //     grid_id: 'gird_id',
-  //     occupation_group_id: 'string',
-  //     rate_adjustment: 0.123,
-  //     grid: {
-  //       id: 'id',
-  //       name: 'name',
-  //       steps: [],
-  //       created_at: new Date(),
-  //     },
-  //     occupation_group: {
-  //       id: 'id',
-  //       code: 'code',
-  //       name: 'name',
-  //       created_at: new Date(),
-  //     },
-  //     created_at: new Date(),
-  //   };
+    expect(executeSpy).toHaveBeenCalledWith(new GetGridQuery(mockClassification.grid_id));
+    expect(result).toEqual(mockGrid);
+  });
 
-  //   (mockEventStore.readStream as jest.Mock).mockReturnValueOnce([
-  //     /* mocked event data */
-  //   ]);
+  it('should handle null when resolving grid for a classification', async () => {
+    const mockGrid = null;
+    const mockClassification: ClassificationModel = {
+      id: 'id',
+      grid_id: 'gird_id',
+      occupation_group_id: 'string',
+      rate_adjustment: 0.123,
+      grid: {
+        id: 'id',
+        name: 'name',
+        steps: [],
+        created_at: new Date(),
+      },
+      occupation_group: {
+        id: 'id',
+        code: 'code',
+        name: 'name',
+        created_at: new Date(),
+      },
+      created_at: new Date(),
+    };
+    (mockPrismaService.grid.findUnique as jest.Mock).mockResolvedValueOnce(mockGrid);
+    const result = await resolver.getGrid(mockClassification);
 
-  //   const result = await resolver.getOccupationGroup(mockClassification);
+    expect(result).toEqual(mockGrid);
+  });
 
-  //   expect(result).toBeDefined();
-  //   // Add more assertions based on your expected return values.
-  // });
+  it('should occupation grid for a classification', async () => {
+    const mockOccupationGrid = { id: 'mockId' };
+    const mockClassification: ClassificationModel = {
+      id: 'id',
+      grid_id: 'gird_id',
+      occupation_group_id: 'string',
+      rate_adjustment: 0.123,
+      grid: {
+        id: 'id',
+        name: 'name',
+        steps: [],
+        created_at: new Date(),
+      },
+      occupation_group: {
+        id: 'id',
+        code: 'code',
+        name: 'name',
+        created_at: new Date(),
+      },
+      created_at: new Date(),
+    };
+    (mockPrismaService.occupationGroup.findUnique as jest.Mock).mockResolvedValueOnce(mockOccupationGrid);
+    const result = await resolver.getOccupationGroup(mockClassification);
+
+    expect(executeSpy).toHaveBeenCalledWith(new GetOccupationGroupQuery(mockClassification.occupation_group_id));
+    expect(result).toEqual(mockOccupationGrid);
+  });
+
+  it('should handle null when resolving occupation group for a classification', async () => {
+    const mockOccupationGrid = null;
+    const mockClassification: ClassificationModel = {
+      id: 'id',
+      grid_id: 'gird_id',
+      occupation_group_id: 'string',
+      rate_adjustment: 0.123,
+      grid: {
+        id: 'id',
+        name: 'name',
+        steps: [],
+        created_at: new Date(),
+      },
+      occupation_group: {
+        id: 'id',
+        code: 'code',
+        name: 'name',
+        created_at: new Date(),
+      },
+      created_at: new Date(),
+    };
+    (mockPrismaService.occupationGroup.findUnique as jest.Mock).mockResolvedValueOnce(mockOccupationGrid);
+    const result = await resolver.getOccupationGroup(mockClassification);
+
+    expect(result).toEqual(mockOccupationGrid);
+  });
 });
