@@ -56,8 +56,6 @@ describe('OpportunityLocationResolver', () => {
     mockPrismaService.opportunityLocation.findMany.mockResolvedValueOnce(mockOpportunityLocations);
 
     const result = await resolver.opportunityLocations();
-    // eslint-disable-next-line no-console
-    console.log(result);
     expect(result).toEqual(mockOpportunityLocations);
     expect(mockPrismaService.opportunityLocation.findMany).toHaveBeenCalled();
   });

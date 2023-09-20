@@ -2,6 +2,6 @@ import { GetCompetitionScheduleHandler } from './get-competition-schedule.handle
 
 describe('GetCompetitionScheduleHandler', () => {
   it('should be defined', () => {
-    expect(new GetCompetitionScheduleHandler()).toBeDefined();
+    expect(new GetCompetitionScheduleHandler(null)).toBeDefined();
   });
 });
