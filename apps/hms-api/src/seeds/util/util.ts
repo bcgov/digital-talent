@@ -1,5 +1,5 @@
-import { CommandBus, ICommand } from '@nestjs/cqrs';
 import { EventStoreDBClient, FORWARDS, START } from '@eventstore/db-client';
+import { CommandBus, ICommand } from '@nestjs/cqrs';
 import { SYSTEM_USER_ID } from '../../modules/auth/auth.constants';
 import { handleEmpty } from '../../modules/event-store/utils/create-command-handler.util';
 import * as defaultValidator from '../../utils/validate-object.dto';
@@ -15,6 +15,8 @@ export async function applySeeds<T extends { id: string | number }>(
   streamPrefix: string,
   validateObject: typeof defaultValidator.validateObject = defaultValidator.validateObject,
 ) {
+  // eslint-disable-next-line no-console
+  console.log('applying seeds for: ', streamPrefix);
   const { upsert, remove } = seeds;
 
   for await (const seed of upsert) {
