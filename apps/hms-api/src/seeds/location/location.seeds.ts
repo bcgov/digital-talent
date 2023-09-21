@@ -1527,7 +1527,7 @@ export const locationSeeds: SeedType<CreateLocationInput> = {
 };
 
 export const applyLocationSeeds = async (commandBus: CommandBus<ICommand>, eventStore: EventStoreDBClient) => {
-  applySeeds(
+  await applySeeds(
     locationSeeds,
     commandBus,
     eventStore,

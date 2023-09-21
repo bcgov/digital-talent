@@ -110,7 +110,7 @@ export const jobDescriptionSeeds: SeedType<CreateJobDescriptionInput> = {
 };
 
 export const applyJobDescriptionSeeds = async (commandBus: CommandBus<ICommand>, eventStore: EventStoreDBClient) => {
-  applySeeds(
+  await applySeeds(
     jobDescriptionSeeds,
     commandBus,
     eventStore,

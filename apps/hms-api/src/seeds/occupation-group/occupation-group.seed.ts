@@ -17,7 +17,7 @@ export const occupationGroupSeeds: SeedType<CreateOccupationGroupInput> = {
 };
 
 export const applyOccupationGroupSeeds = async (commandBus: CommandBus<ICommand>, eventStore: EventStoreDBClient) => {
-  applySeeds(
+  await applySeeds(
     occupationGroupSeeds,
     commandBus,
     eventStore,
