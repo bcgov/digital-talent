@@ -240,7 +240,7 @@ export const gridSeeds: SeedType<CreateGridInput> = {
 };
 
 export const applyGridSeeds = async (commandBus: CommandBus<ICommand>, eventStore: EventStoreDBClient) => {
-  applySeeds(
+  await applySeeds(
     gridSeeds,
     commandBus,
     eventStore,

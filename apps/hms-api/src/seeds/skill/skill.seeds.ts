@@ -617,7 +617,7 @@ export const skillSeeds: SeedType<CreateSkillInput> = {
 };
 
 export const applySkillSeeds = async (commandBus: CommandBus<ICommand>, eventStore: EventStoreDBClient) => {
-  applySeeds(
+  await applySeeds(
     skillSeeds,
     commandBus,
     eventStore,

@@ -65,7 +65,7 @@ export const classificationSeeds: SeedType<CreateClassificationInput> = {
 };
 
 export const applyClassificationSeeds = async (commandBus: CommandBus<ICommand>, eventStore: EventStoreDBClient) => {
-  applySeeds(
+  await applySeeds(
     classificationSeeds,
     commandBus,
     eventStore,

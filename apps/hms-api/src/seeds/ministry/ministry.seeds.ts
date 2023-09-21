@@ -69,7 +69,7 @@ export const ministrySeeds: SeedType<CreateMinistryInput> = {
 };
 
 export const applyMinistrySeeds = async (commandBus: CommandBus<ICommand>, eventStore: EventStoreDBClient) => {
-  applySeeds(
+  await applySeeds(
     ministrySeeds,
     commandBus,
     eventStore,
