@@ -1,16 +1,16 @@
 import { CommandBus } from '@nestjs/cqrs';
 import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { GraphQLString } from 'graphql';
+import { Application } from '../../../@generated/prisma-nestjs-graphql';
 import { CurrentUser } from '../../auth/decorators/current-user.decorator';
+import { PrismaService } from '../../prisma/prisma.service';
 import { CreateApplicationCommand } from './commands/create-application/create-application.command';
+import { DeleteApplicationCommand } from './commands/delete-application/delete-application.command';
 import { UpdateApplicationCommand } from './commands/update-application/update-application.command';
-import { ApplicationEntity } from './entities/application.entity';
 import { CreateApplicationInput } from './inputs/create-application.input';
 import { UpdateApplicationInput } from './inputs/update-application.input';
-import { PrismaService } from '../../prisma/prisma.service';
-import { DeleteApplicationCommand } from './commands/delete-application/delete-application.command';
 
-@Resolver((of) => ApplicationEntity)
+@Resolver((of) => Application)
 export class ApplicationResolver {
   constructor(private readonly commandBus: CommandBus, private readonly prisma: PrismaService) {}
 
@@ -48,12 +48,12 @@ export class ApplicationResolver {
     return command.data.id;
   }
 
-  @Query((returns) => [ApplicationEntity])
+  @Query((returns) => [Application])
   async applications() {
     return this.prisma.application.findMany();
   }
 
-  @Query((returns) => ApplicationEntity)
+  @Query((returns) => Application)
   async application(@Args('id', { type: () => GraphQLString }) id: string) {
     return this.prisma.application.findUnique({
       where: { id },

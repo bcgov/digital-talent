@@ -1,16 +1,16 @@
 import { CommandBus } from '@nestjs/cqrs';
 import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { GraphQLString } from 'graphql';
+import { Comment } from '../../@generated/prisma-nestjs-graphql';
 import { CurrentUser } from '../auth/decorators/current-user.decorator';
 import { PrismaService } from '../prisma/prisma.service';
 import { CreateCommentCommand } from './commands/create-comment/create-comment.command';
 import { DeleteCommentCommand } from './commands/delete-comment/delete-comment.command';
 import { UpdateCommentCommand } from './commands/update-comment/update-comment.command';
-import { CommentEntity } from './entities/comment.entity';
 import { CreateCommentInput } from './inputs/create-comment.input';
 import { UpdateCommentInput } from './inputs/update-comment.input';
 
-@Resolver((of) => CommentEntity)
+@Resolver((of) => Comment)
 export class CommentResolver {
   constructor(private readonly commandBus: CommandBus, private readonly prisma: PrismaService) {}
 
@@ -48,12 +48,12 @@ export class CommentResolver {
     return command.data.id;
   }
 
-  @Query((returns) => [CommentEntity])
+  @Query((returns) => [Comment])
   async comments() {
     return this.prisma.comment.findMany();
   }
 
-  @Query((returns) => CommentEntity)
+  @Query((returns) => Comment)
   async comment(@Args('id', { type: () => GraphQLString }) id: string) {
     return this.prisma.comment.findUnique({
       where: { id },

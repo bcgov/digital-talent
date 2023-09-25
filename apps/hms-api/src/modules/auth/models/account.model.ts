@@ -2,9 +2,15 @@ import { Field, ObjectType } from '@nestjs/graphql';
 import { GraphQLUUID } from 'graphql-scalars';
 
 @ObjectType()
-export class IdentityWriteEntity {
+export class Account {
   @Field((type) => GraphQLUUID)
-  user_id: string;
+  id: string;
+
+  name?: string;
+
+  email?: string;
+
+  roles: string[];
 
   sub: string;
 
@@ -13,6 +19,4 @@ export class IdentityWriteEntity {
   created_at: Date;
 
   updated_at?: Date;
-
-  deleted_at?: Date;
 }

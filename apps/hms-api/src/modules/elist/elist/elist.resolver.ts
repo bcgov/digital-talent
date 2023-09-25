@@ -1,16 +1,16 @@
 import { CommandBus } from '@nestjs/cqrs';
 import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { GraphQLString } from 'graphql';
+import { Elist } from '../../../@generated/prisma-nestjs-graphql';
 import { CurrentUser } from '../../auth/decorators/current-user.decorator';
+import { PrismaService } from '../../prisma/prisma.service';
 import { CreateElistCommand } from './commands/create-elist/create-elist.command';
+import { DeleteElistCommand } from './commands/delete-elist/delete-elist.command';
 import { UpdateElistCommand } from './commands/update-elist/update-elist.command';
-import { ElistEntity } from './entities/elist.entity';
 import { CreateElistInput } from './inputs/create-elist.input';
 import { UpdateElistInput } from './inputs/update-elist.input';
-import { PrismaService } from '../../prisma/prisma.service';
-import { DeleteElistCommand } from './commands/delete-elist/delete-elist.command';
 
-@Resolver((of) => ElistEntity)
+@Resolver((of) => Elist)
 export class ElistResolver {
   constructor(private readonly commandBus: CommandBus, private readonly prisma: PrismaService) {}
 
@@ -45,12 +45,12 @@ export class ElistResolver {
     return command.data.id;
   }
 
-  @Query((returns) => [ElistEntity])
+  @Query((returns) => [Elist])
   async elists() {
     return this.prisma.elist.findMany();
   }
 
-  @Query((returns) => ElistEntity)
+  @Query((returns) => Elist)
   async elist(@Args('id', { type: () => GraphQLString }) id: string) {
     return this.prisma.elist.findUnique({
       where: { id },

@@ -1,15 +1,15 @@
 import { BadRequestException } from '@nestjs/common';
+import { OpportunityLocation } from '../../../@generated/prisma-nestjs-graphql';
 import { ExistsState, InitialState } from '../../event-store/types/decider-state.type';
 import { Decider } from '../../event-store/utils/create-command-handler.util';
 import { decideUpdateEventData } from '../../event-store/utils/decide-update-event-data.util';
 import { CreateOpportunityLocationCommand } from './commands/create-opportunity-location/create-opportunity-location.command';
 import { DeleteOpportunityLocationCommand } from './commands/delete-opportunity-location/delete-opportunity-location.command';
-import { OpportunityLocationEntity } from './entities/opportunity-location.entity';
 import { OpportunityLocationCreatedEvent } from './events/opportunity-location-created/opportunity-location-created.event';
 import { OpportunityLocationDeletedEvent } from './events/opportunity-location-deleted/opportunity-location-deleted.event';
 import { CreateOpportunityLocationInput } from './inputs/create-opportunity-location.input';
 
-export type OpportunityLocationState = InitialState | ExistsState<'opportunity-location', OpportunityLocationEntity>;
+export type OpportunityLocationState = InitialState | ExistsState<'opportunity-location', OpportunityLocation>;
 export type OpportunityLocationCommand = CreateOpportunityLocationCommand | DeleteOpportunityLocationCommand;
 export type OpportunityLocationEvent = OpportunityLocationCreatedEvent | OpportunityLocationDeletedEvent;
 

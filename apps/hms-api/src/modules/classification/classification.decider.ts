@@ -1,5 +1,7 @@
 import assert from 'assert';
 import { BadRequestException } from '@nestjs/common';
+import { Prisma } from '@prisma/client';
+import { Classification } from '../../@generated/prisma-nestjs-graphql';
 import { ExistsState, InitialState } from '../event-store/types/decider-state.type';
 import { Decider } from '../event-store/utils/create-command-handler.util';
 import { decideUpdateEventData } from '../event-store/utils/decide-update-event-data.util';
@@ -11,9 +13,8 @@ import { ClassificationDeletedEvent } from './events/classification-deleted/clas
 import { ClassificationUpdatedEvent } from './events/classification-updated/classification-updated.event';
 import { CreateClassificationInput } from './inputs/create-classification.input';
 import { UpdateClassificationInput } from './inputs/update-classification.input';
-import { ClassificationWriteModel } from './models/classification-write.model';
 
-export type State = InitialState | ExistsState<'classification', ClassificationWriteModel>;
+export type State = InitialState | ExistsState<'classification', Classification>;
 type Command = CreateClassificationCommand | UpdateClassificationCommand | DeleteClassificationCommand;
 type Event = ClassificationCreatedEvent | ClassificationUpdatedEvent | ClassificationDeletedEvent;
 
@@ -24,14 +25,20 @@ export function evolve(state: State, event: Event): State {
     case 'ClassificationCreatedEvent': {
       assert(state.exists === false);
 
-      const { data, metadata } = event;
+      const {
+        data: { rate_adjustment, ...data },
+        metadata,
+      } = event;
 
       return {
         exists: true,
         type: 'classification',
         data: {
           ...data,
+          rate_adjustment: new Prisma.Decimal(rate_adjustment),
           created_at: new Date(metadata.created_at),
+          updated_at: null,
+          deleted_at: null,
         },
       };
     }
@@ -39,7 +46,10 @@ export function evolve(state: State, event: Event): State {
       assert(state.exists === true);
       assert(state.type === 'classification');
 
-      const { data, metadata } = event;
+      const {
+        data: { rate_adjustment, ...data },
+        metadata,
+      } = event;
 
       return {
         exists: true,
@@ -47,6 +57,7 @@ export function evolve(state: State, event: Event): State {
         data: {
           ...state.data,
           ...data,
+          rate_adjustment: new Prisma.Decimal(rate_adjustment),
           updated_at: new Date(metadata.created_at),
         },
       };

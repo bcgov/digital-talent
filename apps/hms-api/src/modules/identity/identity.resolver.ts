@@ -1,14 +1,14 @@
 import { CommandBus } from '@nestjs/cqrs';
 import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { GraphQLString } from 'graphql';
+import { Identity } from '../../@generated/prisma-nestjs-graphql';
 import { CurrentUser } from '../auth/decorators/current-user.decorator';
-import { CreateIdentityCommand } from './commands/create-identity/create-identity.command';
-import { IdentityWriteEntity } from './entities/identity-write.entity';
-import { CreateIdentityInput } from './inputs/create-identity.input';
-import { DeleteIdentityCommand } from './commands/delete-identity/delete-identity.command';
 import { PrismaService } from '../prisma/prisma.service';
+import { CreateIdentityCommand } from './commands/create-identity/create-identity.command';
+import { DeleteIdentityCommand } from './commands/delete-identity/delete-identity.command';
+import { CreateIdentityInput } from './inputs/create-identity.input';
 
-@Resolver((of) => IdentityWriteEntity)
+@Resolver((of) => Identity)
 export class IdentityResolver {
   constructor(private readonly commandBus: CommandBus, private readonly prisma: PrismaService) {}
 
@@ -36,12 +36,12 @@ export class IdentityResolver {
     return command.data.sub;
   }
 
-  @Query((returns) => [IdentityWriteEntity])
+  @Query((returns) => [Identity])
   async identitys() {
     return this.prisma.identity.findMany();
   }
 
-  @Query((returns) => IdentityWriteEntity)
+  @Query((returns) => Identity)
   async identity(
     @Args({ name: 'sub', type: () => String }) sub: string,
     @Args({ name: 'identity_provider', type: () => String }) identity_provider: string,

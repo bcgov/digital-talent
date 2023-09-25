@@ -1,4 +1,5 @@
 import { BadRequestException } from '@nestjs/common';
+import { Location } from '../../@generated/prisma-nestjs-graphql';
 import { ExistsState, InitialState } from '../event-store/types/decider-state.type';
 import { Decider } from '../event-store/utils/create-command-handler.util';
 import { decideUpdateEventData } from '../event-store/utils/decide-update-event-data.util';
@@ -10,9 +11,8 @@ import { LocationDeletedEvent } from './events/location-deleted/location-deleted
 import { LocationUpdatedEvent } from './events/location-updated/location-updated.event';
 import { CreateLocationInput } from './inputs/create-location.input';
 import { UpdateLocationInput } from './inputs/update-location.input';
-import { LocationWriteModel } from './models/location-write.model';
 
-export type LocationState = InitialState | ExistsState<'location', LocationWriteModel>;
+export type LocationState = InitialState | ExistsState<'location', Location>;
 export type LocationCommand = CreateLocationCommand | UpdateLocationCommand | DeleteLocationCommand;
 export type LocationEvent = LocationCreatedEvent | LocationUpdatedEvent | LocationDeletedEvent;
 

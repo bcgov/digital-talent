@@ -1,5 +1,6 @@
 import assert from 'assert';
 import { BadRequestException } from '@nestjs/common';
+import { Skill } from '../../@generated/prisma-nestjs-graphql';
 import { ExistsState, InitialState } from '../event-store/types/decider-state.type';
 import { Decider } from '../event-store/utils/create-command-handler.util';
 import { decideUpdateEventData } from '../event-store/utils/decide-update-event-data.util';
@@ -11,9 +12,8 @@ import { SkillDeletedEvent } from './events/skill-deleted/skill-deleted.event';
 import { SkillUpdatedEvent } from './events/skill-updated/skill-updated.event';
 import { CreateSkillInput } from './inputs/create-skill.input';
 import { UpdateSkillInput } from './inputs/update-skill.input';
-import { SkillWriteModel } from './models/skill-write.model';
 
-type State = InitialState | ExistsState<'skill', SkillWriteModel>;
+type State = InitialState | ExistsState<'skill', Skill>;
 type Command = CreateSkillCommand | UpdateSkillCommand | DeleteSkillCommand;
 type Event = SkillCreatedEvent | SkillUpdatedEvent | SkillDeletedEvent;
 
@@ -24,14 +24,20 @@ export function evolve(state: State, event: Event): State {
     case 'SkillCreatedEvent': {
       assert(state.exists === false);
 
-      const { data, metadata } = event;
+      const {
+        data: { description, ...data },
+        metadata,
+      } = event;
 
       return {
         exists: true,
         type: 'skill',
         data: {
           ...data,
+          description,
           created_at: new Date(metadata.created_at),
+          updated_at: null,
+          deleted_at: null,
         },
       };
     }

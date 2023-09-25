@@ -1,6 +1,6 @@
 import assert from 'assert';
 import { BadRequestException } from '@nestjs/common';
-import { CompetitionState } from '../../../@generated/prisma-nestjs-graphql';
+import { Competition, CompetitionState } from '../../../@generated/prisma-nestjs-graphql';
 import { ExistsState, InitialState } from '../../event-store/types/decider-state.type';
 import { Decider } from '../../event-store/utils/create-command-handler.util';
 import { decideUpdateEventData } from '../../event-store/utils/decide-update-event-data.util';
@@ -15,10 +15,9 @@ import { CompetitionUpdatedEvent } from './events/competition-updated/competitio
 import { CreateCompetitionInput } from './inputs/create-competition.input';
 import { UpdateCompetitionStateInput } from './inputs/update-competition-state.input';
 import { UpdateCompetitionInput } from './inputs/update-competition.input';
-import { CompetitionWriteModel } from './models/competition-write.model';
 import { competitionStateStateMachine } from './state-machines/competition-state.state-machine';
 
-export type State = InitialState | ExistsState<'competition', CompetitionWriteModel>;
+export type State = InitialState | ExistsState<'competition', Competition>;
 type Command =
   | CreateCompetitionCommand
   | UpdateCompetitionCommand
@@ -33,15 +32,23 @@ export function evolve(state: State, event: Event): State {
     case 'CompetitionCreatedEvent': {
       assert(state.exists === false);
 
-      const { data, metadata } = event;
+      const {
+        data: { deltek_id, recruiter_id, ...data },
+        metadata,
+      } = event;
 
       return {
         exists: true,
         type: 'competition',
         data: {
           ...data,
+          deltek_id,
+          recruiter_id,
+          metadata: null,
           state: CompetitionState.DRAFT,
           created_at: new Date(metadata.created_at),
+          updated_at: null,
+          deleted_at: null,
         },
       };
     }

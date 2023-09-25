@@ -1,18 +1,18 @@
 import { BadRequestException } from '@nestjs/common';
+import { Elist } from '../../../@generated/prisma-nestjs-graphql';
 import { ExistsState, InitialState } from '../../event-store/types/decider-state.type';
 import { Decider } from '../../event-store/utils/create-command-handler.util';
 import { decideUpdateEventData } from '../../event-store/utils/decide-update-event-data.util';
 import { CreateElistOfferCommand } from './commands/create-elist-offer/create-elist-offer.command';
 import { DeleteElistOfferCommand } from './commands/delete-elist-offer/delete-elist-offer.command';
 import { UpdateElistOfferCommand } from './commands/update-elist-offer/update-elist-offer.command';
-import { ElistOfferEntity } from './entities/elist-offer.entity';
 import { ElistOfferCreatedEvent } from './events/elist-offer-created/elist-offer-created.event';
 import { ElistOfferDeletedEvent } from './events/elist-offer-deleted/elist-offer-deleted.event';
 import { ElistOfferUpdatedEvent } from './events/elist-offer-updated/elist-offer-updated.event';
 import { CreateElistOfferInput } from './inputs/create-elist-offer.input';
 import { UpdateElistOfferInput } from './inputs/update-elist-offer.input';
 
-export type ElistOfferState = InitialState | ExistsState<'elist-offer', ElistOfferEntity>;
+export type ElistOfferState = InitialState | ExistsState<'elist-offer', Elist>;
 export type ElistOfferCommand = CreateElistOfferCommand | UpdateElistOfferCommand | DeleteElistOfferCommand;
 export type ElistOfferEvent = ElistOfferCreatedEvent | ElistOfferUpdatedEvent | ElistOfferDeletedEvent;
 

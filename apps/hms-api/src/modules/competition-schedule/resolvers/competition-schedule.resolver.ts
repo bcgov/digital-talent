@@ -1,19 +1,18 @@
 import { CommandBus, QueryBus } from '@nestjs/cqrs';
 import { Args, Mutation, Parent, Query, ResolveField, Resolver } from '@nestjs/graphql';
 import { GraphQLString } from 'graphql';
+import { Competition, CompetitionSchedule } from '../../../@generated/prisma-nestjs-graphql';
 import { CurrentUser } from '../../auth/decorators/current-user.decorator';
-import { CompetitionModel } from '../../competition/competition/models/competition.model';
 import { GetCompetitionQuery } from '../../competition/competition/queries/get-competition/get-competition.query';
 import { CreateCompetitionScheduleCommand } from '../commands/create-competition-schedule/create-competition-schedule.command';
 import { DeleteCompetitionScheduleCommand } from '../commands/delete-competition-schedule/delete-competition-schedule.command';
 import { UpdateCompetitionScheduleCommand } from '../commands/update-competition-schedule/update-competition-schedule.command';
 import { CreateCompetitionScheduleInput } from '../inputs/create-competition-schedule.input';
 import { UpdateCompetitionScheduleInput } from '../inputs/update-competition-schedule.input';
-import { CompetitionScheduleModel } from '../models/competition-schedule.model';
 import { GetCompetitionScheduleQuery } from '../queries/get-competition-schedule/get-competition-schedule.query';
 import { GetCompetitionSchedulesQuery } from '../queries/get-competition-schedules/get-competition-schedules.query';
 
-@Resolver((of) => CompetitionScheduleModel)
+@Resolver((of) => CompetitionSchedule)
 export class CompetitionScheduleResolver {
   constructor(private readonly commandBus: CommandBus, private readonly queryBus: QueryBus) {}
 
@@ -50,18 +49,18 @@ export class CompetitionScheduleResolver {
     return command.data.id;
   }
 
-  @Query((returns) => [CompetitionScheduleModel])
+  @Query((returns) => [CompetitionSchedule])
   async competitionSchedules() {
     return this.queryBus.execute(new GetCompetitionSchedulesQuery());
   }
 
-  @Query((returns) => CompetitionScheduleModel)
+  @Query((returns) => CompetitionSchedule)
   async competitionSchedule(@Args('id', { type: () => GraphQLString }) id: string) {
     return this.queryBus.execute(new GetCompetitionScheduleQuery(id));
   }
 
-  @ResolveField('competition', (returns) => CompetitionModel)
-  async getCompetition(@Parent() competitionSchedule: CompetitionScheduleModel) {
+  @ResolveField('competition', (returns) => Competition)
+  async getCompetition(@Parent() competitionSchedule: CompetitionSchedule) {
     return this.queryBus.execute(new GetCompetitionQuery(competitionSchedule.competition_id));
   }
 }
