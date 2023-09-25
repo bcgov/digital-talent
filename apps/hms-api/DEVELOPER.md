@@ -121,24 +121,6 @@ To run all unit tests run
 
 `npx jest`
 
-To run end to end tests:
+To run end-to-end tests:
 
-`dotenv -e .env.test -- npx jest test/app.e2e-spec.ts --watch --no-cache --config ./test/jest-e2e.json`
-
-Before running e2e tests do below operations.
-
-Remove previous containers and associated volumes for test databases:
-
-`docker-compose -f docker-compose.test.yml -p hms-api-test down --volumes`
-
-Start docker images for testing:
-
-`docker-compose -f docker-compose.test.yml -p hms-api-test up`
-
-To generate prisma client from schema:
-
-`npx prisma generate`
-
-Populate testing database tables:
-
-` dotenv -e .env.test -- npx prisma db push --schema='prisma/schema.prisma' --skip-generate`
+`npm run test:e2e`

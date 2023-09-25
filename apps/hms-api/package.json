@@ -11,10 +11,11 @@
     "start:debug": "nest start --debug --watch",
     "start:dev": "nest start --watch",
     "start:prod": "node dist/main",
+    "start:test": "dotenv -e .env.test -- npm run start:dev",
     "test": "jest",
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-    "test:e2e": "jest --config ./test/jest-e2e.json",
+    "test:e2e": "bash ./test/run-e2e.sh",
     "test:watch": "jest --watch"
   },
   "jest": {
