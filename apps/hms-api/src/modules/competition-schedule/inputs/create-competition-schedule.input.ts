@@ -1,16 +1,16 @@
-import { Field, InputType, registerEnumType } from '@nestjs/graphql';
+import { Field, InputType } from '@nestjs/graphql';
 // import { Prisma } from '@prisma/client';
 import { IsDate, IsEnum, IsUUID } from 'class-validator';
 import { GraphQLUUID } from 'graphql-scalars';
+import { CompetitionState } from '../../../@generated/prisma-nestjs-graphql';
 // import { CompetitionState } from '../entities/competitionState.enum';
 // import { CompetitionWhereUniqueInput } from './competition-where-unique.input';
-import { CompetitionState } from '@prisma/client';
 
 // Register the enum with GraphQL
-registerEnumType(CompetitionState, {
-  name: 'CompetitionState', // this one is mandatory
-  description: 'The competition states', // the description is optional
-});
+// registerEnumType(CompetitionState, {
+//   name: 'CompetitionState', // this one is mandatory
+//   description: 'The competition states', // the description is optional
+// });
 
 @InputType()
 export class CreateCompetitionScheduleInput {

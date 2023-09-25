@@ -1,8 +1,9 @@
+import { SkillCategory } from '../../../@generated/prisma-nestjs-graphql';
+import { CreateSkillCommand } from '../commands/create-skill/create-skill.command';
+import { DeleteSkillCommand } from '../commands/delete-skill/delete-skill.command';
+import { UpdateSkillCommand } from '../commands/update-skill/update-skill.command';
 import { CreateSkillInput } from '../inputs/create-skill.input';
 import { UpdateSkillInput } from '../inputs/update-skill.input';
-import { CreateSkillCommand } from '../commands/create-skill/create-skill.command';
-import { UpdateSkillCommand } from '../commands/update-skill/update-skill.command';
-import { DeleteSkillCommand } from '../commands/delete-skill/delete-skill.command';
 import { SkillResolver } from './skill.resolver';
 
 describe('SkillResolver', () => {
@@ -24,7 +25,7 @@ describe('SkillResolver', () => {
   it('should create an skill correctly', async () => {
     const input: CreateSkillInput = {
       id: 'd290f1ee-6c54-4b01-90e6-d701748f0851',
-      category: 'CLOUD_PLATFORMS',
+      category: SkillCategory.CLOUD_PLATFORMS,
       name: 'test_name',
       description: 'test_description',
     };
@@ -42,7 +43,7 @@ describe('SkillResolver', () => {
   it('should update an skill correctly', async () => {
     const input: UpdateSkillInput = {
       id: 'd290f1ee-6c54-4b01-90e6-d701748f0851',
-      category: 'CLOUD_PLATFORMS',
+      category: SkillCategory.CLOUD_PLATFORMS,
       name: 'test_name',
       description: 'test_description',
     };

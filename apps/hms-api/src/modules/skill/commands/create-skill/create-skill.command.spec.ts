@@ -1,3 +1,4 @@
+import { SkillCategory } from '../../../../@generated/prisma-nestjs-graphql';
 import { Metadata } from '../../../event-store/types/metadata.type';
 import { CreateSkillInput } from '../../inputs/create-skill.input';
 import { CreateSkillCommand } from './create-skill.command';
@@ -5,7 +6,7 @@ import { CreateSkillCommand } from './create-skill.command';
 describe('CreateSkillCommand', () => {
   const mockData: CreateSkillInput = {
     id: 'd290f1ee-6c54-4b01-90e6-d701748f0851',
-    category: 'CLOUD_PLATFORMS',
+    category: SkillCategory.CLOUD_PLATFORMS,
     name: 'test_name',
     description: 'test_description',
   };

@@ -1,6 +1,6 @@
 import { Field, HideField, ObjectType } from '@nestjs/graphql';
-import { CompetitionState } from '@prisma/client';
 import { GraphQLUUID } from 'graphql-scalars';
+import { CompetitionState } from '../../../@generated/prisma-nestjs-graphql';
 import { CompetitionModel } from '../../competition/competition/models/competition.model';
 
 export interface ICompetitionScheduleModel {

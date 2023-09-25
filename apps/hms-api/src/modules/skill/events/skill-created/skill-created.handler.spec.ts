@@ -1,7 +1,8 @@
+import { SkillCategory } from '../../../../@generated/prisma-nestjs-graphql';
+import { Metadata } from '../../../event-store/types/metadata.type';
+import { CreateSkillInput } from '../../inputs/create-skill.input';
 import { SkillCreatedEvent } from './skill-created.event';
 import { SkillCreatedHandler } from './skill-created.handler';
-import { CreateSkillInput } from '../../inputs/create-skill.input';
-import { Metadata } from '../../../event-store/types/metadata.type';
 
 describe('SkillCreatedHandler', () => {
   let handler: SkillCreatedHandler;
@@ -16,7 +17,7 @@ describe('SkillCreatedHandler', () => {
     // Mock the data for CreateSkillInput and Metadata
     const mockCreateSkillInput: CreateSkillInput = {
       id: 'd290f1ee-6c54-4b01-90e6-d701748f0851',
-      category: 'CLOUD_PLATFORMS',
+      category: SkillCategory.CLOUD_PLATFORMS,
       name: 'test_name',
       description: 'test_description',
     };
@@ -33,7 +34,7 @@ describe('SkillCreatedHandler', () => {
     const expectedCreateObj = {
       data: {
         id: 'd290f1ee-6c54-4b01-90e6-d701748f0851',
-        category: 'CLOUD_PLATFORMS',
+        category: SkillCategory.CLOUD_PLATFORMS,
         name: 'test_name',
         description: 'test_description',
         created_at: mockMetadata.created_at,

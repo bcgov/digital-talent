@@ -1,7 +1,7 @@
 import { Field, InputType } from '@nestjs/graphql';
-import { CompetitionState } from '@prisma/client';
 import { IsEnum, IsUUID } from 'class-validator';
 import { GraphQLUUID } from 'graphql-scalars';
+import { CompetitionState } from '../../../../@generated/prisma-nestjs-graphql';
 
 @InputType()
 export class UpdateCompetitionStateInput {

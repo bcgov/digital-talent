@@ -1,14 +1,14 @@
-import { Field, HideField, ObjectType, registerEnumType } from '@nestjs/graphql';
-import { CompetitionCategory, CompetitionState } from '@prisma/client';
+import { Field, HideField, ObjectType } from '@nestjs/graphql';
 import { GraphQLUUID } from 'graphql-scalars';
+import { CompetitionCategory, CompetitionState } from '../../../../@generated/prisma-nestjs-graphql';
 import { CompetitionScheduleModel } from '../../../competition-schedule/models/competition-schedule.model';
 import { JobDescriptionModel } from '../../../job-description/models/job-description.model';
 import { UserModel } from '../../../user/models/user.model';
 import { CompetitionSkillModel } from '../../competition-skill/models/competition-skill.model';
 
-registerEnumType(CompetitionCategory, {
-  name: 'CompetitionCategory',
-});
+// registerEnumType(CompetitionCategory, {
+//   name: 'CompetitionCategory',
+// });
 
 export interface ICompetitionModel {
   id: string;

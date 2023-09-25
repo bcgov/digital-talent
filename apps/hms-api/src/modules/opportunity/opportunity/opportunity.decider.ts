@@ -1,6 +1,6 @@
 import assert from 'assert';
 import { BadRequestException } from '@nestjs/common';
-import { OpportunityState } from '@prisma/client';
+import { OpportunityState } from '../../../@generated/prisma-nestjs-graphql';
 import { ExistsState, InitialState } from '../../event-store/types/decider-state.type';
 import { Decider } from '../../event-store/utils/create-command-handler.util';
 import { decideUpdateEventData } from '../../event-store/utils/decide-update-event-data.util';

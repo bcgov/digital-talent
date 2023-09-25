@@ -1,14 +1,14 @@
-import { Test, TestingModule } from '@nestjs/testing';
 import { CommandBus, QueryBus } from '@nestjs/cqrs';
-import { CompetitionCategory, CompetitionState } from '@prisma/client';
+import { Test, TestingModule } from '@nestjs/testing';
+import { CompetitionCategory, CompetitionState } from '../../../../@generated/prisma-nestjs-graphql';
 import { PrismaService } from '../../../prisma/prisma.service';
-import { GetCompetitionsQuery } from '../queries/get-competitions/get-competitions.query';
-import { GetCompetitionQuery } from '../queries/get-competition/get-competition.query';
-import { CompetitionResolver } from './competition.resolver';
 import { CreateCompetitionCommand } from '../commands/create-competition/create-competition.command';
-import { UpdateCompetitionCommand } from '../commands/update-competition/update-competition.command';
-import { UpdateCompetitionStateCommand } from '../commands/update-competition-state/update-competition-state.command';
 import { DeleteCompetitionCommand } from '../commands/delete-competition/delete-competition.command';
+import { UpdateCompetitionStateCommand } from '../commands/update-competition-state/update-competition-state.command';
+import { UpdateCompetitionCommand } from '../commands/update-competition/update-competition.command';
+import { GetCompetitionQuery } from '../queries/get-competition/get-competition.query';
+import { GetCompetitionsQuery } from '../queries/get-competitions/get-competitions.query';
+import { CompetitionResolver } from './competition.resolver';
 
 describe('CompetitionResolver', () => {
   let resolver: CompetitionResolver;

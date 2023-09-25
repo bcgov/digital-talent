@@ -1,5 +1,6 @@
 import { Field, ObjectType } from '@nestjs/graphql';
-import { GraphQLJSON, GraphQLUUID } from 'graphql-scalars';
+import { GraphQLUUID } from 'graphql-scalars';
+import GraphQLJSON from 'graphql-type-json';
 
 @ObjectType()
 export class ApplicationEntity {

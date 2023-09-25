@@ -1,5 +1,5 @@
 import { EventsHandler, IEventHandler } from '@nestjs/cqrs';
-import { CompetitionState } from '@prisma/client';
+import { CompetitionState } from '../../../../../@generated/prisma-nestjs-graphql';
 import { PrismaService } from '../../../../prisma/prisma.service';
 import { CompetitionCreatedEvent } from './competition-created.event';
 

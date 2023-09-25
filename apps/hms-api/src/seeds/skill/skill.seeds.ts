@@ -1,6 +1,6 @@
 import { EventStoreDBClient } from '@eventstore/db-client';
 import { CommandBus, ICommand } from '@nestjs/cqrs';
-import { SkillCategory } from '@prisma/client';
+import { SkillCategory } from '../../@generated/prisma-nestjs-graphql';
 import { CreateSkillCommand } from '../../modules/skill/commands/create-skill/create-skill.command';
 import { DeleteSkillCommand } from '../../modules/skill/commands/delete-skill/delete-skill.command';
 import { UpdateSkillCommand } from '../../modules/skill/commands/update-skill/update-skill.command';

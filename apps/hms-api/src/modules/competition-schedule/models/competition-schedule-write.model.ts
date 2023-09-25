@@ -1,4 +1,4 @@
-import { CompetitionState } from '@prisma/client';
+import { CompetitionState } from '../../../@generated/prisma-nestjs-graphql';
 import { ICompetitionScheduleModel } from './competition-schedule.model';
 
 export class CompetitionScheduleWriteModel implements Omit<ICompetitionScheduleModel, 'competition'> {

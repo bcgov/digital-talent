@@ -5,6 +5,22 @@ generator client {
   provider = "prisma-client-js"
 }
 
+generator nestgraphql {
+  provider             = "prisma-nestjs-graphql"
+  output               = "../src/@generated/prisma-nestjs-graphql"
+  combineScalarFilters = true
+  noAtomicOperations   = true
+  omitModelsCount      = true
+  purgeOutput          = true
+  reExport             = Single
+
+  decorate_1_type      = "FindMany*Args"
+  decorate_1_field     = "@(cursor|distinct)"
+  decorate_1_name      = "HideField"
+  decorate_1_from      = "@nestjs/graphql"
+  decorate_1_arguments = "[]"
+}
+
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")

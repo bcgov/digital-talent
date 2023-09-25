@@ -1,4 +1,4 @@
-import { CompetitionCategory, CompetitionState } from '@prisma/client';
+import { CompetitionCategory, CompetitionState } from '../../../../@generated/prisma-nestjs-graphql';
 import { ICompetitionModel } from './competition.model';
 
 export class CompetitionWriteModel implements Omit<ICompetitionModel, 'job_description' | 'recruiter' | 'skills'> {

@@ -1,10 +1,10 @@
-import { Field, ObjectType, registerEnumType } from '@nestjs/graphql';
-import { LocationRegion } from '@prisma/client';
+import { Field, ObjectType } from '@nestjs/graphql';
 import { GraphQLUUID } from 'graphql-scalars';
+import { LocationRegion } from '../../../@generated/prisma-nestjs-graphql';
 
-registerEnumType(LocationRegion, {
-  name: 'LocationRegion',
-});
+// registerEnumType(LocationRegion, {
+//   name: 'LocationRegion',
+// });
 
 export interface ILocationModel {
   id: string;

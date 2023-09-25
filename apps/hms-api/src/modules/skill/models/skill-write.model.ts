@@ -1,4 +1,4 @@
-import { SkillCategory } from '@prisma/client';
+import { SkillCategory } from '../../../@generated/prisma-nestjs-graphql';
 import { ISkillModel } from './skill.model';
 
 export class SkillWriteModel implements ISkillModel {

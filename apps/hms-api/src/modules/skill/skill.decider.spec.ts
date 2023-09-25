@@ -1,17 +1,18 @@
 import { BadRequestException } from '@nestjs/common';
+import { SkillCategory } from '../../@generated/prisma-nestjs-graphql';
+import { ExistsState, InitialState } from '../event-store/types/decider-state.type';
 import { Metadata } from '../event-store/types/metadata.type';
-import { decide, evolve } from './skill.decider';
 import { CreateSkillCommand } from './commands/create-skill/create-skill.command';
-import { UpdateSkillCommand } from './commands/update-skill/update-skill.command';
 import { DeleteSkillCommand } from './commands/delete-skill/delete-skill.command';
+import { UpdateSkillCommand } from './commands/update-skill/update-skill.command';
 import { SkillCreatedEvent } from './events/skill-created/skill-created.event';
-import { SkillUpdatedEvent } from './events/skill-updated/skill-updated.event';
 import { SkillDeletedEvent } from './events/skill-deleted/skill-deleted.event';
+import { SkillUpdatedEvent } from './events/skill-updated/skill-updated.event';
+import { DeleteSkillInput } from './inputs';
 import { CreateSkillInput } from './inputs/create-skill.input';
 import { UpdateSkillInput } from './inputs/update-skill.input';
-import { ExistsState, InitialState } from '../event-store/types/decider-state.type';
-import { DeleteSkillInput } from './inputs';
 import { SkillWriteModel } from './models/skill-write.model';
+import { decide, evolve } from './skill.decider';
 
 type SkillState = InitialState | ExistsState<'skill', SkillWriteModel>;
 
@@ -23,7 +24,7 @@ describe('skill.decider', () => {
     data: {
       created_at: new Date('2023-08-21T12:00:00Z'),
       id: 'd290f1ee-6c54-4b01-90e6-d701748f0851',
-      category: 'CLOUD_PLATFORMS',
+      category: SkillCategory.CLOUD_PLATFORMS,
       name: 'test_name',
       description: 'test_description',
     },
@@ -36,7 +37,7 @@ describe('skill.decider', () => {
 
   const mockCreateSkillInput: CreateSkillInput = {
     id: 'd290f1ee-6c54-4b01-90e6-d701748f0851',
-    category: 'CLOUD_PLATFORMS',
+    category: SkillCategory.CLOUD_PLATFORMS,
     name: 'test_name',
     description: 'test_description',
   };
@@ -45,7 +46,7 @@ describe('skill.decider', () => {
 
   const mockUpdateSkillInput: UpdateSkillInput = {
     id: 'd290f1ee-6c54-4b01-90e6-d701748f0851',
-    category: 'COMMUNICATION',
+    category: SkillCategory.COMMUNICATION,
     name: 'test_name_2',
     description: 'test_description_2',
   };
@@ -68,7 +69,7 @@ describe('skill.decider', () => {
       expect(events[0]).toBeInstanceOf(SkillCreatedEvent);
       expect(events[0].data).toEqual({
         id: 'd290f1ee-6c54-4b01-90e6-d701748f0851',
-        category: 'CLOUD_PLATFORMS',
+        category: SkillCategory.CLOUD_PLATFORMS,
         name: 'test_name',
         description: 'test_description',
       });
@@ -85,7 +86,7 @@ describe('skill.decider', () => {
       expect(events[0]).toBeInstanceOf(SkillUpdatedEvent);
       expect(events[0].data).toEqual({
         id: 'd290f1ee-6c54-4b01-90e6-d701748f0851',
-        category: 'COMMUNICATION',
+        category: SkillCategory.COMMUNICATION,
         name: 'test_name_2',
         description: 'test_description_2',
       });
@@ -109,7 +110,7 @@ describe('skill.decider', () => {
       const mockEvent = new SkillCreatedEvent(
         {
           id: 'd290f1ee-6c54-4b01-90e6-d701748f0851',
-          category: 'CLOUD_PLATFORMS',
+          category: SkillCategory.CLOUD_PLATFORMS,
           name: 'test_name',
           description: 'test_description',
         },
@@ -123,7 +124,7 @@ describe('skill.decider', () => {
           type: 'skill',
           data: expect.objectContaining({
             id: 'd290f1ee-6c54-4b01-90e6-d701748f0851',
-            category: 'CLOUD_PLATFORMS',
+            category: SkillCategory.CLOUD_PLATFORMS,
             name: 'test_name',
             description: 'test_description',
             created_at: expect.any(Date), // Ensure created_at is a date without being specific about its value.
@@ -139,7 +140,7 @@ describe('skill.decider', () => {
         type: 'skill',
         data: {
           id: 'd290f1ee-6c54-4b01-90e6-d701748f0851',
-          category: 'CLOUD_PLATFORMS',
+          category: SkillCategory.CLOUD_PLATFORMS,
           name: 'test_name',
           description: 'test_description',
           created_at: new Date('2023-08-21T10:00:00Z'),
@@ -149,7 +150,7 @@ describe('skill.decider', () => {
       const mockEvent = new SkillUpdatedEvent(
         {
           id: 'd290f1ee-6c54-4b01-90e6-d701748f0851',
-          category: 'COMMUNICATION',
+          category: SkillCategory.COMMUNICATION,
           name: 'test_name_2',
           description: 'test_description_2',
         },
@@ -163,7 +164,7 @@ describe('skill.decider', () => {
           type: 'skill',
           data: expect.objectContaining({
             id: 'd290f1ee-6c54-4b01-90e6-d701748f0851',
-            category: 'COMMUNICATION',
+            category: SkillCategory.COMMUNICATION,
             name: 'test_name_2',
             description: 'test_description_2',
             updated_at: expect.any(Date), // Ensure updated_at is a date without being specific about its value.
@@ -179,7 +180,7 @@ describe('skill.decider', () => {
         type: 'skill',
         data: {
           id: 'd290f1ee-6c54-4b01-90e6-d701748f0851',
-          category: 'CLOUD_PLATFORMS',
+          category: SkillCategory.CLOUD_PLATFORMS,
           name: 'test_name',
           description: 'test_description',
           created_at: new Date('2023-08-21T10:00:00Z'),

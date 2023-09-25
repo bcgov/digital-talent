@@ -1,21 +1,21 @@
-import { Field, ObjectType, registerEnumType } from '@nestjs/graphql';
-import { OpportunityInvolvement, OpportunityState, WorkOption } from '@prisma/client';
+import { Field, ObjectType } from '@nestjs/graphql';
 import { GraphQLUUID } from 'graphql-scalars';
+import { OpportunityInvolvement, OpportunityState, WorkOption } from '../../../../@generated/prisma-nestjs-graphql';
 
-registerEnumType(OpportunityInvolvement, {
-  name: 'OpportunityInvolvement',
-  description: 'The opportunity categories',
-});
+// registerEnumType(OpportunityInvolvement, {
+//   name: 'OpportunityInvolvement',
+//   description: 'The opportunity categories',
+// });
 
-registerEnumType(WorkOption, {
-  name: 'WorkOption',
-  description: 'The opportunity work options',
-});
+// registerEnumType(WorkOption, {
+//   name: 'WorkOption',
+//   description: 'The opportunity work options',
+// });
 
-registerEnumType(OpportunityState, {
-  name: 'OpportunityState',
-  description: 'The opportunity work options',
-});
+// registerEnumType(OpportunityState, {
+//   name: 'OpportunityState',
+//   description: 'The opportunity work options',
+// });
 
 @ObjectType()
 export class OpportunityEntity {

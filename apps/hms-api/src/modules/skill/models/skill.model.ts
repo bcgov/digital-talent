@@ -1,11 +1,11 @@
-import { Field, ObjectType, registerEnumType } from '@nestjs/graphql';
-import { SkillCategory } from '@prisma/client';
+import { Field, ObjectType } from '@nestjs/graphql';
 import { GraphQLUUID } from 'graphql-scalars';
+import { SkillCategory } from '../../../@generated/prisma-nestjs-graphql';
 
-registerEnumType(SkillCategory, {
-  name: 'SkillCategory',
-  description: 'Possible Skill categories',
-});
+// registerEnumType(SkillCategory, {
+//   name: 'SkillCategory',
+//   description: 'Possible Skill categories',
+// });
 
 export interface ISkillModel {
   id: string;
