@@ -10,7 +10,8 @@ import { OpportunitySkillEventHandlers } from './opportunity-skill/events';
 import { OpportunitySkillResolver } from './opportunity-skill/opportunity-skill.resolver';
 import { OpportunityCommandHandlers } from './opportunity/commands';
 import { OpportunityEventHandlers } from './opportunity/events';
-import { OpportunityResolver } from './opportunity/opportunity.resolver';
+import { OpportunityQueryHandlers } from './opportunity/queries';
+import { OpportunityResolver } from './opportunity/resolvers/opportunity.resolver';
 
 @Module({
   imports: [CqrsModule, PrismaModule],
@@ -24,6 +25,7 @@ import { OpportunityResolver } from './opportunity/opportunity.resolver';
     ...OpportunitySkillEventHandlers,
     ...OpportunityCommandHandlers,
     ...OpportunityEventHandlers,
+    ...OpportunityQueryHandlers,
   ],
 })
 export class OpportunityModule {

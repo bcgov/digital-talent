@@ -1,9 +1,9 @@
-import { CreateOpportunityCommand } from './commands/create-opportunity/create-opportunity.command';
-import { DeleteOpportunityCommand } from './commands/delete-opportunity/delete-opportunity.command';
-import { UpdateOpportunityCommand } from './commands/update-opportunity/update-opportunity.command';
-import { CreateOpportunityInput } from './inputs/create-opportunity.input';
-import { DeleteOpportunityInput } from './inputs/delete-opportunity.input';
-import { UpdateOpportunityInput } from './inputs/update-opportunity.input';
+import { CreateOpportunityCommand } from '../commands/create-opportunity/create-opportunity.command';
+import { DeleteOpportunityCommand } from '../commands/delete-opportunity/delete-opportunity.command';
+import { UpdateOpportunityCommand } from '../commands/update-opportunity/update-opportunity.command';
+import { CreateOpportunityInput } from '../inputs/create-opportunity.input';
+import { DeleteOpportunityInput } from '../inputs/delete-opportunity.input';
+import { UpdateOpportunityInput } from '../inputs/update-opportunity.input';
 import { OpportunityResolver } from './opportunity.resolver';
 
 describe('OpportunityResolver', () => {
