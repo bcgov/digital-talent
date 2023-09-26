@@ -9,7 +9,10 @@ export class ElistOfferGroupBy {
   id!: string;
 
   @Field(() => String, { nullable: false })
-  elistId!: string;
+  elist_id!: string;
+
+  @Field(() => String, { nullable: false })
+  opportunity_id!: string;
 
   @Field(() => Boolean, { nullable: false })
   is_accepted!: boolean;
@@ -22,9 +25,6 @@ export class ElistOfferGroupBy {
 
   @Field(() => Date, { nullable: true })
   deleted_at?: Date | string;
-
-  @Field(() => String, { nullable: true })
-  opportunityId?: string;
 
   @Field(() => ElistOfferCountAggregate, { nullable: true })
   _count?: ElistOfferCountAggregate;

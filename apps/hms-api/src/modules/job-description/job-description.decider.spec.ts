@@ -1,15 +1,15 @@
 import { AssertionError } from 'assert';
 import { Metadata } from '../event-store/types/metadata.type';
-import { State, decide, evolve } from './job-description.decider';
 import { CreateJobDescriptionCommand } from './commands/create-job-description/create-job-description.command';
-import { UpdateJobDescriptionCommand } from './commands/update-job-description/update-job-description.command';
 import { DeleteJobDescriptionCommand } from './commands/delete-job-description/delete-job-description.command';
+import { UpdateJobDescriptionCommand } from './commands/update-job-description/update-job-description.command';
 import { JobDescriptionCreatedEvent } from './events/job-description-created/job-description-created.event';
-import { JobDescriptionUpdatedEvent } from './events/job-description-updated/job-description-updated.event';
 import { JobDescriptionDeletedEvent } from './events/job-description-deleted/job-description-deleted.event';
+import { JobDescriptionUpdatedEvent } from './events/job-description-updated/job-description-updated.event';
 import { CreateJobDescriptionInput } from './inputs/create-job-description.input';
 import { DeleteJobDescriptionInput } from './inputs/delete-job-description.input';
 import { UpdateJobDescriptionInput } from './inputs/update-job-description.input';
+import { decide, evolve, State } from './job-description.decider';
 
 describe('job-description.decider', () => {
   const mockInitialState: State = { exists: false };
@@ -17,11 +17,13 @@ describe('job-description.decider', () => {
     exists: true,
     type: 'job-description',
     data: {
-      created_at: new Date('2023-08-21T12:00:00Z'),
       id: 'd290f1ee-6c54-4b01-90e6-d701748f0851',
       classification_id: 'd290f1ee-6c54-4b01-90e6-d701748f0852',
       e_class_id: 'test_e_class_id',
       name: 'test_name',
+      created_at: new Date('2023-08-21T12:00:00Z'),
+      updated_at: null,
+      deleted_at: null,
     },
   };
 
@@ -139,6 +141,8 @@ describe('job-description.decider', () => {
           e_class_id: 'test_e_class_id',
           name: 'test_name',
           created_at: new Date('2023-08-21T10:00:00Z'),
+          updated_at: null,
+          deleted_at: null,
         },
       };
 
@@ -179,6 +183,8 @@ describe('job-description.decider', () => {
           e_class_id: 'test_e_class_id',
           name: 'test_name',
           created_at: new Date('2023-08-21T10:00:00Z'),
+          updated_at: null,
+          deleted_at: null,
         },
       };
 

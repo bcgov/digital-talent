@@ -25,5 +25,5 @@ export class ElistUncheckedCreateInput {
   deleted_at?: Date | string;
 
   @Field(() => ElistOfferUncheckedCreateNestedManyWithoutElistInput, { nullable: true })
-  ElistOffer?: ElistOfferUncheckedCreateNestedManyWithoutElistInput;
+  offers?: ElistOfferUncheckedCreateNestedManyWithoutElistInput;
 }

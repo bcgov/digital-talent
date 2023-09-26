@@ -24,7 +24,4 @@ export class OpportunitySkillScalarWhereWithAggregatesInput {
 
   @Field(() => DateTimeWithAggregatesFilter, { nullable: true })
   deleted_at?: DateTimeWithAggregatesFilter;
-
-  @Field(() => UuidWithAggregatesFilter, { nullable: true })
-  opportunityId?: UuidWithAggregatesFilter;
 }

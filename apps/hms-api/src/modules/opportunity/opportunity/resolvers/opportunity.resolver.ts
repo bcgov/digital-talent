@@ -2,9 +2,17 @@ import { CommandBus, QueryBus } from '@nestjs/cqrs';
 import { Args, Mutation, Parent, Query, ResolveField, Resolver } from '@nestjs/graphql';
 import { GraphQLString } from 'graphql';
 import { GraphQLUUID } from 'graphql-scalars';
-import { FindManyOpportunityArgs, Ministry, Opportunity } from '../../../../@generated/prisma-nestjs-graphql';
+import {
+  Competition,
+  FindManyOpportunityArgs,
+  Ministry,
+  Opportunity,
+  User,
+} from '../../../../@generated/prisma-nestjs-graphql';
 import { CurrentUser } from '../../../auth/decorators/current-user.decorator';
+import { GetCompetitionQuery } from '../../../competition/competition/queries/get-competition/get-competition.query';
 import { GetMinistryQuery } from '../../../ministry/queries/get-ministry/get-ministry.query';
+import { GetUserQuery } from '../../../user/queries/get-user/get-user.query';
 import { CreateOpportunityCommand } from '../commands/create-opportunity/create-opportunity.command';
 import { DeleteOpportunityCommand } from '../commands/delete-opportunity/delete-opportunity.command';
 import { UpdateOpportunityCommand } from '../commands/update-opportunity/update-opportunity.command';
@@ -64,8 +72,18 @@ export class OpportunityResolver {
     return this.queryBus.execute(new GetOpportunityQuery(id));
   }
 
+  @ResolveField('competition', (returns) => Competition)
+  competition(@Parent() opportunity: Opportunity) {
+    return this.queryBus.execute(new GetCompetitionQuery(opportunity.competition_id));
+  }
+
+  @ResolveField('hiring_manager', (returns) => User)
+  hiringManager(@Parent() opportunity: Opportunity) {
+    return this.queryBus.execute(new GetUserQuery(opportunity.hiring_manager_id));
+  }
+
   @ResolveField('ministry', (returns) => Ministry)
-  getMinistry(@Parent() opportunity: Opportunity) {
+  ministry(@Parent() opportunity: Opportunity) {
     return this.queryBus.execute(new GetMinistryQuery(opportunity.ministry_id));
   }
 }

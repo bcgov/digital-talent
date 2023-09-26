@@ -3,9 +3,6 @@ import { Field, InputType } from '@nestjs/graphql';
 @InputType()
 export class OpportunitySkillCreateManyOpportunityInput {
   @Field(() => String, { nullable: false })
-  opportunity_id!: string;
-
-  @Field(() => String, { nullable: false })
   skill_id!: string;
 
   @Field(() => Date, { nullable: false })

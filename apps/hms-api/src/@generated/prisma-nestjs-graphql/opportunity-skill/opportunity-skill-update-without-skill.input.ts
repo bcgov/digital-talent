@@ -3,9 +3,6 @@ import { OpportunityUpdateOneWithoutSkillsNestedInput } from '../opportunity/opp
 
 @InputType()
 export class OpportunitySkillUpdateWithoutSkillInput {
-  @Field(() => String, { nullable: true })
-  opportunity_id?: string;
-
   @Field(() => Date, { nullable: true })
   created_at?: Date | string;
 
@@ -13,5 +10,5 @@ export class OpportunitySkillUpdateWithoutSkillInput {
   deleted_at?: Date | string;
 
   @Field(() => OpportunityUpdateOneWithoutSkillsNestedInput, { nullable: true })
-  Opportunity?: OpportunityUpdateOneWithoutSkillsNestedInput;
+  opportunity?: OpportunityUpdateOneWithoutSkillsNestedInput;
 }

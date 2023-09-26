@@ -45,5 +45,5 @@ export class ElistWhereInput {
   competition?: CompetitionRelationFilter;
 
   @Field(() => ElistOfferListRelationFilter, { nullable: true })
-  ElistOffer?: ElistOfferListRelationFilter;
+  offers?: ElistOfferListRelationFilter;
 }

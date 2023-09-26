@@ -1,5 +1,5 @@
 import { Field, InputType } from '@nestjs/graphql';
-import { UserCreateNestedOneWithoutCommentInput } from '../user/user-create-nested-one-without-comment.input';
+import { UserCreateNestedOneWithoutCommentsInput } from '../user/user-create-nested-one-without-comments.input';
 
 @InputType()
 export class CommentCreateInput {
@@ -24,6 +24,6 @@ export class CommentCreateInput {
   @Field(() => Date, { nullable: true })
   deleted_at?: Date | string;
 
-  @Field(() => UserCreateNestedOneWithoutCommentInput, { nullable: false })
-  user!: UserCreateNestedOneWithoutCommentInput;
+  @Field(() => UserCreateNestedOneWithoutCommentsInput, { nullable: false })
+  user!: UserCreateNestedOneWithoutCommentsInput;
 }

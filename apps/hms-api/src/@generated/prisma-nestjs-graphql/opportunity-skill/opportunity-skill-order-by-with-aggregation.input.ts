@@ -19,9 +19,6 @@ export class OpportunitySkillOrderByWithAggregationInput {
   @Field(() => SortOrderInput, { nullable: true })
   deleted_at?: SortOrderInput;
 
-  @Field(() => SortOrderInput, { nullable: true })
-  opportunityId?: SortOrderInput;
-
   @Field(() => OpportunitySkillCountOrderByAggregateInput, { nullable: true })
   _count?: OpportunitySkillCountOrderByAggregateInput;
 

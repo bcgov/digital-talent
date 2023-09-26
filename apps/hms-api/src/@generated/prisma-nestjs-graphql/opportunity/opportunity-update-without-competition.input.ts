@@ -4,7 +4,7 @@ import { OpportunityInvolvement } from '../prisma/opportunity-involvement.enum';
 import { WorkOption } from '../prisma/work-option.enum';
 import { OpportunitySkillUpdateManyWithoutOpportunityNestedInput } from '../opportunity-skill/opportunity-skill-update-many-without-opportunity-nested.input';
 import { OpportunityLocationUpdateManyWithoutOpportunityNestedInput } from '../opportunity-location/opportunity-location-update-many-without-opportunity-nested.input';
-import { UserUpdateOneRequiredWithoutOpportunityNestedInput } from '../user/user-update-one-required-without-opportunity-nested.input';
+import { UserUpdateOneRequiredWithoutOpportunitiesNestedInput } from '../user/user-update-one-required-without-opportunities-nested.input';
 import { MinistryUpdateOneRequiredWithoutOpportunitiesNestedInput } from '../ministry/ministry-update-one-required-without-opportunities-nested.input';
 import { ElistOfferUpdateManyWithoutOpportunityNestedInput } from '../elist-offer/elist-offer-update-many-without-opportunity-nested.input';
 
@@ -55,12 +55,12 @@ export class OpportunityUpdateWithoutCompetitionInput {
   @Field(() => OpportunityLocationUpdateManyWithoutOpportunityNestedInput, { nullable: true })
   locations?: OpportunityLocationUpdateManyWithoutOpportunityNestedInput;
 
-  @Field(() => UserUpdateOneRequiredWithoutOpportunityNestedInput, { nullable: true })
-  hiring_manager?: UserUpdateOneRequiredWithoutOpportunityNestedInput;
+  @Field(() => UserUpdateOneRequiredWithoutOpportunitiesNestedInput, { nullable: true })
+  hiring_manager?: UserUpdateOneRequiredWithoutOpportunitiesNestedInput;
 
   @Field(() => MinistryUpdateOneRequiredWithoutOpportunitiesNestedInput, { nullable: true })
   ministry?: MinistryUpdateOneRequiredWithoutOpportunitiesNestedInput;
 
   @Field(() => ElistOfferUpdateManyWithoutOpportunityNestedInput, { nullable: true })
-  ElistOffer?: ElistOfferUpdateManyWithoutOpportunityNestedInput;
+  offers?: ElistOfferUpdateManyWithoutOpportunityNestedInput;
 }

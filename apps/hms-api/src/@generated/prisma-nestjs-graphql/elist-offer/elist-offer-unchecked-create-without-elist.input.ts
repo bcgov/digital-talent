@@ -5,6 +5,9 @@ export class ElistOfferUncheckedCreateWithoutElistInput {
   @Field(() => String, { nullable: false })
   id!: string;
 
+  @Field(() => String, { nullable: false })
+  opportunity_id!: string;
+
   @Field(() => Boolean, { nullable: false })
   is_accepted!: boolean;
 
@@ -16,7 +19,4 @@ export class ElistOfferUncheckedCreateWithoutElistInput {
 
   @Field(() => Date, { nullable: true })
   deleted_at?: Date | string;
-
-  @Field(() => String, { nullable: true })
-  opportunityId?: string;
 }

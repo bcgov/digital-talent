@@ -30,5 +30,5 @@ export class SkillCreateWithoutCompetitionsInput {
   applications?: ApplicationSkillCreateNestedManyWithoutSkillInput;
 
   @Field(() => OpportunitySkillCreateNestedManyWithoutSkillInput, { nullable: true })
-  OpportunitySkill?: OpportunitySkillCreateNestedManyWithoutSkillInput;
+  opportunities?: OpportunitySkillCreateNestedManyWithoutSkillInput;
 }

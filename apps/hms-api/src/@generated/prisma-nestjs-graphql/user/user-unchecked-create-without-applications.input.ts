@@ -1,8 +1,8 @@
 import { Field, InputType } from '@nestjs/graphql';
+import { CommentUncheckedCreateNestedManyWithoutUserInput } from '../comment/comment-unchecked-create-nested-many-without-user.input';
 import { CompetitionUncheckedCreateNestedManyWithoutRecruiterInput } from '../competition/competition-unchecked-create-nested-many-without-recruiter.input';
 import { IdentityUncheckedCreateNestedManyWithoutUserInput } from '../identity/identity-unchecked-create-nested-many-without-user.input';
 import { ElistUncheckedCreateNestedManyWithoutApplicantInput } from '../elist/elist-unchecked-create-nested-many-without-applicant.input';
-import { CommentUncheckedCreateNestedManyWithoutUserInput } from '../comment/comment-unchecked-create-nested-many-without-user.input';
 import { OpportunityUncheckedCreateNestedManyWithoutHiring_managerInput } from '../opportunity/opportunity-unchecked-create-nested-many-without-hiring-manager.input';
 
 @InputType()
@@ -31,6 +31,9 @@ export class UserUncheckedCreateWithoutApplicationsInput {
   @Field(() => Date, { nullable: true })
   deleted_at?: Date | string;
 
+  @Field(() => CommentUncheckedCreateNestedManyWithoutUserInput, { nullable: true })
+  comments?: CommentUncheckedCreateNestedManyWithoutUserInput;
+
   @Field(() => CompetitionUncheckedCreateNestedManyWithoutRecruiterInput, { nullable: true })
   competitions?: CompetitionUncheckedCreateNestedManyWithoutRecruiterInput;
 
@@ -40,9 +43,6 @@ export class UserUncheckedCreateWithoutApplicationsInput {
   @Field(() => ElistUncheckedCreateNestedManyWithoutApplicantInput, { nullable: true })
   elist?: ElistUncheckedCreateNestedManyWithoutApplicantInput;
 
-  @Field(() => CommentUncheckedCreateNestedManyWithoutUserInput, { nullable: true })
-  Comment?: CommentUncheckedCreateNestedManyWithoutUserInput;
-
   @Field(() => OpportunityUncheckedCreateNestedManyWithoutHiring_managerInput, { nullable: true })
-  Opportunity?: OpportunityUncheckedCreateNestedManyWithoutHiring_managerInput;
+  opportunities?: OpportunityUncheckedCreateNestedManyWithoutHiring_managerInput;
 }

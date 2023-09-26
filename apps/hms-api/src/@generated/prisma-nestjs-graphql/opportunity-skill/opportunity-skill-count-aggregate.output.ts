@@ -15,8 +15,5 @@ export class OpportunitySkillCountAggregate {
   deleted_at!: number;
 
   @Field(() => Int, { nullable: false })
-  opportunityId!: number;
-
-  @Field(() => Int, { nullable: false })
   _all!: number;
 }

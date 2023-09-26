@@ -33,5 +33,5 @@ export class Elist {
   competition?: Competition;
 
   @Field(() => [ElistOffer], { nullable: true })
-  ElistOffer?: Array<ElistOffer>;
+  offers?: Array<ElistOffer>;
 }

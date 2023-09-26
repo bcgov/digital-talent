@@ -11,7 +11,10 @@ export class ElistOfferOrderByWithAggregationInput {
   id?: keyof typeof SortOrder;
 
   @Field(() => SortOrder, { nullable: true })
-  elistId?: keyof typeof SortOrder;
+  elist_id?: keyof typeof SortOrder;
+
+  @Field(() => SortOrder, { nullable: true })
+  opportunity_id?: keyof typeof SortOrder;
 
   @Field(() => SortOrder, { nullable: true })
   is_accepted?: keyof typeof SortOrder;
@@ -24,9 +27,6 @@ export class ElistOfferOrderByWithAggregationInput {
 
   @Field(() => SortOrderInput, { nullable: true })
   deleted_at?: SortOrderInput;
-
-  @Field(() => SortOrderInput, { nullable: true })
-  opportunityId?: SortOrderInput;
 
   @Field(() => ElistOfferCountOrderByAggregateInput, { nullable: true })
   _count?: ElistOfferCountOrderByAggregateInput;

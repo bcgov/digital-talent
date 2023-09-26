@@ -13,7 +13,4 @@ export class OpportunitySkillUncheckedCreateInput {
 
   @Field(() => Date, { nullable: true })
   deleted_at?: Date | string;
-
-  @Field(() => String, { nullable: true })
-  opportunityId?: string;
 }

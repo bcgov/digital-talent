@@ -15,8 +15,5 @@ export class OpportunitySkillCountAggregateInput {
   deleted_at?: true;
 
   @Field(() => Boolean, { nullable: true })
-  opportunityId?: true;
-
-  @Field(() => Boolean, { nullable: true })
   _all?: true;
 }

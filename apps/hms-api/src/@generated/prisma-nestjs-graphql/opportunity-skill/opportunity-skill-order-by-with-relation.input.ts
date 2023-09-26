@@ -1,8 +1,8 @@
 import { Field, InputType } from '@nestjs/graphql';
 import { SortOrder } from '../prisma/sort-order.enum';
 import { SortOrderInput } from '../prisma/sort-order.input';
-import { SkillOrderByWithRelationInput } from '../skill/skill-order-by-with-relation.input';
 import { OpportunityOrderByWithRelationInput } from '../opportunity/opportunity-order-by-with-relation.input';
+import { SkillOrderByWithRelationInput } from '../skill/skill-order-by-with-relation.input';
 
 @InputType()
 export class OpportunitySkillOrderByWithRelationInput {
@@ -18,12 +18,9 @@ export class OpportunitySkillOrderByWithRelationInput {
   @Field(() => SortOrderInput, { nullable: true })
   deleted_at?: SortOrderInput;
 
-  @Field(() => SortOrderInput, { nullable: true })
-  opportunityId?: SortOrderInput;
+  @Field(() => OpportunityOrderByWithRelationInput, { nullable: true })
+  opportunity?: OpportunityOrderByWithRelationInput;
 
   @Field(() => SkillOrderByWithRelationInput, { nullable: true })
   skill?: SkillOrderByWithRelationInput;
-
-  @Field(() => OpportunityOrderByWithRelationInput, { nullable: true })
-  Opportunity?: OpportunityOrderByWithRelationInput;
 }

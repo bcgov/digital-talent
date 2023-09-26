@@ -34,5 +34,5 @@ export class Skill {
   competitions?: Array<CompetitionSkill>;
 
   @Field(() => [OpportunitySkill], { nullable: true })
-  OpportunitySkill?: Array<OpportunitySkill>;
+  opportunities?: Array<OpportunitySkill>;
 }

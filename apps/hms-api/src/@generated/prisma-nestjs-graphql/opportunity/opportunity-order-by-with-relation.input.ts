@@ -74,5 +74,5 @@ export class OpportunityOrderByWithRelationInput {
   ministry?: MinistryOrderByWithRelationInput;
 
   @Field(() => ElistOfferOrderByRelationAggregateInput, { nullable: true })
-  ElistOffer?: ElistOfferOrderByRelationAggregateInput;
+  offers?: ElistOfferOrderByRelationAggregateInput;
 }

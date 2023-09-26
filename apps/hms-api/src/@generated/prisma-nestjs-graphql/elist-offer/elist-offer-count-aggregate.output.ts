@@ -6,7 +6,10 @@ export class ElistOfferCountAggregate {
   id!: number;
 
   @Field(() => Int, { nullable: false })
-  elistId!: number;
+  elist_id!: number;
+
+  @Field(() => Int, { nullable: false })
+  opportunity_id!: number;
 
   @Field(() => Int, { nullable: false })
   is_accepted!: number;
@@ -19,9 +22,6 @@ export class ElistOfferCountAggregate {
 
   @Field(() => Int, { nullable: false })
   deleted_at!: number;
-
-  @Field(() => Int, { nullable: false })
-  opportunityId!: number;
 
   @Field(() => Int, { nullable: false })
   _all!: number;

@@ -5,6 +5,7 @@ import {
   Competition,
   CompetitionSchedule,
   CompetitionSkill,
+  FindManyCompetitionArgs,
   JobDescription,
   User,
 } from '../../../../@generated/prisma-nestjs-graphql';
@@ -42,8 +43,8 @@ export class CompetitionResolver {
   }
 
   @Query((returns) => [Competition])
-  async competitions() {
-    const result = await this.queryBus.execute(new GetCompetitionsQuery());
+  async competitions(@Args() args?: FindManyCompetitionArgs) {
+    const result = await this.queryBus.execute(new GetCompetitionsQuery(args));
     return result;
   }
 
@@ -89,22 +90,22 @@ export class CompetitionResolver {
   }
 
   @ResolveField('job_description', (returns) => JobDescription)
-  async getClassification(@Parent() competition: Competition) {
+  async jobDescription(@Parent() competition: Competition) {
     return this.queryBus.execute(new GetJobDescriptionQuery(competition.job_description_id));
   }
 
   @ResolveField('recruiter', (returns) => User)
-  async getRecruiter(@Parent() competition: Competition) {
+  async recruiter(@Parent() competition: Competition) {
     return this.queryBus.execute(new GetUserQuery(competition.recruiter_id));
   }
 
   @ResolveField('schedule', (returns) => [CompetitionSchedule])
-  async getSchedule(@Parent() competition: Competition) {
+  async schedule(@Parent() competition: Competition) {
     return this.queryBus.execute(new GetCompetitionSchedulesQuery({ where: { competition_id: competition.id } }));
   }
 
   @ResolveField('skills', (returns) => [CompetitionSkill])
-  async getSkills(@Parent() competition: Competition) {
+  async skills(@Parent() competition: Competition) {
     return this.queryBus.execute(new GetCompetitionSkillsQuery({ where: { competition_id: competition.id } }));
   }
 }

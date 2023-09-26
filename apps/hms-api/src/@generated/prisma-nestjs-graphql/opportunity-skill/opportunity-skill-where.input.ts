@@ -1,8 +1,8 @@
 import { Field, InputType } from '@nestjs/graphql';
 import { UuidFilter } from '../prisma/uuid-filter.input';
 import { DateTimeFilter } from '../prisma/date-time-filter.input';
-import { SkillRelationFilter } from '../skill/skill-relation-filter.input';
 import { OpportunityRelationFilter } from '../opportunity/opportunity-relation-filter.input';
+import { SkillRelationFilter } from '../skill/skill-relation-filter.input';
 
 @InputType()
 export class OpportunitySkillWhereInput {
@@ -27,12 +27,9 @@ export class OpportunitySkillWhereInput {
   @Field(() => DateTimeFilter, { nullable: true })
   deleted_at?: DateTimeFilter;
 
-  @Field(() => UuidFilter, { nullable: true })
-  opportunityId?: UuidFilter;
+  @Field(() => OpportunityRelationFilter, { nullable: true })
+  opportunity?: OpportunityRelationFilter;
 
   @Field(() => SkillRelationFilter, { nullable: true })
   skill?: SkillRelationFilter;
-
-  @Field(() => OpportunityRelationFilter, { nullable: true })
-  Opportunity?: OpportunityRelationFilter;
 }

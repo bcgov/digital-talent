@@ -2,11 +2,11 @@ import { BadRequestException } from '@nestjs/common';
 import { Metadata } from '../../event-store/types/metadata.type';
 import { ApplicationSkillState, decide, evolve } from './application-skill.decider';
 import { CreateApplicationSkillCommand } from './commands/create-application-skill/create-application-skill.command';
-import { UpdateApplicationSkillCommand } from './commands/update-application-skill/update-application-skill.command';
 import { DeleteApplicationSkillCommand } from './commands/delete-application-skill/delete-application-skill.command';
+import { UpdateApplicationSkillCommand } from './commands/update-application-skill/update-application-skill.command';
 import { ApplicationSkillCreatedEvent } from './events/application-skill-created/application-skill-created.event';
-import { ApplicationSkillUpdatedEvent } from './events/application-skill-updated/application-skill-updated.event';
 import { ApplicationSkillDeletedEvent } from './events/application-skill-deleted/application-skill-deleted.event';
+import { ApplicationSkillUpdatedEvent } from './events/application-skill-updated/application-skill-updated.event';
 import { CreateApplicationSkillInput } from './inputs/create-application-skill.input';
 import { DeleteApplicationSkillInput } from './inputs/delete-application-skill.input';
 import { UpdateApplicationSkillInput } from './inputs/update-application-skill.input';
@@ -22,6 +22,8 @@ describe('application-skill.decider', () => {
       years_experience: 5,
       description: 'mock description',
       created_at: new Date('2023-08-21T12:00:00Z'),
+      updated_at: null,
+      deleted_at: null,
     },
   };
 
@@ -154,6 +156,8 @@ describe('application-skill.decider', () => {
           years_experience: 6,
           description: 'new mock description',
           created_at: new Date('2023-08-21T10:00:00Z'),
+          updated_at: null,
+          deleted_at: null,
         },
       };
 
@@ -194,6 +198,8 @@ describe('application-skill.decider', () => {
           years_experience: 7,
           description: 'new mock description2',
           created_at: new Date('2023-08-21T10:00:00Z'),
+          updated_at: null,
+          deleted_at: null,
         },
       };
 

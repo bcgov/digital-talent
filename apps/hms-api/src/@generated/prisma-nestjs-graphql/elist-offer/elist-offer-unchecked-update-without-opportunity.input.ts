@@ -6,7 +6,7 @@ export class ElistOfferUncheckedUpdateWithoutOpportunityInput {
   id?: string;
 
   @Field(() => String, { nullable: true })
-  elistId?: string;
+  elist_id?: string;
 
   @Field(() => Boolean, { nullable: true })
   is_accepted?: boolean;

@@ -6,7 +6,10 @@ export class ElistOfferMaxAggregateInput {
   id?: true;
 
   @Field(() => Boolean, { nullable: true })
-  elistId?: true;
+  elist_id?: true;
+
+  @Field(() => Boolean, { nullable: true })
+  opportunity_id?: true;
 
   @Field(() => Boolean, { nullable: true })
   is_accepted?: true;
@@ -19,7 +22,4 @@ export class ElistOfferMaxAggregateInput {
 
   @Field(() => Boolean, { nullable: true })
   deleted_at?: true;
-
-  @Field(() => Boolean, { nullable: true })
-  opportunityId?: true;
 }

@@ -2,6 +2,8 @@ import { EventStoreDBClient } from '@eventstore/db-client';
 import { INestApplication } from '@nestjs/common';
 import { CqrsModule, QueryBus } from '@nestjs/cqrs';
 import { Test, TestingModule } from '@nestjs/testing';
+import { Prisma } from '@prisma/client';
+import { Classification } from '../../../@generated/prisma-nestjs-graphql';
 import { GridCommandHandlers } from '../../grid/commands';
 import { GridEventHandlers } from '../../grid/events';
 import { GridQueryHandlers } from '../../grid/queries';
@@ -13,7 +15,6 @@ import { GetOccupationGroupQuery } from '../../occupation-group/queries/get-occu
 import { PrismaService } from '../../prisma/prisma.service';
 import { ClassificationCommandHandlers } from '../commands';
 import { ClassificationEventHandlers } from '../events';
-import { ClassificationModel } from '../models/classification.model';
 import { ClassificationQueryHandlers } from '../queries';
 import { GetClassificationQuery } from '../queries/get-classification/get-classification.query';
 import { GetClassificationsQuery } from '../queries/get-classifications/get-classifications.query';
@@ -127,27 +128,33 @@ describe('ClassificationResolver Integration Tests', () => {
 
   it('should resolve grid for a classification', async () => {
     const mockGrid = { id: 'mockId' };
-    const mockClassification: ClassificationModel = {
+    const mockClassification: Classification = {
       id: 'id',
       grid_id: 'gird_id',
       occupation_group_id: 'string',
-      rate_adjustment: 0.123,
+      rate_adjustment: new Prisma.Decimal(0.123),
       grid: {
         id: 'id',
         name: 'name',
         steps: [],
         created_at: new Date(),
+        updated_at: null,
+        deleted_at: null,
       },
       occupation_group: {
         id: 'id',
         code: 'code',
         name: 'name',
         created_at: new Date(),
+        updated_at: null,
+        deleted_at: null,
       },
       created_at: new Date(),
+      updated_at: null,
+      deleted_at: null,
     };
     (mockPrismaService.grid.findUnique as jest.Mock).mockResolvedValueOnce(mockGrid);
-    const result = await resolver.getGrid(mockClassification);
+    const result = await resolver.grid(mockClassification);
 
     expect(executeSpy).toHaveBeenCalledWith(new GetGridQuery(mockClassification.grid_id));
     expect(result).toEqual(mockGrid);
@@ -155,54 +162,66 @@ describe('ClassificationResolver Integration Tests', () => {
 
   it('should handle null when resolving grid for a classification', async () => {
     const mockGrid = null;
-    const mockClassification: ClassificationModel = {
+    const mockClassification: Classification = {
       id: 'id',
       grid_id: 'gird_id',
       occupation_group_id: 'string',
-      rate_adjustment: 0.123,
+      rate_adjustment: new Prisma.Decimal(0.123),
       grid: {
         id: 'id',
         name: 'name',
         steps: [],
         created_at: new Date(),
+        updated_at: null,
+        deleted_at: null,
       },
       occupation_group: {
         id: 'id',
         code: 'code',
         name: 'name',
         created_at: new Date(),
+        updated_at: null,
+        deleted_at: null,
       },
       created_at: new Date(),
+      updated_at: null,
+      deleted_at: null,
     };
     (mockPrismaService.grid.findUnique as jest.Mock).mockResolvedValueOnce(mockGrid);
-    const result = await resolver.getGrid(mockClassification);
+    const result = await resolver.grid(mockClassification);
 
     expect(result).toEqual(mockGrid);
   });
 
   it('should occupation grid for a classification', async () => {
     const mockOccupationGrid = { id: 'mockId' };
-    const mockClassification: ClassificationModel = {
+    const mockClassification: Classification = {
       id: 'id',
       grid_id: 'gird_id',
       occupation_group_id: 'string',
-      rate_adjustment: 0.123,
+      rate_adjustment: new Prisma.Decimal(0.123),
       grid: {
         id: 'id',
         name: 'name',
         steps: [],
         created_at: new Date(),
+        updated_at: null,
+        deleted_at: null,
       },
       occupation_group: {
         id: 'id',
         code: 'code',
         name: 'name',
         created_at: new Date(),
+        updated_at: null,
+        deleted_at: null,
       },
       created_at: new Date(),
+      updated_at: null,
+      deleted_at: null,
     };
     (mockPrismaService.occupationGroup.findUnique as jest.Mock).mockResolvedValueOnce(mockOccupationGrid);
-    const result = await resolver.getOccupationGroup(mockClassification);
+    const result = await resolver.occupationGroup(mockClassification);
 
     expect(executeSpy).toHaveBeenCalledWith(new GetOccupationGroupQuery(mockClassification.occupation_group_id));
     expect(result).toEqual(mockOccupationGrid);
@@ -210,27 +229,33 @@ describe('ClassificationResolver Integration Tests', () => {
 
   it('should handle null when resolving occupation group for a classification', async () => {
     const mockOccupationGrid = null;
-    const mockClassification: ClassificationModel = {
+    const mockClassification: Classification = {
       id: 'id',
       grid_id: 'gird_id',
       occupation_group_id: 'string',
-      rate_adjustment: 0.123,
+      rate_adjustment: new Prisma.Decimal(0.123),
       grid: {
         id: 'id',
         name: 'name',
         steps: [],
         created_at: new Date(),
+        updated_at: null,
+        deleted_at: null,
       },
       occupation_group: {
         id: 'id',
         code: 'code',
         name: 'name',
         created_at: new Date(),
+        updated_at: null,
+        deleted_at: null,
       },
       created_at: new Date(),
+      updated_at: null,
+      deleted_at: null,
     };
     (mockPrismaService.occupationGroup.findUnique as jest.Mock).mockResolvedValueOnce(mockOccupationGrid);
-    const result = await resolver.getOccupationGroup(mockClassification);
+    const result = await resolver.occupationGroup(mockClassification);
 
     expect(result).toEqual(mockOccupationGrid);
   });

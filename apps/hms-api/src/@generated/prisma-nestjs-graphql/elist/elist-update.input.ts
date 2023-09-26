@@ -27,5 +27,5 @@ export class ElistUpdateInput {
   competition?: CompetitionUpdateOneRequiredWithoutElistNestedInput;
 
   @Field(() => ElistOfferUpdateManyWithoutElistNestedInput, { nullable: true })
-  ElistOffer?: ElistOfferUpdateManyWithoutElistNestedInput;
+  offers?: ElistOfferUpdateManyWithoutElistNestedInput;
 }

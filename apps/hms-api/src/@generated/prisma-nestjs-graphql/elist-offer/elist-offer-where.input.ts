@@ -20,7 +20,10 @@ export class ElistOfferWhereInput {
   id?: UuidFilter;
 
   @Field(() => UuidFilter, { nullable: true })
-  elistId?: UuidFilter;
+  elist_id?: UuidFilter;
+
+  @Field(() => UuidFilter, { nullable: true })
+  opportunity_id?: UuidFilter;
 
   @Field(() => BoolFilter, { nullable: true })
   is_accepted?: BoolFilter;
@@ -34,12 +37,9 @@ export class ElistOfferWhereInput {
   @Field(() => DateTimeFilter, { nullable: true })
   deleted_at?: DateTimeFilter;
 
-  @Field(() => UuidFilter, { nullable: true })
-  opportunityId?: UuidFilter;
-
   @Field(() => ElistRelationFilter, { nullable: true })
   elist?: ElistRelationFilter;
 
   @Field(() => OpportunityRelationFilter, { nullable: true })
-  Opportunity?: OpportunityRelationFilter;
+  opportunity?: OpportunityRelationFilter;
 }

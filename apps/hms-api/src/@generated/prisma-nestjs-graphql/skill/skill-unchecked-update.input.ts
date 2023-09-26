@@ -34,5 +34,5 @@ export class SkillUncheckedUpdateInput {
   competitions?: CompetitionSkillUncheckedUpdateManyWithoutSkillNestedInput;
 
   @Field(() => OpportunitySkillUncheckedUpdateManyWithoutSkillNestedInput, { nullable: true })
-  OpportunitySkill?: OpportunitySkillUncheckedUpdateManyWithoutSkillNestedInput;
+  opportunities?: OpportunitySkillUncheckedUpdateManyWithoutSkillNestedInput;
 }

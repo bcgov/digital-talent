@@ -5,7 +5,7 @@ import { WorkOption } from '../prisma/work-option.enum';
 import { OpportunitySkillCreateNestedManyWithoutOpportunityInput } from '../opportunity-skill/opportunity-skill-create-nested-many-without-opportunity.input';
 import { OpportunityLocationCreateNestedManyWithoutOpportunityInput } from '../opportunity-location/opportunity-location-create-nested-many-without-opportunity.input';
 import { CompetitionCreateNestedOneWithoutOpportunitiesInput } from '../competition/competition-create-nested-one-without-opportunities.input';
-import { UserCreateNestedOneWithoutOpportunityInput } from '../user/user-create-nested-one-without-opportunity.input';
+import { UserCreateNestedOneWithoutOpportunitiesInput } from '../user/user-create-nested-one-without-opportunities.input';
 import { MinistryCreateNestedOneWithoutOpportunitiesInput } from '../ministry/ministry-create-nested-one-without-opportunities.input';
 import { ElistOfferCreateNestedManyWithoutOpportunityInput } from '../elist-offer/elist-offer-create-nested-many-without-opportunity.input';
 
@@ -59,12 +59,12 @@ export class OpportunityCreateInput {
   @Field(() => CompetitionCreateNestedOneWithoutOpportunitiesInput, { nullable: false })
   competition!: CompetitionCreateNestedOneWithoutOpportunitiesInput;
 
-  @Field(() => UserCreateNestedOneWithoutOpportunityInput, { nullable: false })
-  hiring_manager!: UserCreateNestedOneWithoutOpportunityInput;
+  @Field(() => UserCreateNestedOneWithoutOpportunitiesInput, { nullable: false })
+  hiring_manager!: UserCreateNestedOneWithoutOpportunitiesInput;
 
   @Field(() => MinistryCreateNestedOneWithoutOpportunitiesInput, { nullable: false })
   ministry!: MinistryCreateNestedOneWithoutOpportunitiesInput;
 
   @Field(() => ElistOfferCreateNestedManyWithoutOpportunityInput, { nullable: true })
-  ElistOffer?: ElistOfferCreateNestedManyWithoutOpportunityInput;
+  offers?: ElistOfferCreateNestedManyWithoutOpportunityInput;
 }

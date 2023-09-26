@@ -1,6 +1,6 @@
 import { Field, ObjectType } from '@nestjs/graphql';
-import { Skill } from '../skill/skill.model';
 import { Opportunity } from '../opportunity/opportunity.model';
+import { Skill } from '../skill/skill.model';
 
 @ObjectType()
 export class OpportunitySkill {
@@ -16,12 +16,9 @@ export class OpportunitySkill {
   @Field(() => Date, { nullable: true })
   deleted_at!: Date | null;
 
-  @Field(() => String, { nullable: true })
-  opportunityId!: string | null;
+  @Field(() => Opportunity, { nullable: true })
+  opportunity?: Opportunity | null;
 
   @Field(() => Skill, { nullable: false })
   skill?: Skill;
-
-  @Field(() => Opportunity, { nullable: true })
-  Opportunity?: Opportunity | null;
 }

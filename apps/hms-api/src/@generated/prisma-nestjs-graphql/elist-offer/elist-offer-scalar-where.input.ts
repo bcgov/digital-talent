@@ -18,7 +18,10 @@ export class ElistOfferScalarWhereInput {
   id?: UuidFilter;
 
   @Field(() => UuidFilter, { nullable: true })
-  elistId?: UuidFilter;
+  elist_id?: UuidFilter;
+
+  @Field(() => UuidFilter, { nullable: true })
+  opportunity_id?: UuidFilter;
 
   @Field(() => BoolFilter, { nullable: true })
   is_accepted?: BoolFilter;
@@ -31,7 +34,4 @@ export class ElistOfferScalarWhereInput {
 
   @Field(() => DateTimeFilter, { nullable: true })
   deleted_at?: DateTimeFilter;
-
-  @Field(() => UuidFilter, { nullable: true })
-  opportunityId?: UuidFilter;
 }

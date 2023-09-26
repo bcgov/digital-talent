@@ -28,5 +28,5 @@ export class JobDescriptionUpdateInput {
   classification?: ClassificationUpdateOneRequiredWithoutJob_descriptionsNestedInput;
 
   @Field(() => CompetitionUpdateManyWithoutJob_descriptionNestedInput, { nullable: true })
-  Competition?: CompetitionUpdateManyWithoutJob_descriptionNestedInput;
+  competitions?: CompetitionUpdateManyWithoutJob_descriptionNestedInput;
 }

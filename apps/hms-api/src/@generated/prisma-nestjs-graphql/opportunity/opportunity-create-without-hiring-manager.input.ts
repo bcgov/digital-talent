@@ -62,5 +62,5 @@ export class OpportunityCreateWithoutHiring_managerInput {
   ministry!: MinistryCreateNestedOneWithoutOpportunitiesInput;
 
   @Field(() => ElistOfferCreateNestedManyWithoutOpportunityInput, { nullable: true })
-  ElistOffer?: ElistOfferCreateNestedManyWithoutOpportunityInput;
+  offers?: ElistOfferCreateNestedManyWithoutOpportunityInput;
 }

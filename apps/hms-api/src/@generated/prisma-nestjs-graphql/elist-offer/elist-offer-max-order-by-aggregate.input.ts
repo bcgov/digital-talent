@@ -7,7 +7,10 @@ export class ElistOfferMaxOrderByAggregateInput {
   id?: keyof typeof SortOrder;
 
   @Field(() => SortOrder, { nullable: true })
-  elistId?: keyof typeof SortOrder;
+  elist_id?: keyof typeof SortOrder;
+
+  @Field(() => SortOrder, { nullable: true })
+  opportunity_id?: keyof typeof SortOrder;
 
   @Field(() => SortOrder, { nullable: true })
   is_accepted?: keyof typeof SortOrder;
@@ -20,7 +23,4 @@ export class ElistOfferMaxOrderByAggregateInput {
 
   @Field(() => SortOrder, { nullable: true })
   deleted_at?: keyof typeof SortOrder;
-
-  @Field(() => SortOrder, { nullable: true })
-  opportunityId?: keyof typeof SortOrder;
 }

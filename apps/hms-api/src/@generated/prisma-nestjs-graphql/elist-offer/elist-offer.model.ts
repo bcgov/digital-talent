@@ -8,7 +8,10 @@ export class ElistOffer {
   id!: string;
 
   @Field(() => String, { nullable: false })
-  elistId!: string;
+  elist_id!: string;
+
+  @Field(() => String, { nullable: false })
+  opportunity_id!: string;
 
   @Field(() => Boolean, { nullable: false })
   is_accepted!: boolean;
@@ -22,12 +25,9 @@ export class ElistOffer {
   @Field(() => Date, { nullable: true })
   deleted_at!: Date | null;
 
-  @Field(() => String, { nullable: true })
-  opportunityId!: string | null;
-
   @Field(() => Elist, { nullable: false })
   elist?: Elist;
 
   @Field(() => Opportunity, { nullable: true })
-  Opportunity?: Opportunity | null;
+  opportunity?: Opportunity | null;
 }

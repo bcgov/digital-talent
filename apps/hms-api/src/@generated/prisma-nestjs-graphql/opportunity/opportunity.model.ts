@@ -75,5 +75,5 @@ export class Opportunity {
   ministry?: Ministry;
 
   @Field(() => [ElistOffer], { nullable: true })
-  ElistOffer?: Array<ElistOffer>;
+  offers?: Array<ElistOffer>;
 }

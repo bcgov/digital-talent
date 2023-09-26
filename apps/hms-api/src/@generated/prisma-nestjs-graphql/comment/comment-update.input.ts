@@ -1,5 +1,5 @@
 import { Field, InputType } from '@nestjs/graphql';
-import { UserUpdateOneRequiredWithoutCommentNestedInput } from '../user/user-update-one-required-without-comment-nested.input';
+import { UserUpdateOneRequiredWithoutCommentsNestedInput } from '../user/user-update-one-required-without-comments-nested.input';
 
 @InputType()
 export class CommentUpdateInput {
@@ -24,6 +24,6 @@ export class CommentUpdateInput {
   @Field(() => Date, { nullable: true })
   deleted_at?: Date | string;
 
-  @Field(() => UserUpdateOneRequiredWithoutCommentNestedInput, { nullable: true })
-  user?: UserUpdateOneRequiredWithoutCommentNestedInput;
+  @Field(() => UserUpdateOneRequiredWithoutCommentsNestedInput, { nullable: true })
+  user?: UserUpdateOneRequiredWithoutCommentsNestedInput;
 }

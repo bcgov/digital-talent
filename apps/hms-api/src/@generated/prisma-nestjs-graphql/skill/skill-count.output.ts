@@ -9,5 +9,5 @@ export class SkillCount {
   competitions?: number;
 
   @Field(() => Int, { nullable: false })
-  OpportunitySkill?: number;
+  opportunities?: number;
 }

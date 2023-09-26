@@ -6,7 +6,10 @@ export class ElistOfferMinAggregate {
   id?: string;
 
   @Field(() => String, { nullable: true })
-  elistId?: string;
+  elist_id?: string;
+
+  @Field(() => String, { nullable: true })
+  opportunity_id?: string;
 
   @Field(() => Boolean, { nullable: true })
   is_accepted?: boolean;
@@ -19,7 +22,4 @@ export class ElistOfferMinAggregate {
 
   @Field(() => Date, { nullable: true })
   deleted_at?: Date | string;
-
-  @Field(() => String, { nullable: true })
-  opportunityId?: string;
 }

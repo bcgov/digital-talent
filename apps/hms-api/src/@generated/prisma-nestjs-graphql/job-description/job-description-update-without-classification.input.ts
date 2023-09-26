@@ -22,5 +22,5 @@ export class JobDescriptionUpdateWithoutClassificationInput {
   deleted_at?: Date | string;
 
   @Field(() => CompetitionUpdateManyWithoutJob_descriptionNestedInput, { nullable: true })
-  Competition?: CompetitionUpdateManyWithoutJob_descriptionNestedInput;
+  competitions?: CompetitionUpdateManyWithoutJob_descriptionNestedInput;
 }

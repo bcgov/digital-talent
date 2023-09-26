@@ -6,7 +6,7 @@ export class ElistOfferCreateManyOpportunityInput {
   id!: string;
 
   @Field(() => String, { nullable: false })
-  elistId!: string;
+  elist_id!: string;
 
   @Field(() => Boolean, { nullable: false })
   is_accepted!: boolean;

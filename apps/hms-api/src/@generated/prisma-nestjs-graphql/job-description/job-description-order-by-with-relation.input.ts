@@ -33,5 +33,5 @@ export class JobDescriptionOrderByWithRelationInput {
   classification?: ClassificationOrderByWithRelationInput;
 
   @Field(() => CompetitionOrderByRelationAggregateInput, { nullable: true })
-  Competition?: CompetitionOrderByRelationAggregateInput;
+  competitions?: CompetitionOrderByRelationAggregateInput;
 }

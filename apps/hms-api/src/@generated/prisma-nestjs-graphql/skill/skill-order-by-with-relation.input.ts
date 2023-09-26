@@ -35,5 +35,5 @@ export class SkillOrderByWithRelationInput {
   competitions?: CompetitionSkillOrderByRelationAggregateInput;
 
   @Field(() => OpportunitySkillOrderByRelationAggregateInput, { nullable: true })
-  OpportunitySkill?: OpportunitySkillOrderByRelationAggregateInput;
+  opportunities?: OpportunitySkillOrderByRelationAggregateInput;
 }

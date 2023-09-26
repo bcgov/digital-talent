@@ -25,5 +25,5 @@ export class JobDescriptionUncheckedCreateInput {
   deleted_at?: Date | string;
 
   @Field(() => CompetitionUncheckedCreateNestedManyWithoutJob_descriptionInput, { nullable: true })
-  Competition?: CompetitionUncheckedCreateNestedManyWithoutJob_descriptionInput;
+  competitions?: CompetitionUncheckedCreateNestedManyWithoutJob_descriptionInput;
 }

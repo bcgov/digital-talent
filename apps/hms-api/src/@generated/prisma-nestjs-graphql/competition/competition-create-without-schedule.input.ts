@@ -6,7 +6,7 @@ import { CompetitionState } from '../prisma/competition-state.enum';
 import { OpportunityCreateNestedManyWithoutCompetitionInput } from '../opportunity/opportunity-create-nested-many-without-competition.input';
 import { ElistCreateNestedManyWithoutCompetitionInput } from '../elist/elist-create-nested-many-without-competition.input';
 import { CompetitionSkillCreateNestedManyWithoutCompetitionInput } from '../competition-skill/competition-skill-create-nested-many-without-competition.input';
-import { JobDescriptionCreateNestedOneWithoutCompetitionInput } from '../job-description/job-description-create-nested-one-without-competition.input';
+import { JobDescriptionCreateNestedOneWithoutCompetitionsInput } from '../job-description/job-description-create-nested-one-without-competitions.input';
 import { UserCreateNestedOneWithoutCompetitionsInput } from '../user/user-create-nested-one-without-competitions.input';
 
 @InputType()
@@ -44,9 +44,9 @@ export class CompetitionCreateWithoutScheduleInput {
   @Field(() => CompetitionSkillCreateNestedManyWithoutCompetitionInput, { nullable: true })
   skills?: CompetitionSkillCreateNestedManyWithoutCompetitionInput;
 
-  @Field(() => JobDescriptionCreateNestedOneWithoutCompetitionInput, { nullable: false })
-  @Type(() => JobDescriptionCreateNestedOneWithoutCompetitionInput)
-  job_description!: JobDescriptionCreateNestedOneWithoutCompetitionInput;
+  @Field(() => JobDescriptionCreateNestedOneWithoutCompetitionsInput, { nullable: false })
+  @Type(() => JobDescriptionCreateNestedOneWithoutCompetitionsInput)
+  job_description!: JobDescriptionCreateNestedOneWithoutCompetitionsInput;
 
   @Field(() => UserCreateNestedOneWithoutCompetitionsInput, { nullable: false })
   recruiter!: UserCreateNestedOneWithoutCompetitionsInput;

@@ -23,5 +23,5 @@ export class ElistUpdateWithoutCompetitionInput {
   applicant?: UserUpdateOneRequiredWithoutElistNestedInput;
 
   @Field(() => ElistOfferUpdateManyWithoutElistNestedInput, { nullable: true })
-  ElistOffer?: ElistOfferUpdateManyWithoutElistNestedInput;
+  offers?: ElistOfferUpdateManyWithoutElistNestedInput;
 }

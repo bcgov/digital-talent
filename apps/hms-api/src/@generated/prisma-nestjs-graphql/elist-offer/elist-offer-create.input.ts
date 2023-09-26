@@ -1,6 +1,6 @@
 import { Field, InputType } from '@nestjs/graphql';
-import { ElistCreateNestedOneWithoutElistOfferInput } from '../elist/elist-create-nested-one-without-elist-offer.input';
-import { OpportunityCreateNestedOneWithoutElistOfferInput } from '../opportunity/opportunity-create-nested-one-without-elist-offer.input';
+import { ElistCreateNestedOneWithoutOffersInput } from '../elist/elist-create-nested-one-without-offers.input';
+import { OpportunityCreateNestedOneWithoutOffersInput } from '../opportunity/opportunity-create-nested-one-without-offers.input';
 
 @InputType()
 export class ElistOfferCreateInput {
@@ -19,9 +19,9 @@ export class ElistOfferCreateInput {
   @Field(() => Date, { nullable: true })
   deleted_at?: Date | string;
 
-  @Field(() => ElistCreateNestedOneWithoutElistOfferInput, { nullable: false })
-  elist!: ElistCreateNestedOneWithoutElistOfferInput;
+  @Field(() => ElistCreateNestedOneWithoutOffersInput, { nullable: false })
+  elist!: ElistCreateNestedOneWithoutOffersInput;
 
-  @Field(() => OpportunityCreateNestedOneWithoutElistOfferInput, { nullable: true })
-  Opportunity?: OpportunityCreateNestedOneWithoutElistOfferInput;
+  @Field(() => OpportunityCreateNestedOneWithoutOffersInput, { nullable: true })
+  opportunity?: OpportunityCreateNestedOneWithoutOffersInput;
 }

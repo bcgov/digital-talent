@@ -2,10 +2,10 @@ import { Field, InputType } from '@nestjs/graphql';
 import { SortOrder } from '../prisma/sort-order.enum';
 import { SortOrderInput } from '../prisma/sort-order.input';
 import { ApplicationOrderByRelationAggregateInput } from '../application/application-order-by-relation-aggregate.input';
+import { CommentOrderByRelationAggregateInput } from '../comment/comment-order-by-relation-aggregate.input';
 import { CompetitionOrderByRelationAggregateInput } from '../competition/competition-order-by-relation-aggregate.input';
 import { IdentityOrderByRelationAggregateInput } from '../identity/identity-order-by-relation-aggregate.input';
 import { ElistOrderByRelationAggregateInput } from '../elist/elist-order-by-relation-aggregate.input';
-import { CommentOrderByRelationAggregateInput } from '../comment/comment-order-by-relation-aggregate.input';
 import { OpportunityOrderByRelationAggregateInput } from '../opportunity/opportunity-order-by-relation-aggregate.input';
 
 @InputType()
@@ -37,6 +37,9 @@ export class UserOrderByWithRelationInput {
   @Field(() => ApplicationOrderByRelationAggregateInput, { nullable: true })
   applications?: ApplicationOrderByRelationAggregateInput;
 
+  @Field(() => CommentOrderByRelationAggregateInput, { nullable: true })
+  comments?: CommentOrderByRelationAggregateInput;
+
   @Field(() => CompetitionOrderByRelationAggregateInput, { nullable: true })
   competitions?: CompetitionOrderByRelationAggregateInput;
 
@@ -46,9 +49,6 @@ export class UserOrderByWithRelationInput {
   @Field(() => ElistOrderByRelationAggregateInput, { nullable: true })
   elist?: ElistOrderByRelationAggregateInput;
 
-  @Field(() => CommentOrderByRelationAggregateInput, { nullable: true })
-  Comment?: CommentOrderByRelationAggregateInput;
-
   @Field(() => OpportunityOrderByRelationAggregateInput, { nullable: true })
-  Opportunity?: OpportunityOrderByRelationAggregateInput;
+  opportunities?: OpportunityOrderByRelationAggregateInput;
 }

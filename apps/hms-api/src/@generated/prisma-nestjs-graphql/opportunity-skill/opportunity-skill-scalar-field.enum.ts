@@ -5,7 +5,6 @@ export enum OpportunitySkillScalarFieldEnum {
   skill_id = 'skill_id',
   created_at = 'created_at',
   deleted_at = 'deleted_at',
-  opportunityId = 'opportunityId',
 }
 
 registerEnumType(OpportunitySkillScalarFieldEnum, { name: 'OpportunitySkillScalarFieldEnum', description: undefined });

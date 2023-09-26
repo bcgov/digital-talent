@@ -46,5 +46,5 @@ export class SkillWhereInput {
   competitions?: CompetitionSkillListRelationFilter;
 
   @Field(() => OpportunitySkillListRelationFilter, { nullable: true })
-  OpportunitySkill?: OpportunitySkillListRelationFilter;
+  opportunities?: OpportunitySkillListRelationFilter;
 }

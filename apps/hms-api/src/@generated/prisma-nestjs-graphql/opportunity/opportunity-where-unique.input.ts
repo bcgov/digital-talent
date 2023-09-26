@@ -88,5 +88,5 @@ export class OpportunityWhereUniqueInput {
   ministry?: MinistryRelationFilter;
 
   @Field(() => ElistOfferListRelationFilter, { nullable: true })
-  ElistOffer?: ElistOfferListRelationFilter;
+  offers?: ElistOfferListRelationFilter;
 }

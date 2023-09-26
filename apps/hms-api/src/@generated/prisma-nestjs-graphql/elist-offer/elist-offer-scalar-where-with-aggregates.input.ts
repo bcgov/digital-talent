@@ -18,7 +18,10 @@ export class ElistOfferScalarWhereWithAggregatesInput {
   id?: UuidWithAggregatesFilter;
 
   @Field(() => UuidWithAggregatesFilter, { nullable: true })
-  elistId?: UuidWithAggregatesFilter;
+  elist_id?: UuidWithAggregatesFilter;
+
+  @Field(() => UuidWithAggregatesFilter, { nullable: true })
+  opportunity_id?: UuidWithAggregatesFilter;
 
   @Field(() => BoolWithAggregatesFilter, { nullable: true })
   is_accepted?: BoolWithAggregatesFilter;
@@ -31,7 +34,4 @@ export class ElistOfferScalarWhereWithAggregatesInput {
 
   @Field(() => DateTimeWithAggregatesFilter, { nullable: true })
   deleted_at?: DateTimeWithAggregatesFilter;
-
-  @Field(() => UuidWithAggregatesFilter, { nullable: true })
-  opportunityId?: UuidWithAggregatesFilter;
 }

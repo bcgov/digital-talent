@@ -28,5 +28,5 @@ export class JobDescriptionCreateInput {
   classification!: ClassificationCreateNestedOneWithoutJob_descriptionsInput;
 
   @Field(() => CompetitionCreateNestedManyWithoutJob_descriptionInput, { nullable: true })
-  Competition?: CompetitionCreateNestedManyWithoutJob_descriptionInput;
+  competitions?: CompetitionCreateNestedManyWithoutJob_descriptionInput;
 }

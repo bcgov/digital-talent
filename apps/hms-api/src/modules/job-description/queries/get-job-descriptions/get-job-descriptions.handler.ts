@@ -6,11 +6,15 @@ import { GetJobDescriptionsQuery } from './get-job-descriptions.query';
 export class GetJobDescriptionsHandler implements IQueryHandler<GetJobDescriptionsQuery> {
   constructor(private readonly prisma: PrismaService) {}
 
-  async execute(query: GetJobDescriptionsQuery): Promise<any> {
+  async execute({ args: { where, orderBy, take, skip } }: GetJobDescriptionsQuery): Promise<any> {
     return this.prisma.jobDescription.findMany({
       where: {
         deleted_at: null,
+        ...where,
       },
+      orderBy,
+      take,
+      skip,
     });
   }
 }

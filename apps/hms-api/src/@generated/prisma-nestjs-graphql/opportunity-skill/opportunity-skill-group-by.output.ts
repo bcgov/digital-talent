@@ -17,9 +17,6 @@ export class OpportunitySkillGroupBy {
   @Field(() => Date, { nullable: true })
   deleted_at?: Date | string;
 
-  @Field(() => String, { nullable: true })
-  opportunityId?: string;
-
   @Field(() => OpportunitySkillCountAggregate, { nullable: true })
   _count?: OpportunitySkillCountAggregate;
 

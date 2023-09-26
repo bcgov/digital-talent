@@ -4,10 +4,10 @@ import { StringFilter } from '../prisma/string-filter.input';
 import { StringListFilter } from '../prisma/string-list-filter.input';
 import { DateTimeFilter } from '../prisma/date-time-filter.input';
 import { ApplicationListRelationFilter } from '../application/application-list-relation-filter.input';
+import { CommentListRelationFilter } from '../comment/comment-list-relation-filter.input';
 import { CompetitionListRelationFilter } from '../competition/competition-list-relation-filter.input';
 import { IdentityListRelationFilter } from '../identity/identity-list-relation-filter.input';
 import { ElistListRelationFilter } from '../elist/elist-list-relation-filter.input';
-import { CommentListRelationFilter } from '../comment/comment-list-relation-filter.input';
 import { OpportunityListRelationFilter } from '../opportunity/opportunity-list-relation-filter.input';
 
 @InputType()
@@ -48,6 +48,9 @@ export class UserWhereUniqueInput {
   @Field(() => ApplicationListRelationFilter, { nullable: true })
   applications?: ApplicationListRelationFilter;
 
+  @Field(() => CommentListRelationFilter, { nullable: true })
+  comments?: CommentListRelationFilter;
+
   @Field(() => CompetitionListRelationFilter, { nullable: true })
   competitions?: CompetitionListRelationFilter;
 
@@ -57,9 +60,6 @@ export class UserWhereUniqueInput {
   @Field(() => ElistListRelationFilter, { nullable: true })
   elist?: ElistListRelationFilter;
 
-  @Field(() => CommentListRelationFilter, { nullable: true })
-  Comment?: CommentListRelationFilter;
-
   @Field(() => OpportunityListRelationFilter, { nullable: true })
-  Opportunity?: OpportunityListRelationFilter;
+  opportunities?: OpportunityListRelationFilter;
 }

@@ -6,7 +6,10 @@ export class ElistOfferCountAggregateInput {
   id?: true;
 
   @Field(() => Boolean, { nullable: true })
-  elistId?: true;
+  elist_id?: true;
+
+  @Field(() => Boolean, { nullable: true })
+  opportunity_id?: true;
 
   @Field(() => Boolean, { nullable: true })
   is_accepted?: true;
@@ -19,9 +22,6 @@ export class ElistOfferCountAggregateInput {
 
   @Field(() => Boolean, { nullable: true })
   deleted_at?: true;
-
-  @Field(() => Boolean, { nullable: true })
-  opportunityId?: true;
 
   @Field(() => Boolean, { nullable: true })
   _all?: true;

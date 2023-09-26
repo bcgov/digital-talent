@@ -13,7 +13,4 @@ export class OpportunitySkillMaxAggregateInput {
 
   @Field(() => Boolean, { nullable: true })
   deleted_at?: true;
-
-  @Field(() => Boolean, { nullable: true })
-  opportunityId?: true;
 }

@@ -9,5 +9,5 @@ export class OpportunityCount {
   locations?: number;
 
   @Field(() => Int, { nullable: false })
-  ElistOffer?: number;
+  offers?: number;
 }

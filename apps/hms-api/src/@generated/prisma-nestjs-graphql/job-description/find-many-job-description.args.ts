@@ -1,10 +1,10 @@
-import { Field, ArgsType, HideField, Int } from '@nestjs/graphql';
-import { Type } from 'class-transformer';
+import { ArgsType, Field, HideField, Int } from '@nestjs/graphql';
 import { Prisma } from '@prisma/client';
-import { JobDescriptionWhereInput } from './job-description-where.input';
+import { Type } from 'class-transformer';
 import { JobDescriptionOrderByWithRelationInput } from './job-description-order-by-with-relation.input';
-import { JobDescriptionWhereUniqueInput } from './job-description-where-unique.input';
 import { JobDescriptionScalarFieldEnum } from './job-description-scalar-field.enum';
+import { JobDescriptionWhereUniqueInput } from './job-description-where-unique.input';
+import { JobDescriptionWhereInput } from './job-description-where.input';
 
 @ArgsType()
 export class FindManyJobDescriptionArgs {

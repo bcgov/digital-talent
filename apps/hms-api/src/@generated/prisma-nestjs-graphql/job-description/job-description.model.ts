@@ -29,5 +29,5 @@ export class JobDescription {
   classification?: Classification;
 
   @Field(() => [Competition], { nullable: true })
-  Competition?: Array<Competition>;
+  competitions?: Array<Competition>;
 }

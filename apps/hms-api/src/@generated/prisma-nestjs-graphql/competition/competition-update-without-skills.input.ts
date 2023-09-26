@@ -5,7 +5,7 @@ import { CompetitionCategory } from '../prisma/competition-category.enum';
 import { CompetitionState } from '../prisma/competition-state.enum';
 import { OpportunityUpdateManyWithoutCompetitionNestedInput } from '../opportunity/opportunity-update-many-without-competition-nested.input';
 import { ElistUpdateManyWithoutCompetitionNestedInput } from '../elist/elist-update-many-without-competition-nested.input';
-import { JobDescriptionUpdateOneRequiredWithoutCompetitionNestedInput } from '../job-description/job-description-update-one-required-without-competition-nested.input';
+import { JobDescriptionUpdateOneRequiredWithoutCompetitionsNestedInput } from '../job-description/job-description-update-one-required-without-competitions-nested.input';
 import { UserUpdateOneRequiredWithoutCompetitionsNestedInput } from '../user/user-update-one-required-without-competitions-nested.input';
 import { CompetitionScheduleUpdateOneWithoutCompetitionNestedInput } from '../competition-schedule/competition-schedule-update-one-without-competition-nested.input';
 
@@ -41,9 +41,9 @@ export class CompetitionUpdateWithoutSkillsInput {
   @Field(() => ElistUpdateManyWithoutCompetitionNestedInput, { nullable: true })
   elist?: ElistUpdateManyWithoutCompetitionNestedInput;
 
-  @Field(() => JobDescriptionUpdateOneRequiredWithoutCompetitionNestedInput, { nullable: true })
-  @Type(() => JobDescriptionUpdateOneRequiredWithoutCompetitionNestedInput)
-  job_description?: JobDescriptionUpdateOneRequiredWithoutCompetitionNestedInput;
+  @Field(() => JobDescriptionUpdateOneRequiredWithoutCompetitionsNestedInput, { nullable: true })
+  @Type(() => JobDescriptionUpdateOneRequiredWithoutCompetitionsNestedInput)
+  job_description?: JobDescriptionUpdateOneRequiredWithoutCompetitionsNestedInput;
 
   @Field(() => UserUpdateOneRequiredWithoutCompetitionsNestedInput, { nullable: true })
   recruiter?: UserUpdateOneRequiredWithoutCompetitionsNestedInput;

@@ -59,5 +59,5 @@ export class OpportunityUncheckedCreateWithoutLocationsInput {
   skills?: OpportunitySkillUncheckedCreateNestedManyWithoutOpportunityInput;
 
   @Field(() => ElistOfferUncheckedCreateNestedManyWithoutOpportunityInput, { nullable: true })
-  ElistOffer?: ElistOfferUncheckedCreateNestedManyWithoutOpportunityInput;
+  offers?: ElistOfferUncheckedCreateNestedManyWithoutOpportunityInput;
 }

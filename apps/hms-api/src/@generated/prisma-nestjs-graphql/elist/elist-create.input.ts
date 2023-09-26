@@ -27,5 +27,5 @@ export class ElistCreateInput {
   competition!: CompetitionCreateNestedOneWithoutElistInput;
 
   @Field(() => ElistOfferCreateNestedManyWithoutElistInput, { nullable: true })
-  ElistOffer?: ElistOfferCreateNestedManyWithoutElistInput;
+  offers?: ElistOfferCreateNestedManyWithoutElistInput;
 }

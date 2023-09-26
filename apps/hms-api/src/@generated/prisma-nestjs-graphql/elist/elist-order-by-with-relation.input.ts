@@ -35,5 +35,5 @@ export class ElistOrderByWithRelationInput {
   competition?: CompetitionOrderByWithRelationInput;
 
   @Field(() => ElistOfferOrderByRelationAggregateInput, { nullable: true })
-  ElistOffer?: ElistOfferOrderByRelationAggregateInput;
+  offers?: ElistOfferOrderByRelationAggregateInput;
 }

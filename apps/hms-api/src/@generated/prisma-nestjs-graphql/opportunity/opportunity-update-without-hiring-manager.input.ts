@@ -62,5 +62,5 @@ export class OpportunityUpdateWithoutHiring_managerInput {
   ministry?: MinistryUpdateOneRequiredWithoutOpportunitiesNestedInput;
 
   @Field(() => ElistOfferUpdateManyWithoutOpportunityNestedInput, { nullable: true })
-  ElistOffer?: ElistOfferUpdateManyWithoutOpportunityNestedInput;
+  offers?: ElistOfferUpdateManyWithoutOpportunityNestedInput;
 }

@@ -6,6 +6,9 @@ export class UserCount {
   applications?: number;
 
   @Field(() => Int, { nullable: false })
+  comments?: number;
+
+  @Field(() => Int, { nullable: false })
   competitions?: number;
 
   @Field(() => Int, { nullable: false })
@@ -15,8 +18,5 @@ export class UserCount {
   elist?: number;
 
   @Field(() => Int, { nullable: false })
-  Comment?: number;
-
-  @Field(() => Int, { nullable: false })
-  Opportunity?: number;
+  opportunities?: number;
 }

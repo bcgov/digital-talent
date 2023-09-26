@@ -44,5 +44,5 @@ export class JobDescriptionWhereUniqueInput {
   classification?: ClassificationRelationFilter;
 
   @Field(() => CompetitionListRelationFilter, { nullable: true })
-  Competition?: CompetitionListRelationFilter;
+  competitions?: CompetitionListRelationFilter;
 }

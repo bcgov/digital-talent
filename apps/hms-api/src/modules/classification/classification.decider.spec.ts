@@ -1,12 +1,13 @@
 import { AssertionError } from 'assert';
+import { Prisma } from '@prisma/client';
 import { Metadata } from '../event-store/types/metadata.type';
-import { State, decide, evolve } from './classification.decider';
+import { decide, evolve, State } from './classification.decider';
 import { CreateClassificationCommand } from './commands/create-classification/create-classification.command';
-import { UpdateClassificationCommand } from './commands/update-classification/update-classification.command';
 import { DeleteClassificationCommand } from './commands/delete-classification/delete-classification.command';
+import { UpdateClassificationCommand } from './commands/update-classification/update-classification.command';
 import { ClassificationCreatedEvent } from './events/classification-created/classification-created.event';
-import { ClassificationUpdatedEvent } from './events/classification-updated/classification-updated.event';
 import { ClassificationDeletedEvent } from './events/classification-deleted/classification-deleted.event';
+import { ClassificationUpdatedEvent } from './events/classification-updated/classification-updated.event';
 import { CreateClassificationInput } from './inputs/create-classification.input';
 import { DeleteClassificationInput } from './inputs/delete-classification.input';
 import { UpdateClassificationInput } from './inputs/update-classification.input';
@@ -21,7 +22,9 @@ describe('classification.decider', () => {
       id: 'd290f1ee-6c54-4b01-90e6-d701748f0851',
       grid_id: 'd290f1ee-6c54-4b01-90e6-d701748f0853',
       occupation_group_id: 'd290f1ee-6c54-4b01-90e6-d701748f0853',
-      rate_adjustment: 0.124,
+      rate_adjustment: new Prisma.Decimal(0.124),
+      updated_at: null,
+      deleted_at: null,
     },
   };
 
@@ -121,8 +124,10 @@ describe('classification.decider', () => {
             id: 'd290f1ee-6c54-4b01-90e6-d701748f0851',
             grid_id: 'd290f1ee-6c54-4b01-90e6-d701748f0854',
             occupation_group_id: 'd290f1ee-6c54-4b01-90e6-d701748f0854',
-            rate_adjustment: 0.125,
+            rate_adjustment: new Prisma.Decimal(0.125),
             created_at: expect.any(Date), // Ensure created_at is a date without being specific about its value.
+            updated_at: null,
+            deleted_at: null,
           }),
         }),
       );
@@ -137,8 +142,10 @@ describe('classification.decider', () => {
           id: 'd290f1ee-6c54-4b01-90e6-d701748f0851',
           grid_id: 'd290f1ee-6c54-4b01-90e6-d701748f0854',
           occupation_group_id: 'd290f1ee-6c54-4b01-90e6-d701748f0854',
-          rate_adjustment: 0.125,
+          rate_adjustment: new Prisma.Decimal(0.125),
           created_at: new Date('2023-08-21T10:00:00Z'),
+          updated_at: null,
+          deleted_at: null,
         },
       };
 
@@ -177,7 +184,9 @@ describe('classification.decider', () => {
           id: 'd290f1ee-6c54-4b01-90e6-d701748f0851',
           grid_id: 'd290f1ee-6c54-4b01-90e6-d701748f0855',
           occupation_group_id: 'd290f1ee-6c54-4b01-90e6-d701748f0855',
-          rate_adjustment: 0.126,
+          rate_adjustment: new Prisma.Decimal(0.126),
+          updated_at: null,
+          deleted_at: null,
           created_at: new Date('2023-08-21T10:00:00Z'),
         },
       };

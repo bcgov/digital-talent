@@ -1,16 +1,16 @@
 import { AssertionError } from 'assert';
+import { CompetitionSkill } from '../../../@generated/prisma-nestjs-graphql';
 import { ExistsState, InitialState } from '../../event-store/types/decider-state.type';
 import { Metadata } from '../../event-store/types/metadata.type';
-import { decide, evolve } from './competition-skill.decider';
 import { AddCompetitionSkillCommand } from './commands/add-competition-skill/add-competition-skill.command';
 import { RemoveCompetitionSkillCommand } from './commands/remove-competition-skill/remove-competition-skill.command';
+import { decide, evolve } from './competition-skill.decider';
 import { CompetitionSkillAddedEvent } from './events/competition-skill-added/competition-skill-added.event';
 import { CompetitionSkillRemovedEvent } from './events/competition-skill-removed/competition-skill-removed.event';
 import { AddCompetitionSkillInput } from './inputs/add-competition-skill.input';
 import { RemoveCompetitionSkillInput } from './inputs/remove-competition-skill.input';
-import { CompetitionSkillWriteModel } from './models/competition-skill-write.model';
 
-type State = InitialState | ExistsState<'competition-skill', CompetitionSkillWriteModel>;
+type State = InitialState | ExistsState<'competition-skill', CompetitionSkill>;
 
 describe('competition-skill.decider', () => {
   const mockInitialState: State = { exists: false };
@@ -23,6 +23,8 @@ describe('competition-skill.decider', () => {
       skill_id: 'd290f1ee-6c54-4b01-90e6-d701748f0852',
       min_years_experience: 2,
       is_required: true,
+      updated_at: null,
+      deleted_at: null,
     },
   };
 
@@ -123,6 +125,8 @@ describe('competition-skill.decider', () => {
           min_years_experience: 2,
           is_required: true,
           created_at: new Date('2023-08-21T10:00:00Z'),
+          updated_at: null,
+          deleted_at: null,
         },
       };
 

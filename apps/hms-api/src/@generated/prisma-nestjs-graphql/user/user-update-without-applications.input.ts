@@ -1,8 +1,8 @@
 import { Field, InputType } from '@nestjs/graphql';
+import { CommentUpdateManyWithoutUserNestedInput } from '../comment/comment-update-many-without-user-nested.input';
 import { CompetitionUpdateManyWithoutRecruiterNestedInput } from '../competition/competition-update-many-without-recruiter-nested.input';
 import { IdentityUpdateManyWithoutUserNestedInput } from '../identity/identity-update-many-without-user-nested.input';
 import { ElistUpdateManyWithoutApplicantNestedInput } from '../elist/elist-update-many-without-applicant-nested.input';
-import { CommentUpdateManyWithoutUserNestedInput } from '../comment/comment-update-many-without-user-nested.input';
 import { OpportunityUpdateManyWithoutHiring_managerNestedInput } from '../opportunity/opportunity-update-many-without-hiring-manager-nested.input';
 
 @InputType()
@@ -31,6 +31,9 @@ export class UserUpdateWithoutApplicationsInput {
   @Field(() => Date, { nullable: true })
   deleted_at?: Date | string;
 
+  @Field(() => CommentUpdateManyWithoutUserNestedInput, { nullable: true })
+  comments?: CommentUpdateManyWithoutUserNestedInput;
+
   @Field(() => CompetitionUpdateManyWithoutRecruiterNestedInput, { nullable: true })
   competitions?: CompetitionUpdateManyWithoutRecruiterNestedInput;
 
@@ -40,9 +43,6 @@ export class UserUpdateWithoutApplicationsInput {
   @Field(() => ElistUpdateManyWithoutApplicantNestedInput, { nullable: true })
   elist?: ElistUpdateManyWithoutApplicantNestedInput;
 
-  @Field(() => CommentUpdateManyWithoutUserNestedInput, { nullable: true })
-  Comment?: CommentUpdateManyWithoutUserNestedInput;
-
   @Field(() => OpportunityUpdateManyWithoutHiring_managerNestedInput, { nullable: true })
-  Opportunity?: OpportunityUpdateManyWithoutHiring_managerNestedInput;
+  opportunities?: OpportunityUpdateManyWithoutHiring_managerNestedInput;
 }

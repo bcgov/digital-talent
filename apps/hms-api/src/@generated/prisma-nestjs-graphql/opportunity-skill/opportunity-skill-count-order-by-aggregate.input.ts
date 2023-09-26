@@ -14,7 +14,4 @@ export class OpportunitySkillCountOrderByAggregateInput {
 
   @Field(() => SortOrder, { nullable: true })
   deleted_at?: keyof typeof SortOrder;
-
-  @Field(() => SortOrder, { nullable: true })
-  opportunityId?: keyof typeof SortOrder;
 }

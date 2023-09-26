@@ -60,5 +60,5 @@ export class OpportunityUncheckedUpdateWithoutMinistryInput {
   locations?: OpportunityLocationUncheckedUpdateManyWithoutOpportunityNestedInput;
 
   @Field(() => ElistOfferUncheckedUpdateManyWithoutOpportunityNestedInput, { nullable: true })
-  ElistOffer?: ElistOfferUncheckedUpdateManyWithoutOpportunityNestedInput;
+  offers?: ElistOfferUncheckedUpdateManyWithoutOpportunityNestedInput;
 }

@@ -10,7 +10,10 @@ export class ElistOfferOrderByWithRelationInput {
   id?: keyof typeof SortOrder;
 
   @Field(() => SortOrder, { nullable: true })
-  elistId?: keyof typeof SortOrder;
+  elist_id?: keyof typeof SortOrder;
+
+  @Field(() => SortOrder, { nullable: true })
+  opportunity_id?: keyof typeof SortOrder;
 
   @Field(() => SortOrder, { nullable: true })
   is_accepted?: keyof typeof SortOrder;
@@ -24,12 +27,9 @@ export class ElistOfferOrderByWithRelationInput {
   @Field(() => SortOrderInput, { nullable: true })
   deleted_at?: SortOrderInput;
 
-  @Field(() => SortOrderInput, { nullable: true })
-  opportunityId?: SortOrderInput;
-
   @Field(() => ElistOrderByWithRelationInput, { nullable: true })
   elist?: ElistOrderByWithRelationInput;
 
   @Field(() => OpportunityOrderByWithRelationInput, { nullable: true })
-  Opportunity?: OpportunityOrderByWithRelationInput;
+  opportunity?: OpportunityOrderByWithRelationInput;
 }
