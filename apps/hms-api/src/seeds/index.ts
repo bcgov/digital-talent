@@ -28,6 +28,6 @@ export const applySeeds = async (commandBus: CommandBus<ICommand>, eventStore: E
 
 export const seedsExist = async (queryBus: QueryBus) => {
   // check if seeds already exist by checking if there is any data in the user table
-  const users = await queryBus.execute(new GetUsersQuery());
+  const users = await queryBus.execute(new GetUsersQuery({}));
   return users.length !== 0;
 };
