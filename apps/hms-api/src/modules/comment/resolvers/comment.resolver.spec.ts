@@ -8,17 +8,12 @@ import { CommentResolver } from './comment.resolver';
 describe('CommentResolver', () => {
   let resolver: CommentResolver;
   let mockCommandBus: any;
-  let mockPrismaService: any;
+  let mockQueryBus: any;
 
   beforeEach(() => {
     mockCommandBus = { execute: jest.fn() };
-    mockPrismaService = {
-      comment: {
-        findMany: jest.fn(),
-        findUnique: jest.fn(),
-      },
-    };
-    resolver = new CommentResolver(mockCommandBus, mockPrismaService);
+    mockQueryBus = { execute: jest.fn() };
+    resolver = new CommentResolver(mockCommandBus, mockQueryBus);
   });
 
   it('should create an comment correctly', async () => {
@@ -72,22 +67,24 @@ describe('CommentResolver', () => {
 
   it('should get all comments correctly', async () => {
     const mockComments = [{ id: '1' }, { id: '2' }];
-    mockPrismaService.comment.findMany.mockResolvedValueOnce(mockComments);
+    mockQueryBus.execute.mockResolvedValueOnce(mockComments);
+    // mockPrismaService.comment.findMany.mockResolvedValueOnce(mockComments);
 
     const result = await resolver.comments();
 
     expect(result).toEqual(mockComments);
-    expect(mockPrismaService.comment.findMany).toHaveBeenCalled();
+    expect(mockQueryBus.execute).toHaveBeenCalled();
   });
 
   it('should get a specific comment by id correctly', async () => {
     const appId = 'mockAppId';
     const mockComment = { id: appId };
-    mockPrismaService.comment.findUnique.mockResolvedValueOnce(mockComment);
+    mockQueryBus.execute.mockResolvedValueOnce(mockComment);
+    // mockPrismaService.comment.findUnique.mockResolvedValueOnce(mockComment);
 
     const result = await resolver.comment(appId);
 
     expect(result).toEqual(mockComment);
-    expect(mockPrismaService.comment.findUnique).toHaveBeenCalledWith({ where: { id: appId } });
+    expect(mockQueryBus.execute).toHaveBeenCalledWith({ id: appId });
   });
 });

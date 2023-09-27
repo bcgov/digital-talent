@@ -1,5 +1,5 @@
 import { BadRequestException } from '@nestjs/common';
-import { SkillCategory } from '../../@generated/prisma-nestjs-graphql';
+import { Skill, SkillCategory } from '../../@generated/prisma-nestjs-graphql';
 import { ExistsState, InitialState } from '../event-store/types/decider-state.type';
 import { Metadata } from '../event-store/types/metadata.type';
 import { CreateSkillCommand } from './commands/create-skill/create-skill.command';
@@ -11,10 +11,9 @@ import { SkillUpdatedEvent } from './events/skill-updated/skill-updated.event';
 import { DeleteSkillInput } from './inputs';
 import { CreateSkillInput } from './inputs/create-skill.input';
 import { UpdateSkillInput } from './inputs/update-skill.input';
-import { SkillWriteModel } from './models/skill-write.model';
 import { decide, evolve } from './skill.decider';
 
-type SkillState = InitialState | ExistsState<'skill', SkillWriteModel>;
+type SkillState = InitialState | ExistsState<'skill', Skill>;
 
 describe('skill.decider', () => {
   const mockInitialState: SkillState = { exists: false };
@@ -27,6 +26,8 @@ describe('skill.decider', () => {
       category: SkillCategory.CLOUD_PLATFORMS,
       name: 'test_name',
       description: 'test_description',
+      updated_at: null,
+      deleted_at: null,
     },
   };
 
@@ -144,6 +145,8 @@ describe('skill.decider', () => {
           name: 'test_name',
           description: 'test_description',
           created_at: new Date('2023-08-21T10:00:00Z'),
+          updated_at: null,
+          deleted_at: null,
         },
       };
 
@@ -184,6 +187,8 @@ describe('skill.decider', () => {
           name: 'test_name',
           description: 'test_description',
           created_at: new Date('2023-08-21T10:00:00Z'),
+          updated_at: null,
+          deleted_at: null,
         },
       };
 

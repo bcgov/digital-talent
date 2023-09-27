@@ -1,19 +1,19 @@
 import { BadRequestException } from '@nestjs/common';
+import { Ministry } from '../../@generated/prisma-nestjs-graphql';
+import { ExistsState, InitialState } from '../event-store/types/decider-state.type';
 import { Metadata } from '../event-store/types/metadata.type';
-import { decide, evolve } from './ministry.decider';
 import { CreateMinistryCommand } from './commands/create-ministry/create-ministry.command';
-import { UpdateMinistryCommand } from './commands/update-ministry/update-ministry.command';
 import { DeleteMinistryCommand } from './commands/delete-ministry/delete-ministry.command';
+import { UpdateMinistryCommand } from './commands/update-ministry/update-ministry.command';
 import { MinistryCreatedEvent } from './events/ministry-created/ministry-created.event';
-import { MinistryUpdatedEvent } from './events/ministry-updated/ministry-updated.event';
 import { MinistryDeletedEvent } from './events/ministry-deleted/ministry-deleted.event';
+import { MinistryUpdatedEvent } from './events/ministry-updated/ministry-updated.event';
 import { CreateMinistryInput } from './inputs/create-ministry.input';
 import { DeleteMinistryInput } from './inputs/delete-ministry.input';
 import { UpdateMinistryInput } from './inputs/update-ministry.input';
-import { ExistsState, InitialState } from '../event-store/types/decider-state.type';
-import { MinistryWriteModel } from './models/ministry-write.model';
+import { decide, evolve } from './ministry.decider';
 
-type MinistryState = InitialState | ExistsState<'ministry', MinistryWriteModel>;
+type MinistryState = InitialState | ExistsState<'ministry', Ministry>;
 
 describe('ministry.decider', () => {
   const mockInitialState: MinistryState = { exists: false };
@@ -25,6 +25,8 @@ describe('ministry.decider', () => {
       id: 'd290f1ee-6c54-4b01-90e6-d701748f0851',
       deltek_id: 'test_deltek_id',
       name: 'test_name',
+      updated_at: null,
+      deleted_at: null,
     },
   };
 
@@ -135,6 +137,8 @@ describe('ministry.decider', () => {
           deltek_id: 'test_deltek_id',
           name: 'test_name',
           created_at: new Date('2023-08-21T10:00:00Z'),
+          updated_at: null,
+          deleted_at: null,
         },
       };
 
@@ -172,6 +176,8 @@ describe('ministry.decider', () => {
           deltek_id: 'test_deltek_id_2',
           name: 'test_name_2',
           created_at: new Date('2023-08-21T10:00:00Z'),
+          updated_at: null,
+          deleted_at: null,
         },
       };
 

@@ -1,11 +1,11 @@
-import { Test, TestingModule } from '@nestjs/testing';
 import { QueryBus } from '@nestjs/cqrs';
+import { Test, TestingModule } from '@nestjs/testing';
+import { JobDescription } from '../../../@generated/prisma-nestjs-graphql';
 import { GetClassificationQuery } from '../../classification/queries/get-classification/get-classification.query';
 import { PrismaService } from '../../prisma/prisma.service';
-import { GetJobDescriptionsQuery } from '../queries/get-job-descriptions/get-job-descriptions.query';
 import { GetJobDescriptionQuery } from '../queries/get-job-description/get-job-description.query';
+import { GetJobDescriptionsQuery } from '../queries/get-job-descriptions/get-job-descriptions.query';
 import { JobDescriptionResolver } from './job-description.resolver';
-import { JobDescriptionModel } from '../models/job-description.model';
 
 describe('JobDescriptionResolver', () => {
   let resolver: JobDescriptionResolver;
@@ -62,7 +62,7 @@ describe('JobDescriptionResolver', () => {
 
   describe('getClassification', () => {
     it('should get the classification of a job-description based on its classification_id', async () => {
-      const jobDescription = new JobDescriptionModel();
+      const jobDescription = new JobDescription();
       jobDescription.id = 'some-uuid';
       jobDescription.classification_id = 'some-classification-uuid';
 
@@ -72,7 +72,7 @@ describe('JobDescriptionResolver', () => {
 
       (queryBus.execute as jest.Mock).mockResolvedValueOnce(expectedClassification);
 
-      expect(await resolver.getClassification(jobDescription)).toBe(expectedClassification);
+      expect(await resolver.classification(jobDescription)).toBe(expectedClassification);
       expect(queryBus.execute).toHaveBeenCalledWith(new GetClassificationQuery(jobDescription.classification_id));
     });
   });

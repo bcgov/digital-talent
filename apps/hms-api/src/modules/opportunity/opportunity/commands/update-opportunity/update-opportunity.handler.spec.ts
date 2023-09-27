@@ -1,6 +1,7 @@
 import { EventStoreDBClient } from '@eventstore/db-client';
 import { ModuleRef } from '@nestjs/core';
 import { CommandBus, EventBus, IEvent, UnhandledExceptionBus } from '@nestjs/cqrs';
+import { OpportunityInvolvement, WorkOption } from '../../../../../@generated/prisma-nestjs-graphql';
 import { Metadata } from '../../../../event-store/types/metadata.type';
 import { UpdateOpportunityInput } from '../../inputs/update-opportunity.input';
 import { UpdateOpportunityCommand } from './update-opportunity.command';
@@ -82,8 +83,8 @@ describe('UpdateOpportunityHandler', () => {
       deltek_id: 'd290f1ee-6c54-4b01-90e6-d701748f0854',
       hiring_manager_id: 'd290f1ee-6c54-4b01-90e6-d701748f0855',
       ministry_id: 'd290f1ee-6c54-4b01-90e6-d701748f0856',
-      involvement: 'NONE',
-      work_option: 'REMOTE',
+      involvement: OpportunityInvolvement.NONE,
+      work_option: WorkOption.REMOTE,
       description: 'new description',
       candidate_description: 'new candidate description',
       team_name: 'new team',
@@ -104,8 +105,8 @@ describe('UpdateOpportunityHandler', () => {
           deltek_id: 'd290f1ee-6c54-4b01-90e6-d701748f0854',
           hiring_manager_id: 'd290f1ee-6c54-4b01-90e6-d701748f0855',
           ministry_id: 'd290f1ee-6c54-4b01-90e6-d701748f0856',
-          involvement: 'NONE',
-          work_option: 'REMOTE',
+          involvement: OpportunityInvolvement.NONE,
+          work_option: WorkOption.REMOTE,
           description: 'new description',
           candidate_description: 'new candidate description',
           team_name: 'new team',

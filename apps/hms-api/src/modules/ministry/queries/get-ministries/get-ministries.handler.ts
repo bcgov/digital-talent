@@ -6,7 +6,7 @@ import { GetMinistriesQuery } from './get-ministries.query';
 export class GetMinistriesHandler implements IQueryHandler<GetMinistriesQuery> {
   constructor(private readonly prisma: PrismaService) {}
 
-  async execute({ args: { where, orderBy, take, skip } }: GetMinistriesQuery): Promise<any> {
+  async execute({ args: { where, orderBy, take, skip } = {} }: GetMinistriesQuery): Promise<any> {
     return this.prisma.ministry.findMany({
       where: {
         deleted_at: null,

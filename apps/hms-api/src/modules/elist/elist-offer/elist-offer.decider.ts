@@ -1,5 +1,5 @@
 import { BadRequestException } from '@nestjs/common';
-import { Elist } from '../../../@generated/prisma-nestjs-graphql';
+import { ElistOffer } from '../../../@generated/prisma-nestjs-graphql';
 import { ExistsState, InitialState } from '../../event-store/types/decider-state.type';
 import { Decider } from '../../event-store/utils/create-command-handler.util';
 import { decideUpdateEventData } from '../../event-store/utils/decide-update-event-data.util';
@@ -12,7 +12,7 @@ import { ElistOfferUpdatedEvent } from './events/elist-offer-updated/elist-offer
 import { CreateElistOfferInput } from './inputs/create-elist-offer.input';
 import { UpdateElistOfferInput } from './inputs/update-elist-offer.input';
 
-export type ElistOfferState = InitialState | ExistsState<'elist-offer', Elist>;
+export type ElistOfferState = InitialState | ExistsState<'elist-offer', ElistOffer>;
 export type ElistOfferCommand = CreateElistOfferCommand | UpdateElistOfferCommand | DeleteElistOfferCommand;
 export type ElistOfferEvent = ElistOfferCreatedEvent | ElistOfferUpdatedEvent | ElistOfferDeletedEvent;
 

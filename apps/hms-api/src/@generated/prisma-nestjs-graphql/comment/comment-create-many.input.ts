@@ -5,11 +5,11 @@ export class CommentCreateManyInput {
   @Field(() => String, { nullable: false })
   id!: string;
 
-  @Field(() => String, { nullable: true })
-  record_id?: string;
+  @Field(() => String, { nullable: false })
+  record_id!: string;
 
-  @Field(() => String, { nullable: true })
-  record_type?: string;
+  @Field(() => String, { nullable: false })
+  record_type!: string;
 
   @Field(() => String, { nullable: false })
   user_id!: string;

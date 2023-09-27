@@ -6,10 +6,10 @@ export class Comment {
   @Field(() => ID, { nullable: false })
   id!: string;
 
-  @Field(() => String, { nullable: false, defaultValue: '0' })
+  @Field(() => String, { nullable: false })
   record_id!: string;
 
-  @Field(() => String, { nullable: false, defaultValue: 'n/a' })
+  @Field(() => String, { nullable: false })
   record_type!: string;
 
   @Field(() => String, { nullable: false })

@@ -1,7 +1,7 @@
+import { Metadata } from '../../../../event-store/types/metadata.type';
+import { UpdateElistOfferInput } from '../../inputs/update-elist-offer.input';
 import { ElistOfferUpdatedEvent } from './elist-offer-updated.event';
 import { ElistOfferUpdatedHandler } from './elist-offer-updated.handler';
-import { UpdateElistOfferInput } from '../../inputs/update-elist-offer.input';
-import { Metadata } from '../../../../event-store/types/metadata.type';
 
 describe('ElistOfferUpdatedHandler', () => {
   let handler: ElistOfferUpdatedHandler;
@@ -16,7 +16,7 @@ describe('ElistOfferUpdatedHandler', () => {
     // Mock the data for UpdateElistOfferInput and Metadata
     const mockUpdateElistOfferInput: UpdateElistOfferInput = {
       id: 'd290f1ee-6c54-4b01-90e6-d701748f0851',
-      elistId: 'd290f1ee-6c54-4b01-90e6-d701748f0852',
+      elist_id: 'd290f1ee-6c54-4b01-90e6-d701748f0852',
       is_accepted: true,
     };
     const mockMetadata: Metadata = {

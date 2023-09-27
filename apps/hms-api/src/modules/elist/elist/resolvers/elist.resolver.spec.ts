@@ -8,17 +8,12 @@ import { ElistResolver } from './elist.resolver';
 describe('ElistResolver', () => {
   let resolver: ElistResolver;
   let mockCommandBus: any;
-  let mockPrismaService: any;
+  let mockQueryBus: any;
 
   beforeEach(() => {
     mockCommandBus = { execute: jest.fn() };
-    mockPrismaService = {
-      elist: {
-        findMany: jest.fn(),
-        findUnique: jest.fn(),
-      },
-    };
-    resolver = new ElistResolver(mockCommandBus, mockPrismaService);
+    mockQueryBus = { execute: jest.fn() };
+    resolver = new ElistResolver(mockCommandBus, mockQueryBus);
   });
 
   it('should create an elist correctly', async () => {
@@ -72,22 +67,22 @@ describe('ElistResolver', () => {
 
   it('should get all elists correctly', async () => {
     const mockElists = [{ id: '1' }, { id: '2' }];
-    mockPrismaService.elist.findMany.mockResolvedValueOnce(mockElists);
+    mockQueryBus.execute.mockResolvedValueOnce(mockElists);
 
     const result = await resolver.elists();
 
     expect(result).toEqual(mockElists);
-    expect(mockPrismaService.elist.findMany).toHaveBeenCalled();
+    expect(mockQueryBus.execute).toHaveBeenCalled();
   });
 
   it('should get a specific elist by id correctly', async () => {
     const appId = 'mockAppId';
     const mockElist = { id: appId };
-    mockPrismaService.elist.findUnique.mockResolvedValueOnce(mockElist);
+    mockQueryBus.execute.mockResolvedValueOnce(mockElist);
 
     const result = await resolver.elist(appId);
 
     expect(result).toEqual(mockElist);
-    expect(mockPrismaService.elist.findUnique).toHaveBeenCalledWith({ where: { id: appId } });
+    expect(mockQueryBus.execute).toHaveBeenCalledWith({ id: appId });
   });
 });

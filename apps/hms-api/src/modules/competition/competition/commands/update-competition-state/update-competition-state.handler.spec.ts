@@ -1,7 +1,7 @@
 import { EventStoreDBClient } from '@eventstore/db-client';
 import { ModuleRef } from '@nestjs/core';
 import { CommandBus, EventBus, IEvent, UnhandledExceptionBus } from '@nestjs/cqrs';
-import { CompetitionCategory } from '../../../../../@generated/prisma-nestjs-graphql';
+import { CompetitionCategory, CompetitionState } from '../../../../../@generated/prisma-nestjs-graphql';
 import { Metadata } from '../../../../event-store/types/metadata.type';
 import { UpdateCompetitionStateInput } from '../../inputs/update-competition-state.input';
 import { UpdateCompetitionStateCommand } from './update-competition-state.command';
@@ -72,7 +72,7 @@ describe('UpdateCompetitionStateHandler', () => {
     // Mock for UpdateCompetitionStateInput
     const mockUpdateCompetitionStateInput: UpdateCompetitionStateInput = {
       id: 'd290f1ee-6c54-4b01-90e6-d701748f0851',
-      state: 'PUBLISHED',
+      state: CompetitionState.PUBLISHED,
     };
 
     const command = new UpdateCompetitionStateCommand(mockUpdateCompetitionStateInput, mockMetadata);
@@ -84,7 +84,7 @@ describe('UpdateCompetitionStateHandler', () => {
         type: 'CompetitionStateUpdatedEvent',
         data: {
           id: 'd290f1ee-6c54-4b01-90e6-d701748f0851',
-          state: 'PUBLISHED',
+          state: CompetitionState.PUBLISHED,
         },
         metadata: expect.objectContaining({
           created_at: expect.any(String),

@@ -1,6 +1,6 @@
+import { EventStoreDBClient } from '@eventstore/db-client';
 import { ModuleRef } from '@nestjs/core';
 import { CommandBus, EventBus, IEvent, UnhandledExceptionBus } from '@nestjs/cqrs';
-import { EventStoreDBClient } from '@eventstore/db-client';
 import { Metadata } from '../../../../event-store/types/metadata.type';
 import { CreateElistOfferInput } from '../../inputs/create-elist-offer.input';
 import { CreateElistOfferCommand } from './create-elist-offer.command';
@@ -55,7 +55,7 @@ describe('CreateElistOfferHandler', () => {
     // Mock for CreateElistOfferInput
     const mockCreateElistOfferInput: CreateElistOfferInput = {
       id: 'd290f1ee-6c54-4b01-90e6-d701748f0851',
-      elistId: 'd290f1ee-6c54-4b01-90e6-d701748f0852',
+      elist_id: 'd290f1ee-6c54-4b01-90e6-d701748f0852',
       is_accepted: true,
     };
 
@@ -69,7 +69,7 @@ describe('CreateElistOfferHandler', () => {
         type: 'ElistOfferCreatedEvent',
         data: {
           id: 'd290f1ee-6c54-4b01-90e6-d701748f0851',
-          elistId: 'd290f1ee-6c54-4b01-90e6-d701748f0852',
+          elist_id: 'd290f1ee-6c54-4b01-90e6-d701748f0852',
           is_accepted: true,
         },
         metadata: expect.objectContaining({

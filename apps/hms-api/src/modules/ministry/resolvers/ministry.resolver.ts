@@ -11,7 +11,7 @@ export class MinistryResolver {
   constructor(private readonly queryBus: QueryBus) {}
 
   @Query((returns) => [Ministry], { name: 'ministries' })
-  getMinistries(@Args() args: FindManyMinistryArgs) {
+  getMinistries(@Args() args?: FindManyMinistryArgs) {
     return this.queryBus.execute(new GetMinistriesQuery(args));
   }
 

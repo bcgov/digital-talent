@@ -1,9 +1,9 @@
+import { CreateElistOfferCommand } from './commands/create-elist-offer/create-elist-offer.command';
+import { DeleteElistOfferCommand } from './commands/delete-elist-offer/delete-elist-offer.command';
+import { UpdateElistOfferCommand } from './commands/update-elist-offer/update-elist-offer.command';
+import { ElistOfferResolver } from './elist-offer.resolver';
 import { CreateElistOfferInput } from './inputs/create-elist-offer.input';
 import { UpdateElistOfferInput } from './inputs/update-elist-offer.input';
-import { CreateElistOfferCommand } from './commands/create-elist-offer/create-elist-offer.command';
-import { UpdateElistOfferCommand } from './commands/update-elist-offer/update-elist-offer.command';
-import { DeleteElistOfferCommand } from './commands/delete-elist-offer/delete-elist-offer.command';
-import { ElistOfferResolver } from './elist-offer.resolver';
 
 describe('ElistOfferResolver', () => {
   let resolver: ElistOfferResolver;
@@ -24,7 +24,7 @@ describe('ElistOfferResolver', () => {
   it('should create an elist-offer correctly', async () => {
     const input: CreateElistOfferInput = {
       id: 'd290f1ee-6c54-4b01-90e6-d701748f0851',
-      elistId: 'd290f1ee-6c54-4b01-90e6-d701748f0852',
+      elist_id: 'd290f1ee-6c54-4b01-90e6-d701748f0852',
       is_accepted: true,
     };
     const userId = 'd290f1ee-6c54-4b01-90e6-d701748f0853';
@@ -41,7 +41,7 @@ describe('ElistOfferResolver', () => {
   it('should update an elist-offer correctly', async () => {
     const input: UpdateElistOfferInput = {
       id: 'd290f1ee-6c54-4b01-90e6-d701748f0851',
-      elistId: 'd290f1ee-6c54-4b01-90e6-d701748f0852',
+      elist_id: 'd290f1ee-6c54-4b01-90e6-d701748f0852',
       is_accepted: true,
     };
     const userId = 'd290f1ee-6c54-4b01-90e6-d701748f0853';

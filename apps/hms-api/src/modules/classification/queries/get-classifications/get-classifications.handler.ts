@@ -6,7 +6,7 @@ import { GetClassificationsQuery } from './get-classifications.query';
 export class GetClassificationsHandler implements IQueryHandler<GetClassificationsQuery> {
   constructor(private readonly prisma: PrismaService) {}
 
-  async execute({ args: { where, orderBy, take, skip } }: GetClassificationsQuery): Promise<any> {
+  async execute({ args: { where, orderBy, take, skip } = {} }: GetClassificationsQuery): Promise<any> {
     return this.prisma.classification.findMany({
       where: {
         deleted_at: null,

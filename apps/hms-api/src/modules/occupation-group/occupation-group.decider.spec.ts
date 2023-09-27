@@ -1,15 +1,15 @@
 import { BadRequestException } from '@nestjs/common';
 import { Metadata } from '../event-store/types/metadata.type';
-import { State, decide, evolve } from './occupation-group.decider';
 import { CreateOccupationGroupCommand } from './commands/create-occupation-group/create-occupation-group.command';
-import { UpdateOccupationGroupCommand } from './commands/update-occupation-group/update-occupation-group.command';
 import { DeleteOccupationGroupCommand } from './commands/delete-occupation-group/delete-occupation-group.command';
+import { UpdateOccupationGroupCommand } from './commands/update-occupation-group/update-occupation-group.command';
 import { OccupationGroupCreatedEvent } from './events/occupation-group-created/occupation-group-created.event';
-import { OccupationGroupUpdatedEvent } from './events/occupation-group-updated/occupation-group-updated.event';
 import { OccupationGroupDeletedEvent } from './events/occupation-group-deleted/occupation-group-deleted.event';
+import { OccupationGroupUpdatedEvent } from './events/occupation-group-updated/occupation-group-updated.event';
 import { CreateOccupationGroupInput } from './inputs/create-occupation-group.input';
 import { DeleteOccupationGroupInput } from './inputs/delete-occupation-group.input';
 import { UpdateOccupationGroupInput } from './inputs/update-occupation-group.input';
+import { decide, evolve, State } from './occupation-group.decider';
 
 describe('occupation-group.decider', () => {
   const mockInitialState: State = { exists: false };
@@ -21,6 +21,8 @@ describe('occupation-group.decider', () => {
       id: 'd290f1ee-6c54-4b01-90e6-d701748f0851',
       code: 'test_code',
       name: 'test_name',
+      updated_at: null,
+      deleted_at: null,
     },
   };
 
@@ -140,6 +142,8 @@ describe('occupation-group.decider', () => {
           code: 'test_code',
           name: 'test_name',
           created_at: new Date('2023-08-21T10:00:00Z'),
+          updated_at: null,
+          deleted_at: null,
         },
       };
 
@@ -177,6 +181,8 @@ describe('occupation-group.decider', () => {
           code: 'test_code_2',
           name: 'test_name_2',
           created_at: new Date('2023-08-21T10:00:00Z'),
+          updated_at: null,
+          deleted_at: null,
         },
       };
 

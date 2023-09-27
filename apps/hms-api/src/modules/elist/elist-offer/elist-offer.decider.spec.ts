@@ -1,12 +1,12 @@
 import { BadRequestException } from '@nestjs/common';
 import { Metadata } from '../../event-store/types/metadata.type';
-import { ElistOfferState, decide, evolve } from './elist-offer.decider';
 import { CreateElistOfferCommand } from './commands/create-elist-offer/create-elist-offer.command';
-import { UpdateElistOfferCommand } from './commands/update-elist-offer/update-elist-offer.command';
 import { DeleteElistOfferCommand } from './commands/delete-elist-offer/delete-elist-offer.command';
+import { UpdateElistOfferCommand } from './commands/update-elist-offer/update-elist-offer.command';
+import { decide, ElistOfferState, evolve } from './elist-offer.decider';
 import { ElistOfferCreatedEvent } from './events/elist-offer-created/elist-offer-created.event';
-import { ElistOfferUpdatedEvent } from './events/elist-offer-updated/elist-offer-updated.event';
 import { ElistOfferDeletedEvent } from './events/elist-offer-deleted/elist-offer-deleted.event';
+import { ElistOfferUpdatedEvent } from './events/elist-offer-updated/elist-offer-updated.event';
 import { CreateElistOfferInput } from './inputs/create-elist-offer.input';
 import { DeleteElistOfferInput } from './inputs/delete-elist-offer.input';
 import { UpdateElistOfferInput } from './inputs/update-elist-offer.input';
@@ -19,8 +19,11 @@ describe('elist-offer.decider', () => {
     data: {
       created_at: new Date('2023-08-21T12:00:00Z'),
       id: 'd290f1ee-6c54-4b01-90e6-d701748f0851',
-      elistId: 'd290f1ee-6c54-4b01-90e6-d701748f0852',
+      elist_id: 'd290f1ee-6c54-4b01-90e6-d701748f0852',
+      opportunity_id: 'e780cdda-37c9-4bbb-bf35-b2dd751d8ab9',
       is_accepted: true,
+      updated_at: null,
+      deleted_at: null,
     },
   };
 
@@ -31,7 +34,7 @@ describe('elist-offer.decider', () => {
 
   const mockCreateElistOfferInput: CreateElistOfferInput = {
     id: 'd290f1ee-6c54-4b01-90e6-d701748f0851',
-    elistId: 'd290f1ee-6c54-4b01-90e6-d701748f0852',
+    elist_id: 'd290f1ee-6c54-4b01-90e6-d701748f0852',
     is_accepted: true,
   };
 
@@ -39,7 +42,7 @@ describe('elist-offer.decider', () => {
 
   const mockUpdateElistOfferInput: UpdateElistOfferInput = {
     id: 'd290f1ee-6c54-4b01-90e6-d701748f0851',
-    elistId: 'd290f1ee-6c54-4b01-90e6-d701748f0853',
+    elist_id: 'd290f1ee-6c54-4b01-90e6-d701748f0853',
     is_accepted: false,
   };
 
@@ -61,7 +64,7 @@ describe('elist-offer.decider', () => {
       expect(events[0]).toBeInstanceOf(ElistOfferCreatedEvent);
       expect(events[0].data).toEqual({
         id: 'd290f1ee-6c54-4b01-90e6-d701748f0851',
-        elistId: 'd290f1ee-6c54-4b01-90e6-d701748f0852',
+        elist_id: 'd290f1ee-6c54-4b01-90e6-d701748f0852',
         is_accepted: true,
       });
     });
@@ -77,7 +80,7 @@ describe('elist-offer.decider', () => {
       expect(events[0]).toBeInstanceOf(ElistOfferUpdatedEvent);
       expect(events[0].data).toEqual({
         id: 'd290f1ee-6c54-4b01-90e6-d701748f0851',
-        elistId: 'd290f1ee-6c54-4b01-90e6-d701748f0853',
+        elist_id: 'd290f1ee-6c54-4b01-90e6-d701748f0853',
         is_accepted: false,
       });
     });
@@ -100,7 +103,7 @@ describe('elist-offer.decider', () => {
       const mockEvent = new ElistOfferCreatedEvent(
         {
           id: 'd290f1ee-6c54-4b01-90e6-d701748f0851',
-          elistId: 'd290f1ee-6c54-4b01-90e6-d701748f0852',
+          elist_id: 'd290f1ee-6c54-4b01-90e6-d701748f0852',
           is_accepted: true,
         },
         { created_by: 'testUser', created_at: new Date().toISOString() },
@@ -113,7 +116,7 @@ describe('elist-offer.decider', () => {
           type: 'elist-offer',
           data: expect.objectContaining({
             id: 'd290f1ee-6c54-4b01-90e6-d701748f0851',
-            elistId: 'd290f1ee-6c54-4b01-90e6-d701748f0852',
+            elist_id: 'd290f1ee-6c54-4b01-90e6-d701748f0852',
             is_accepted: true,
             created_at: expect.any(Date), // Ensure created_at is a date without being specific about its value.
           }),
@@ -128,16 +131,19 @@ describe('elist-offer.decider', () => {
         type: 'elist-offer',
         data: {
           id: 'd290f1ee-6c54-4b01-90e6-d701748f0851',
-          elistId: 'd290f1ee-6c54-4b01-90e6-d701748f0852',
+          elist_id: 'd290f1ee-6c54-4b01-90e6-d701748f0852',
+          opportunity_id: 'e780cdda-37c9-4bbb-bf35-b2dd751d8ab9',
           is_accepted: true,
           created_at: new Date('2023-08-21T10:00:00Z'),
+          updated_at: null,
+          deleted_at: null,
         },
       };
 
       const mockEvent = new ElistOfferUpdatedEvent(
         {
           id: 'd290f1ee-6c54-4b01-90e6-d701748f0851',
-          elistId: 'd290f1ee-6c54-4b01-90e6-d701748f0853',
+          elist_id: 'd290f1ee-6c54-4b01-90e6-d701748f0853',
           is_accepted: false,
         },
         { created_by: 'testUser', created_at: new Date().toISOString() },
@@ -150,7 +156,7 @@ describe('elist-offer.decider', () => {
           type: 'elist-offer',
           data: expect.objectContaining({
             id: 'd290f1ee-6c54-4b01-90e6-d701748f0851',
-            elistId: 'd290f1ee-6c54-4b01-90e6-d701748f0853',
+            elist_id: 'd290f1ee-6c54-4b01-90e6-d701748f0853',
             is_accepted: false,
             updated_at: expect.any(Date), // Ensure updated_at is a date without being specific about its value.
           }),
@@ -165,9 +171,12 @@ describe('elist-offer.decider', () => {
         type: 'elist-offer',
         data: {
           id: 'd290f1ee-6c54-4b01-90e6-d701748f0851',
-          elistId: 'd290f1ee-6c54-4b01-90e6-d701748f0852',
+          elist_id: 'd290f1ee-6c54-4b01-90e6-d701748f0852',
+          opportunity_id: 'e780cdda-37c9-4bbb-bf35-b2dd751d8ab9',
           is_accepted: true,
           created_at: new Date('2023-08-21T10:00:00Z'),
+          updated_at: null,
+          deleted_at: null,
         },
       };
 

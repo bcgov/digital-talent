@@ -1,12 +1,13 @@
 import { BadRequestException } from '@nestjs/common';
+import { CompetitionState } from '../../@generated/prisma-nestjs-graphql';
 import { Metadata } from '../event-store/types/metadata.type';
-import { CompetitionScheduleState, decide, evolve } from './competition-schedule.decider';
 import { CreateCompetitionScheduleCommand } from './commands/create-competition-schedule/create-competition-schedule.command';
-import { UpdateCompetitionScheduleCommand } from './commands/update-competition-schedule/update-competition-schedule.command';
 import { DeleteCompetitionScheduleCommand } from './commands/delete-competition-schedule/delete-competition-schedule.command';
+import { UpdateCompetitionScheduleCommand } from './commands/update-competition-schedule/update-competition-schedule.command';
+import { CompetitionScheduleState, decide, evolve } from './competition-schedule.decider';
 import { CompetitionScheduleCreatedEvent } from './events/competition-schedule-created/competition-schedule-created.event';
-import { CompetitionScheduleUpdatedEvent } from './events/competition-schedule-updated/competition-schedule-updated.event';
 import { CompetitionScheduleDeletedEvent } from './events/competition-schedule-deleted/competition-schedule-deleted.event';
+import { CompetitionScheduleUpdatedEvent } from './events/competition-schedule-updated/competition-schedule-updated.event';
 import { CreateCompetitionScheduleInput } from './inputs/create-competition-schedule.input';
 import { DeleteCompetitionScheduleInput } from './inputs/delete-competition-schedule.input';
 import { UpdateCompetitionScheduleInput } from './inputs/update-competition-schedule.input';
@@ -22,7 +23,9 @@ describe('competition-schedule.decider', () => {
       competition_id: 'd290f1ee-6c54-4b01-90e6-d701748f0852',
       start_at: new Date('2023-08-21T12:00:00Z'),
       end_at: new Date('2023-08-21T12:00:00Z'),
-      state: 'DRAFT',
+      state: CompetitionState.DRAFT,
+      updated_at: null,
+      deleted_at: null,
     },
   };
 
@@ -36,7 +39,7 @@ describe('competition-schedule.decider', () => {
     competition_id: 'd290f1ee-6c54-4b01-90e6-d701748f0852',
     start_at: new Date('2023-08-21T12:00:00Z'),
     end_at: new Date('2023-08-21T12:00:00Z'),
-    state: 'DRAFT',
+    state: CompetitionState.DRAFT,
   };
 
   const mockCreateCompetitionScheduleCommand = new CreateCompetitionScheduleCommand(
@@ -49,7 +52,7 @@ describe('competition-schedule.decider', () => {
     competition_id: 'd290f1ee-6c54-4201-90e6-d701748f0852',
     start_at: new Date('2023-02-21T12:00:00Z'),
     end_at: new Date('2023-02-21T12:00:00Z'),
-    state: 'PUBLISHED',
+    state: CompetitionState.PUBLISHED,
   };
 
   const mockUpdateCompetitionScheduleCommand = new UpdateCompetitionScheduleCommand(
@@ -79,7 +82,7 @@ describe('competition-schedule.decider', () => {
         competition_id: 'd290f1ee-6c54-4b01-90e6-d701748f0852',
         start_at: new Date('2023-08-21T12:00:00Z'),
         end_at: new Date('2023-08-21T12:00:00Z'),
-        state: 'DRAFT',
+        state: CompetitionState.DRAFT,
       });
     });
 
@@ -97,7 +100,7 @@ describe('competition-schedule.decider', () => {
         competition_id: 'd290f1ee-6c54-4201-90e6-d701748f0852',
         start_at: new Date('2023-02-21T12:00:00Z'),
         end_at: new Date('2023-02-21T12:00:00Z'),
-        state: 'PUBLISHED',
+        state: CompetitionState.PUBLISHED,
       });
     });
 
@@ -122,7 +125,7 @@ describe('competition-schedule.decider', () => {
           competition_id: 'd290f1ee-6c54-4201-90e6-d701748f0852',
           start_at: new Date('2023-02-21T12:00:00Z'),
           end_at: new Date('2023-02-21T12:00:00Z'),
-          state: 'PUBLISHED',
+          state: CompetitionState.PUBLISHED,
         },
         { created_by: 'testUser', created_at: new Date().toISOString() },
       );
@@ -137,7 +140,7 @@ describe('competition-schedule.decider', () => {
             competition_id: 'd290f1ee-6c54-4201-90e6-d701748f0852',
             start_at: new Date('2023-02-21T12:00:00Z'),
             end_at: new Date('2023-02-21T12:00:00Z'),
-            state: 'PUBLISHED',
+            state: CompetitionState.PUBLISHED,
             created_at: expect.any(Date), // Ensure created_at is a date without being specific about its value.
           }),
         }),
@@ -154,8 +157,10 @@ describe('competition-schedule.decider', () => {
           competition_id: 'd290f1ee-6c54-4201-90e6-d701748f0852',
           start_at: new Date('2023-02-21T12:00:00Z'),
           end_at: new Date('2023-02-21T12:00:00Z'),
-          state: 'PUBLISHED',
+          state: CompetitionState.PUBLISHED,
           created_at: new Date('2023-08-21T10:00:00Z'),
+          updated_at: null,
+          deleted_at: null,
         },
       };
 
@@ -165,7 +170,7 @@ describe('competition-schedule.decider', () => {
           competition_id: 'd290f1ee-6c54-4201-90e6-d731748f0852',
           start_at: new Date('2023-04-21T12:00:00Z'),
           end_at: new Date('2023-04-21T12:00:00Z'),
-          state: 'PUBLISHED',
+          state: CompetitionState.PUBLISHED,
         },
         { created_by: 'testUser', created_at: new Date().toISOString() },
       );
@@ -180,7 +185,7 @@ describe('competition-schedule.decider', () => {
             competition_id: 'd290f1ee-6c54-4201-90e6-d731748f0852',
             start_at: new Date('2023-04-21T12:00:00Z'),
             end_at: new Date('2023-04-21T12:00:00Z'),
-            state: 'PUBLISHED',
+            state: CompetitionState.PUBLISHED,
           }),
         }),
       );
@@ -196,8 +201,10 @@ describe('competition-schedule.decider', () => {
           competition_id: 'd290f1ee-6c54-4201-90e6-d731748f0852',
           start_at: new Date('2023-04-21T12:00:00Z'),
           end_at: new Date('2023-04-21T12:00:00Z'),
-          state: 'PUBLISHED',
+          state: CompetitionState.PUBLISHED,
           created_at: new Date('2023-08-21T10:00:00Z'),
+          updated_at: null,
+          deleted_at: null,
         },
       };
 

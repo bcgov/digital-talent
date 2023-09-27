@@ -1,5 +1,5 @@
+import { IsNotEmpty, IsString } from 'class-validator';
 import 'reflect-metadata';
-import { IsString, IsNotEmpty } from 'class-validator';
 import { validateObject } from './validate-object.dto';
 
 // Sample DTO for testing

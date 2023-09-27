@@ -2,7 +2,6 @@ import { EventStoreDBClient } from '@eventstore/db-client';
 import { INestApplication } from '@nestjs/common';
 import { CqrsModule, QueryBus } from '@nestjs/cqrs';
 import { Test, TestingModule } from '@nestjs/testing';
-import { Prisma } from '@prisma/client';
 import { Classification } from '../../../@generated/prisma-nestjs-graphql';
 import { GridCommandHandlers } from '../../grid/commands';
 import { GridEventHandlers } from '../../grid/events';
@@ -132,7 +131,7 @@ describe('ClassificationResolver Integration Tests', () => {
       id: 'id',
       grid_id: 'gird_id',
       occupation_group_id: 'string',
-      rate_adjustment: new Prisma.Decimal(0.123),
+      rate_adjustment: 0.123 as any,
       grid: {
         id: 'id',
         name: 'name',
@@ -166,7 +165,7 @@ describe('ClassificationResolver Integration Tests', () => {
       id: 'id',
       grid_id: 'gird_id',
       occupation_group_id: 'string',
-      rate_adjustment: new Prisma.Decimal(0.123),
+      rate_adjustment: 0.123 as any,
       grid: {
         id: 'id',
         name: 'name',
@@ -199,7 +198,7 @@ describe('ClassificationResolver Integration Tests', () => {
       id: 'id',
       grid_id: 'gird_id',
       occupation_group_id: 'string',
-      rate_adjustment: new Prisma.Decimal(0.123),
+      rate_adjustment: 0.123 as any,
       grid: {
         id: 'id',
         name: 'name',
@@ -233,7 +232,7 @@ describe('ClassificationResolver Integration Tests', () => {
       id: 'id',
       grid_id: 'gird_id',
       occupation_group_id: 'string',
-      rate_adjustment: new Prisma.Decimal(0.123),
+      rate_adjustment: 0.123 as any,
       grid: {
         id: 'id',
         name: 'name',

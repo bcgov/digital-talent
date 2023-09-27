@@ -1,12 +1,12 @@
 import { BadRequestException } from '@nestjs/common';
 import { Metadata } from '../../event-store/types/metadata.type';
-import { ElistState, decide, evolve } from './elist.decider';
 import { CreateElistCommand } from './commands/create-elist/create-elist.command';
-import { UpdateElistCommand } from './commands/update-elist/update-elist.command';
 import { DeleteElistCommand } from './commands/delete-elist/delete-elist.command';
+import { UpdateElistCommand } from './commands/update-elist/update-elist.command';
+import { decide, ElistState, evolve } from './elist.decider';
 import { ElistCreatedEvent } from './events/elist-created/elist-created.event';
-import { ElistUpdatedEvent } from './events/elist-updated/elist-updated.event';
 import { ElistDeletedEvent } from './events/elist-deleted/elist-deleted.event';
+import { ElistUpdatedEvent } from './events/elist-updated/elist-updated.event';
 import { CreateElistInput } from './inputs/create-elist.input';
 import { DeleteElistInput } from './inputs/delete-elist.input';
 import { UpdateElistInput } from './inputs/update-elist.input';
@@ -22,6 +22,8 @@ describe('elist.decider', () => {
       applicant_id: 'd290f1ee-6c54-4b01-90e6-d701748f0852',
       competition_id: 'd290f1ee-6c54-4b01-90e6-d701748f0852',
       rank: 5,
+      updated_at: null,
+      deleted_at: null,
     },
   };
 
@@ -139,6 +141,8 @@ describe('elist.decider', () => {
           competition_id: 'd290f1ee-6c54-4b01-90e6-d701748f0852',
           rank: 5,
           created_at: new Date('2023-08-21T10:00:00Z'),
+          updated_at: null,
+          deleted_at: null,
         },
       };
 
@@ -179,6 +183,8 @@ describe('elist.decider', () => {
           competition_id: 'd290f1ee-6c54-4b01-90e6-d701748f0852',
           rank: 5,
           created_at: new Date('2023-08-21T10:00:00Z'),
+          updated_at: null,
+          deleted_at: null,
         },
       };
 

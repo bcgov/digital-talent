@@ -28,6 +28,9 @@ describe('competition.decider', () => {
       recruiter_id: 'd290f1ee-6c54-4b01-90e6-d701748f0852',
       category: CompetitionCategory.CMH,
       state: CompetitionState.DRAFT,
+      updated_at: null,
+      deleted_at: null,
+      metadata: {},
     },
   };
 
@@ -172,6 +175,9 @@ describe('competition.decider', () => {
           category: CompetitionCategory.RH,
           state: CompetitionState.DRAFT,
           created_at: new Date('2023-08-21T10:00:00Z'),
+          updated_at: null,
+          deleted_at: null,
+          metadata: {},
         },
       };
 
@@ -216,6 +222,9 @@ describe('competition.decider', () => {
           category: CompetitionCategory.RH,
           state: CompetitionState.DRAFT,
           created_at: new Date('2023-08-21T10:00:00Z'),
+          updated_at: null,
+          deleted_at: null,
+          metadata: {},
         },
       };
 
@@ -258,6 +267,9 @@ describe('competition.decider', () => {
           category: CompetitionCategory.CMH,
           state: CompetitionState.DRAFT,
           created_at: new Date('2023-08-21T10:00:00Z'),
+          updated_at: null,
+          deleted_at: null,
+          metadata: {},
         },
       };
 

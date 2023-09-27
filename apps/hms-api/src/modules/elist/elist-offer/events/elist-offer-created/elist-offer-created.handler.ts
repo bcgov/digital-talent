@@ -8,7 +8,7 @@ export class ElistOfferCreatedHandler implements IEventHandler<ElistOfferCreated
 
   async handle(event: ElistOfferCreatedEvent) {
     const {
-      data: { id, elistId, ...rest },
+      data: { id, elist_id, ...rest },
       metadata,
     } = event;
 
@@ -17,7 +17,7 @@ export class ElistOfferCreatedHandler implements IEventHandler<ElistOfferCreated
         id,
         elist: {
           connect: {
-            id: elistId,
+            id: elist_id,
           },
         },
         ...rest,

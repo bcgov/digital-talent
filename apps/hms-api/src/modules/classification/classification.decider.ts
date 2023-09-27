@@ -1,6 +1,5 @@
 import assert from 'assert';
 import { BadRequestException } from '@nestjs/common';
-import { Prisma } from '@prisma/client';
 import { Classification } from '../../@generated/prisma-nestjs-graphql';
 import { ExistsState, InitialState } from '../event-store/types/decider-state.type';
 import { Decider } from '../event-store/utils/create-command-handler.util';
@@ -35,7 +34,7 @@ export function evolve(state: State, event: Event): State {
         type: 'classification',
         data: {
           ...data,
-          rate_adjustment: new Prisma.Decimal(rate_adjustment),
+          rate_adjustment: rate_adjustment as any,
           created_at: new Date(metadata.created_at),
           updated_at: null,
           deleted_at: null,
@@ -57,7 +56,7 @@ export function evolve(state: State, event: Event): State {
         data: {
           ...state.data,
           ...data,
-          rate_adjustment: new Prisma.Decimal(rate_adjustment),
+          rate_adjustment: rate_adjustment as any,
           updated_at: new Date(metadata.created_at),
         },
       };

@@ -6,7 +6,7 @@ import { OpportunityLocationCreatedEvent } from './events/opportunity-location-c
 import { OpportunityLocationDeletedEvent } from './events/opportunity-location-deleted/opportunity-location-deleted.event';
 import { CreateOpportunityLocationInput } from './inputs/create-opportunity-location.input';
 import { DeleteOpportunityLocationInput } from './inputs/delete-opportunity-location.input';
-import { OpportunityLocationState, decide, evolve } from './opportunity-location.decider';
+import { decide, evolve, OpportunityLocationState } from './opportunity-location.decider';
 
 describe('opportunity-location.decider', () => {
   const mockInitialState: OpportunityLocationState = { exists: false };
@@ -17,6 +17,7 @@ describe('opportunity-location.decider', () => {
       created_at: new Date('2023-08-21T12:00:00Z'),
       opportunity_id: 'd290f1ee-6c54-4b01-90e6-d701748f0851',
       location_id: 'd290f1ee-6c54-4b01-90e6-d701748f0852',
+      deleted_at: null,
     },
   };
 
@@ -110,6 +111,7 @@ describe('opportunity-location.decider', () => {
           created_at: new Date('2023-08-21T12:00:00Z'),
           opportunity_id: 'd290f1ee-6c54-4b01-90e6-d701748f0851',
           location_id: 'd290f1ee-6c54-4b01-90e6-d701748f0852',
+          deleted_at: null,
         },
       };
 
