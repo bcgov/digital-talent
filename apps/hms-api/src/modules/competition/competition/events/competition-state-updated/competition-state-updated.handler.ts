@@ -2,7 +2,7 @@ import { EventsHandler, IEventHandler } from '@nestjs/cqrs';
 import { PrismaService } from '../../../../prisma/prisma.service';
 import { CompetitionStateUpdatedEvent } from './competition-state-updated.event';
 
-@EventsHandler(CompetitionStateUpdatedHandler)
+@EventsHandler(CompetitionStateUpdatedEvent)
 export class CompetitionStateUpdatedHandler implements IEventHandler<CompetitionStateUpdatedEvent> {
   constructor(private readonly prisma: PrismaService) {}
 
