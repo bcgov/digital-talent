@@ -1,3 +1,4 @@
+import { CompetitionState } from '../../../@generated/prisma-nestjs-graphql';
 import { CreateCompetitionScheduleCommand } from '../commands/create-competition-schedule/create-competition-schedule.command';
 import { DeleteCompetitionScheduleCommand } from '../commands/delete-competition-schedule/delete-competition-schedule.command';
 import { UpdateCompetitionScheduleCommand } from '../commands/update-competition-schedule/update-competition-schedule.command';
@@ -8,17 +9,12 @@ import { CompetitionScheduleResolver } from './competition-schedule.resolver';
 describe('CompetitionScheduleResolver', () => {
   let resolver: CompetitionScheduleResolver;
   let mockCommandBus: any;
-  let mockPrismaService: any;
+  let mockQueryBus: any;
 
   beforeEach(() => {
     mockCommandBus = { execute: jest.fn() };
-    mockPrismaService = {
-      competitionSchedule: {
-        findMany: jest.fn(),
-        findUnique: jest.fn(),
-      },
-    };
-    resolver = new CompetitionScheduleResolver(mockCommandBus, mockPrismaService);
+    mockQueryBus = { execute: jest.fn() };
+    resolver = new CompetitionScheduleResolver(mockCommandBus, mockQueryBus);
   });
 
   it('should create an competition-schedule correctly', async () => {
@@ -27,7 +23,7 @@ describe('CompetitionScheduleResolver', () => {
       competition_id: 'd290f1ee-6c54-4b01-90e6-d701748f0852',
       start_at: new Date('2023-08-21T12:00:00Z'),
       end_at: new Date('2023-08-21T12:00:00Z'),
-      state: 'DRAFT',
+      state: CompetitionState.DRAFT,
     };
     const userId = 'd290f1ee-6c54-4b01-90e6-d701748f0853';
 
@@ -46,7 +42,7 @@ describe('CompetitionScheduleResolver', () => {
       competition_id: 'd290f1ee-6c54-4b01-90e6-d701748f0852',
       start_at: new Date('2023-08-21T12:00:00Z'),
       end_at: new Date('2023-08-21T12:00:00Z'),
-      state: 'DRAFT',
+      state: CompetitionState.DRAFT,
     };
     const userId = 'd290f1ee-6c54-4b01-90e6-d701748f0853';
 
@@ -74,22 +70,22 @@ describe('CompetitionScheduleResolver', () => {
 
   it('should get all competition-schedules correctly todo: rewrite as it uses query now', async () => {
     const mockCompetitionSchedules = [{ id: '1' }, { id: '2' }];
-    mockPrismaService.competitionSchedule.findMany.mockResolvedValueOnce(mockCompetitionSchedules);
+    mockQueryBus.execute.mockResolvedValueOnce(mockCompetitionSchedules);
 
     const result = await resolver.competitionSchedules();
 
     expect(result).toEqual(mockCompetitionSchedules);
-    expect(mockPrismaService.competitionSchedule.findMany).toHaveBeenCalled();
+    expect(mockQueryBus.execute).toHaveBeenCalled();
   });
 
   it('should get a specific competition-schedule by id correctly todo: rewrite as it uses query now', async () => {
     const appId = 'mockAppId';
     const mockCompetitionSchedule = { id: appId };
-    mockPrismaService.competitionSchedule.findUnique.mockResolvedValueOnce(mockCompetitionSchedule);
+    mockQueryBus.execute.mockResolvedValueOnce(mockCompetitionSchedule);
 
     const result = await resolver.competitionSchedule(appId);
 
     expect(result).toEqual(mockCompetitionSchedule);
-    expect(mockPrismaService.competitionSchedule.findUnique).toHaveBeenCalledWith({ where: { id: appId } });
+    expect(mockQueryBus.execute).toHaveBeenCalledWith({ id: appId });
   });
 });

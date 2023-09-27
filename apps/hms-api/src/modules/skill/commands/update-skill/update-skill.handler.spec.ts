@@ -1,6 +1,7 @@
+import { EventStoreDBClient } from '@eventstore/db-client';
 import { ModuleRef } from '@nestjs/core';
 import { CommandBus, EventBus, IEvent, UnhandledExceptionBus } from '@nestjs/cqrs';
-import { EventStoreDBClient } from '@eventstore/db-client';
+import { SkillCategory } from '../../../../@generated/prisma-nestjs-graphql';
 import { Metadata } from '../../../event-store/types/metadata.type';
 import { UpdateSkillInput } from '../../inputs/update-skill.input';
 import { UpdateSkillCommand } from './update-skill.command';
@@ -43,7 +44,7 @@ describe('UpdateSkillHandler', () => {
           type: 'SkillCreatedEvent',
           data: JSON.stringify({
             id: 'd290f1ee-6c54-4b01-90e6-d701748f0851',
-            category: 'CLOUD_PLATFORMS',
+            category: SkillCategory.CLOUD_PLATFORMS,
             name: 'test_name',
             description: 'test_description',
           }),
@@ -70,7 +71,7 @@ describe('UpdateSkillHandler', () => {
     // Mock for UpdateSkillInput
     const mockUpdateSkillInput: UpdateSkillInput = {
       id: 'd290f1ee-6c54-4b01-90e6-d701748f0851',
-      category: 'COMMUNICATION',
+      category: SkillCategory.COMMUNICATION,
       name: 'test_name_2',
       description: 'test_description_2',
     };
@@ -84,7 +85,7 @@ describe('UpdateSkillHandler', () => {
         type: 'SkillUpdatedEvent',
         data: {
           id: 'd290f1ee-6c54-4b01-90e6-d701748f0851',
-          category: 'COMMUNICATION',
+          category: SkillCategory.COMMUNICATION,
           name: 'test_name_2',
           description: 'test_description_2',
         },

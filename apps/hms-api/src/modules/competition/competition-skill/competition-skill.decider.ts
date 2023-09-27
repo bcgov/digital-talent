@@ -1,4 +1,5 @@
 import assert from 'assert';
+import { CompetitionSkill } from '../../../@generated/prisma-nestjs-graphql';
 import { ExistsState, InitialState } from '../../event-store/types/decider-state.type';
 import { Decider } from '../../event-store/utils/create-command-handler.util';
 import { decideUpdateEventData } from '../../event-store/utils/decide-update-event-data.util';
@@ -7,9 +8,8 @@ import { RemoveCompetitionSkillCommand } from './commands/remove-competition-ski
 import { CompetitionSkillAddedEvent } from './events/competition-skill-added/competition-skill-added.event';
 import { CompetitionSkillRemovedEvent } from './events/competition-skill-removed/competition-skill-removed.event';
 import { AddCompetitionSkillInput } from './inputs/add-competition-skill.input';
-import { CompetitionSkillWriteModel } from './models/competition-skill-write.model';
 
-type State = InitialState | ExistsState<'competition-skill', CompetitionSkillWriteModel>;
+type State = InitialState | ExistsState<'competition-skill', CompetitionSkill>;
 type Command = AddCompetitionSkillCommand | RemoveCompetitionSkillCommand;
 type Event = CompetitionSkillAddedEvent | CompetitionSkillRemovedEvent;
 

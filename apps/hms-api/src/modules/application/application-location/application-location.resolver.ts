@@ -1,16 +1,16 @@
 import { CommandBus } from '@nestjs/cqrs';
 import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { GraphQLString } from 'graphql';
+import { ApplicationLocation } from '../../../@generated/prisma-nestjs-graphql';
 import { CurrentUser } from '../../auth/decorators/current-user.decorator';
+import { PrismaService } from '../../prisma/prisma.service';
 import { CreateApplicationLocationCommand } from './commands/create-application-location/create-application-location.command';
+import { DeleteApplicationLocationCommand } from './commands/delete-application-location/delete-application-location.command';
 import { UpdateApplicationLocationCommand } from './commands/update-application-location/update-application-location.command';
-import { ApplicationLocationEntity } from './entities/application-location.entity';
 import { CreateApplicationLocationInput } from './inputs/create-application-location.input';
 import { UpdateApplicationLocationInput } from './inputs/update-application-location.input';
-import { PrismaService } from '../../prisma/prisma.service';
-import { DeleteApplicationLocationCommand } from './commands/delete-application-location/delete-application-location.command';
 
-@Resolver((of) => ApplicationLocationEntity)
+@Resolver((of) => ApplicationLocation)
 export class ApplicationLocationResolver {
   constructor(private readonly commandBus: CommandBus, private readonly prisma: PrismaService) {}
 
@@ -52,12 +52,12 @@ export class ApplicationLocationResolver {
     return command.data.application_id;
   }
 
-  @Query((returns) => [ApplicationLocationEntity])
+  @Query((returns) => [ApplicationLocation])
   async applicationLocations() {
     return this.prisma.applicationLocation.findMany();
   }
 
-  @Query((returns) => ApplicationLocationEntity)
+  @Query((returns) => ApplicationLocation)
   async applicationLocation(
     @Args({ name: 'application_id', type: () => String }) application_id: string,
     @Args({ name: 'location_id', type: () => String }) location_id: string,

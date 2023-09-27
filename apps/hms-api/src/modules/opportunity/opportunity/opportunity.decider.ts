@@ -1,6 +1,6 @@
 import assert from 'assert';
 import { BadRequestException } from '@nestjs/common';
-import { OpportunityState } from '@prisma/client';
+import { Opportunity, OpportunityState } from '../../../@generated/prisma-nestjs-graphql';
 import { ExistsState, InitialState } from '../../event-store/types/decider-state.type';
 import { Decider } from '../../event-store/utils/create-command-handler.util';
 import { decideUpdateEventData } from '../../event-store/utils/decide-update-event-data.util';
@@ -8,7 +8,6 @@ import { CreateOpportunityCommand } from './commands/create-opportunity/create-o
 import { DeleteOpportunityCommand } from './commands/delete-opportunity/delete-opportunity.command';
 import { UpdateOpportunityStateCommand } from './commands/update-opportunity-state/update-opportunity-state.command';
 import { UpdateOpportunityCommand } from './commands/update-opportunity/update-opportunity.command';
-import { OpportunityEntity } from './entities/opportunity.entity';
 import { OpportunityCreatedEvent } from './events/opportunity-created/opportunity-created.event';
 import { OpportunityDeletedEvent } from './events/opportunity-deleted/opportunity-deleted.event';
 import { OpportunityStateUpdatedEvent } from './events/opportunity-state-updated/opportunity-state-updated.event';
@@ -18,7 +17,7 @@ import { UpdateOpportunityStateInput } from './inputs/update-opportunity-state.i
 import { UpdateOpportunityInput } from './inputs/update-opportunity.input';
 import { opportunityStateMachine } from './state-machines/opportunity-state.state-machine';
 
-export type State = InitialState | ExistsState<'opportunity', OpportunityEntity>;
+export type State = InitialState | ExistsState<'opportunity', Opportunity>;
 type Command =
   | CreateOpportunityCommand
   | UpdateOpportunityCommand
@@ -33,15 +32,21 @@ export function evolve(state: State, event: Event): State {
     case 'OpportunityCreatedEvent': {
       assert(state.exists === false);
 
-      const { data, metadata } = event;
+      const {
+        data: { hiring_manager_id, ...data },
+        metadata,
+      } = event;
 
       return {
         exists: true,
         type: 'opportunity',
         data: {
           ...data,
+          hiring_manager_id,
           state: OpportunityState.SUBMITTED,
           created_at: new Date(metadata.created_at),
+          updated_at: null,
+          deleted_at: null,
         },
       };
     }

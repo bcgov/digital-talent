@@ -1,14 +1,14 @@
 import { CommandBus } from '@nestjs/cqrs';
 import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { GraphQLString } from 'graphql';
+import { OpportunityLocation } from '../../../@generated/prisma-nestjs-graphql';
 import { CurrentUser } from '../../auth/decorators/current-user.decorator';
 import { PrismaService } from '../../prisma/prisma.service';
 import { CreateOpportunityLocationCommand } from './commands/create-opportunity-location/create-opportunity-location.command';
 import { DeleteOpportunityLocationCommand } from './commands/delete-opportunity-location/delete-opportunity-location.command';
-import { OpportunityLocationEntity } from './entities/opportunity-location.entity';
 import { CreateOpportunityLocationInput } from './inputs/create-opportunity-location.input';
 
-@Resolver((of) => OpportunityLocationEntity)
+@Resolver((of) => OpportunityLocation)
 export class OpportunityLocationResolver {
   constructor(private readonly commandBus: CommandBus, private readonly prisma: PrismaService) {}
 
@@ -39,12 +39,12 @@ export class OpportunityLocationResolver {
     return command.data.opportunity_id;
   }
 
-  @Query((returns) => [OpportunityLocationEntity])
+  @Query((returns) => [OpportunityLocation])
   async opportunityLocations() {
     return this.prisma.opportunityLocation.findMany();
   }
 
-  @Query((returns) => OpportunityLocationEntity)
+  @Query((returns) => OpportunityLocation)
   async opportunityLocation(
     @Args({ name: 'opportunity_id', type: () => String }) opportunity_id: string,
     @Args({ name: 'location_id', type: () => String }) location_id: string,

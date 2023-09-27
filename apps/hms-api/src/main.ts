@@ -11,7 +11,7 @@ export async function bootstrap() {
 
   app.enableCors();
   app.useLogger(app.get(Logger));
-  app.useGlobalPipes(new ValidationPipe({ skipMissingProperties: false, transform: true, whitelist: true }));
+  app.useGlobalPipes(new ValidationPipe({ skipMissingProperties: false, transform: true }));
 
   await app.listen(4000);
 

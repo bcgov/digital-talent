@@ -1,15 +1,16 @@
 import { BadRequestException } from '@nestjs/common';
+import { LocationRegion } from '../../@generated/prisma-nestjs-graphql';
 import { Metadata } from '../event-store/types/metadata.type';
-import { LocationState, decide, evolve } from './location.decider';
 import { CreateLocationCommand } from './commands/create-location/create-location.command';
-import { UpdateLocationCommand } from './commands/update-location/update-location.command';
 import { DeleteLocationCommand } from './commands/delete-location/delete-location.command';
+import { UpdateLocationCommand } from './commands/update-location/update-location.command';
 import { LocationCreatedEvent } from './events/location-created/location-created.event';
-import { LocationUpdatedEvent } from './events/location-updated/location-updated.event';
 import { LocationDeletedEvent } from './events/location-deleted/location-deleted.event';
+import { LocationUpdatedEvent } from './events/location-updated/location-updated.event';
 import { CreateLocationInput } from './inputs/create-location.input';
 import { DeleteLocationInput } from './inputs/delete-location.input';
 import { UpdateLocationInput } from './inputs/update-location.input';
+import { decide, evolve, LocationState } from './location.decider';
 
 describe('location.decider', () => {
   const mockInitialState: LocationState = { exists: false };
@@ -24,7 +25,9 @@ describe('location.decider', () => {
       postal_code: 'V9M 3K2',
       lat: 0.23,
       lon: 0.25,
-      region: 'CARIBOO',
+      region: LocationRegion.CARIBOO,
+      updated_at: null,
+      deleted_at: null,
     },
   };
 
@@ -40,7 +43,7 @@ describe('location.decider', () => {
     postal_code: 'V9M 3K2',
     lat: 0.23,
     lon: 0.25,
-    region: 'CARIBOO',
+    region: LocationRegion.CARIBOO,
   };
 
   const mockCreateLocationCommand = new CreateLocationCommand(mockCreateLocationInput, mockMetadata);
@@ -52,7 +55,7 @@ describe('location.decider', () => {
     postal_code: 'V9M 3K3',
     lat: 0.24,
     lon: 0.24,
-    region: 'KOOTENAY',
+    region: LocationRegion.KOOTENAY,
   };
 
   const mockUpdateLocationCommand = new UpdateLocationCommand(mockUpdateLocationInput, mockMetadata);
@@ -78,7 +81,7 @@ describe('location.decider', () => {
         postal_code: 'V9M 3K2',
         lat: 0.23,
         lon: 0.25,
-        region: 'CARIBOO',
+        region: LocationRegion.CARIBOO,
       });
     });
 
@@ -98,7 +101,7 @@ describe('location.decider', () => {
         postal_code: 'V9M 3K3',
         lat: 0.24,
         lon: 0.24,
-        region: 'KOOTENAY',
+        region: LocationRegion.KOOTENAY,
       });
     });
 
@@ -125,7 +128,7 @@ describe('location.decider', () => {
           postal_code: 'V9M 3K3',
           lat: 0.24,
           lon: 0.24,
-          region: 'CARIBOO',
+          region: LocationRegion.CARIBOO,
         },
         { created_by: 'testUser', created_at: new Date().toISOString() },
       );
@@ -142,7 +145,7 @@ describe('location.decider', () => {
             postal_code: 'V9M 3K3',
             lat: 0.24,
             lon: 0.24,
-            region: 'CARIBOO',
+            region: LocationRegion.CARIBOO,
             created_at: expect.any(Date), // Ensure created_at is a date without being specific about its value.
           }),
         }),
@@ -161,8 +164,10 @@ describe('location.decider', () => {
           postal_code: 'V9M 3K3',
           lat: 0.24,
           lon: 0.24,
-          region: 'CARIBOO',
+          region: LocationRegion.CARIBOO,
           created_at: new Date('2023-08-21T10:00:00Z'),
+          updated_at: null,
+          deleted_at: null,
         },
       };
 
@@ -174,7 +179,7 @@ describe('location.decider', () => {
           postal_code: 'V9M 3K4',
           lat: 0.25,
           lon: 0.25,
-          region: 'KOOTENAY',
+          region: LocationRegion.KOOTENAY,
         },
         { created_by: 'testUser', created_at: new Date().toISOString() },
       );
@@ -191,7 +196,7 @@ describe('location.decider', () => {
             postal_code: 'V9M 3K4',
             lat: 0.25,
             lon: 0.25,
-            region: 'KOOTENAY',
+            region: LocationRegion.KOOTENAY,
             updated_at: expect.any(Date), // Ensure updated_at is a date without being specific about its value.
           }),
         }),
@@ -210,8 +215,10 @@ describe('location.decider', () => {
           postal_code: 'V9M 3K4',
           lat: 0.25,
           lon: 0.25,
-          region: 'CARIBOO',
+          region: LocationRegion.CARIBOO,
           created_at: new Date('2023-08-21T10:00:00Z'),
+          updated_at: null,
+          deleted_at: null,
         },
       };
 

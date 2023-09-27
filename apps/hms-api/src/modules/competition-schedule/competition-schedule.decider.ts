@@ -1,4 +1,5 @@
 import { BadRequestException } from '@nestjs/common';
+import { CompetitionSchedule } from '../../@generated/prisma-nestjs-graphql';
 import { ExistsState, InitialState } from '../event-store/types/decider-state.type';
 import { Decider } from '../event-store/utils/create-command-handler.util';
 import { decideUpdateEventData } from '../event-store/utils/decide-update-event-data.util';
@@ -10,11 +11,8 @@ import { CompetitionScheduleDeletedEvent } from './events/competition-schedule-d
 import { CompetitionScheduleUpdatedEvent } from './events/competition-schedule-updated/competition-schedule-updated.event';
 import { CreateCompetitionScheduleInput } from './inputs/create-competition-schedule.input';
 import { UpdateCompetitionScheduleInput } from './inputs/update-competition-schedule.input';
-import { CompetitionScheduleWriteModel } from './models/competition-schedule-write.model';
 
-export type CompetitionScheduleState =
-  | InitialState
-  | ExistsState<'competition-schedule', CompetitionScheduleWriteModel>;
+export type CompetitionScheduleState = InitialState | ExistsState<'competition-schedule', CompetitionSchedule>;
 export type CompetitionScheduleCommand =
   | CreateCompetitionScheduleCommand
   | UpdateCompetitionScheduleCommand

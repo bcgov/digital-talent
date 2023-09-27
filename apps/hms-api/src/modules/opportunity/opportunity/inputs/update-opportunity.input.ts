@@ -1,8 +1,8 @@
 import { Field, InputType } from '@nestjs/graphql';
-import { OpportunityInvolvement, WorkOption } from '@prisma/client';
 import { IsEnum, IsString, IsUUID } from 'class-validator';
 import { GraphQLString } from 'graphql';
 import { GraphQLUUID } from 'graphql-scalars';
+import { OpportunityInvolvement, WorkOption } from '../../../../@generated/prisma-nestjs-graphql';
 
 @InputType()
 export class UpdateOpportunityInput {

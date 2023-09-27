@@ -1,6 +1,6 @@
 import { EventStoreDBClient } from '@eventstore/db-client';
 import { CommandBus, ICommand } from '@nestjs/cqrs';
-import { LocationRegion } from '@prisma/client';
+import { LocationRegion } from '../../@generated/prisma-nestjs-graphql';
 import { CreateLocationCommand } from '../../modules/location/commands/create-location/create-location.command';
 import { DeleteLocationCommand } from '../../modules/location/commands/delete-location/delete-location.command';
 import { UpdateLocationCommand } from '../../modules/location/commands/update-location/update-location.command';

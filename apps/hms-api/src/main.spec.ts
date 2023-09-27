@@ -3,8 +3,8 @@ import { NestFactory } from '@nestjs/core';
 import { CommandBus } from '@nestjs/cqrs';
 import { Logger } from 'nestjs-pino';
 import { AppModule } from './app.module';
-import { applySeeds } from './seeds';
 import { bootstrap } from './main';
+import { applySeeds } from './seeds';
 
 jest.mock('@nestjs/core');
 jest.mock('nestjs-pino');
@@ -94,7 +94,6 @@ describe('bootstrap', () => {
     expect(ValidationPipeMock).toHaveBeenCalledWith({
       skipMissingProperties: false,
       transform: true,
-      whitelist: true,
     });
   });
 

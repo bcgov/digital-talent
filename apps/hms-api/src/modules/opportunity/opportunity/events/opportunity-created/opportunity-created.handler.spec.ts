@@ -1,3 +1,4 @@
+import { OpportunityInvolvement, WorkOption } from '../../../../../@generated/prisma-nestjs-graphql';
 import { Metadata } from '../../../../event-store/types/metadata.type';
 import { CreateOpportunityInput } from '../../inputs/create-opportunity.input';
 import { OpportunityCreatedEvent } from './opportunity-created.event';
@@ -20,8 +21,8 @@ describe('OpportunityCreatedHandler', () => {
       deltek_id: 'd290f1ee-6c54-4b01-90e6-d701748f0853',
       hiring_manager_id: 'd290f1ee-6c54-4b01-90e6-d701748f0854',
       ministry_id: 'd290f1ee-6c54-4b01-90e6-d701748f0855',
-      involvement: 'FULL',
-      work_option: 'HYBRID',
+      involvement: OpportunityInvolvement.FULL,
+      work_option: WorkOption.HYBRID,
       description: 'description',
       candidate_description: 'candidate description',
       team_name: 'team',
@@ -58,8 +59,8 @@ describe('OpportunityCreatedHandler', () => {
           },
         },
         state: 'SUBMITTED',
-        involvement: 'FULL',
-        work_option: 'HYBRID',
+        involvement: OpportunityInvolvement.FULL,
+        work_option: WorkOption.HYBRID,
         description: 'description',
         candidate_description: 'candidate description',
         team_name: 'team',

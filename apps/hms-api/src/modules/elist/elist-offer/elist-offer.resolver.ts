@@ -1,16 +1,16 @@
 import { CommandBus } from '@nestjs/cqrs';
 import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { GraphQLString } from 'graphql';
+import { ElistOffer } from '../../../@generated/prisma-nestjs-graphql';
 import { CurrentUser } from '../../auth/decorators/current-user.decorator';
-import { CreateElistOfferCommand } from './commands/create-elist-offer/create-elist-offer.command';
-import { ElistOfferEntity } from './entities/elist-offer.entity';
-import { CreateElistOfferInput } from './inputs/create-elist-offer.input';
-import { UpdateElistOfferInput } from './inputs/update-elist-offer.input';
 import { PrismaService } from '../../prisma/prisma.service';
+import { CreateElistOfferCommand } from './commands/create-elist-offer/create-elist-offer.command';
 import { DeleteElistOfferCommand } from './commands/delete-elist-offer/delete-elist-offer.command';
 import { UpdateElistOfferCommand } from './commands/update-elist-offer/update-elist-offer.command';
+import { CreateElistOfferInput } from './inputs/create-elist-offer.input';
+import { UpdateElistOfferInput } from './inputs/update-elist-offer.input';
 
-@Resolver((of) => ElistOfferEntity)
+@Resolver((of) => ElistOffer)
 export class ElistOfferResolver {
   constructor(private readonly commandBus: CommandBus, private readonly prisma: PrismaService) {}
 
@@ -48,12 +48,12 @@ export class ElistOfferResolver {
     return command.data.id;
   }
 
-  @Query((returns) => [ElistOfferEntity])
+  @Query((returns) => [ElistOffer])
   async elistOffers() {
     return this.prisma.elistOffer.findMany();
   }
 
-  @Query((returns) => ElistOfferEntity)
+  @Query((returns) => ElistOffer)
   async elistOffer(@Args('id', { type: () => GraphQLString }) id: string) {
     return this.prisma.elistOffer.findUnique({
       where: { id },

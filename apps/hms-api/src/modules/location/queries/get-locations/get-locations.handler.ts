@@ -6,11 +6,15 @@ import { GetLocationsQuery } from './get-locations.query';
 export class GetLocationsHandler implements IQueryHandler<GetLocationsQuery> {
   constructor(private readonly prisma: PrismaService) {}
 
-  async execute(query: GetLocationsQuery): Promise<any> {
+  async execute({ args: { where, orderBy, take, skip } = {} }: GetLocationsQuery): Promise<any> {
     return this.prisma.location.findMany({
       where: {
         deleted_at: null,
+        ...where,
       },
+      orderBy,
+      take,
+      skip,
     });
   }
 }

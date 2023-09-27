@@ -1,6 +1,5 @@
-import { Test, TestingModule } from '@nestjs/testing';
 import { QueryBus } from '@nestjs/cqrs';
-import { PrismaService } from '../../prisma/prisma.service';
+import { Test, TestingModule } from '@nestjs/testing';
 import { GetMinistriesQuery } from '../queries/get-ministries/get-ministries.query';
 import { GetMinistryQuery } from '../queries/get-ministry/get-ministry.query';
 import { MinistryResolver } from './ministry.resolver';
@@ -17,13 +16,6 @@ describe('MinistryResolver', () => {
           provide: QueryBus,
           useValue: {
             execute: jest.fn(),
-          },
-        },
-        {
-          provide: PrismaService, // This mock provides the PrismaService in the testing context.
-          useValue: {
-            // Mock any methods of PrismaService that are used in your services.
-            // If none of the methods are used directly in this test, you can leave it as an empty object.
           },
         },
       ],

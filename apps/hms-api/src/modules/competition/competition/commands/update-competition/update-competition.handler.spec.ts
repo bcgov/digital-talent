@@ -1,6 +1,7 @@
+import { EventStoreDBClient } from '@eventstore/db-client';
 import { ModuleRef } from '@nestjs/core';
 import { CommandBus, EventBus, IEvent, UnhandledExceptionBus } from '@nestjs/cqrs';
-import { EventStoreDBClient } from '@eventstore/db-client';
+import { CompetitionCategory } from '../../../../../@generated/prisma-nestjs-graphql';
 import { Metadata } from '../../../../event-store/types/metadata.type';
 import { UpdateCompetitionInput } from '../../inputs/update-competition.input';
 import { UpdateCompetitionCommand } from './update-competition.command';
@@ -46,7 +47,7 @@ describe('UpdateCompetitionHandler', () => {
             job_description_id: 'd290f1ee-6c54-4b01-90e6-d701748f0852',
             deltek_id: 'd290f1ee-6c54-4b01-90e6-d701748f0852',
             recruiter_id: 'd290f1ee-6c54-4b01-90e6-d701748f0852',
-            category: 'CMH',
+            category: CompetitionCategory.CMH,
           }),
           metadata: JSON.stringify({
             created_at: '2023-08-20T12:00:00Z',
@@ -74,7 +75,7 @@ describe('UpdateCompetitionHandler', () => {
       job_description_id: 'd290f1ee-6c54-4b01-90e6-d701748f0853',
       deltek_id: 'd290f1ee-6c54-4b01-90e6-d701748f0853',
       recruiter_id: 'd290f1ee-6c54-4b01-90e6-d701748f0853',
-      category: 'RH',
+      category: CompetitionCategory.RH,
     };
 
     const command = new UpdateCompetitionCommand(mockUpdateCompetitionInput, mockMetadata);
@@ -89,7 +90,7 @@ describe('UpdateCompetitionHandler', () => {
           job_description_id: 'd290f1ee-6c54-4b01-90e6-d701748f0853',
           deltek_id: 'd290f1ee-6c54-4b01-90e6-d701748f0853',
           recruiter_id: 'd290f1ee-6c54-4b01-90e6-d701748f0853',
-          category: 'RH',
+          category: CompetitionCategory.RH,
         },
         metadata: expect.objectContaining({
           created_at: expect.any(String),

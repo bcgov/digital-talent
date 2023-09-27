@@ -1,6 +1,7 @@
+import { EventStoreDBClient } from '@eventstore/db-client';
 import { ModuleRef } from '@nestjs/core';
 import { CommandBus, EventBus, IEvent, UnhandledExceptionBus } from '@nestjs/cqrs';
-import { EventStoreDBClient } from '@eventstore/db-client';
+import { LocationRegion } from '../../../../@generated/prisma-nestjs-graphql';
 import { Metadata } from '../../../event-store/types/metadata.type';
 import { UpdateLocationInput } from '../../inputs/update-location.input';
 import { UpdateLocationCommand } from './update-location.command';
@@ -78,7 +79,7 @@ describe('UpdateLocationHandler', () => {
       postal_code: 'V9M 3K2',
       lat: 0.23,
       lon: 0.25,
-      region: 'KOOTENAY',
+      region: LocationRegion.KOOTENAY,
     };
 
     const command = new UpdateLocationCommand(mockUpdateLocationInput, mockMetadata);

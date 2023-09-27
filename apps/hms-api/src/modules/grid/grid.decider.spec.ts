@@ -1,12 +1,12 @@
 import { BadRequestException } from '@nestjs/common';
 import { Metadata } from '../event-store/types/metadata.type';
-import { State, decide, evolve } from './grid.decider';
 import { CreateGridCommand } from './commands/create-grid/create-grid.command';
-import { UpdateGridCommand } from './commands/update-grid/update-grid.command';
 import { DeleteGridCommand } from './commands/delete-grid/delete-grid.command';
+import { UpdateGridCommand } from './commands/update-grid/update-grid.command';
 import { GridCreatedEvent } from './events/grid-created/grid-created.event';
-import { GridUpdatedEvent } from './events/grid-updated/grid-updated.event';
 import { GridDeletedEvent } from './events/grid-deleted/grid-deleted.event';
+import { GridUpdatedEvent } from './events/grid-updated/grid-updated.event';
+import { decide, evolve, State } from './grid.decider';
 import { CreateGridInput } from './inputs/create-grid.input';
 import { DeleteGridInput } from './inputs/delete-grid.input';
 import { UpdateGridInput } from './inputs/update-grid.input';
@@ -36,6 +36,8 @@ describe('grid.decider', () => {
           rate_per_fortnight: 3184.11,
         },
       ],
+      updated_at: null,
+      deleted_at: null,
     },
   };
 
@@ -251,6 +253,8 @@ describe('grid.decider', () => {
             },
           ],
           created_at: new Date('2023-08-21T10:00:00Z'),
+          updated_at: null,
+          deleted_at: null,
         },
       };
 
@@ -332,6 +336,8 @@ describe('grid.decider', () => {
             },
           ],
           created_at: new Date('2023-08-21T10:00:00Z'),
+          updated_at: null,
+          deleted_at: null,
         },
       };
 

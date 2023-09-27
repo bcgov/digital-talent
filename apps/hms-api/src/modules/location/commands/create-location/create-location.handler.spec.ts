@@ -1,6 +1,7 @@
+import { EventStoreDBClient } from '@eventstore/db-client';
 import { ModuleRef } from '@nestjs/core';
 import { CommandBus, EventBus, IEvent, UnhandledExceptionBus } from '@nestjs/cqrs';
-import { EventStoreDBClient } from '@eventstore/db-client';
+import { LocationRegion } from '../../../../@generated/prisma-nestjs-graphql';
 import { Metadata } from '../../../event-store/types/metadata.type';
 import { CreateLocationInput } from '../../inputs/create-location.input';
 import { CreateLocationCommand } from './create-location.command';
@@ -60,7 +61,7 @@ describe('CreateLocationHandler', () => {
       postal_code: 'V9M 3K2',
       lat: 0.23,
       lon: 0.25,
-      region: 'CARIBOO',
+      region: LocationRegion.CARIBOO,
     };
 
     const command = new CreateLocationCommand(mockCreateLocationInput, mockMetadata);

@@ -1,5 +1,6 @@
-import { CreateCompetitionInput } from '../../inputs/create-competition.input';
+import { CompetitionCategory } from '../../../../../@generated/prisma-nestjs-graphql';
 import { Metadata } from '../../../../event-store/types/metadata.type';
+import { CreateCompetitionInput } from '../../inputs/create-competition.input';
 import { CompetitionCreatedEvent } from './competition-created.event';
 
 describe('CompetitionCreatedEvent', () => {
@@ -8,7 +9,7 @@ describe('CompetitionCreatedEvent', () => {
     job_description_id: 'd290f1ee-6c54-4b01-90e6-d701748f0852',
     deltek_id: 'd290f1ee-6c54-4b01-90e6-d701748f0852',
     recruiter_id: 'd290f1ee-6c54-4b01-90e6-d701748f0852',
-    category: 'CMH',
+    category: CompetitionCategory.CMH,
   };
 
   const mockMetadata: Metadata = {

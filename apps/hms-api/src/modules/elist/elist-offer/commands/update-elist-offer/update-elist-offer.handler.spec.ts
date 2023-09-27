@@ -1,6 +1,6 @@
+import { EventStoreDBClient } from '@eventstore/db-client';
 import { ModuleRef } from '@nestjs/core';
 import { CommandBus, EventBus, IEvent, UnhandledExceptionBus } from '@nestjs/cqrs';
-import { EventStoreDBClient } from '@eventstore/db-client';
 import { Metadata } from '../../../../event-store/types/metadata.type';
 import { UpdateElistOfferInput } from '../../inputs/update-elist-offer.input';
 import { UpdateElistOfferCommand } from './update-elist-offer.command';
@@ -43,7 +43,7 @@ describe('UpdateElistOfferHandler', () => {
           type: 'ElistOfferCreatedEvent',
           data: JSON.stringify({
             id: 'd290f1ee-6c54-4b01-90e6-d701748f0851',
-            elistId: 'd290f1ee-6c54-4b01-90e6-d701748f0852',
+            elist_id: 'd290f1ee-6c54-4b01-90e6-d701748f0852',
             is_accepted: true,
           }),
           metadata: JSON.stringify({
@@ -69,7 +69,7 @@ describe('UpdateElistOfferHandler', () => {
     // Mock for UpdateElistOfferInput
     const mockUpdateElistOfferInput: UpdateElistOfferInput = {
       id: 'd290f1ee-6c54-4b01-90e6-d701748f0851',
-      elistId: 'd290f1ee-6c54-4b01-90e6-d701748f0853',
+      elist_id: 'd290f1ee-6c54-4b01-90e6-d701748f0853',
       is_accepted: false,
     };
 
@@ -82,7 +82,7 @@ describe('UpdateElistOfferHandler', () => {
         type: 'ElistOfferUpdatedEvent',
         data: {
           id: 'd290f1ee-6c54-4b01-90e6-d701748f0851',
-          elistId: 'd290f1ee-6c54-4b01-90e6-d701748f0853',
+          elist_id: 'd290f1ee-6c54-4b01-90e6-d701748f0853',
           is_accepted: false,
         },
         metadata: expect.objectContaining({

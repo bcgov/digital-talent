@@ -1,16 +1,16 @@
 import { CommandBus } from '@nestjs/cqrs';
 import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { GraphQLString } from 'graphql';
+import { ApplicationSkill } from '../../../@generated/prisma-nestjs-graphql';
 import { CurrentUser } from '../../auth/decorators/current-user.decorator';
+import { PrismaService } from '../../prisma/prisma.service';
 import { CreateApplicationSkillCommand } from './commands/create-application-skill/create-application-skill.command';
+import { DeleteApplicationSkillCommand } from './commands/delete-application-skill/delete-application-skill.command';
 import { UpdateApplicationSkillCommand } from './commands/update-application-skill/update-application-skill.command';
-import { ApplicationSkillEntity } from './entities/application-skill.entity';
 import { CreateApplicationSkillInput } from './inputs/create-application-skill.input';
 import { UpdateApplicationSkillInput } from './inputs/update-application-skill.input';
-import { PrismaService } from '../../prisma/prisma.service';
-import { DeleteApplicationSkillCommand } from './commands/delete-application-skill/delete-application-skill.command';
 
-@Resolver((of) => ApplicationSkillEntity)
+@Resolver((of) => ApplicationSkill)
 export class ApplicationSkillResolver {
   constructor(private readonly commandBus: CommandBus, private readonly prisma: PrismaService) {}
 
@@ -52,12 +52,12 @@ export class ApplicationSkillResolver {
     return command.data.application_id;
   }
 
-  @Query((returns) => [ApplicationSkillEntity])
+  @Query((returns) => [ApplicationSkill])
   async applicationSkills() {
     return this.prisma.applicationSkill.findMany();
   }
 
-  @Query((returns) => ApplicationSkillEntity)
+  @Query((returns) => ApplicationSkill)
   async applicationSkill(
     @Args({ name: 'application_id', type: () => String }) application_id: string,
     @Args({ name: 'skill_id', type: () => String }) skill_id: string,

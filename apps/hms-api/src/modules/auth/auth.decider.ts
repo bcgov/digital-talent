@@ -3,10 +3,10 @@ import { Decider } from '../event-store/utils/create-command-handler.util';
 import { decideUpdateEventData } from '../event-store/utils/decide-update-event-data.util';
 import { SyncAccountCommand } from './commands/sync-account/sync-account.command';
 import { SyncAccountDto } from './dtos/sync-account.dto';
-import { AccountEntity } from './entities/account.entity';
 import { AccountSyncedEvent } from './events/account-synced/account-synced.event';
+import { Account } from './models/account.model';
 
-export type AuthState = InitialState | ExistsState<'account', AccountEntity>;
+export type AuthState = InitialState | ExistsState<'account', Account>;
 export type AuthCommand = SyncAccountCommand;
 export type AuthEvent = AccountSyncedEvent;
 

@@ -1,5 +1,6 @@
 import assert from 'assert';
 import { BadRequestException } from '@nestjs/common';
+import { Ministry } from '../../@generated/prisma-nestjs-graphql';
 import { ExistsState, InitialState } from '../event-store/types/decider-state.type';
 import { Decider } from '../event-store/utils/create-command-handler.util';
 import { decideUpdateEventData } from '../event-store/utils/decide-update-event-data.util';
@@ -11,9 +12,8 @@ import { MinistryDeletedEvent } from './events/ministry-deleted/ministry-deleted
 import { MinistryUpdatedEvent } from './events/ministry-updated/ministry-updated.event';
 import { CreateMinistryInput } from './inputs/create-ministry.input';
 import { UpdateMinistryInput } from './inputs/update-ministry.input';
-import { MinistryWriteModel } from './models/ministry-write.model';
 
-type State = InitialState | ExistsState<'ministry', MinistryWriteModel>;
+type State = InitialState | ExistsState<'ministry', Ministry>;
 type Command = CreateMinistryCommand | UpdateMinistryCommand | DeleteMinistryCommand;
 type Event = MinistryCreatedEvent | MinistryUpdatedEvent | MinistryDeletedEvent;
 
@@ -32,6 +32,8 @@ export function evolve(state: State, event: Event): State {
         data: {
           ...data,
           created_at: new Date(metadata.created_at),
+          updated_at: null,
+          deleted_at: null,
         },
       };
     }

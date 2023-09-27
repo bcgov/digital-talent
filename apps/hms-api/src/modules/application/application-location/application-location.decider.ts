@@ -1,18 +1,18 @@
 import { BadRequestException } from '@nestjs/common';
+import { ApplicationLocation } from '../../../@generated/prisma-nestjs-graphql';
 import { ExistsState, InitialState } from '../../event-store/types/decider-state.type';
 import { Decider } from '../../event-store/utils/create-command-handler.util';
 import { decideUpdateEventData } from '../../event-store/utils/decide-update-event-data.util';
 import { CreateApplicationLocationCommand } from './commands/create-application-location/create-application-location.command';
 import { DeleteApplicationLocationCommand } from './commands/delete-application-location/delete-application-location.command';
 import { UpdateApplicationLocationCommand } from './commands/update-application-location/update-application-location.command';
-import { ApplicationLocationEntity } from './entities/application-location.entity';
 import { ApplicationLocationCreatedEvent } from './events/application-location-created/application-location-created.event';
 import { ApplicationLocationDeletedEvent } from './events/application-location-deleted/application-location-deleted.event';
 import { ApplicationLocationUpdatedEvent } from './events/application-location-updated/application-location-updated.event';
 import { CreateApplicationLocationInput } from './inputs/create-application-location.input';
 import { UpdateApplicationLocationInput } from './inputs/update-application-location.input';
 
-export type ApplicationLocationState = InitialState | ExistsState<'application-location', ApplicationLocationEntity>;
+export type ApplicationLocationState = InitialState | ExistsState<'application-location', ApplicationLocation>;
 export type ApplicationLocationCommand =
   | CreateApplicationLocationCommand
   | UpdateApplicationLocationCommand

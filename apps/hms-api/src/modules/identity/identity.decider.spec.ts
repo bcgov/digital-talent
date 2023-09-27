@@ -1,16 +1,16 @@
 import { BadRequestException } from '@nestjs/common';
+import { Identity } from '../../@generated/prisma-nestjs-graphql';
+import { ExistsState, InitialState } from '../event-store/types/decider-state.type';
 import { Metadata } from '../event-store/types/metadata.type';
-import { decide, evolve } from './identity.decider';
 import { CreateIdentityCommand } from './commands/create-identity/create-identity.command';
 import { DeleteIdentityCommand } from './commands/delete-identity/delete-identity.command';
 import { IdentityCreatedEvent } from './events/identity-created/identity-created.event';
 import { IdentityDeletedEvent } from './events/identity-deleted/identity-deleted.event';
-import { CreateIdentityInput } from './inputs/create-identity.input';
+import { decide, evolve } from './identity.decider';
 import { DeleteIdentityInput } from './inputs';
-import { ExistsState, InitialState } from '../event-store/types/decider-state.type';
-import { IdentityWriteEntity } from './entities/identity-write.entity';
+import { CreateIdentityInput } from './inputs/create-identity.input';
 
-type State = InitialState | ExistsState<'identity', IdentityWriteEntity>;
+type State = InitialState | ExistsState<'identity', Identity>;
 
 describe('identity.decider', () => {
   const mockInitialState: State = { exists: false };
@@ -22,6 +22,8 @@ describe('identity.decider', () => {
       user_id: 'd290f1ee-6c54-4b01-90e6-d701748f0851',
       sub: 'test_sub',
       identity_provider: 'test_identity_provider',
+      updated_at: null,
+      deleted_at: null,
     },
   };
 
@@ -111,6 +113,8 @@ describe('identity.decider', () => {
           sub: 'test_sub',
           identity_provider: 'test_identity_provider',
           created_at: new Date('2023-08-21T10:00:00Z'),
+          updated_at: null,
+          deleted_at: null,
         },
       };
 

@@ -1,5 +1,6 @@
-import { UpdateLocationInput } from '../../inputs/update-location.input';
+import { LocationRegion } from '../../../../@generated/prisma-nestjs-graphql';
 import { Metadata } from '../../../event-store/types/metadata.type';
+import { UpdateLocationInput } from '../../inputs/update-location.input';
 import { LocationUpdatedEvent } from './location-updated.event';
 
 describe('LocationUpdatedEvent', () => {
@@ -10,7 +11,7 @@ describe('LocationUpdatedEvent', () => {
     postal_code: 'V9M 3K2',
     lat: 0.23,
     lon: 0.25,
-    region: 'CARIBOO',
+    region: LocationRegion.CARIBOO,
   };
 
   const mockMetadata: Metadata = {
