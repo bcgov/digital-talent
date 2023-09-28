@@ -6,6 +6,7 @@ describe('CreateElistOfferCommand', () => {
   const mockData: CreateElistOfferInput = {
     id: 'd290f1ee-6c54-4b01-90e6-d701748f0851',
     elist_id: 'd290f1ee-6c54-4b01-90e6-d701748f0852',
+    opportunity_id: 'e90bec12-2490-4c44-8bf0-f2e9a8986a40',
     is_accepted: true,
   };
 

@@ -56,6 +56,6 @@ export class Competition {
   @Field(() => User, { nullable: false })
   recruiter?: User;
 
-  @Field(() => CompetitionSchedule, { nullable: true })
-  schedule?: CompetitionSchedule | null;
+  @Field(() => [CompetitionSchedule], { nullable: true })
+  schedule?: Array<CompetitionSchedule>;
 }

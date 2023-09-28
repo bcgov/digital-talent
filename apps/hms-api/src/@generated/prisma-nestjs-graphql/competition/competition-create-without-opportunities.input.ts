@@ -7,7 +7,7 @@ import { ElistCreateNestedManyWithoutCompetitionInput } from '../elist/elist-cre
 import { CompetitionSkillCreateNestedManyWithoutCompetitionInput } from '../competition-skill/competition-skill-create-nested-many-without-competition.input';
 import { JobDescriptionCreateNestedOneWithoutCompetitionsInput } from '../job-description/job-description-create-nested-one-without-competitions.input';
 import { UserCreateNestedOneWithoutCompetitionsInput } from '../user/user-create-nested-one-without-competitions.input';
-import { CompetitionScheduleCreateNestedOneWithoutCompetitionInput } from '../competition-schedule/competition-schedule-create-nested-one-without-competition.input';
+import { CompetitionScheduleCreateNestedManyWithoutCompetitionInput } from '../competition-schedule/competition-schedule-create-nested-many-without-competition.input';
 
 @InputType()
 export class CompetitionCreateWithoutOpportunitiesInput {
@@ -48,6 +48,6 @@ export class CompetitionCreateWithoutOpportunitiesInput {
   @Field(() => UserCreateNestedOneWithoutCompetitionsInput, { nullable: false })
   recruiter!: UserCreateNestedOneWithoutCompetitionsInput;
 
-  @Field(() => CompetitionScheduleCreateNestedOneWithoutCompetitionInput, { nullable: true })
-  schedule?: CompetitionScheduleCreateNestedOneWithoutCompetitionInput;
+  @Field(() => CompetitionScheduleCreateNestedManyWithoutCompetitionInput, { nullable: true })
+  schedule?: CompetitionScheduleCreateNestedManyWithoutCompetitionInput;
 }

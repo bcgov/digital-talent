@@ -11,7 +11,7 @@ import { ElistListRelationFilter } from '../elist/elist-list-relation-filter.inp
 import { CompetitionSkillListRelationFilter } from '../competition-skill/competition-skill-list-relation-filter.input';
 import { JobDescriptionRelationFilter } from '../job-description/job-description-relation-filter.input';
 import { UserRelationFilter } from '../user/user-relation-filter.input';
-import { CompetitionScheduleRelationFilter } from '../competition-schedule/competition-schedule-relation-filter.input';
+import { CompetitionScheduleListRelationFilter } from '../competition-schedule/competition-schedule-list-relation-filter.input';
 
 @InputType()
 export class CompetitionWhereInput {
@@ -70,6 +70,6 @@ export class CompetitionWhereInput {
   @Field(() => UserRelationFilter, { nullable: true })
   recruiter?: UserRelationFilter;
 
-  @Field(() => CompetitionScheduleRelationFilter, { nullable: true })
-  schedule?: CompetitionScheduleRelationFilter;
+  @Field(() => CompetitionScheduleListRelationFilter, { nullable: true })
+  schedule?: CompetitionScheduleListRelationFilter;
 }

@@ -161,9 +161,9 @@ model Competition {
   opportunities   Opportunity[]
   elist           Elist[]
   skills          CompetitionSkill[]
-  job_description JobDescription       @relation(fields: [job_description_id], references: [id])
-  recruiter       User                 @relation(fields: [recruiter_id], references: [id])
-  schedule        CompetitionSchedule?
+  job_description JobDescription        @relation(fields: [job_description_id], references: [id])
+  recruiter       User                  @relation(fields: [recruiter_id], references: [id])
+  schedule        CompetitionSchedule[]
 
   @@map("competition")
 }
@@ -334,8 +334,8 @@ model ElistOffer {
   updated_at     DateTime?
   deleted_at     DateTime?
 
-  elist       Elist        @relation(fields: [elist_id], references: [id])
-  opportunity Opportunity? @relation(fields: [opportunity_id], references: [id])
+  elist       Elist       @relation(fields: [elist_id], references: [id])
+  opportunity Opportunity @relation(fields: [opportunity_id], references: [id])
 
   @@map("competition_eligibility_list_offer")
 }
@@ -359,8 +359,8 @@ model OpportunitySkill {
   created_at     DateTime
   deleted_at     DateTime?
 
-  opportunity Opportunity? @relation(fields: [opportunity_id], references: [id])
-  skill       Skill        @relation(fields: [skill_id], references: [id])
+  opportunity Opportunity @relation(fields: [opportunity_id], references: [id])
+  skill       Skill       @relation(fields: [skill_id], references: [id])
 
   @@id([opportunity_id, skill_id])
   @@map("opportunity_skill")

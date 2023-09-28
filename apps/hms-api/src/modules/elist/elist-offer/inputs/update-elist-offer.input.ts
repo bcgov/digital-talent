@@ -13,6 +13,11 @@ export class UpdateElistOfferInput {
   @IsOptional()
   elist_id?: string;
 
+  @Field((type) => GraphQLUUID)
+  @IsUUID()
+  @IsOptional()
+  opportunity_id?: string;
+
   @IsBoolean()
   @IsOptional()
   is_accepted?: boolean;

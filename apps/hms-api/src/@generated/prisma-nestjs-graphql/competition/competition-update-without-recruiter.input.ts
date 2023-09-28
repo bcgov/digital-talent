@@ -7,7 +7,7 @@ import { OpportunityUpdateManyWithoutCompetitionNestedInput } from '../opportuni
 import { ElistUpdateManyWithoutCompetitionNestedInput } from '../elist/elist-update-many-without-competition-nested.input';
 import { CompetitionSkillUpdateManyWithoutCompetitionNestedInput } from '../competition-skill/competition-skill-update-many-without-competition-nested.input';
 import { JobDescriptionUpdateOneRequiredWithoutCompetitionsNestedInput } from '../job-description/job-description-update-one-required-without-competitions-nested.input';
-import { CompetitionScheduleUpdateOneWithoutCompetitionNestedInput } from '../competition-schedule/competition-schedule-update-one-without-competition-nested.input';
+import { CompetitionScheduleUpdateManyWithoutCompetitionNestedInput } from '../competition-schedule/competition-schedule-update-many-without-competition-nested.input';
 
 @InputType()
 export class CompetitionUpdateWithoutRecruiterInput {
@@ -48,6 +48,6 @@ export class CompetitionUpdateWithoutRecruiterInput {
   @Type(() => JobDescriptionUpdateOneRequiredWithoutCompetitionsNestedInput)
   job_description?: JobDescriptionUpdateOneRequiredWithoutCompetitionsNestedInput;
 
-  @Field(() => CompetitionScheduleUpdateOneWithoutCompetitionNestedInput, { nullable: true })
-  schedule?: CompetitionScheduleUpdateOneWithoutCompetitionNestedInput;
+  @Field(() => CompetitionScheduleUpdateManyWithoutCompetitionNestedInput, { nullable: true })
+  schedule?: CompetitionScheduleUpdateManyWithoutCompetitionNestedInput;
 }

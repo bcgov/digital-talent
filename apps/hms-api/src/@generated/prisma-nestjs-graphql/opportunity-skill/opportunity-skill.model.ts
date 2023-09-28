@@ -16,8 +16,8 @@ export class OpportunitySkill {
   @Field(() => Date, { nullable: true })
   deleted_at!: Date | null;
 
-  @Field(() => Opportunity, { nullable: true })
-  opportunity?: Opportunity | null;
+  @Field(() => Opportunity, { nullable: false })
+  opportunity?: Opportunity;
 
   @Field(() => Skill, { nullable: false })
   skill?: Skill;

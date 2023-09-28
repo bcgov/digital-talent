@@ -10,4 +10,7 @@ export class CompetitionCount {
 
   @Field(() => Int, { nullable: false })
   skills?: number;
+
+  @Field(() => Int, { nullable: false })
+  schedule?: number;
 }

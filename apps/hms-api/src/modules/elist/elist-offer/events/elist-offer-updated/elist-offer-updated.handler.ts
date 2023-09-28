@@ -8,7 +8,7 @@ export class ElistOfferUpdatedHandler implements IEventHandler<ElistOfferUpdated
 
   async handle(event: ElistOfferUpdatedEvent) {
     const {
-      data: { id, elist_id, ...rest },
+      data: { id, elist_id, opportunity_id, ...rest },
       metadata,
     } = event;
 
@@ -18,6 +18,11 @@ export class ElistOfferUpdatedHandler implements IEventHandler<ElistOfferUpdated
         ...(elist_id != null && {
           elist: {
             connect: { id: elist_id },
+          },
+        }),
+        ...(opportunity_id != null && {
+          opportunity: {
+            connect: { id: opportunity_id },
           },
         }),
         updated_at: metadata.created_at,

@@ -28,6 +28,6 @@ export class ElistOffer {
   @Field(() => Elist, { nullable: false })
   elist?: Elist;
 
-  @Field(() => Opportunity, { nullable: true })
-  opportunity?: Opportunity | null;
+  @Field(() => Opportunity, { nullable: false })
+  opportunity?: Opportunity;
 }

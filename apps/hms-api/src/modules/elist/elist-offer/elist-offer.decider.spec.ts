@@ -35,6 +35,7 @@ describe('elist-offer.decider', () => {
   const mockCreateElistOfferInput: CreateElistOfferInput = {
     id: 'd290f1ee-6c54-4b01-90e6-d701748f0851',
     elist_id: 'd290f1ee-6c54-4b01-90e6-d701748f0852',
+    opportunity_id: '10fb07d9-b218-4d1c-b20a-4c3a8d82fc85',
     is_accepted: true,
   };
 
@@ -43,6 +44,7 @@ describe('elist-offer.decider', () => {
   const mockUpdateElistOfferInput: UpdateElistOfferInput = {
     id: 'd290f1ee-6c54-4b01-90e6-d701748f0851',
     elist_id: 'd290f1ee-6c54-4b01-90e6-d701748f0853',
+    opportunity_id: '10fb07d9-b218-4d1c-b20a-4c3a8d82fc85',
     is_accepted: false,
   };
 
@@ -65,6 +67,7 @@ describe('elist-offer.decider', () => {
       expect(events[0].data).toEqual({
         id: 'd290f1ee-6c54-4b01-90e6-d701748f0851',
         elist_id: 'd290f1ee-6c54-4b01-90e6-d701748f0852',
+        opportunity_id: '10fb07d9-b218-4d1c-b20a-4c3a8d82fc85',
         is_accepted: true,
       });
     });
@@ -81,6 +84,7 @@ describe('elist-offer.decider', () => {
       expect(events[0].data).toEqual({
         id: 'd290f1ee-6c54-4b01-90e6-d701748f0851',
         elist_id: 'd290f1ee-6c54-4b01-90e6-d701748f0853',
+        opportunity_id: '10fb07d9-b218-4d1c-b20a-4c3a8d82fc85',
         is_accepted: false,
       });
     });
@@ -104,6 +108,7 @@ describe('elist-offer.decider', () => {
         {
           id: 'd290f1ee-6c54-4b01-90e6-d701748f0851',
           elist_id: 'd290f1ee-6c54-4b01-90e6-d701748f0852',
+          opportunity_id: '0f8cece7-8c82-4d44-8d57-91a333686571',
           is_accepted: true,
         },
         { created_by: 'testUser', created_at: new Date().toISOString() },
@@ -117,6 +122,7 @@ describe('elist-offer.decider', () => {
           data: expect.objectContaining({
             id: 'd290f1ee-6c54-4b01-90e6-d701748f0851',
             elist_id: 'd290f1ee-6c54-4b01-90e6-d701748f0852',
+            opportunity_id: '0f8cece7-8c82-4d44-8d57-91a333686571',
             is_accepted: true,
             created_at: expect.any(Date), // Ensure created_at is a date without being specific about its value.
           }),
@@ -144,6 +150,7 @@ describe('elist-offer.decider', () => {
         {
           id: 'd290f1ee-6c54-4b01-90e6-d701748f0851',
           elist_id: 'd290f1ee-6c54-4b01-90e6-d701748f0853',
+          opportunity_id: 'e780cdda-37c9-4bbb-bf35-b2dd751d8ab9',
           is_accepted: false,
         },
         { created_by: 'testUser', created_at: new Date().toISOString() },

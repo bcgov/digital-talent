@@ -1,8 +1,9 @@
 import { CommandBus, QueryBus } from '@nestjs/cqrs';
-import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
+import { Args, Mutation, Parent, Query, ResolveField, Resolver } from '@nestjs/graphql';
 import { GraphQLString } from 'graphql';
-import { Comment, FindManyCommentArgs } from '../../../@generated/prisma-nestjs-graphql';
+import { Comment, FindManyCommentArgs, User } from '../../../@generated/prisma-nestjs-graphql';
 import { CurrentUser } from '../../auth/decorators/current-user.decorator';
+import { GetUserQuery } from '../../user/queries/get-user/get-user.query';
 import { CreateCommentCommand } from '../commands/create-comment/create-comment.command';
 import { DeleteCommentCommand } from '../commands/delete-comment/delete-comment.command';
 import { UpdateCommentCommand } from '../commands/update-comment/update-comment.command';
@@ -57,5 +58,10 @@ export class CommentResolver {
   @Query((returns) => Comment)
   async comment(@Args('id', { type: () => GraphQLString }) id: string) {
     return this.queryBus.execute(new GetCommentQuery(id));
+  }
+
+  @ResolveField('user', (returns) => User)
+  async user(@Parent() comment: Comment) {
+    return this.queryBus.execute(new GetUserQuery(comment.user_id));
   }
 }

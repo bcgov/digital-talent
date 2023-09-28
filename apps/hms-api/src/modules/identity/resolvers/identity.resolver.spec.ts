@@ -7,17 +7,13 @@ import { IdentityResolver } from './identity.resolver';
 describe('IdentityResolver', () => {
   let resolver: IdentityResolver;
   let mockCommandBus: any;
-  let mockPrismaService: any;
+  let mockQueryBus: any;
 
   beforeEach(() => {
     mockCommandBus = { execute: jest.fn() };
-    mockPrismaService = {
-      identity: {
-        findMany: jest.fn(),
-        findUnique: jest.fn(),
-      },
-    };
-    resolver = new IdentityResolver(mockCommandBus, mockPrismaService);
+    mockQueryBus = { execute: jest.fn() };
+
+    resolver = new IdentityResolver(mockCommandBus, mockQueryBus);
   });
 
   it('should create an identity correctly', async () => {
@@ -56,24 +52,25 @@ describe('IdentityResolver', () => {
 
   it('should get all identitys correctly', async () => {
     const mockIdentitys = [{ id: '1' }, { id: '2' }];
-    mockPrismaService.identity.findMany.mockResolvedValueOnce(mockIdentitys);
+    mockQueryBus.execute.mockResolvedValueOnce(mockIdentitys);
 
-    const result = await resolver.identitys();
+    const result = await resolver.identities();
 
     expect(result).toEqual(mockIdentitys);
-    expect(mockPrismaService.identity.findMany).toHaveBeenCalled();
+    expect(mockQueryBus.execute).toHaveBeenCalled();
   });
 
   it('should get a specific identity by id correctly', async () => {
     const appId = 'mockAppId';
     const mockIdentity = { id: appId };
-    mockPrismaService.identity.findUnique.mockResolvedValueOnce(mockIdentity);
+    mockQueryBus.execute.mockResolvedValueOnce(mockIdentity);
 
     const result = await resolver.identity('sub', 'id_provider');
 
     expect(result).toEqual(mockIdentity);
-    expect(mockPrismaService.identity.findUnique).toHaveBeenCalledWith({
-      where: { sub_identity_provider: { sub: 'sub', identity_provider: 'id_provider' } },
+    expect(mockQueryBus.execute).toHaveBeenCalledWith({
+      sub: 'sub',
+      identity_provider: 'id_provider',
     });
   });
 });

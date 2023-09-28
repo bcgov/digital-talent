@@ -6,7 +6,7 @@ import { GetIdentitiesQuery } from './get-identities.query';
 export class GetIdentitiesHandler implements IQueryHandler<GetIdentitiesQuery> {
   constructor(readonly prisma: PrismaService) {}
 
-  async execute({ args: { where, orderBy, take, skip } }: GetIdentitiesQuery): Promise<any> {
+  async execute({ args: { where, orderBy, take, skip } = {} }: GetIdentitiesQuery): Promise<any> {
     return this.prisma.identity.findMany({
       where: {
         deleted_at: null,

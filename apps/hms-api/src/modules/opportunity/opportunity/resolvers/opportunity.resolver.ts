@@ -4,15 +4,21 @@ import { GraphQLString } from 'graphql';
 import { GraphQLUUID } from 'graphql-scalars';
 import {
   Competition,
+  ElistOffer,
   FindManyOpportunityArgs,
   Ministry,
   Opportunity,
+  OpportunityLocation,
+  OpportunitySkill,
   User,
 } from '../../../../@generated/prisma-nestjs-graphql';
 import { CurrentUser } from '../../../auth/decorators/current-user.decorator';
 import { GetCompetitionQuery } from '../../../competition/competition/queries/get-competition/get-competition.query';
+import { GetElistOffersQuery } from '../../../elist/elist-offer/queries/get-elist-offers/get-elist-offers.query';
 import { GetMinistryQuery } from '../../../ministry/queries/get-ministry/get-ministry.query';
 import { GetUserQuery } from '../../../user/queries/get-user/get-user.query';
+import { GetOpportunityLocationsQuery } from '../../opportunity-location/queries/get-opportunity-locations/get-opportunity-locations.query';
+import { GetOpportunitySkillsQuery } from '../../opportunity-skill/queries/get-opportunity-skills/get-opportunity-skills.query';
 import { CreateOpportunityCommand } from '../commands/create-opportunity/create-opportunity.command';
 import { DeleteOpportunityCommand } from '../commands/delete-opportunity/delete-opportunity.command';
 import { UpdateOpportunityCommand } from '../commands/update-opportunity/update-opportunity.command';
@@ -82,8 +88,27 @@ export class OpportunityResolver {
     return this.queryBus.execute(new GetUserQuery(opportunity.hiring_manager_id));
   }
 
+  @ResolveField('locations', (returns) => [OpportunityLocation])
+  locations(@Parent() opportunity: Opportunity) {
+    return this.queryBus.execute(
+      new GetOpportunityLocationsQuery({ where: { opportunity_id: { equals: opportunity.id } } }),
+    );
+  }
+
   @ResolveField('ministry', (returns) => Ministry)
   ministry(@Parent() opportunity: Opportunity) {
     return this.queryBus.execute(new GetMinistryQuery(opportunity.ministry_id));
+  }
+
+  @ResolveField('offers', (returns) => ElistOffer)
+  offers(@Parent() opportunity: Opportunity) {
+    return this.queryBus.execute(new GetElistOffersQuery({ where: { opportunity_id: { equals: opportunity.id } } }));
+  }
+
+  @ResolveField('skills', (returns) => [OpportunitySkill])
+  skills(@Parent() opportunity: Opportunity) {
+    return this.queryBus.execute(
+      new GetOpportunitySkillsQuery({ where: { opportunity_id: { equals: opportunity.id } } }),
+    );
   }
 }

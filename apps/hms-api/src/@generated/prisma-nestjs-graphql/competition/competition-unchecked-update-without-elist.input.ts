@@ -4,7 +4,7 @@ import { CompetitionCategory } from '../prisma/competition-category.enum';
 import { CompetitionState } from '../prisma/competition-state.enum';
 import { OpportunityUncheckedUpdateManyWithoutCompetitionNestedInput } from '../opportunity/opportunity-unchecked-update-many-without-competition-nested.input';
 import { CompetitionSkillUncheckedUpdateManyWithoutCompetitionNestedInput } from '../competition-skill/competition-skill-unchecked-update-many-without-competition-nested.input';
-import { CompetitionScheduleUncheckedUpdateOneWithoutCompetitionNestedInput } from '../competition-schedule/competition-schedule-unchecked-update-one-without-competition-nested.input';
+import { CompetitionScheduleUncheckedUpdateManyWithoutCompetitionNestedInput } from '../competition-schedule/competition-schedule-unchecked-update-many-without-competition-nested.input';
 
 @InputType()
 export class CompetitionUncheckedUpdateWithoutElistInput {
@@ -44,6 +44,6 @@ export class CompetitionUncheckedUpdateWithoutElistInput {
   @Field(() => CompetitionSkillUncheckedUpdateManyWithoutCompetitionNestedInput, { nullable: true })
   skills?: CompetitionSkillUncheckedUpdateManyWithoutCompetitionNestedInput;
 
-  @Field(() => CompetitionScheduleUncheckedUpdateOneWithoutCompetitionNestedInput, { nullable: true })
-  schedule?: CompetitionScheduleUncheckedUpdateOneWithoutCompetitionNestedInput;
+  @Field(() => CompetitionScheduleUncheckedUpdateManyWithoutCompetitionNestedInput, { nullable: true })
+  schedule?: CompetitionScheduleUncheckedUpdateManyWithoutCompetitionNestedInput;
 }

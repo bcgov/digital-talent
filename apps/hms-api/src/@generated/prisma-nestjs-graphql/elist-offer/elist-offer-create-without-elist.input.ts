@@ -18,6 +18,6 @@ export class ElistOfferCreateWithoutElistInput {
   @Field(() => Date, { nullable: true })
   deleted_at?: Date | string;
 
-  @Field(() => OpportunityCreateNestedOneWithoutOffersInput, { nullable: true })
-  opportunity?: OpportunityCreateNestedOneWithoutOffersInput;
+  @Field(() => OpportunityCreateNestedOneWithoutOffersInput, { nullable: false })
+  opportunity!: OpportunityCreateNestedOneWithoutOffersInput;
 }

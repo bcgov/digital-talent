@@ -17,6 +17,7 @@ describe('ElistOfferCreatedHandler', () => {
     const mockCreateElistOfferInput: CreateElistOfferInput = {
       id: 'd290f1ee-6c54-4b01-90e6-d701748f0851',
       elist_id: 'd290f1ee-6c54-4b01-90e6-d701748f0852',
+      opportunity_id: 'c04d525a-9192-4e77-8b64-9cca3dd72ea7',
       is_accepted: true,
     };
     const mockMetadata: Metadata = {
@@ -35,6 +36,11 @@ describe('ElistOfferCreatedHandler', () => {
         elist: {
           connect: {
             id: 'd290f1ee-6c54-4b01-90e6-d701748f0852',
+          },
+        },
+        opportunity: {
+          connect: {
+            id: 'c04d525a-9192-4e77-8b64-9cca3dd72ea7',
           },
         },
         is_accepted: true,

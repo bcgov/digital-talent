@@ -10,8 +10,8 @@ export class OpportunitySkillCreateInput {
   @Field(() => Date, { nullable: true })
   deleted_at?: Date | string;
 
-  @Field(() => OpportunityCreateNestedOneWithoutSkillsInput, { nullable: true })
-  opportunity?: OpportunityCreateNestedOneWithoutSkillsInput;
+  @Field(() => OpportunityCreateNestedOneWithoutSkillsInput, { nullable: false })
+  opportunity!: OpportunityCreateNestedOneWithoutSkillsInput;
 
   @Field(() => SkillCreateNestedOneWithoutOpportunitiesInput, { nullable: false })
   skill!: SkillCreateNestedOneWithoutOpportunitiesInput;
