@@ -177,12 +177,185 @@ export const applicationTests = () => {
       });
     });
 
+    it(`should filter all applications`, async () => {
+      // create more competitions
+      const appId1 = uuidv4();
+      let postData = {
+        query: `
+          mutation CreateApplication($data: CreateApplicationInput!) {
+            createApplication(data: $data)
+        }`,
+        variables: {
+          data: {
+            id: appId1,
+            applicant_id: '4e0b74a8-1b63-47fa-a082-684ab7301ea9',
+            json: { test: 'bb', test2: 33 },
+          },
+        },
+      };
+      await supertest(testContext.app.getHttpServer())
+        .post('/graphql')
+        .send(postData)
+        .expect(200)
+        .then((response) => {
+          // Check if data exists in the response body
+          expect(response.body.data).toBeDefined();
+          // Check if createCompetition exists in the data
+          expect(response.body.data.createApplication).toBeDefined();
+          // Check if the returned id is correct
+          expect(response.body.data.createApplication).toEqual(appId1);
+        });
+
+      const appId2 = uuidv4();
+      postData = {
+        query: `
+            mutation CreateApplication($data: CreateApplicationInput!) {
+              createApplication(data: $data)
+          }`,
+        variables: {
+          data: {
+            id: appId2,
+            applicant_id: '4e0b74a8-1b63-47fa-a082-684ab7301ea9',
+            json: { test: 'bb', test2: 34 },
+          },
+        },
+      };
+      await supertest(testContext.app.getHttpServer())
+        .post('/graphql')
+        .send(postData)
+        .expect(200)
+        .then((response) => {
+          // Check if data exists in the response body
+          expect(response.body.data).toBeDefined();
+          // Check if createCompetition exists in the data
+          expect(response.body.data.createApplication).toBeDefined();
+          // Check if the returned id is correct
+          expect(response.body.data.createApplication).toEqual(appId2);
+        });
+
+      // make sure the new entries exists
+      await pollUntilTrue(async () => {
+        const query = `
+          query Applications {
+            applications {
+              id
+              applicant_id
+              created_at
+              updated_at
+              deleted_at
+              json
+            }
+          }`;
+        const response = await supertest(testContext.app.getHttpServer()).post('/graphql').send({ query });
+
+        if (response.body.data && response.body.data.applications && response.body.data.applications.length === 3) {
+          return true; // Return true to exit the polling
+        }
+        return false; // Keep polling
+      });
+
+      // check where equals
+      let query = `
+          query Applications {
+            applications(where: { applicant_id: { equals: "4e0b74a8-1b63-47fa-a082-684ab7301ea0" } }) {
+                id
+                applicant_id
+                created_at
+                updated_at
+                deleted_at
+                json
+            }
+        }
+        `;
+      await supertest(testContext.app.getHttpServer())
+        .post('/graphql')
+        .send({ query })
+        .expect(200)
+        .then((response) => {
+          expect(response.body.data).toBeDefined();
+          expect(response.body.data.applications).toBeDefined();
+          expect(response.body.data.applications.length === 1).toEqual(true);
+        });
+
+      // check take
+      query = `
+          query Applications {
+            applications(take: 1) {
+                id
+                applicant_id
+                created_at
+                updated_at
+                deleted_at
+                json
+            }
+        }
+        `;
+      await supertest(testContext.app.getHttpServer())
+        .post('/graphql')
+        .send({ query })
+        .expect(200)
+        .then((response) => {
+          expect(response.body.data).toBeDefined();
+          expect(response.body.data.applications).toBeDefined();
+          expect(response.body.data.applications.length === 1).toEqual(true);
+        });
+
+      // check take
+      query = `
+      query Applications {
+        applications(skip: 1) {
+            id
+            applicant_id
+            created_at
+            updated_at
+            deleted_at
+            json
+        }
+    }
+    `;
+      await supertest(testContext.app.getHttpServer())
+        .post('/graphql')
+        .send({ query })
+        .expect(200)
+        .then((response) => {
+          expect(response.body.data).toBeDefined();
+          expect(response.body.data.applications).toBeDefined();
+          expect(response.body.data.applications.length === 2).toEqual(true);
+        });
+
+      // check order by
+      query = `
+      query Applications {
+        applications(orderBy: { created_at: asc }) {
+            id
+            applicant_id
+            created_at
+            updated_at
+            deleted_at
+            json
+        }
+    }
+    `;
+      await supertest(testContext.app.getHttpServer())
+        .post('/graphql')
+        .send({ query })
+        .expect(200)
+        .then((response) => {
+          expect(response.body.data).toBeDefined();
+          expect(response.body.data.applications).toBeDefined();
+          expect(response.body.data.applications.length === 3).toEqual(true);
+          expect(response.body.data.applications[0].id).toEqual(applicationId);
+          expect(response.body.data.applications[1].id).toEqual(appId1);
+          expect(response.body.data.applications[2].id).toEqual(appId2);
+        });
+    });
+
     it(`should delete application`, async () => {
       const postData = {
         query: `
         mutation DeleteApplication {
           deleteApplication(id: "${applicationId}")
-      }      
+      }
       `,
       };
       await supertest(testContext.app.getHttpServer())

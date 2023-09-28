@@ -109,8 +109,11 @@ export async function restoreContainerVolumes(): Promise<void> {
     throw new Error('Unable to connect to EventStoreDB after multiple retries.');
   }
   // eslint-disable-next-line no-promise-executor-return
-  // await new Promise((resolve) => setTimeout(resolve, 5000)); // need to wait for database to be actually up
   // console.log('done running docker compose up..');
   await waitForDatabaseToBeReady();
   await waitForEventStoreToBeReady();
+
+  // todo?: for some reason still get a global 14 UNAVAILABLE: read ECONNRESET for eventstoredb (even though all tests still pass, suit fails)
+  // eslint-disable-next-line no-promise-executor-return
+  // await new Promise((resolve) => setTimeout(resolve, 500));
 }
