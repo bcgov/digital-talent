@@ -1,6 +1,6 @@
 import { Field, InputType } from '@nestjs/graphql';
 import { ElistUpdateOneRequiredWithoutOffersNestedInput } from '../elist/elist-update-one-required-without-offers-nested.input';
-import { OpportunityUpdateOneWithoutOffersNestedInput } from '../opportunity/opportunity-update-one-without-offers-nested.input';
+import { OpportunityUpdateOneRequiredWithoutOffersNestedInput } from '../opportunity/opportunity-update-one-required-without-offers-nested.input';
 
 @InputType()
 export class ElistOfferUpdateInput {
@@ -22,6 +22,6 @@ export class ElistOfferUpdateInput {
   @Field(() => ElistUpdateOneRequiredWithoutOffersNestedInput, { nullable: true })
   elist?: ElistUpdateOneRequiredWithoutOffersNestedInput;
 
-  @Field(() => OpportunityUpdateOneWithoutOffersNestedInput, { nullable: true })
-  opportunity?: OpportunityUpdateOneWithoutOffersNestedInput;
+  @Field(() => OpportunityUpdateOneRequiredWithoutOffersNestedInput, { nullable: true })
+  opportunity?: OpportunityUpdateOneRequiredWithoutOffersNestedInput;
 }

@@ -1,9 +1,18 @@
 import { CommandBus, QueryBus } from '@nestjs/cqrs';
-import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
+import { Args, Mutation, Parent, Query, ResolveField, Resolver } from '@nestjs/graphql';
 import { GraphQLString } from 'graphql';
 import { GraphQLUUID } from 'graphql-scalars';
-import { Skill } from '../../../@generated/prisma-nestjs-graphql';
+import {
+  ApplicationSkill,
+  CompetitionSkill,
+  FindManySkillArgs,
+  OpportunitySkill,
+  Skill,
+} from '../../../@generated/prisma-nestjs-graphql';
+import { GetApplicationSkillsQuery } from '../../application/application-skill/queries/get-application-skills/get-application-skills.query';
 import { CurrentUser } from '../../auth/decorators/current-user.decorator';
+import { GetCompetitionSkillsQuery } from '../../competition/competition-skill/queries/get-competition-skills/get-competition-skills.query';
+import { GetOpportunitySkillsQuery } from '../../opportunity/opportunity-skill/queries/get-opportunity-skills/get-opportunity-skills.query';
 import { CreateSkillCommand } from '../commands/create-skill/create-skill.command';
 import { DeleteSkillCommand } from '../commands/delete-skill/delete-skill.command';
 import { UpdateSkillCommand } from '../commands/update-skill/update-skill.command';
@@ -48,12 +57,27 @@ export class SkillResolver {
   }
 
   @Query((returns) => [Skill])
-  async skills() {
-    return this.queryBus.execute(new GetSkillsQuery());
+  async skills(@Args() args?: FindManySkillArgs) {
+    return this.queryBus.execute(new GetSkillsQuery(args));
   }
 
   @Query((returns) => Skill)
   async skill(@Args({ name: 'id', type: () => GraphQLUUID }) id: string) {
     return this.queryBus.execute(new GetSkillQuery(id));
+  }
+
+  @ResolveField('applications', (returns) => [ApplicationSkill])
+  applications(@Parent() skill: Skill) {
+    return this.queryBus.execute(new GetApplicationSkillsQuery({ where: { skill_id: { equals: skill.id } } }));
+  }
+
+  @ResolveField('competitions', (returns) => [CompetitionSkill])
+  compmetitions(@Parent() skill: Skill) {
+    return this.queryBus.execute(new GetCompetitionSkillsQuery({ where: { skill_id: { equals: skill.id } } }));
+  }
+
+  @ResolveField('opportunities', (returns) => [OpportunitySkill])
+  opportunities(@Parent() skill: Skill) {
+    return this.queryBus.execute(new GetOpportunitySkillsQuery({ where: { skill_id: { equals: skill.id } } }));
   }
 }

@@ -1,8 +1,11 @@
 import { CommandBus, QueryBus } from '@nestjs/cqrs';
-import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
+import { Args, Mutation, Parent, Query, ResolveField, Resolver } from '@nestjs/graphql';
 import { GraphQLString } from 'graphql';
-import { Elist, FindManyElistArgs } from '../../../../@generated/prisma-nestjs-graphql';
+import { Competition, Elist, ElistOffer, FindManyElistArgs, User } from '../../../../@generated/prisma-nestjs-graphql';
 import { CurrentUser } from '../../../auth/decorators/current-user.decorator';
+import { GetCompetitionQuery } from '../../../competition/competition/queries/get-competition/get-competition.query';
+import { GetUserQuery } from '../../../user/queries/get-user/get-user.query';
+import { GetElistOffersQuery } from '../../elist-offer/queries/get-elist-offers/get-elist-offers.query';
 import { CreateElistCommand } from '../commands/create-elist/create-elist.command';
 import { DeleteElistCommand } from '../commands/delete-elist/delete-elist.command';
 import { UpdateElistCommand } from '../commands/update-elist/update-elist.command';
@@ -54,5 +57,20 @@ export class ElistResolver {
   @Query((returns) => Elist)
   async elist(@Args('id', { type: () => GraphQLString }) id: string) {
     return this.queryBus.execute(new GetElistQuery(id));
+  }
+
+  @ResolveField('applicant', (returns) => User)
+  async applicant(@Parent() elist: Elist) {
+    return this.queryBus.execute(new GetUserQuery(elist.applicant_id));
+  }
+
+  @ResolveField('competition', (returns) => Competition)
+  async competition(@Parent() elist: Elist) {
+    return this.queryBus.execute(new GetCompetitionQuery(elist.competition_id));
+  }
+
+  @ResolveField('offers', (returns) => [ElistOffer])
+  async offers(@Parent() elist: Elist) {
+    return this.queryBus.execute(new GetElistOffersQuery({ where: { elist_id: { equals: elist.id } } }));
   }
 }

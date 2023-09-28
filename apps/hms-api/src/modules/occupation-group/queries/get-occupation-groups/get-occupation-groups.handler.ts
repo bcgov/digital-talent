@@ -6,11 +6,15 @@ import { GetOccupationGroupsQuery } from './get-occupation-groups.query';
 export class GetOccupationGroupsHandler implements IQueryHandler<GetOccupationGroupsQuery> {
   constructor(private readonly prisma: PrismaService) {}
 
-  async execute(query: GetOccupationGroupsQuery): Promise<any> {
+  async execute({ args: { where, orderBy, take, skip } = {} }: GetOccupationGroupsQuery): Promise<any> {
     return this.prisma.occupationGroup.findMany({
       where: {
         deleted_at: null,
+        ...where,
       },
+      orderBy,
+      take,
+      skip,
     });
   }
 }

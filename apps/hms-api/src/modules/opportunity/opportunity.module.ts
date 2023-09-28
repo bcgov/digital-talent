@@ -4,10 +4,12 @@ import { TextParserMiddleware } from '../../middleware/text-parser.middleware';
 import { PrismaModule } from '../prisma/prisma.module';
 import { OpportunityLocationCommandHandlers } from './opportunity-location/commands';
 import { OpportunityLocationEventHandlers } from './opportunity-location/events';
-import { OpportunityLocationResolver } from './opportunity-location/opportunity-location.resolver';
+import { OpportunityLocationQueryHandlers } from './opportunity-location/queries';
+import { OpportunityLocationResolver } from './opportunity-location/resolvers/opportunity-location.resolver';
 import { OpportunitySkillCommandHandlers } from './opportunity-skill/commands';
 import { OpportunitySkillEventHandlers } from './opportunity-skill/events';
-import { OpportunitySkillResolver } from './opportunity-skill/opportunity-skill.resolver';
+import { OpportunitySkillQueryHandlers } from './opportunity-skill/queries';
+import { OpportunitySkillResolver } from './opportunity-skill/resolvers/opportunity-skill.resolver';
 import { OpportunityCommandHandlers } from './opportunity/commands';
 import { OpportunityEventHandlers } from './opportunity/events';
 import { OpportunityQueryHandlers } from './opportunity/queries';
@@ -21,8 +23,10 @@ import { OpportunityResolver } from './opportunity/resolvers/opportunity.resolve
     OpportunityResolver,
     ...OpportunityLocationCommandHandlers,
     ...OpportunityLocationEventHandlers,
+    ...OpportunityLocationQueryHandlers,
     ...OpportunitySkillCommandHandlers,
     ...OpportunitySkillEventHandlers,
+    ...OpportunitySkillQueryHandlers,
     ...OpportunityCommandHandlers,
     ...OpportunityEventHandlers,
     ...OpportunityQueryHandlers,

@@ -6,11 +6,15 @@ import { GetSkillsQuery } from './get-skills.query';
 export class GetSkillsHandler implements IQueryHandler<GetSkillsQuery> {
   constructor(private readonly prisma: PrismaService) {}
 
-  async execute(query: GetSkillsQuery): Promise<any> {
+  async execute({ args: { where, orderBy, take, skip } = {} }: GetSkillsQuery): Promise<any> {
     return this.prisma.skill.findMany({
       where: {
         deleted_at: null,
+        ...where,
       },
+      orderBy,
+      take,
+      skip,
     });
   }
 }

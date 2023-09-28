@@ -22,6 +22,6 @@ export class ElistOfferCreateInput {
   @Field(() => ElistCreateNestedOneWithoutOffersInput, { nullable: false })
   elist!: ElistCreateNestedOneWithoutOffersInput;
 
-  @Field(() => OpportunityCreateNestedOneWithoutOffersInput, { nullable: true })
-  opportunity?: OpportunityCreateNestedOneWithoutOffersInput;
+  @Field(() => OpportunityCreateNestedOneWithoutOffersInput, { nullable: false })
+  opportunity!: OpportunityCreateNestedOneWithoutOffersInput;
 }

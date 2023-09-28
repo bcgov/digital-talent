@@ -7,7 +7,7 @@ import { ElistOrderByRelationAggregateInput } from '../elist/elist-order-by-rela
 import { CompetitionSkillOrderByRelationAggregateInput } from '../competition-skill/competition-skill-order-by-relation-aggregate.input';
 import { JobDescriptionOrderByWithRelationInput } from '../job-description/job-description-order-by-with-relation.input';
 import { UserOrderByWithRelationInput } from '../user/user-order-by-with-relation.input';
-import { CompetitionScheduleOrderByWithRelationInput } from '../competition-schedule/competition-schedule-order-by-with-relation.input';
+import { CompetitionScheduleOrderByRelationAggregateInput } from '../competition-schedule/competition-schedule-order-by-relation-aggregate.input';
 
 @InputType()
 export class CompetitionOrderByWithRelationInput {
@@ -57,6 +57,6 @@ export class CompetitionOrderByWithRelationInput {
   @Field(() => UserOrderByWithRelationInput, { nullable: true })
   recruiter?: UserOrderByWithRelationInput;
 
-  @Field(() => CompetitionScheduleOrderByWithRelationInput, { nullable: true })
-  schedule?: CompetitionScheduleOrderByWithRelationInput;
+  @Field(() => CompetitionScheduleOrderByRelationAggregateInput, { nullable: true })
+  schedule?: CompetitionScheduleOrderByRelationAggregateInput;
 }

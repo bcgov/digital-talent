@@ -4,7 +4,7 @@ import { CompetitionCategory } from '../prisma/competition-category.enum';
 import { CompetitionState } from '../prisma/competition-state.enum';
 import { OpportunityUncheckedCreateNestedManyWithoutCompetitionInput } from '../opportunity/opportunity-unchecked-create-nested-many-without-competition.input';
 import { ElistUncheckedCreateNestedManyWithoutCompetitionInput } from '../elist/elist-unchecked-create-nested-many-without-competition.input';
-import { CompetitionScheduleUncheckedCreateNestedOneWithoutCompetitionInput } from '../competition-schedule/competition-schedule-unchecked-create-nested-one-without-competition.input';
+import { CompetitionScheduleUncheckedCreateNestedManyWithoutCompetitionInput } from '../competition-schedule/competition-schedule-unchecked-create-nested-many-without-competition.input';
 
 @InputType()
 export class CompetitionUncheckedCreateWithoutSkillsInput {
@@ -44,6 +44,6 @@ export class CompetitionUncheckedCreateWithoutSkillsInput {
   @Field(() => ElistUncheckedCreateNestedManyWithoutCompetitionInput, { nullable: true })
   elist?: ElistUncheckedCreateNestedManyWithoutCompetitionInput;
 
-  @Field(() => CompetitionScheduleUncheckedCreateNestedOneWithoutCompetitionInput, { nullable: true })
-  schedule?: CompetitionScheduleUncheckedCreateNestedOneWithoutCompetitionInput;
+  @Field(() => CompetitionScheduleUncheckedCreateNestedManyWithoutCompetitionInput, { nullable: true })
+  schedule?: CompetitionScheduleUncheckedCreateNestedManyWithoutCompetitionInput;
 }
