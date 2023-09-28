@@ -124,3 +124,9 @@ To run all unit tests run
 To run end-to-end tests:
 
 `npm run test:e2e`
+
+For end e2e tests it is also convinient to run API with test config in parallel as well as the prisma studio:
+
+`dotenv -e .env.test -- npm run start:dev`
+
+`dotenv -e .env.test -- npx -w @bcgov-dt/hms-api prisma studio`
