@@ -113,7 +113,7 @@ export async function restoreContainerVolumes(): Promise<void> {
   await waitForDatabaseToBeReady();
   await waitForEventStoreToBeReady();
 
-  // todo: for some reason still get a global 14 UNAVAILABLE: read ECONNRESET for eventstoredb (even though all tests still pass, suit fails)
+  // todo?: for some reason still get a global 14 UNAVAILABLE: read ECONNRESET for eventstoredb (even though all tests still pass, suit fails)
   // eslint-disable-next-line no-promise-executor-return
   // await new Promise((resolve) => setTimeout(resolve, 500));
 }
