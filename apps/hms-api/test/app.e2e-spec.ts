@@ -34,7 +34,7 @@ import { restoreContainerVolumes } from './restore-backup-volumes';
 import { seedTests } from './seed-tests';
 
 // seeding takes a while
-jest.setTimeout(90000);
+jest.setTimeout(150000);
 
 export const testContext = {
   app: null,
