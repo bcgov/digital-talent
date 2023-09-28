@@ -130,5 +130,3 @@ For end e2e tests it is also convinient to run API with test config in parallel 
 `dotenv -e .env.test -- npm run start:dev`
 
 `dotenv -e .env.test -- npx -w @bcgov-dt/hms-api prisma studio`
-
-test
