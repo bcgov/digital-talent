@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 // eslint-disable-next-line max-classes-per-file
 import { EventStoreDBClient } from '@eventstore/db-client';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
@@ -166,7 +167,9 @@ describe('E2E tests', () => {
       commandBus = module.get(CommandBus);
       eventStore = module.get(EventStoreDBClient);
       queryBus = module.get(QueryBus);
+      console.log('done creating app');
       await app.init();
+      console.log('done app.init()');
     }
 
     // Create an idditional user
@@ -184,6 +187,8 @@ describe('E2E tests', () => {
 
     // eslint-disable-next-line no-await-in-loop
     await commandBus.execute(command);
+
+    console.log('done creating additional user');
 
     // // Get GraphQL schema
     // const graphQLSchemaHost = module.get<GraphQLSchemaHost>(GraphQLSchemaHost);

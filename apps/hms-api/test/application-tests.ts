@@ -177,7 +177,7 @@ export const applicationTests = () => {
       });
     });
 
-    it(`should filter all applications`, async () => {
+    it(`should "take", "skip", "orderby" and apply "where" arguments to all applicatios`, async () => {
       // create more competitions
       const appId1 = uuidv4();
       let postData = {
@@ -300,7 +300,7 @@ export const applicationTests = () => {
           expect(response.body.data.applications.length === 1).toEqual(true);
         });
 
-      // check take
+      // check skip
       query = `
       query Applications {
         applications(skip: 1) {
