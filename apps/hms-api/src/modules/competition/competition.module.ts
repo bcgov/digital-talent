@@ -22,5 +22,6 @@ import { CompetitionResolver } from './competition/resolvers/competition.resolve
     ...CompetitionSkillEventHandlers,
     ...CompetitionSkillQueryHandlers,
   ],
+  exports: [CompetitionResolver],
 })
 export class CompetitionModule {}

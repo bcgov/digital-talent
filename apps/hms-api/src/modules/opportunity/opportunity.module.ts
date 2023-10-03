@@ -25,6 +25,7 @@ import { OpportunityResolver } from './opportunity/opportunity.resolver';
     ...OpportunityCommandHandlers,
     ...OpportunityEventHandlers,
   ],
+  exports: [OpportunityResolver],
 })
 export class OpportunityModule {
   configure(consumer: MiddlewareConsumer) {

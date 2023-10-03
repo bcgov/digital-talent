@@ -9,5 +9,6 @@ import { UserResolver } from './resolvers/user.resolver';
 @Module({
   imports: [CqrsModule, PrismaModule],
   providers: [UserResolver, ...UserCommandHandlers, ...UserEventHandlers, ...UserQueryHandlers],
+  exports: [UserResolver],
 })
 export class UserModule {}

@@ -1,6 +1,6 @@
 import { Field, InputType, registerEnumType } from '@nestjs/graphql';
 import { OpportunityInvolvement, WorkOption } from '@prisma/client';
-import { IsEnum, IsNotEmpty, IsOptional, IsString, IsUUID } from 'class-validator';
+import { IsEnum, IsNotEmpty, IsString, IsUUID } from 'class-validator';
 import { GraphQLUUID } from 'graphql-scalars';
 
 registerEnumType(OpportunityInvolvement, {
@@ -23,7 +23,6 @@ export class CreateOpportunityInput {
   @IsUUID()
   competition_id: string;
 
-  @IsOptional()
   @IsString()
   @IsNotEmpty()
   deltek_id: string;

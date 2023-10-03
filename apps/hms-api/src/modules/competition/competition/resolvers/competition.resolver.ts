@@ -1,5 +1,7 @@
+import { Injectable } from '@nestjs/common';
 import { CommandBus, QueryBus } from '@nestjs/cqrs';
 import { Args, Mutation, Parent, Query, ResolveField, Resolver } from '@nestjs/graphql';
+import { CompetitionState } from '@prisma/client';
 import { GraphQLUUID } from 'graphql-scalars';
 import { CurrentUser } from '../../../auth/decorators/current-user.decorator';
 import { CompetitionScheduleModel } from '../../../competition-schedule/models/competition-schedule.model';
@@ -23,6 +25,7 @@ import { GetCompetitionQuery } from '../queries/get-competition/get-competition.
 import { GetCompetitionsQuery } from '../queries/get-competitions/get-competitions.query';
 
 @Resolver((of) => CompetitionModel)
+@Injectable()
 export class CompetitionResolver {
   constructor(private readonly commandBus: CommandBus, private readonly queryBus: QueryBus) {}
 
@@ -40,8 +43,8 @@ export class CompetitionResolver {
   }
 
   @Query((returns) => [CompetitionModel])
-  async competitions() {
-    const result = await this.queryBus.execute(new GetCompetitionsQuery());
+  async competitions(@Args('state', { type: () => String }) state: CompetitionState) {
+    const result = await this.queryBus.execute(new GetCompetitionsQuery({ where: { state } }));
     return result;
   }
 

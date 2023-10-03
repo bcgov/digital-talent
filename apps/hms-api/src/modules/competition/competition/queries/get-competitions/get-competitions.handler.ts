@@ -10,6 +10,7 @@ export class GetCompetitionsHandler implements IQueryHandler<GetCompetitionsQuer
     return this.prisma.competition.findMany({
       where: {
         deleted_at: null,
+        ...query.where,
       },
     });
   }

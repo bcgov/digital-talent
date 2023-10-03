@@ -17,6 +17,7 @@ import { ClassificationModule } from './modules/classification/classification.mo
 import { CommentModule } from './modules/comment/comment.module';
 import { CompetitionScheduleModule } from './modules/competition-schedule/competition-schedule.module';
 import { CompetitionModule } from './modules/competition/competition.module';
+import { SchedulerModule } from './modules/crons/scheduler.module';
 import { ElistOfferModule } from './modules/elist/elist-offer/elist-offer.module';
 import { ElistModule } from './modules/elist/elist/elist.module';
 import { EventStoreModule } from './modules/event-store/event-store.module';
@@ -66,6 +67,7 @@ import { validateAppConfig } from './utils/validate-app-config.util';
         };
       },
     }),
+    SchedulerModule,
     ApplicationModule,
     AuthModule,
     ClassificationModule,
