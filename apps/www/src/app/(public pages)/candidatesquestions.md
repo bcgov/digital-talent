@@ -1,8 +1,8 @@
-## Multi-region job opportunities 
+## Multi-region job opportunities [change?]
 
  
 
-All BC Gov staff can and do work in different regions within British Columbia.  If a candidate does not live in the province but intends to move, they can still apply. Although, a candidate must live in BC when they accept a job offer. [a sentence and a link to policy?] 
+All B.C. government staff can and do work in different regions within British Columbia.  If a candidate does not live in the province but intends to move, they can still apply. Although, a candidate must live in BC when they accept a job offer.
 
 Sometimes, workers must attend trainings, meetings, or other events. For this reason, staff usually work in areas that have physical offices. 
 
@@ -10,18 +10,19 @@ Please note if a job posting says, “may be completed from any location inside 
 
  
 
-### Working from home options 
+### Remote work options 
 
  
 
-BC Gov has telework agreements that allowwork from home. Telework policies depends on the ministry, the branch, and the position needs. The current options are remote, hybrid, and on-site.  
+B.C. government has telework agreements that allow remote work. Telework policies depends on the ministry, the branch, and the position needs. The current options are remote, hybrid, and on-site.  
 
 Telework agreements are independent of geographical location of a position. 
 
  
 
-## Applying for a BC Gov job 
+## Applying for a B.C. government job 
 
+[overview text]
 
 **Step 1**
 
@@ -29,23 +30,22 @@ Postings are open for at least 2 weeks and the job posting always has a close da
 
 In the application process, candidates must show they meet the following criteria: 
 
-Minimum education in the job profile 
+- Minimum education in the job profile 
 
-Minimum experience in the job profile 
+- Minimum experience in the job profile 
 
 Preferences are different from required criteria. Hiring managers use preferences to highlight the skills they are looking for. Candidates give a resume and complete a questionnaire to show they meet the criteria. 
 
 We have questionnaires so candidates have a fair chance to show how they meet the job’s criteria. Hiring managers tend to choose questionnaires instead of cover letters. Candidates should always look at the question structure because answers must be specific.  
 
-For example: 
 
 Some tips:  
 
-Remember to save often. 
+- Remember to save often. 
 
-Candidates cannot edit responses after submitting the application. 
+- Candidates cannot edit responses after submitting the application. 
 
-We do not accept “see resume” responses. 
+- We do not accept “see resume” responses. 
 
 After candidates submit their resume and questionnaire, we begin shortlisting. We use the education and experience criteria in the job posting and profile. Candidates must show how they meet these criteria in their application. 
 
@@ -59,7 +59,7 @@ Candidates with passing scores move onto the interview phase.
 
 After the assessment, we interview shortlisted candidates. These interviews take place on Microsoft Teams. We send candidates interview instructions, and questions 24 hours before their scheduled interview. 
 
-Interviews with BC Gov may assess knowledge, skills, abilities, and/or behavioural competencies. Job competencies are on the job profile. We use competencies so candidates can give examples of prior behaviours that relate to the job. Questions may include organizational alignment, and role-play of workplace situations.  
+Interviews with B.C. government may assess knowledge, skills, abilities, and/or behavioural competencies. Job competencies are on the job profile. We use competencies so candidates can give examples of prior behaviours that relate to the job. Questions may include organizational alignment, and role-play of workplace situations.  
 
 Only shortlisted candidates have their references and security clearance checked.  
 
@@ -68,7 +68,7 @@ Only shortlisted candidates have their references and security clearance checked
 ### Security clearance 
  
 
-Security screening checks the history and background of successful candidates. Because of the nature of many positions, screening includes a criminal record check (CRC). A CRC searches for convictions, penalties, or outstanding charges. 
+Security screening checks the history and background of successful candidates. Because of the nature of many positions, screening can be different across ministries.  
 
 The purpose of clearance is:  
 
@@ -80,9 +80,11 @@ The purpose of clearance is:
 
 -  Keep public trust and confidence in public service staff.  
 
-Even if candidates have a criminal record, they may be eligible for employment. We manage these situations case-by-case. Please contact us at digital.talent@gov.bc.ca for more information. 
+A B.C. government criminal record check (CRC) is mandatory for all designated positions. A CRC searches for convictions, penalties, or outstanding charges.
 
-A BC Gov criminal record check (CRC) is mandatory for all designated positions. 
+If candidates have a criminal record, they may be eligible for employment. We manage these situations case-by-case. 
+
+Please contact us at **digital.talent@gov.bc.ca**[email link] for more information. 
 
 **Step 4** 
 
@@ -94,13 +96,13 @@ Job offers have two stages:
 
 -  Confirmation Letter 
 
-Hiring managers offer the top candidate the position. The candidate can ask questions during this time. Conditional offers are conditional because of the security clearance and potential requests for review[link to 5 day review] We send confirmation letters after the clearance finishes.  
+Hiring managers offer the top candidate the position. The candidate can ask questions during this time. Conditional offers are conditional because of the security clearance and potential requests for review [link to 5 day review section]. We send confirmation letters after the clearance finishes.  
 
-While there may be 1 position available, more vacancies could come up. For this reason, BC gov may use eligibility lists. 
+Though there may be 1 position available, more vacancies could come up. For this reason, B.C. government may use eligibility lists. 
 
  
 
-### Eligibility Lists (e-lists) 
+### Eligibility lists (e-lists) 
 
  
 
@@ -114,7 +116,7 @@ The main benefits of e-lists are saving time and effort. Candidates do not need 
 
 Please note: we remove candidates from e-lists if they refuse an offer twice. 
 
-2 ways we use e-lists 
+### How we use e-lists [Change?]
 
  
 
@@ -134,11 +136,11 @@ Regular hiring e-lists are traditional. Hiring managers offer the job to the top
 
 **Step 5** 
 
-BC gov has a unionized environment, and there are ‘included’ in union positions, and ‘excluded’ from union positions. We may hire for both. Our hiring process for ‘included’ positions includes a 5-day review period. This only applies to candidates internal to BC Gov applying for unionized positions.  
+B.C. government has a unionized environment, and there are ‘included’ in union positions, and ‘excluded’ from union positions. We may hire for both. Our hiring process for ‘included’ positions includes a 5-day review period. This only applies to candidates internal to B.C. government applying for unionized positions.  
 
 The review period starts when candidates get an offer letter or regret letters. If an internal candidate wants feedback, they can ask within the 5 days. The same candidate gets another 5 days to request a review for fairness, if they want to pursue. The requests go to the ministry’s Deputy Minister (DM).  
 
-Candidates external to BC Gov can request feedback, but cannot request a review from the DM. 
+Candidates external to B.C. government can request feedback, but cannot request a review from the Deputy Minister. 
 
 This timeframe does not end on a weekend or statutory holiday.  
 
@@ -166,14 +168,5 @@ The quickest timeframe from posting to verbal offer we had was 6 weeks. We do ou
 
 We encourage all candidates, whether they received the final offer or not, to ask for feedback.  
 
-Please feel free to contact digital.talent@gov.bc.ca for any questions. 
+Please feel free to contact **digital.talent@gov.bc.ca**[email link] for any questions. 
 
- 
-
- 
-
-   
-
- 
-
- 
