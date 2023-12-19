@@ -1,4 +1,4 @@
-## Multi-region job opportunities [change?]
+## Multi-region job opportunities 
 
  
 
@@ -24,7 +24,7 @@ Telework agreements are independent of geographical location of a position.
 
 [overview text]
 
-**Step 1**
+### Step 1
 
 Postings are open for at least 2 weeks and the job posting always has a close date. We accept applications until 11:59 p.m. PST on that date.  
 
@@ -39,7 +39,7 @@ Preferences are different from required criteria. Hiring managers use preference
 We have questionnaires so candidates have a fair chance to show how they meet the job’s criteria. Hiring managers tend to choose questionnaires instead of cover letters. Candidates should always look at the question structure because answers must be specific.  
 
 
-Some tips:  
+**Some tips**:  
 
 - Remember to save often. 
 
@@ -49,13 +49,13 @@ Some tips:
 
 After candidates submit their resume and questionnaire, we begin shortlisting. We use the education and experience criteria in the job posting and profile. Candidates must show how they meet these criteria in their application. 
 
-**Step 2** 
+### Step 2
 
 Shortlisted candidates complete an assessment that tests their skills. For technical jobs, like Full Stack Developer, we partner with a third party for skills testing. For non-technical roles, assessments are different.  Internal subject matter experts design non-technical assessments. Our team uses them to assess candidates for the required skills for the job.  
 
 Candidates with passing scores move onto the interview phase.  
 
-**Step 3** 
+### Step 3
 
 After the assessment, we interview shortlisted candidates. These interviews take place on Microsoft Teams. We send candidates interview instructions, and questions 24 hours before their scheduled interview. 
 
@@ -63,9 +63,7 @@ Interviews with B.C. government may assess knowledge, skills, abilities, and/or 
 
 Only shortlisted candidates have their references and security clearance checked.  
 
- 
-
-### Security clearance 
+ #### Security clearance 
  
 
 Security screening checks the history and background of successful candidates. Because of the nature of many positions, screening can be different across ministries.  
@@ -86,7 +84,7 @@ If candidates have a criminal record, they may be eligible for employment. We ma
 
 Please contact us at **digital.talent@gov.bc.ca**[email link] for more information. 
 
-**Step 4** 
+### Step 4
 
 Job offers have two stages:  
 
@@ -101,11 +99,9 @@ Hiring managers offer the top candidate the position. The candidate can ask ques
 Though there may be 1 position available, more vacancies could come up. For this reason, B.C. government may use eligibility lists. 
 
  
-
-### Eligibility lists (e-lists) 
+#### Eligibility lists (e-lists) 
 
  
-
 Our organization changes as public needs change. More vacancies can become available. E-lists are active between 3 – 18 months. 
 
 In many competitions, there is 1 job available. The job offer goes to the top candidate. To case of vacancies, hiring managers shortlist more candidates. They then rank and place them on an eligibility list. E-list candidates receive a letter that confirms the duration. 
@@ -116,10 +112,9 @@ The main benefits of e-lists are saving time and effort. Candidates do not need 
 
 Please note: we remove candidates from e-lists if they refuse an offer twice. 
 
-### How we use e-lists [Change?]
+**2 ways we use e-lists**
 
  
-
 There are 2 primary ways we use e-lists, depending on the hiring program:  
 
 -  Cross-Ministry Hiring Program (CMHP) 
@@ -134,7 +129,7 @@ Regular hiring e-lists are traditional. Hiring managers offer the job to the top
 
  
 
-**Step 5** 
+### Step 5
 
 B.C. government has a unionized environment, and there are ‘included’ in union positions, and ‘excluded’ from union positions. We may hire for both. Our hiring process for ‘included’ positions includes a 5-day review period. This only applies to candidates internal to B.C. government applying for unionized positions.  
 
@@ -144,7 +139,7 @@ Candidates external to B.C. government can request feedback, but cannot request 
 
 This timeframe does not end on a weekend or statutory holiday.  
 
-**Step 6** 
+### Step 6
 
 Onboarding to our organization begins after the review period ends.  
 
@@ -168,5 +163,5 @@ The quickest timeframe from posting to verbal offer we had was 6 weeks. We do ou
 
 We encourage all candidates, whether they received the final offer or not, to ask for feedback.  
 
-Please feel free to contact **digital.talent@gov.bc.ca**[email link] for any questions. 
+Please feel free to contact **digital.talent@gov.bc.ca** for any questions. 
 
