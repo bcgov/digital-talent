@@ -479,5 +479,71 @@ export const competitionTests = () => {
         return false; // Keep polling
       });
     });
+    it(`should resolve competition skills from competition`, async () => {
+      // create competition skill first
+      const postData = {
+        query: `
+        mutation AddCompetitionSkill ($data: AddCompetitionSkillInput!) {
+          addCompetitionSkill(data: $data)
+        }`,
+        variables: {
+          data: {
+            skill_id: '00583eba-5116-4ffc-b627-65aebf8d1e90',
+            competition_id: 'fb0b9943-c133-4879-8ff5-1a3c204ed661',
+            min_years_experience: 1,
+            is_required: true,
+          },
+        },
+      };
+      await supertest(testContext.app.getHttpServer())
+        .post('/graphql')
+        .send(postData)
+        .expect(200)
+        .then((response) => {
+          // console.log('response: ', response.body);
+          // Check if data exists in the response body
+          expect(response.body.data).toBeDefined();
+          // Check if addCompetitionSkill exists in the data
+          expect(response.body.data.addCompetitionSkill).toBeDefined();
+          // Check if the returned id is correct
+          expect(response.body.data.addCompetitionSkill).toEqual(
+            'fb0b9943-c133-4879-8ff5-1a3c204ed661-00583eba-5116-4ffc-b627-65aebf8d1e90',
+          );
+        });
+
+      await pollUntilTrue(async () => {
+        // retreive competition
+        const query = `
+          query Competition {
+            competition(id: "fb0b9943-c133-4879-8ff5-1a3c204ed661") {
+              skills {
+                competition_id
+                skill_id
+                min_years_experience
+                is_required
+            }
+          }
+        } `;
+        const response = await supertest(testContext.app.getHttpServer()).post('/graphql').send({ query });
+
+        if (
+          response.body.data &&
+          response.body.data.competition &&
+          response.body.data.competition.skills &&
+          response.body.data.competition.skills.length > 0
+        ) {
+          const indx = response.body.data.competition.skills.length - 1;
+          // If conditions are met, validate them with assertions
+          expect(response.body.data.competition.skills[indx].competition_id).toEqual(
+            'fb0b9943-c133-4879-8ff5-1a3c204ed661',
+          );
+          expect(response.body.data.competition.skills[indx].skill_id).toEqual('00583eba-5116-4ffc-b627-65aebf8d1e90');
+          expect(response.body.data.competition.skills[indx].min_years_experience).toEqual(1);
+          expect(response.body.data.competition.skills[indx].is_required).toEqual(true);
+          return true; // Return true to exit the polling
+        }
+        return false; // Keep polling
+      });
+    });
   });
 };

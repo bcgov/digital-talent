@@ -1,10 +1,10 @@
 #!/bin/sh
 
 # Remove previous containers and associated volumes
-docker-compose -f docker-compose.test.yml -p hms-api-test down --volumes
+docker-compose -f docker-compose.test.yml down --volumes
 
 # Start docker images for testing
-docker-compose -f docker-compose.test.yml -p hms-api-test up -d
+docker-compose -f docker-compose.test.yml up -d
 
 # Generate prisma client from schema
 npx prisma generate

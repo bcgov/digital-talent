@@ -27,14 +27,18 @@ import { SkillModule } from '../src/modules/skill/skill.module';
 import { SyncUserCommand } from '../src/modules/user/commands/sync-user/sync-user.command';
 import { UserModule } from '../src/modules/user/user.module';
 import { applySeeds, seedsExist } from '../src/seeds';
+import { applicationTests } from './application-tests';
+import { backupContainerVolumes } from './backup-volumes';
 import { competitionTests } from './competition-tests';
+import { restoreContainerVolumes } from './restore-backup-volumes';
 import { seedTests } from './seed-tests';
 
 // seeding takes a while
-jest.setTimeout(90000);
+jest.setTimeout(150000);
 
 export const testContext = {
   app: null,
+  filesChanged: false,
 };
 
 export async function pollUntilTrue(
@@ -69,51 +73,56 @@ export class MockAuthGuard {
   }
 }
 
+async function getTestingModule() {
+  const module: TestingModule = await Test.createTestingModule({
+    imports: [
+      CqrsModule,
+      ConfigModule.forRoot({
+        isGlobal: true,
+        // envFilePath: '.env.test',
+      }),
+      EventStoreModule,
+      GraphQLModule.forRoot<ApolloDriverConfig>({
+        driver: ApolloDriver,
+        autoSchemaFile: true,
+        context: ({ req }) => ({ req } as { req: Request }),
+        resolvers: {
+          // Range: GraphQLRange,
+          // UUID: GraphQLUUID,
+        },
+      }),
+      ApplicationModule,
+      ClassificationModule,
+      CommentModule,
+      CompetitionModule,
+      CompetitionScheduleModule,
+      ElistModule,
+      ElistOfferModule,
+      GridModule,
+      IdentityModule,
+      JobDescriptionModule,
+      LocationModule,
+      MinistryModule,
+      OccupationGroupModule,
+      OpportunityModule,
+      SkillModule,
+      UserModule,
+    ],
+    providers: [PrismaService],
+  })
+    .overrideGuard(MockAuthGuard) // This assumes that your guard is already used in the module
+    .useValue(new MockAuthGuard())
+    .compile();
+
+  return module;
+}
+
 describe('E2E tests', () => {
   // let resolver: CompetitionResolver;
   let app: INestApplication;
 
   beforeAll(async () => {
-    const module: TestingModule = await Test.createTestingModule({
-      imports: [
-        CqrsModule,
-        ConfigModule.forRoot({
-          isGlobal: true,
-          // envFilePath: '.env.test',
-        }),
-        EventStoreModule,
-        GraphQLModule.forRoot<ApolloDriverConfig>({
-          driver: ApolloDriver,
-          autoSchemaFile: true,
-          context: ({ req }) => ({ req } as { req: Request }),
-          resolvers: {
-            // Range: GraphQLRange,
-            // UUID: GraphQLUUID,
-          },
-        }),
-        ApplicationModule,
-        ClassificationModule,
-        CommentModule,
-        CompetitionModule,
-        CompetitionScheduleModule,
-        ElistModule,
-        ElistOfferModule,
-        GridModule,
-        IdentityModule,
-        JobDescriptionModule,
-        LocationModule,
-        MinistryModule,
-        OccupationGroupModule,
-        OpportunityModule,
-        SkillModule,
-        UserModule,
-      ],
-      providers: [PrismaService],
-    })
-      .overrideGuard(MockAuthGuard) // This assumes that your guard is already used in the module
-      .useValue(new MockAuthGuard())
-      .compile();
-
+    const module = await getTestingModule();
     // const prismaService = module.get<PrismaService>(PrismaService);
     // resolver = module.get<CompetitionResolver>(CompetitionResolver);
     app = module.createNestApplication<INestApplication>();
@@ -126,15 +135,38 @@ describe('E2E tests', () => {
       next();
     });
 
-    const commandBus = module.get(CommandBus);
-    const eventStore = module.get(EventStoreDBClient);
-    const queryBus = module.get(QueryBus);
+    let commandBus = module.get(CommandBus);
+    let eventStore = module.get(EventStoreDBClient);
+    let queryBus = module.get(QueryBus);
 
     await app.init();
 
     // apply seeds if they haven't been applied before
     if (!(await seedsExist(queryBus))) {
       await applySeeds(commandBus, eventStore);
+      await backupContainerVolumes();
+    } else {
+      await app.close();
+      // eslint-disable-next-line no-console
+      console.log('restoring volumes..');
+      await restoreContainerVolumes();
+      // eslint-disable-next-line no-console
+      console.log('done restoring volumes..');
+
+      const module = await getTestingModule();
+
+      app = module.createNestApplication<INestApplication>();
+      // attach a fake user to every request
+      app.use((req, res, next) => {
+        req.user = {
+          id: '4e0b74a8-1b63-47fa-a082-684ab7301ea9',
+        };
+        next();
+      });
+      commandBus = module.get(CommandBus);
+      eventStore = module.get(EventStoreDBClient);
+      queryBus = module.get(QueryBus);
+      await app.init();
     }
 
     // Create an idditional user
@@ -165,6 +197,7 @@ describe('E2E tests', () => {
 
   seedTests();
   competitionTests();
+  applicationTests();
 
   afterAll(async () => {
     if (app) await app.close();
