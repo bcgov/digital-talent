@@ -1,18 +1,18 @@
 import { BadRequestException } from '@nestjs/common';
+import { Application } from '../../../@generated/prisma-nestjs-graphql';
 import { ExistsState, InitialState } from '../../event-store/types/decider-state.type';
 import { Decider } from '../../event-store/utils/create-command-handler.util';
 import { decideUpdateEventData } from '../../event-store/utils/decide-update-event-data.util';
 import { CreateApplicationCommand } from './commands/create-application/create-application.command';
 import { DeleteApplicationCommand } from './commands/delete-application/delete-application.command';
 import { UpdateApplicationCommand } from './commands/update-application/update-application.command';
-import { ApplicationEntity } from './entities/application.entity';
 import { ApplicationCreatedEvent } from './events/application-created/application-created.event';
 import { ApplicationDeletedEvent } from './events/application-deleted/application-deleted.event';
 import { ApplicationUpdatedEvent } from './events/application-updated/application-updated.event';
 import { CreateApplicationInput } from './inputs/create-application.input';
 import { UpdateApplicationInput } from './inputs/update-application.input';
 
-export type ApplicationState = InitialState | ExistsState<'application', ApplicationEntity>;
+export type ApplicationState = InitialState | ExistsState<'application', Application>;
 export type ApplicationCommand = CreateApplicationCommand | UpdateApplicationCommand | DeleteApplicationCommand;
 export type ApplicationEvent = ApplicationCreatedEvent | ApplicationUpdatedEvent | ApplicationDeletedEvent;
 

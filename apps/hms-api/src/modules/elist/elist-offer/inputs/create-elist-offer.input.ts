@@ -10,7 +10,11 @@ export class CreateElistOfferInput {
 
   @Field((type) => GraphQLUUID)
   @IsUUID()
-  elistId: string;
+  elist_id: string;
+
+  @Field((type) => GraphQLUUID)
+  @IsUUID()
+  opportunity_id: string;
 
   @IsBoolean()
   is_accepted: boolean;

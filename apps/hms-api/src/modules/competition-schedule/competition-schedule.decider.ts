@@ -1,18 +1,18 @@
 import { BadRequestException } from '@nestjs/common';
+import { CompetitionSchedule } from '../../@generated/prisma-nestjs-graphql';
 import { ExistsState, InitialState } from '../event-store/types/decider-state.type';
 import { Decider } from '../event-store/utils/create-command-handler.util';
 import { decideUpdateEventData } from '../event-store/utils/decide-update-event-data.util';
 import { CreateCompetitionScheduleCommand } from './commands/create-competition-schedule/create-competition-schedule.command';
 import { DeleteCompetitionScheduleCommand } from './commands/delete-competition-schedule/delete-competition-schedule.command';
 import { UpdateCompetitionScheduleCommand } from './commands/update-competition-schedule/update-competition-schedule.command';
-import { CompetitionScheduleEntity } from './entities/competition-schedule.entity';
 import { CompetitionScheduleCreatedEvent } from './events/competition-schedule-created/competition-schedule-created.event';
 import { CompetitionScheduleDeletedEvent } from './events/competition-schedule-deleted/competition-schedule-deleted.event';
 import { CompetitionScheduleUpdatedEvent } from './events/competition-schedule-updated/competition-schedule-updated.event';
 import { CreateCompetitionScheduleInput } from './inputs/create-competition-schedule.input';
 import { UpdateCompetitionScheduleInput } from './inputs/update-competition-schedule.input';
 
-export type CompetitionScheduleState = InitialState | ExistsState<'competition-schedule', CompetitionScheduleEntity>;
+export type CompetitionScheduleState = InitialState | ExistsState<'competition-schedule', CompetitionSchedule>;
 export type CompetitionScheduleCommand =
   | CreateCompetitionScheduleCommand
   | UpdateCompetitionScheduleCommand

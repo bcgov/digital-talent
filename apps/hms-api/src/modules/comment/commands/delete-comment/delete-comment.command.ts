@@ -11,7 +11,7 @@ export class DeleteCommentCommand implements DomainEvent<'DeleteCommentCommand',
 
   constructor(data: DeleteCommentInput, metadata: Metadata) {
     this.type = 'DeleteCommentCommand';
-    this.data = { ...data, deleted_at: new Date() };
+    this.data = data;
     this.metadata = metadata;
   }
 }

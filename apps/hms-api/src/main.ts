@@ -6,12 +6,12 @@ import { Logger } from 'nestjs-pino';
 import { AppModule } from './app.module';
 import { applySeeds } from './seeds';
 
-async function bootstrap() {
+export async function bootstrap() {
   const app = await NestFactory.create(AppModule, { bufferLogs: true });
 
   app.enableCors();
   app.useLogger(app.get(Logger));
-  app.useGlobalPipes(new ValidationPipe({ skipMissingProperties: false, transform: true, whitelist: true }));
+  app.useGlobalPipes(new ValidationPipe({ skipMissingProperties: false, transform: true }));
 
   await app.listen(4000);
 

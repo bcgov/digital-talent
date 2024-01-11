@@ -1,5 +1,6 @@
 import assert from 'assert';
 import { BadRequestException } from '@nestjs/common';
+import { JobDescription } from '../../@generated/prisma-nestjs-graphql';
 import { ExistsState, InitialState } from '../event-store/types/decider-state.type';
 import { Decider } from '../event-store/utils/create-command-handler.util';
 import { decideUpdateEventData } from '../event-store/utils/decide-update-event-data.util';
@@ -11,9 +12,8 @@ import { JobDescriptionDeletedEvent } from './events/job-description-deleted/job
 import { JobDescriptionUpdatedEvent } from './events/job-description-updated/job-description-updated.event';
 import { CreateJobDescriptionInput } from './inputs/create-job-description.input';
 import { UpdateJobDescriptionInput } from './inputs/update-job-description.input';
-import { JobDescriptionWriteModel } from './models/job-description-write.model';
 
-export type State = InitialState | ExistsState<'job-description', JobDescriptionWriteModel>;
+export type State = InitialState | ExistsState<'job-description', JobDescription>;
 type Command = CreateJobDescriptionCommand | UpdateJobDescriptionCommand | DeleteJobDescriptionCommand;
 type Event = JobDescriptionCreatedEvent | JobDescriptionUpdatedEvent | JobDescriptionDeletedEvent;
 
@@ -24,14 +24,20 @@ export function evolve(state: State, event: Event): State {
     case 'JobDescriptionCreatedEvent': {
       assert(state.exists === false);
 
-      const { data, metadata } = event;
+      const {
+        data: { e_class_id, ...data },
+        metadata,
+      } = event;
 
       return {
         exists: true,
         type: 'job-description',
         data: {
           ...data,
+          e_class_id,
           created_at: new Date(metadata.created_at),
+          updated_at: null,
+          deleted_at: null,
         },
       };
     }

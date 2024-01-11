@@ -22,5 +22,6 @@ const baseQuery = graphqlRequestBaseQuery({
 
 export const graphqlApi = createApi({
   baseQuery,
+  tagTypes: ['Competitions', 'Users'],
   endpoints: () => ({}),
 });

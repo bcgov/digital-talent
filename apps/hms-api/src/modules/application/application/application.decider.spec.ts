@@ -2,11 +2,11 @@ import { BadRequestException } from '@nestjs/common';
 import { Metadata } from '../../event-store/types/metadata.type';
 import { ApplicationState, decide, evolve } from './application.decider';
 import { CreateApplicationCommand } from './commands/create-application/create-application.command';
-import { UpdateApplicationCommand } from './commands/update-application/update-application.command';
 import { DeleteApplicationCommand } from './commands/delete-application/delete-application.command';
+import { UpdateApplicationCommand } from './commands/update-application/update-application.command';
 import { ApplicationCreatedEvent } from './events/application-created/application-created.event';
-import { ApplicationUpdatedEvent } from './events/application-updated/application-updated.event';
 import { ApplicationDeletedEvent } from './events/application-deleted/application-deleted.event';
+import { ApplicationUpdatedEvent } from './events/application-updated/application-updated.event';
 import { CreateApplicationInput } from './inputs/create-application.input';
 import { DeleteApplicationInput } from './inputs/delete-application.input';
 import { UpdateApplicationInput } from './inputs/update-application.input';
@@ -21,6 +21,8 @@ describe('application.decider', () => {
       created_at: new Date('2023-08-21T12:00:00Z'),
       applicant_id: 'mockApplicantId',
       json: { a: 1, b: 2 },
+      updated_at: null,
+      deleted_at: null,
     },
   };
 
@@ -131,6 +133,8 @@ describe('application.decider', () => {
           applicant_id: 'mockApplicantId',
           json: {},
           created_at: new Date('2023-08-21T10:00:00Z'),
+          updated_at: null,
+          deleted_at: null,
         },
       };
 
@@ -164,6 +168,8 @@ describe('application.decider', () => {
           applicant_id: 'mockApplicantId',
           json: {},
           created_at: new Date('2023-08-21T10:00:00Z'),
+          updated_at: null,
+          deleted_at: null,
         },
       };
 

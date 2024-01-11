@@ -1,10 +1,15 @@
 import { PlusOutlined } from '@ant-design/icons';
 import { Button, Space, Table } from 'antd';
+import dayjs from 'dayjs';
 import { Link } from 'react-router-dom';
-import { useGetCompetitionsQuery } from '../../redux/services/graphql-api/competition-api.service';
+import {
+  useDeleteCompetitionMutation,
+  useGetCompetitionsQuery,
+} from '../../redux/services/graphql-api/competitions/competition-api.service';
 
 export const CompetitionListPage = () => {
   const { data, isLoading } = useGetCompetitionsQuery();
+  const [deleteCompetition] = useDeleteCompetitionMutation();
 
   const columns = [
     {
@@ -65,18 +70,40 @@ export const CompetitionListPage = () => {
       key: 'state',
     },
     {
+      title: 'Created Date',
+      dataIndex: 'created_at',
+      key: 'created_at',
+      render: (value?: string) => {
+        return (
+          <span title={value != null ? dayjs(value).format('MMM D, YYYY @ h:mm:ss.SSS A') : ''}>
+            {value != null ? dayjs(value).format('MMM D, YYYY') : ''}
+          </span>
+        );
+      },
+    },
+    {
+      title: 'Updated Date',
+      dataIndex: 'updated_at',
+      key: 'updated_at',
+      render: (value?: string) => {
+        return (
+          <span title={value != null ? dayjs(value).format('MMM D, YYYY @ h:mm:ss.SSS A') : ''}>
+            {value != null ? dayjs(value).format('MMM D, YYYY') : ''}
+          </span>
+        );
+      },
+    },
+    {
       title: 'Action',
       key: 'action',
-      // render: (text: string, record: any) => (
-      render: () => (
+      render: (_: any, record: any) => (
         <span>
           <Button
             danger
             type="primary"
-            // onClick={(e) => {
-            //   e.stopPropagation(); // Stop the event propagation here
-            //   handleDelete(record.id);
-            // }}
+            onClick={() => {
+              deleteCompetition(record.id);
+            }}
           >
             Delete
           </Button>

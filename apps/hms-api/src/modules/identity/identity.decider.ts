@@ -1,16 +1,16 @@
 import assert from 'assert';
 import { BadRequestException } from '@nestjs/common';
+import { Identity } from '../../@generated/prisma-nestjs-graphql';
 import { ExistsState, InitialState } from '../event-store/types/decider-state.type';
 import { Decider } from '../event-store/utils/create-command-handler.util';
 import { decideUpdateEventData } from '../event-store/utils/decide-update-event-data.util';
 import { CreateIdentityCommand } from './commands/create-identity/create-identity.command';
 import { DeleteIdentityCommand } from './commands/delete-identity/delete-identity.command';
-import { IdentityWriteEntity } from './entities/identity-write.entity';
 import { IdentityCreatedEvent } from './events/identity-created/identity-created.event';
 import { IdentityDeletedEvent } from './events/identity-deleted/identity-deleted.event';
 import { CreateIdentityInput } from './inputs/create-identity.input';
 
-type State = InitialState | ExistsState<'identity', IdentityWriteEntity>;
+type State = InitialState | ExistsState<'identity', Identity>;
 type Command = CreateIdentityCommand | DeleteIdentityCommand;
 type Event = IdentityCreatedEvent | IdentityDeletedEvent;
 
@@ -29,6 +29,8 @@ export function evolve(state: State, event: Event): State {
         data: {
           ...data,
           created_at: new Date(metadata.created_at),
+          updated_at: null,
+          deleted_at: null,
         },
       };
     }

@@ -1,12 +1,12 @@
-import { Field, InputType, registerEnumType } from '@nestjs/graphql';
-import { CompetitionCategory } from '@prisma/client';
+import { Field, InputType } from '@nestjs/graphql';
 import { IsEnum, IsNotEmpty, IsOptional, IsString, IsUUID } from 'class-validator';
 import { GraphQLUUID } from 'graphql-scalars';
+import { CompetitionCategory } from '../../../../@generated/prisma-nestjs-graphql';
 
-registerEnumType(CompetitionCategory, {
-  name: 'CompetitionCategory',
-  description: 'The competition categories',
-});
+// registerEnumType(CompetitionCategory, {
+//   name: 'CompetitionCategory',
+//   description: 'The competition categories',
+// });
 
 @InputType()
 export class CreateCompetitionInput {

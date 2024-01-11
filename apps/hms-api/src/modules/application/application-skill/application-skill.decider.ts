@@ -1,18 +1,18 @@
 import { BadRequestException } from '@nestjs/common';
+import { ApplicationSkill } from '../../../@generated/prisma-nestjs-graphql';
 import { ExistsState, InitialState } from '../../event-store/types/decider-state.type';
 import { Decider } from '../../event-store/utils/create-command-handler.util';
 import { decideUpdateEventData } from '../../event-store/utils/decide-update-event-data.util';
 import { CreateApplicationSkillCommand } from './commands/create-application-skill/create-application-skill.command';
 import { DeleteApplicationSkillCommand } from './commands/delete-application-skill/delete-application-skill.command';
 import { UpdateApplicationSkillCommand } from './commands/update-application-skill/update-application-skill.command';
-import { ApplicationSkillEntity } from './entities/application-skill.entity';
 import { ApplicationSkillCreatedEvent } from './events/application-skill-created/application-skill-created.event';
 import { ApplicationSkillDeletedEvent } from './events/application-skill-deleted/application-skill-deleted.event';
 import { ApplicationSkillUpdatedEvent } from './events/application-skill-updated/application-skill-updated.event';
 import { CreateApplicationSkillInput } from './inputs/create-application-skill.input';
 import { UpdateApplicationSkillInput } from './inputs/update-application-skill.input';
 
-export type ApplicationSkillState = InitialState | ExistsState<'application-skill', ApplicationSkillEntity>;
+export type ApplicationSkillState = InitialState | ExistsState<'application-skill', ApplicationSkill>;
 export type ApplicationSkillCommand =
   | CreateApplicationSkillCommand
   | UpdateApplicationSkillCommand

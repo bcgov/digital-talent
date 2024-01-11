@@ -8,7 +8,7 @@ export class ElistOfferCreatedHandler implements IEventHandler<ElistOfferCreated
 
   async handle(event: ElistOfferCreatedEvent) {
     const {
-      data: { id, elistId, ...rest },
+      data: { id, elist_id, opportunity_id, ...rest },
       metadata,
     } = event;
 
@@ -17,11 +17,16 @@ export class ElistOfferCreatedHandler implements IEventHandler<ElistOfferCreated
         id,
         elist: {
           connect: {
-            id: elistId,
+            id: elist_id,
+          },
+        },
+        opportunity: {
+          connect: {
+            id: opportunity_id,
           },
         },
         ...rest,
-        created_at: new Date(metadata.created_at),
+        created_at: metadata.created_at,
       },
     };
     await this.prisma.elistOffer.create(createObj);

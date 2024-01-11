@@ -1,6 +1,7 @@
 import { Field, InputType } from '@nestjs/graphql';
 import { IsOptional, IsUUID } from 'class-validator';
-import { GraphQLJSON, GraphQLUUID } from 'graphql-scalars';
+import { GraphQLUUID } from 'graphql-scalars';
+import GraphQLJSON from 'graphql-type-json';
 
 @InputType()
 export class CreateApplicationInput {

@@ -1,11 +1,19 @@
 import { CommandBus, QueryBus } from '@nestjs/cqrs';
 import { Args, Mutation, Parent, Query, ResolveField, Resolver } from '@nestjs/graphql';
 import { GraphQLUUID } from 'graphql-scalars';
+import {
+  Competition,
+  CompetitionSchedule,
+  CompetitionSkill,
+  FindManyCompetitionArgs,
+  JobDescription,
+  User,
+} from '../../../../@generated/prisma-nestjs-graphql';
 import { CurrentUser } from '../../../auth/decorators/current-user.decorator';
-import { JobDescriptionModel } from '../../../job-description/models/job-description.model';
+import { GetCompetitionSchedulesQuery } from '../../../competition-schedule/queries/get-competition-schedules/get-competition-schedules.query';
 import { GetJobDescriptionQuery } from '../../../job-description/queries/get-job-description/get-job-description.query';
-import { UserModel } from '../../../user/models/user.model';
 import { GetUserQuery } from '../../../user/queries/get-user/get-user.query';
+import { GetCompetitionSkillsQuery } from '../../competition-skill/queries/get-competition-skills/get-competition-skills.query';
 import { CreateCompetitionCommand } from '../commands/create-competition/create-competition.command';
 import { DeleteCompetitionCommand } from '../commands/delete-competition/delete-competition.command';
 import { UpdateCompetitionStateCommand } from '../commands/update-competition-state/update-competition-state.command';
@@ -14,11 +22,10 @@ import { CreateCompetitionInput } from '../inputs/create-competition.input';
 import { DeleteCompetitionInput } from '../inputs/delete-competition.input';
 import { UpdateCompetitionStateInput } from '../inputs/update-competition-state.input';
 import { UpdateCompetitionInput } from '../inputs/update-competition.input';
-import { CompetitionModel } from '../models/competition.model';
 import { GetCompetitionQuery } from '../queries/get-competition/get-competition.query';
 import { GetCompetitionsQuery } from '../queries/get-competitions/get-competitions.query';
 
-@Resolver((of) => CompetitionModel)
+@Resolver((of) => Competition)
 export class CompetitionResolver {
   constructor(private readonly commandBus: CommandBus, private readonly queryBus: QueryBus) {}
 
@@ -35,13 +42,13 @@ export class CompetitionResolver {
     return command.data.id;
   }
 
-  @Query((returns) => [CompetitionModel])
-  async competitions() {
-    const result = await this.queryBus.execute(new GetCompetitionsQuery());
+  @Query((returns) => [Competition])
+  async competitions(@Args() args?: FindManyCompetitionArgs) {
+    const result = await this.queryBus.execute(new GetCompetitionsQuery(args));
     return result;
   }
 
-  @Query((returns) => CompetitionModel)
+  @Query((returns) => Competition)
   async competition(@Args('id', { type: () => String }) id: string) {
     const result = await this.queryBus.execute(new GetCompetitionQuery(id));
     return result;
@@ -82,13 +89,23 @@ export class CompetitionResolver {
     return command.data.id;
   }
 
-  @ResolveField('job_description', (returns) => JobDescriptionModel)
-  async getClassification(@Parent() competition: CompetitionModel) {
+  @ResolveField('job_description', (returns) => JobDescription)
+  async jobDescription(@Parent() competition: Competition) {
     return this.queryBus.execute(new GetJobDescriptionQuery(competition.job_description_id));
   }
 
-  @ResolveField('recruiter', (returns) => UserModel)
-  async getRecruiter(@Parent() competition: CompetitionModel) {
+  @ResolveField('recruiter', (returns) => User)
+  async recruiter(@Parent() competition: Competition) {
     return this.queryBus.execute(new GetUserQuery(competition.recruiter_id));
+  }
+
+  @ResolveField('schedule', (returns) => [CompetitionSchedule])
+  async schedule(@Parent() competition: Competition) {
+    return this.queryBus.execute(new GetCompetitionSchedulesQuery({ where: { competition_id: competition.id } }));
+  }
+
+  @ResolveField('skills', (returns) => [CompetitionSkill])
+  async skills(@Parent() competition: Competition) {
+    return this.queryBus.execute(new GetCompetitionSkillsQuery({ where: { competition_id: competition.id } }));
   }
 }

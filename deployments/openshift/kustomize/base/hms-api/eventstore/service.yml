@@ -3,7 +3,7 @@ kind: Service
 metadata:
   name: hms-api-eventstore
   labels:
-    app: hms-api-eventstore
+    name: hms-api-eventstore
 spec:
   clusterIP: None
   ports:

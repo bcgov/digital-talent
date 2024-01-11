@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:latest
+    ports:
+      - 5433:5432
+    env_file:
+      - .env.docker
+    volumes:
+      - hms-api-test_postgres-data:/var/lib/postgresql/data
+  eventstore:
+    build:
+      context: ./eventstore
+      dockerfile: Dockerfile
+    ports:
+      - '1114:1113'
+      - '2114:2113'
+    # Uncomment the following lines to persist data across runs
+    # Not required for development where starting from 0 is preferred
+    volumes:
+      - type: volume
+        source: hms-api-test_eventstore-volume-data
+        target: /var/lib/eventstore
+      - type: volume
+        source: hms-api-test_eventstore-volume-logs
+        target: /var/log/eventstore
+# Uncomment the following lines if volumes are uncommented above
+volumes:
+  hms-api-test_eventstore-volume-data:
+    # external: true
+  hms-api-test_eventstore-volume-logs:
+    # external: true
+  hms-api-test_postgres-data:
+    # external: true

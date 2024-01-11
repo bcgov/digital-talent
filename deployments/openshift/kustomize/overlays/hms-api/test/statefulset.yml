@@ -1,0 +1,83 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: hms-api-eventstore
+spec:
+  selector:
+    matchLabels:
+      name: hms-api-eventstore 
+  serviceName: hms-api-eventstore
+  replicas: 3 # Needs to be the same as EVENTSTORE_CLUSTER_SIZE
+  template:
+    metadata:
+      labels:
+        name: hms-api-eventstore 
+    spec:
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchExpressions:
+                  - key: "name"
+                    operator: In
+                    values:
+                    - hms-api-eventstore
+              topologyKey: "kubernetes.io/hostname"
+      containers:
+      - name: eventstore
+        image: eventstore/eventstore:22.10.2-bionic #can't pull from hms-api-eventstore:latest for some reason
+        env:
+        - name: EVENTSTORE_RUN_PROJECTIONS
+          value: 'All'
+        - name: EVENTSTORE_START_STANDARD_PROJECTIONS
+          value: 'true'
+        - name: EVENTSTORE_EXT_TCP_PORT
+          value: '1113'
+        - name: EVENTSTORE_HTTP_PORT
+          value: '2113'
+        - name: EVENTSTORE_INSECURE
+          value: 'true'
+        - name: EVENTSTORE_ENABLE_EXTERNAL_TCP
+          value: 'true'
+        - name: EVENTSTORE_ENABLE_ATOM_PUB_OVER_HTTP
+          value: 'true'
+        - name: EVENTSTORE_CLUSTER_SIZE #Needs to match spec.replicas
+          value: "3"
+        - name: EVENTSTORE_DISCOVER_VIA_DNS
+          value: "true"
+        - name: EVENTSTORE_CLUSTER_DNS #Should match service name
+          value: "hms-api-eventstore"
+        - name: EVENTSTORE_EXT_IP
+          valueFrom:
+            fieldRef:
+              fieldPath: status.podIP
+        ports: 
+        - containerPort: 2113
+          name: eventstore-web
+        - containerPort: 1113
+          name: eventstore-tcp
+        - containerPort: 2112
+          name: gossip
+        volumeMounts:
+        - name: hms-api-eventstore-data
+          mountPath: /var/lib/eventstore
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 2113
+          initialDelaySeconds: 30
+          periodSeconds: 15
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 2113
+          initialDelaySeconds: 5
+          periodSeconds: 5
+  volumeClaimTemplates:
+  - metadata:
+      name: hms-api-eventstore-data
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      resources:
+        requests:
+          storage: 1.5Gi

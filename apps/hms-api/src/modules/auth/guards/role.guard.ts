@@ -1,7 +1,7 @@
 import { ExecutionContext, Injectable } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
+import { GqlExecutionContext } from '@nestjs/graphql';
 import { AuthGuard as PassportAuthGuard } from '@nestjs/passport';
-import { Request } from 'express';
 import { Observable } from 'rxjs';
 import { ROLES } from '../decorators/roles.decorator';
 
@@ -19,7 +19,8 @@ export class RoleGuard extends PassportAuthGuard('keycloak') {
     const roles = this.reflector.get<string[]>(ROLES, context.getHandler());
     if (!roles) return true;
 
-    const request = context.switchToHttp().getRequest<Request>();
+    const ctx = GqlExecutionContext.create(context);
+    const request = ctx.getContext().req;
     const { user } = request;
 
     return this.userHasRoles(user, roles);

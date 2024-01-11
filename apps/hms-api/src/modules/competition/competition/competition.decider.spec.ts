@@ -1,18 +1,19 @@
 import { BadRequestException } from '@nestjs/common';
+import { CompetitionCategory, CompetitionState } from '../../../@generated/prisma-nestjs-graphql';
 import { Metadata } from '../../event-store/types/metadata.type';
-import { State, decide, evolve } from './competition.decider';
 import { CreateCompetitionCommand } from './commands/create-competition/create-competition.command';
-import { UpdateCompetitionCommand } from './commands/update-competition/update-competition.command';
 import { DeleteCompetitionCommand } from './commands/delete-competition/delete-competition.command';
+import { UpdateCompetitionStateCommand } from './commands/update-competition-state/update-competition-state.command';
+import { UpdateCompetitionCommand } from './commands/update-competition/update-competition.command';
+import { decide, evolve, State } from './competition.decider';
 import { CompetitionCreatedEvent } from './events/competition-created/competition-created.event';
-import { CompetitionUpdatedEvent } from './events/competition-updated/competition-updated.event';
 import { CompetitionDeletedEvent } from './events/competition-deleted/competition-deleted.event';
+import { CompetitionStateUpdatedEvent } from './events/competition-state-updated/competition-state-updated.event';
+import { CompetitionUpdatedEvent } from './events/competition-updated/competition-updated.event';
 import { CreateCompetitionInput } from './inputs/create-competition.input';
 import { DeleteCompetitionInput } from './inputs/delete-competition.input';
-import { UpdateCompetitionInput } from './inputs/update-competition.input';
-import { CompetitionStateUpdatedEvent } from './events/competition-state-updated/competition-state-updated.event';
 import { UpdateCompetitionStateInput } from './inputs/update-competition-state.input';
-import { UpdateCompetitionStateCommand } from './commands/update-competition-state/update-competition-state.command';
+import { UpdateCompetitionInput } from './inputs/update-competition.input';
 
 describe('competition.decider', () => {
   const mockInitialState: State = { exists: false };
@@ -22,11 +23,14 @@ describe('competition.decider', () => {
     data: {
       created_at: new Date('2023-08-21T12:00:00Z'),
       id: 'd290f1ee-6c54-4b01-90e6-d701748f0851',
-      classification_id: 'd290f1ee-6c54-4b01-90e6-d701748f0852',
+      job_description_id: 'd290f1ee-6c54-4b01-90e6-d701748f0852',
       deltek_id: 'd290f1ee-6c54-4b01-90e6-d701748f0852',
       recruiter_id: 'd290f1ee-6c54-4b01-90e6-d701748f0852',
-      category: 'CMH',
-      state: 'DRAFT',
+      category: CompetitionCategory.CMH,
+      state: CompetitionState.DRAFT,
+      updated_at: null,
+      deleted_at: null,
+      metadata: {},
     },
   };
 
@@ -37,27 +41,27 @@ describe('competition.decider', () => {
 
   const mockCreateCompetitionInput: CreateCompetitionInput = {
     id: 'd290f1ee-6c54-4b01-90e6-d701748f0851',
-    classification_id: 'd290f1ee-6c54-4b01-90e6-d701748f0852',
+    job_description_id: 'd290f1ee-6c54-4b01-90e6-d701748f0852',
     deltek_id: 'd290f1ee-6c54-4b01-90e6-d701748f0852',
     recruiter_id: 'd290f1ee-6c54-4b01-90e6-d701748f0852',
-    category: 'CMH',
+    category: CompetitionCategory.CMH,
   };
 
   const mockCreateCompetitionCommand = new CreateCompetitionCommand(mockCreateCompetitionInput, mockMetadata);
 
   const mockUpdateCompetitionInput: UpdateCompetitionInput = {
     id: 'd290f1ee-6c54-4b01-90e6-d701748f0851',
-    classification_id: 'd290f1ee-6c54-4b01-90e6-d703748f0852',
+    job_description_id: 'd290f1ee-6c54-4b01-90e6-d703748f0852',
     deltek_id: 'd290f1ee-6c54-4b01-90e6-d70173f0852',
     recruiter_id: 'd290f1ee-6c54-4b01-90e6-d301748f0852',
-    category: 'RH',
+    category: CompetitionCategory.RH,
   };
 
   const mockUpdateCompetitionCommand = new UpdateCompetitionCommand(mockUpdateCompetitionInput, mockMetadata);
 
   const mockUpdateCompetitionStateInput: UpdateCompetitionStateInput = {
     id: 'd290f1ee-6c54-4b01-90e6-d701748f0851',
-    state: 'PUBLISHED',
+    state: CompetitionState.PUBLISHED,
   };
 
   const mockUpdateCompetitionStateCommand = new UpdateCompetitionStateCommand(
@@ -81,10 +85,10 @@ describe('competition.decider', () => {
       expect(events[0]).toBeInstanceOf(CompetitionCreatedEvent);
       expect(events[0].data).toEqual({
         id: 'd290f1ee-6c54-4b01-90e6-d701748f0851',
-        classification_id: 'd290f1ee-6c54-4b01-90e6-d701748f0852',
+        job_description_id: 'd290f1ee-6c54-4b01-90e6-d701748f0852',
         deltek_id: 'd290f1ee-6c54-4b01-90e6-d701748f0852',
         recruiter_id: 'd290f1ee-6c54-4b01-90e6-d701748f0852',
-        category: 'CMH',
+        category: CompetitionCategory.CMH,
       });
     });
 
@@ -99,10 +103,10 @@ describe('competition.decider', () => {
       expect(events[0]).toBeInstanceOf(CompetitionUpdatedEvent);
       expect(events[0].data).toEqual({
         id: 'd290f1ee-6c54-4b01-90e6-d701748f0851',
-        classification_id: 'd290f1ee-6c54-4b01-90e6-d703748f0852',
+        job_description_id: 'd290f1ee-6c54-4b01-90e6-d703748f0852',
         deltek_id: 'd290f1ee-6c54-4b01-90e6-d70173f0852',
         recruiter_id: 'd290f1ee-6c54-4b01-90e6-d301748f0852',
-        category: 'RH',
+        category: CompetitionCategory.RH,
       });
     });
 
@@ -111,7 +115,7 @@ describe('competition.decider', () => {
       expect(events[0]).toBeInstanceOf(CompetitionStateUpdatedEvent);
       expect(events[0].data).toEqual({
         id: 'd290f1ee-6c54-4b01-90e6-d701748f0851',
-        state: 'PUBLISHED',
+        state: CompetitionState.PUBLISHED,
       });
     });
 
@@ -133,10 +137,10 @@ describe('competition.decider', () => {
       const mockEvent = new CompetitionCreatedEvent(
         {
           id: 'd290f1ee-6c54-4b01-90e6-d701748f0851',
-          classification_id: 'd290f1ee-6c54-4b01-90e6-d703748f0852',
+          job_description_id: 'd290f1ee-6c54-4b01-90e6-d703748f0852',
           deltek_id: 'd290f1ee-6c54-4b01-90e6-d70173f0852',
           recruiter_id: 'd290f1ee-6c54-4b01-90e6-d301748f0852',
-          category: 'RH',
+          category: CompetitionCategory.RH,
         },
         { created_by: 'testUser', created_at: new Date().toISOString() },
       );
@@ -148,10 +152,10 @@ describe('competition.decider', () => {
           type: 'competition',
           data: expect.objectContaining({
             id: 'd290f1ee-6c54-4b01-90e6-d701748f0851',
-            classification_id: 'd290f1ee-6c54-4b01-90e6-d703748f0852',
+            job_description_id: 'd290f1ee-6c54-4b01-90e6-d703748f0852',
             deltek_id: 'd290f1ee-6c54-4b01-90e6-d70173f0852',
             recruiter_id: 'd290f1ee-6c54-4b01-90e6-d301748f0852',
-            category: 'RH',
+            category: CompetitionCategory.RH,
             created_at: expect.any(Date), // Ensure created_at is a date without being specific about its value.
           }),
         }),
@@ -165,22 +169,25 @@ describe('competition.decider', () => {
         type: 'competition',
         data: {
           id: 'd290f1ee-6c54-4b01-90e6-d701748f0851',
-          classification_id: 'd290f1ee-6c54-4b01-90e6-d703748f0852',
+          job_description_id: 'd290f1ee-6c54-4b01-90e6-d703748f0852',
           deltek_id: 'd290f1ee-6c54-4b01-90e6-d70173f0852',
           recruiter_id: 'd290f1ee-6c54-4b01-90e6-d301748f0852',
-          category: 'RH',
-          state: 'DRAFT',
+          category: CompetitionCategory.RH,
+          state: CompetitionState.DRAFT,
           created_at: new Date('2023-08-21T10:00:00Z'),
+          updated_at: null,
+          deleted_at: null,
+          metadata: {},
         },
       };
 
       const mockEvent = new CompetitionUpdatedEvent(
         {
           id: 'd290f1ee-6c54-4b01-90e6-d701743f0851',
-          classification_id: 'd290f1ee-6c54-4b01-90e6-d743748f0852',
+          job_description_id: 'd290f1ee-6c54-4b01-90e6-d743748f0852',
           deltek_id: 'd290f1ee-6c54-4b01-90e6-d7017350852',
           recruiter_id: 'd290f1ee-6c54-4b01-90e6-d301748s0852',
-          category: 'CMH',
+          category: CompetitionCategory.CMH,
         },
         { created_by: 'testUser', created_at: new Date().toISOString() },
       );
@@ -192,10 +199,10 @@ describe('competition.decider', () => {
           type: 'competition',
           data: expect.objectContaining({
             id: 'd290f1ee-6c54-4b01-90e6-d701743f0851',
-            classification_id: 'd290f1ee-6c54-4b01-90e6-d743748f0852',
+            job_description_id: 'd290f1ee-6c54-4b01-90e6-d743748f0852',
             deltek_id: 'd290f1ee-6c54-4b01-90e6-d7017350852',
             recruiter_id: 'd290f1ee-6c54-4b01-90e6-d301748s0852',
-            category: 'CMH',
+            category: CompetitionCategory.CMH,
             updated_at: expect.any(Date), // Ensure updated_at is a date without being specific about its value.
           }),
         }),
@@ -209,19 +216,22 @@ describe('competition.decider', () => {
         type: 'competition',
         data: {
           id: 'd290f1ee-6c54-4b01-90e6-d701748f0851',
-          classification_id: 'd290f1ee-6c54-4b01-90e6-d703748f0852',
+          job_description_id: 'd290f1ee-6c54-4b01-90e6-d703748f0852',
           deltek_id: 'd290f1ee-6c54-4b01-90e6-d70173f0852',
           recruiter_id: 'd290f1ee-6c54-4b01-90e6-d301748f0852',
-          category: 'RH',
-          state: 'DRAFT',
+          category: CompetitionCategory.RH,
+          state: CompetitionState.DRAFT,
           created_at: new Date('2023-08-21T10:00:00Z'),
+          updated_at: null,
+          deleted_at: null,
+          metadata: {},
         },
       };
 
       const mockEvent = new CompetitionStateUpdatedEvent(
         {
           id: 'd290f1ee-6c54-4b01-90e6-d701748f0851',
-          state: 'PUBLISHED',
+          state: CompetitionState.PUBLISHED,
         },
         { created_by: 'testUser', created_at: new Date().toISOString() },
       );
@@ -233,11 +243,11 @@ describe('competition.decider', () => {
           type: 'competition',
           data: expect.objectContaining({
             id: 'd290f1ee-6c54-4b01-90e6-d701748f0851',
-            classification_id: 'd290f1ee-6c54-4b01-90e6-d703748f0852',
+            job_description_id: 'd290f1ee-6c54-4b01-90e6-d703748f0852',
             deltek_id: 'd290f1ee-6c54-4b01-90e6-d70173f0852',
             recruiter_id: 'd290f1ee-6c54-4b01-90e6-d301748f0852',
-            category: 'RH',
-            state: 'PUBLISHED',
+            category: CompetitionCategory.RH,
+            state: CompetitionState.PUBLISHED,
             updated_at: expect.any(Date), // Ensure updated_at is a date without being specific about its value.
           }),
         }),
@@ -251,12 +261,15 @@ describe('competition.decider', () => {
         type: 'competition',
         data: {
           id: 'd290f1ee-6c54-4b01-90e6-d701743f0851',
-          classification_id: 'd290f1ee-6c54-4b01-90e6-d743748f0852',
+          job_description_id: 'd290f1ee-6c54-4b01-90e6-d743748f0852',
           deltek_id: 'd290f1ee-6c54-4b01-90e6-d7017350852',
           recruiter_id: 'd290f1ee-6c54-4b01-90e6-d301748s0852',
-          category: 'CMH',
-          state: 'DRAFT',
+          category: CompetitionCategory.CMH,
+          state: CompetitionState.DRAFT,
           created_at: new Date('2023-08-21T10:00:00Z'),
+          updated_at: null,
+          deleted_at: null,
+          metadata: {},
         },
       };
 

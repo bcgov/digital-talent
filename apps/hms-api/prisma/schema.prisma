@@ -5,6 +5,22 @@ generator client {
   provider = "prisma-client-js"
 }
 
+generator nestgraphql {
+  provider             = "prisma-nestjs-graphql"
+  output               = "../src/@generated/prisma-nestjs-graphql"
+  combineScalarFilters = true
+  noAtomicOperations   = true
+  omitModelsCount      = true
+  purgeOutput          = true
+  reExport             = Single
+
+  decorate_1_type      = "FindMany*Args"
+  decorate_1_field     = "@(cursor|distinct)"
+  decorate_1_name      = "HideField"
+  decorate_1_from      = "@nestjs/graphql"
+  decorate_1_arguments = "[]"
+}
+
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
@@ -50,7 +66,7 @@ model JobDescription {
   deleted_at        DateTime?
 
   classification Classification @relation(fields: [classification_id], references: [id])
-  Competition    Competition[]
+  competitions   Competition[]
 
   @@map("job_description")
 }
@@ -104,10 +120,9 @@ model Skill {
   updated_at  DateTime?
   deleted_at  DateTime?
 
-  applications     ApplicationSkill[]
-  competitions     CompetitionSkill[]
-  // opportunities OpportunitySkill[]
-  OpportunitySkill OpportunitySkill[]
+  applications  ApplicationSkill[]
+  competitions  CompetitionSkill[]
+  opportunities OpportunitySkill[]
 
   @@map("skill")
 }
@@ -146,9 +161,9 @@ model Competition {
   opportunities   Opportunity[]
   elist           Elist[]
   skills          CompetitionSkill[]
-  job_description JobDescription       @relation(fields: [job_description_id], references: [id])
-  recruiter       User                 @relation(fields: [recruiter_id], references: [id])
-  schedule        CompetitionSchedule?
+  job_description JobDescription        @relation(fields: [job_description_id], references: [id])
+  recruiter       User                  @relation(fields: [recruiter_id], references: [id])
+  schedule        CompetitionSchedule[]
 
   @@map("competition")
 }
@@ -195,12 +210,12 @@ model User {
   updated_at DateTime?
   deleted_at DateTime?
 
-  applications Application[]
-  competitions Competition[]
-  identities   Identity[]
-  elist        Elist[]
-  Comment      Comment[]
-  Opportunity  Opportunity[]
+  applications  Application[]
+  comments      Comment[]
+  competitions  Competition[]
+  identities    Identity[]
+  elist         Elist[]
+  opportunities Opportunity[]
 
   @@map("user")
 }
@@ -305,24 +320,24 @@ model Elist {
 
   applicant   User         @relation(fields: [applicant_id], references: [id])
   competition Competition  @relation(fields: [competition_id], references: [id])
-  ElistOffer  ElistOffer[]
+  offers      ElistOffer[]
 
   @@map("competition_eligibility_list")
 }
 
 model ElistOffer {
-  id          String    @id @db.Uuid
-  elistId     String    @db.Uuid
-  is_accepted Boolean
-  //opportunityId String  @db.Uuid // Are these opportunities in our system?  Do they come from somewhere external? 
-  created_at  DateTime
-  updated_at  DateTime?
-  deleted_at  DateTime?
+  id             String    @id @db.Uuid
+  elist_id       String    @db.Uuid
+  opportunity_id String    @db.Uuid // Are these opportunities in our system?  Do they come from somewhere external? 
+  is_accepted    Boolean
+  created_at     DateTime
+  updated_at     DateTime?
+  deleted_at     DateTime?
 
-  elist         Elist        @relation(fields: [elistId], references: [id])
-  //opportunity Opportunity @relation(fields: [opportunityId], references: [id])
-  Opportunity   Opportunity? @relation(fields: [opportunityId], references: [id])
-  opportunityId String?      @db.Uuid
+  elist       Elist       @relation(fields: [elist_id], references: [id])
+  opportunity Opportunity @relation(fields: [opportunity_id], references: [id])
+
+  @@map("competition_eligibility_list_offer")
 }
 
 model OpportunityLocation {
@@ -335,6 +350,7 @@ model OpportunityLocation {
   opportunity Opportunity @relation(fields: [opportunity_id], references: [id])
 
   @@id([opportunity_id, location_id])
+  @@map("opportunity_location")
 }
 
 model OpportunitySkill {
@@ -343,10 +359,8 @@ model OpportunitySkill {
   created_at     DateTime
   deleted_at     DateTime?
 
-  // opportunity Opportunity @relation(fields: [opportunity_id], references: [id])
-  skill         Skill        @relation(fields: [skill_id], references: [id])
-  Opportunity   Opportunity? @relation(fields: [opportunityId], references: [id])
-  opportunityId String?      @db.Uuid
+  opportunity Opportunity @relation(fields: [opportunity_id], references: [id])
+  skill       Skill       @relation(fields: [skill_id], references: [id])
 
   @@id([opportunity_id, skill_id])
   @@map("opportunity_skill")
@@ -375,7 +389,7 @@ model Opportunity {
   competition    Competition           @relation(fields: [competition_id], references: [id])
   hiring_manager User                  @relation(fields: [hiring_manager_id], references: [id])
   ministry       Ministry              @relation(fields: [ministry_id], references: [id])
-  ElistOffer     ElistOffer[]
+  offers         ElistOffer[]
 
   @@map("opportunity")
 }
@@ -402,8 +416,8 @@ enum WorkOption {
 
 model Comment {
   id          String    @id @db.Uuid
-  record_id   String    @default("0")
-  record_type String    @default("n/a")
+  record_id   String
+  record_type String
   user_id     String    @db.Uuid
   text        String
   created_at  DateTime
@@ -412,6 +426,5 @@ model Comment {
 
   user User @relation(fields: [user_id], references: [id])
 
-  // @@id([record_id, record_type])
   @@map("comment")
 }

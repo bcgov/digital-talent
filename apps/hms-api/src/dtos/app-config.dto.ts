@@ -16,4 +16,10 @@ export class AppConfigDto {
   @IsNotEmpty()
   @IsUrl()
   KEYCLOAK_REALM_URL: string;
+
+  @IsNotEmpty()
+  KEYCLOAK_CLIENT_ID_PRIVATE: string;
+
+  @IsNotEmpty()
+  KEYCLOAK_CLIENT_ID_PUBLIC: string;
 }
