@@ -1,0 +1,28 @@
+import { Field, InputType } from '@nestjs/graphql';
+import { GraphQLJSON } from 'graphql-type-json';
+import { ApplicationLocationCreateNestedManyWithoutApplicationInput } from '../application-location/application-location-create-nested-many-without-application.input';
+import { ApplicationSkillCreateNestedManyWithoutApplicationInput } from '../application-skill/application-skill-create-nested-many-without-application.input';
+
+@InputType()
+export class ApplicationCreateWithoutApplicantInput {
+  @Field(() => String, { nullable: false })
+  id!: string;
+
+  @Field(() => Date, { nullable: false })
+  created_at!: Date | string;
+
+  @Field(() => Date, { nullable: true })
+  updated_at?: Date | string;
+
+  @Field(() => Date, { nullable: true })
+  deleted_at?: Date | string;
+
+  @Field(() => GraphQLJSON, { nullable: false })
+  json!: any;
+
+  @Field(() => ApplicationLocationCreateNestedManyWithoutApplicationInput, { nullable: true })
+  locations?: ApplicationLocationCreateNestedManyWithoutApplicationInput;
+
+  @Field(() => ApplicationSkillCreateNestedManyWithoutApplicationInput, { nullable: true })
+  skills?: ApplicationSkillCreateNestedManyWithoutApplicationInput;
+}

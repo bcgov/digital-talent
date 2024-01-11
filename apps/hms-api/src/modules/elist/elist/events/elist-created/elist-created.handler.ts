@@ -16,7 +16,7 @@ export class ElistCreatedHandler implements IEventHandler<ElistCreatedEvent> {
       data: {
         id,
         ...rest,
-        created_at: new Date(metadata.created_at),
+        created_at: metadata.created_at,
       },
     };
     await this.prisma.elist.create(createObj);

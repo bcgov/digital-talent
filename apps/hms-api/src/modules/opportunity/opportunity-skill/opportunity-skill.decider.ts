@@ -1,15 +1,15 @@
 import { BadRequestException } from '@nestjs/common';
+import { OpportunitySkill } from '../../../@generated/prisma-nestjs-graphql';
 import { ExistsState, InitialState } from '../../event-store/types/decider-state.type';
 import { Decider } from '../../event-store/utils/create-command-handler.util';
 import { decideUpdateEventData } from '../../event-store/utils/decide-update-event-data.util';
 import { CreateOpportunitySkillCommand } from './commands/create-opportunity-skill/create-opportunity-skill.command';
 import { DeleteOpportunitySkillCommand } from './commands/delete-opportunity-skill/delete-opportunity-skill.command';
-import { OpportunitySkillEntity } from './entities/opportunity-skill.entity';
 import { OpportunitySkillCreatedEvent } from './events/opportunity-skill-created/opportunity-skill-created.event';
 import { OpportunitySkillDeletedEvent } from './events/opportunity-skill-deleted/opportunity-skill-deleted.event';
 import { CreateOpportunitySkillInput } from './inputs/create-opportunity-skill.input';
 
-export type OpportunitySkillState = InitialState | ExistsState<'opportunity-skill', OpportunitySkillEntity>;
+export type OpportunitySkillState = InitialState | ExistsState<'opportunity-skill', OpportunitySkill>;
 export type OpportunitySkillCommand = CreateOpportunitySkillCommand | DeleteOpportunitySkillCommand;
 export type OpportunitySkillEvent = OpportunitySkillCreatedEvent | OpportunitySkillDeletedEvent;
 

@@ -46,6 +46,7 @@ export const createCommandHandler =
       state = decider.evolve(state, event as unknown as E);
       revision = event.revision;
     }
+
     const newEvents = decider.decide(state, command).map((event) =>
       jsonEvent({
         type: event.type,

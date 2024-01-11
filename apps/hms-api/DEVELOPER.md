@@ -85,7 +85,7 @@ docker compose up -d
    # Install dependencies for all projects
    npm install
    # Create and run database migrations
-   npx -w @bcgov-dt/backend prisma migrate dev --name init
+   npx -w @bcgov-dt/hms-api prisma migrate dev --name init
    # Run the development server
    npm -w @bcgov-dt/backend run start:dev
    ```
@@ -103,4 +103,30 @@ docker compose up -d
 2. Visit `http://localhost:4000/graphql` in your browser to access the GraphQL API.
 
 ## GitHub for Windows pre-commit husky issues
+
 To avoid GitHub for windows attempting to run pre-commit husky script through WSL, configure your system PATH environment variable to contain C:\Program Files\Git\bin (note: it should not be C:\Program Files\Git\cmd). Also ensure that this entry comes before %SystemRoot%\system32 as it will override bash.exe.
+
+## To reset all data
+
+docker-compose down
+docker-compose down --volumes
+docker-compose down --rmi all (optional)
+docker-compose build --no-cache
+
+## Testing
+
+### hms-api Tests
+
+To run all unit tests run
+
+`npx jest`
+
+To run end-to-end tests:
+
+`npm run test:e2e`
+
+For end e2e tests it is also convinient to run API with test config in parallel as well as the prisma studio:
+
+`dotenv -e .env.test -- npm run start:dev`
+
+`dotenv -e .env.test -- npx -w @bcgov-dt/hms-api prisma studio`

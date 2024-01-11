@@ -11,7 +11,7 @@ export class DeleteOpportunityCommand implements DomainEvent<'DeleteOpportunityC
 
   constructor(data: DeleteOpportunityInput, metadata: Metadata) {
     this.type = 'DeleteOpportunityCommand';
-    this.data = { ...data, deleted_at: new Date() };
+    this.data = data;
     this.metadata = metadata;
   }
 }

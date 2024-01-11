@@ -1,15 +1,15 @@
 import { BadRequestException } from '@nestjs/common';
+import { OpportunityLocation } from '../../../@generated/prisma-nestjs-graphql';
 import { ExistsState, InitialState } from '../../event-store/types/decider-state.type';
 import { Decider } from '../../event-store/utils/create-command-handler.util';
 import { decideUpdateEventData } from '../../event-store/utils/decide-update-event-data.util';
 import { CreateOpportunityLocationCommand } from './commands/create-opportunity-location/create-opportunity-location.command';
 import { DeleteOpportunityLocationCommand } from './commands/delete-opportunity-location/delete-opportunity-location.command';
-import { OpportunityLocationEntity } from './entities/opportunity-location.entity';
 import { OpportunityLocationCreatedEvent } from './events/opportunity-location-created/opportunity-location-created.event';
 import { OpportunityLocationDeletedEvent } from './events/opportunity-location-deleted/opportunity-location-deleted.event';
 import { CreateOpportunityLocationInput } from './inputs/create-opportunity-location.input';
 
-export type OpportunityLocationState = InitialState | ExistsState<'opportunity-location', OpportunityLocationEntity>;
+export type OpportunityLocationState = InitialState | ExistsState<'opportunity-location', OpportunityLocation>;
 export type OpportunityLocationCommand = CreateOpportunityLocationCommand | DeleteOpportunityLocationCommand;
 export type OpportunityLocationEvent = OpportunityLocationCreatedEvent | OpportunityLocationDeletedEvent;
 
@@ -37,7 +37,7 @@ export function evolve(state: OpportunityLocationState, event: OpportunityLocati
         type: 'opportunity-location',
         data: {
           ...(state.exists === true && { ...state.data }),
-          deleted_at: new Date(metadata.created_at as string),
+          deleted_at: new Date(metadata.created_at),
         },
       };
     }
@@ -69,17 +69,13 @@ export function decide(
     case 'DeleteOpportunityLocationCommand': {
       if (!state.exists) throw new BadRequestException('OpportunityLocation does not exist');
 
-      const data: CreateOpportunityLocationInput = decideUpdateEventData(command, state);
+      if (state.data.deleted_at != null) return [];
 
-      if (data == null) return [];
       return [
-        new OpportunityLocationDeletedEvent(
-          { ...data, deleted_at: command.data.deleted_at },
-          {
-            ...command.metadata,
-            deleted_at: command.data.deleted_at,
-          },
-        ),
+        new OpportunityLocationDeletedEvent(command.data, {
+          ...command.metadata,
+          created_at: new Date().toISOString(),
+        }),
       ];
     }
     default: {

@@ -4,3 +4,4 @@ resources:
 - dc.yml
 - service.yml
 - route.yml
+- np.yml

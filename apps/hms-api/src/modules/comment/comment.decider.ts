@@ -1,18 +1,19 @@
+import assert from 'assert';
 import { BadRequestException } from '@nestjs/common';
+import { Comment } from '../../@generated/prisma-nestjs-graphql';
 import { ExistsState, InitialState } from '../event-store/types/decider-state.type';
 import { Decider } from '../event-store/utils/create-command-handler.util';
 import { decideUpdateEventData } from '../event-store/utils/decide-update-event-data.util';
 import { CreateCommentCommand } from './commands/create-comment/create-comment.command';
 import { DeleteCommentCommand } from './commands/delete-comment/delete-comment.command';
 import { UpdateCommentCommand } from './commands/update-comment/update-comment.command';
-import { CommentEntity } from './entities/comment.entity';
 import { CommentCreatedEvent } from './events/comment-created/comment-created.event';
 import { CommentDeletedEvent } from './events/comment-deleted/comment-deleted.event';
 import { CommentUpdatedEvent } from './events/comment-updated/comment-updated.event';
 import { CreateCommentInput } from './inputs/create-comment.input';
 import { UpdateCommentInput } from './inputs/update-comment.input';
 
-export type CommentState = InitialState | ExistsState<'comment', CommentEntity>;
+export type CommentState = InitialState | ExistsState<'comment', Comment>;
 export type CommentCommand = CreateCommentCommand | UpdateCommentCommand | DeleteCommentCommand;
 export type CommentEvent = CommentCreatedEvent | CommentUpdatedEvent | CommentDeletedEvent;
 
@@ -91,20 +92,12 @@ export function decide(state: CommentState, command: CommentCommand): CommentEve
       ];
     }
     case 'DeleteCommentCommand': {
-      if (!state.exists) throw new BadRequestException('Comment does not exist');
+      if (!state.exists) throw new BadRequestException("Comment doesn't exist");
+      assert(state.type === 'comment');
 
-      const data: CreateCommentInput = decideUpdateEventData(command, state);
+      if (state.data.deleted_at != null) return [];
 
-      if (data == null) return [];
-      return [
-        new CommentDeletedEvent(
-          { ...data, deleted_at: command.data.deleted_at },
-          {
-            ...command.metadata,
-            deleted_at: command.data.deleted_at,
-          },
-        ),
-      ];
+      return [new CommentDeletedEvent(command.data, { ...command.metadata, created_at: new Date().toISOString() })];
     }
     default: {
       return [];

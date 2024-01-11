@@ -1,5 +1,5 @@
 import { EventsHandler, IEventHandler } from '@nestjs/cqrs';
-import { OpportunityState } from '@prisma/client';
+import { OpportunityState } from '../../../../../@generated/prisma-nestjs-graphql';
 import { PrismaService } from '../../../../prisma/prisma.service';
 import { OpportunityCreatedEvent } from './opportunity-created.event';
 

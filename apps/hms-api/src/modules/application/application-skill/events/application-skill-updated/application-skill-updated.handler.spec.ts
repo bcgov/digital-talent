@@ -15,8 +15,8 @@ describe('ApplicationSkillUpdatedHandler', () => {
   it('should handle ApplicationSkillUpdatedEvent correctly', async () => {
     // Mock the data for UpdateApplicationSkillInput and Metadata
     const mockUpdateApplicationSkillInput: UpdateApplicationSkillInput = {
-      application_id: 'd290f1ee-6c54-4b01-90e6-d701748f0851', // example UUID
-      skill_id: 'd290f1ee-6c54-4b01-90e6-d701748f0851', // example UUID
+      application_id: 'd290f1ee-6c54-4b01-90e6-d701748f0851',
+      skill_id: 'd290f1ee-6c54-4b01-90e6-d701748f0851',
       years_experience: 5,
       description: 'mock description',
     };

@@ -8,16 +8,21 @@ export class ElistOfferUpdatedHandler implements IEventHandler<ElistOfferUpdated
 
   async handle(event: ElistOfferUpdatedEvent) {
     const {
-      data: { id, elistId, ...rest },
+      data: { id, elist_id, opportunity_id, ...rest },
       metadata,
     } = event;
 
     await this.prisma.elistOffer.update({
       where: { id },
       data: {
-        ...(elistId != null && {
+        ...(elist_id != null && {
           elist: {
-            connect: { id: elistId },
+            connect: { id: elist_id },
+          },
+        }),
+        ...(opportunity_id != null && {
+          opportunity: {
+            connect: { id: opportunity_id },
           },
         }),
         updated_at: metadata.created_at,

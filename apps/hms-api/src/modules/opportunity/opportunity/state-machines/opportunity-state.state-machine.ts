@@ -1,6 +1,6 @@
 import { createMachine } from 'xstate';
 
-export const competitionStateStateMachine = createMachine({
+export const opportunityStateMachine = createMachine({
   id: 'Opportunity State Machine',
   initial: 'SUBMITTED',
   predictableActionArguments: true,

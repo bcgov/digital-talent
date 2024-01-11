@@ -4,7 +4,7 @@ metadata:
   name: hms-app
 spec:
   selector:
-    app: hms-app
+    name: hms-app
   ports:
   - protocol: TCP
     port: 5173

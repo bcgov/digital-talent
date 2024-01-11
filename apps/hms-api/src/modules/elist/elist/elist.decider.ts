@@ -1,18 +1,18 @@
 import { BadRequestException } from '@nestjs/common';
+import { Elist } from '../../../@generated/prisma-nestjs-graphql';
 import { ExistsState, InitialState } from '../../event-store/types/decider-state.type';
 import { Decider } from '../../event-store/utils/create-command-handler.util';
 import { decideUpdateEventData } from '../../event-store/utils/decide-update-event-data.util';
 import { CreateElistCommand } from './commands/create-elist/create-elist.command';
 import { DeleteElistCommand } from './commands/delete-elist/delete-elist.command';
 import { UpdateElistCommand } from './commands/update-elist/update-elist.command';
-import { ElistEntity } from './entities/elist.entity';
 import { ElistCreatedEvent } from './events/elist-created/elist-created.event';
 import { ElistDeletedEvent } from './events/elist-deleted/elist-deleted.event';
 import { ElistUpdatedEvent } from './events/elist-updated/elist-updated.event';
 import { CreateElistInput } from './inputs/create-elist.input';
 import { UpdateElistInput } from './inputs/update-elist.input';
 
-export type ElistState = InitialState | ExistsState<'elist', ElistEntity>;
+export type ElistState = InitialState | ExistsState<'elist', Elist>;
 export type ElistCommand = CreateElistCommand | UpdateElistCommand | DeleteElistCommand;
 export type ElistEvent = ElistCreatedEvent | ElistUpdatedEvent | ElistDeletedEvent;
 

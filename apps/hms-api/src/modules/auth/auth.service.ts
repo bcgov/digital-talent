@@ -54,37 +54,48 @@ export class AuthService {
     return pk;
   }
 
+  getExpectedKeyCloakClientIds(): string[] {
+    return [this.configService.get('KEYCLOAK_CLIENT_ID_PRIVATE'), this.configService.get('KEYCLOAK_CLIENT_ID_PUBLIC')];
+  }
+
   async getUserFromPayload(data: JwtPayload) {
     const { sub, identity_provider, name, email, client_roles, exp } = data;
 
     // const id = this.getUserIdFromSub(sub);
 
     const CACHE_KEY = `${CACHE_USER_PREFIX}${sub}-${identity_provider}`;
-    let match = await this.cacheManager.get<Express.User>(CACHE_KEY);
+    let match = await this.cacheManager.get<Express.User>(CACHE_KEY); // try to get user from cache
 
     if (!match) {
+      // user not in cache
       // Store User, Identity
       const identity = await this.prisma.identity.findUnique({
+        // try to get user from db
         where: { sub_identity_provider: { identity_provider, sub } },
       });
 
       let id = '';
       if (identity) {
+        // user was found in db, get id
         id = identity.user_id;
       } else {
+        // user was not found in db, look up user in the user table by email
         const existingUser = await this.prisma.user.findUnique({
           where: { email },
         });
-
+        // if found in user table, use that id, otherwise generate new one
         id = existingUser ? existingUser.id : uuidv4();
       }
-
+      // create user object
       const user: Express.User = { id, name, email, roles: ((client_roles as string[]) ?? []).sort() };
 
+      // upsert user and identity
       await this.commandBus.execute(
         new SyncAccountCommand({ ...user, sub, identity_provider }, { created_by: user.id }),
       );
+      // set cache
       await this.cacheManager.set(CACHE_KEY, user, (exp ?? 0) * 1000 - Date.now());
+      // get user from cache
       match = await this.cacheManager.get<Express.User>(CACHE_KEY);
     }
 

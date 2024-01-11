@@ -1,13 +1,11 @@
-import { EventStoreDBClient, FORWARDS, START } from '@eventstore/db-client';
+import { EventStoreDBClient } from '@eventstore/db-client';
 import { CommandBus, ICommand } from '@nestjs/cqrs';
-import { SYSTEM_USER_ID } from '../../modules/auth/auth.constants';
-import { handleEmpty } from '../../modules/event-store/utils/create-command-handler.util';
 import { CreateJobDescriptionCommand } from '../../modules/job-description/commands/create-job-description/create-job-description.command';
 import { DeleteJobDescriptionCommand } from '../../modules/job-description/commands/delete-job-description/delete-job-description.command';
 import { UpdateJobDescriptionCommand } from '../../modules/job-description/commands/update-job-description/update-job-description.command';
 import { CreateJobDescriptionInput } from '../../modules/job-description/inputs/create-job-description.input';
-import { validateObject } from '../../utils/validate-object.dto';
 import { SeedType } from '../seeds.type';
+import { applySeeds } from '../util/util';
 
 export const jobDescriptionSeeds: SeedType<CreateJobDescriptionInput> = {
   upsert: [
@@ -112,34 +110,14 @@ export const jobDescriptionSeeds: SeedType<CreateJobDescriptionInput> = {
 };
 
 export const applyJobDescriptionSeeds = async (commandBus: CommandBus<ICommand>, eventStore: EventStoreDBClient) => {
-  const { upsert, remove } = jobDescriptionSeeds;
-
-  for await (const seed of upsert) {
-    validateObject(seed, CreateJobDescriptionInput);
-
-    // Check if the stream exists
-    const events = handleEmpty(
-      eventStore.readStream(`job-description-${seed.id}`, {
-        direction: FORWARDS,
-        fromRevision: START,
-        maxCount: 1,
-      }),
-    );
-
-    const { value } = await events.next();
-    if (value == null) {
-      // Stream doesn't exist -- create it
-      const command = new CreateJobDescriptionCommand(seed, { created_by: SYSTEM_USER_ID });
-      await commandBus.execute(command);
-    } else {
-      // Stream exists -- update it
-      const command = new UpdateJobDescriptionCommand(seed, { created_by: SYSTEM_USER_ID });
-      await commandBus.execute(command);
-    }
-  }
-
-  for await (const seed of remove) {
-    const command = new DeleteJobDescriptionCommand(seed, { created_by: SYSTEM_USER_ID });
-    await commandBus.execute(command);
-  }
+  await applySeeds(
+    jobDescriptionSeeds,
+    commandBus,
+    eventStore,
+    CreateJobDescriptionInput,
+    CreateJobDescriptionCommand,
+    UpdateJobDescriptionCommand,
+    DeleteJobDescriptionCommand,
+    'job-description',
+  );
 };

@@ -2,11 +2,11 @@ import { BadRequestException } from '@nestjs/common';
 import { Metadata } from '../../event-store/types/metadata.type';
 import { ApplicationLocationState, decide, evolve } from './application-location.decider';
 import { CreateApplicationLocationCommand } from './commands/create-application-location/create-application-location.command';
-import { UpdateApplicationLocationCommand } from './commands/update-application-location/update-application-location.command';
 import { DeleteApplicationLocationCommand } from './commands/delete-application-location/delete-application-location.command';
+import { UpdateApplicationLocationCommand } from './commands/update-application-location/update-application-location.command';
 import { ApplicationLocationCreatedEvent } from './events/application-location-created/application-location-created.event';
-import { ApplicationLocationUpdatedEvent } from './events/application-location-updated/application-location-updated.event';
 import { ApplicationLocationDeletedEvent } from './events/application-location-deleted/application-location-deleted.event';
+import { ApplicationLocationUpdatedEvent } from './events/application-location-updated/application-location-updated.event';
 import { CreateApplicationLocationInput } from './inputs/create-application-location.input';
 import { DeleteApplicationLocationInput } from './inputs/delete-application-location.input';
 import { UpdateApplicationLocationInput } from './inputs/update-application-location.input';
@@ -21,6 +21,8 @@ describe('application-location.decider', () => {
       application_id: 'mockId',
       rank: 5,
       created_at: new Date('2023-08-21T12:00:00Z'),
+      updated_at: null,
+      deleted_at: null,
     },
   };
 
@@ -131,6 +133,8 @@ describe('application-location.decider', () => {
           application_id: 'mockId',
           rank: 5,
           created_at: new Date('2023-08-21T10:00:00Z'),
+          updated_at: null,
+          deleted_at: null,
         },
       };
 
@@ -164,6 +168,8 @@ describe('application-location.decider', () => {
           application_id: 'mockId',
           rank: 5,
           created_at: new Date('2023-08-21T10:00:00Z'),
+          updated_at: null,
+          deleted_at: null,
         },
       };
 

@@ -1,5 +1,6 @@
 import assert from 'assert';
 import { BadRequestException } from '@nestjs/common';
+import { OccupationGroup } from '../../@generated/prisma-nestjs-graphql';
 import { ExistsState, InitialState } from '../event-store/types/decider-state.type';
 import { Decider } from '../event-store/utils/create-command-handler.util';
 import { decideUpdateEventData } from '../event-store/utils/decide-update-event-data.util';
@@ -11,9 +12,8 @@ import { OccupationGroupDeletedEvent } from './events/occupation-group-deleted/o
 import { OccupationGroupUpdatedEvent } from './events/occupation-group-updated/occupation-group-updated.event';
 import { CreateOccupationGroupInput } from './inputs/create-occupation-group.input';
 import { UpdateOccupationGroupInput } from './inputs/update-occupation-group.input';
-import { OccupationGroupWriteModel } from './models/occupation-group-write.model';
 
-export type State = InitialState | ExistsState<'occupation-group', OccupationGroupWriteModel>;
+export type State = InitialState | ExistsState<'occupation-group', OccupationGroup>;
 type Command = CreateOccupationGroupCommand | UpdateOccupationGroupCommand | DeleteOccupationGroupCommand;
 type Event = OccupationGroupCreatedEvent | OccupationGroupUpdatedEvent | OccupationGroupDeletedEvent;
 
@@ -32,6 +32,8 @@ export function evolve(state: State, event: Event): State {
         data: {
           ...data,
           created_at: new Date(metadata.created_at),
+          updated_at: null,
+          deleted_at: null,
         },
       };
     }

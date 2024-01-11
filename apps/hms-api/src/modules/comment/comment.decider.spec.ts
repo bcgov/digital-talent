@@ -1,12 +1,12 @@
 import { BadRequestException } from '@nestjs/common';
 import { Metadata } from '../event-store/types/metadata.type';
-import { CommentState, decide, evolve } from './comment.decider';
 import { CreateCommentCommand } from './commands/create-comment/create-comment.command';
-import { UpdateCommentCommand } from './commands/update-comment/update-comment.command';
 import { DeleteCommentCommand } from './commands/delete-comment/delete-comment.command';
+import { UpdateCommentCommand } from './commands/update-comment/update-comment.command';
+import { CommentState, decide, evolve } from './comment.decider';
 import { CommentCreatedEvent } from './events/comment-created/comment-created.event';
-import { CommentUpdatedEvent } from './events/comment-updated/comment-updated.event';
 import { CommentDeletedEvent } from './events/comment-deleted/comment-deleted.event';
+import { CommentUpdatedEvent } from './events/comment-updated/comment-updated.event';
 import { CreateCommentInput } from './inputs/create-comment.input';
 import { DeleteCommentInput } from './inputs/delete-comment.input';
 import { UpdateCommentInput } from './inputs/update-comment.input';
@@ -23,6 +23,8 @@ describe('comment.decider', () => {
       record_type: 'record_type',
       user_id: 'd290f1ee-6c54-4b01-90e6-d701748f0852',
       text: 'text',
+      updated_at: null,
+      deleted_at: null,
     },
   };
 
@@ -143,6 +145,8 @@ describe('comment.decider', () => {
           user_id: 'd290f1ee-6c54-4b01-90e6-d701748f0852',
           text: 'text',
           created_at: new Date('2023-08-21T10:00:00Z'),
+          updated_at: null,
+          deleted_at: null,
         },
       };
 
@@ -185,6 +189,8 @@ describe('comment.decider', () => {
           user_id: 'd290f1ee-6c54-4b01-90e6-d701748f0852',
           text: 'text2',
           created_at: new Date('2023-08-21T10:00:00Z'),
+          updated_at: null,
+          deleted_at: null,
         },
       };
 

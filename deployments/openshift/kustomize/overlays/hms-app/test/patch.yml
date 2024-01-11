@@ -3,12 +3,19 @@ kind: DeploymentConfig
 metadata:
   name: hms-app
 spec:
+  strategy:
+    type: Rolling
   triggers:
+      - type: ConfigChange
       - imageChangeParams:
+          automatic: true
+          containerNames:
+            - hms-app
           from:
             kind: ImageStreamTag
             name: hms-app:stage-latest
             namespace: f15899-tools
+        type: ImageChange
 ---          
 apiVersion: route.openshift.io/v1
 kind: Route

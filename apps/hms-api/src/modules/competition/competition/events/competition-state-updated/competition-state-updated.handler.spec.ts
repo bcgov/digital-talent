@@ -1,7 +1,8 @@
+import { CompetitionState } from '../../../../../@generated/prisma-nestjs-graphql';
+import { Metadata } from '../../../../event-store/types/metadata.type';
+import { UpdateCompetitionStateInput } from '../../inputs/update-competition-state.input';
 import { CompetitionStateUpdatedEvent } from './competition-state-updated.event';
 import { CompetitionStateUpdatedHandler } from './competition-state-updated.handler';
-import { UpdateCompetitionStateInput } from '../../inputs/update-competition-state.input';
-import { Metadata } from '../../../../event-store/types/metadata.type';
 
 describe('CompetitionStateUpdatedHandler', () => {
   let handler: CompetitionStateUpdatedHandler;
@@ -16,7 +17,7 @@ describe('CompetitionStateUpdatedHandler', () => {
     // Mock the data for UpdateCompetitionStateInput and Metadata
     const mockUpdateCompetitionStateInput: UpdateCompetitionStateInput = {
       id: 'd290f1ee-6c54-4b01-90e6-d701748f0851',
-      state: 'DRAFT',
+      state: CompetitionState.DRAFT,
     };
     const mockMetadata: Metadata = {
       created_at: '2023-08-21T12:00:00Z',
@@ -30,7 +31,7 @@ describe('CompetitionStateUpdatedHandler', () => {
     // Assert that mockPrismaService.competition.update was called correctly
     const expectedCreateObj = {
       data: {
-        state: 'DRAFT',
+        state: CompetitionState.DRAFT,
         updated_at: mockMetadata.created_at,
       },
       where: {

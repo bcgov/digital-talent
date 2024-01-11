@@ -1,12 +1,12 @@
+import { User } from '../../@generated/prisma-nestjs-graphql';
 import { ExistsState, InitialState } from '../event-store/types/decider-state.type';
 import { Decider } from '../event-store/utils/create-command-handler.util';
 import { decideUpdateEventData } from '../event-store/utils/decide-update-event-data.util';
 import { SyncUserCommand } from './commands/sync-user/sync-user.command';
 import { UserSyncedEvent } from './events/user-synced/user-synced.event';
 import { SyncUserInput } from './inputs/sync-user.input';
-import { UserWriteModel } from './models/user-write.model';
 
-export type UserState = InitialState | ExistsState<'user', UserWriteModel>;
+export type UserState = InitialState | ExistsState<'user', User>;
 export type UserCommand = SyncUserCommand;
 export type UserEvent = UserSyncedEvent;
 

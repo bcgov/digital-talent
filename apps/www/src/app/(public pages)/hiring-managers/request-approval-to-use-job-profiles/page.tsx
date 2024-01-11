@@ -30,7 +30,7 @@ export default function Page() {
           </p>
           <p>
             To support transformation, the {` `}
-            <Link href="https://psa.sp.gov.bc.ca/sites/HRSUPPORT/Jobstore/Digital%20Talent/Forms/AllItems.aspx">
+            <Link href="https://bcgov.sharepoint.com/sites/PSA-Jobstore/Information%20Technology%20and%20Digital%20Talent/Forms/AllItems.aspx?viewid=f9fb30d4%2D9914%2D42b2%2D85a8%2D62e7c90ebcc1&useFiltersInViewXml=1">
               <Button className="text-md px-0 py-0 underline h-4" variant="link">
                 Digital Talent job profiles <ExternalLink className="w-4 ml-1.5" />
               </Button>
@@ -95,7 +95,7 @@ export default function Page() {
             <p>
               Digital Talent (DT) are roles in the BC Public Service are focus on designing, developing, and deploying
               digital products and/or services. Currently available {` `}
-              <Link href="https://psa.sp.gov.bc.ca/sites/HRSUPPORT/Jobstore/Digital%20Talent/Forms/AllItems.aspx">
+              <Link href="https://bcgov.sharepoint.com/sites/PSA-Jobstore/Information%20Technology%20and%20Digital%20Talent/Forms/AllItems.aspx?viewid=f9fb30d4%2D9914%2D42b2%2D85a8%2D62e7c90ebcc1&useFiltersInViewXml=1">
                 <Button className="text-md px-0 py-0 underline h-4" variant="link">
                   Digital Talent Job Profiles <ExternalLink className="w-4 ml-1.5" />
                 </Button>

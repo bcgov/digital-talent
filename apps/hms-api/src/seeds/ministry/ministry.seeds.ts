@@ -1,13 +1,11 @@
-import { EventStoreDBClient, FORWARDS, START } from '@eventstore/db-client';
+import { EventStoreDBClient } from '@eventstore/db-client';
 import { CommandBus, ICommand } from '@nestjs/cqrs';
-import { SYSTEM_USER_ID } from '../../modules/auth/auth.constants';
-import { handleEmpty } from '../../modules/event-store/utils/create-command-handler.util';
 import { CreateMinistryCommand } from '../../modules/ministry/commands/create-ministry/create-ministry.command';
 import { DeleteMinistryCommand } from '../../modules/ministry/commands/delete-ministry/delete-ministry.command';
 import { UpdateMinistryCommand } from '../../modules/ministry/commands/update-ministry/update-ministry.command';
 import { CreateMinistryInput } from '../../modules/ministry/inputs/create-ministry.input';
-import { validateObject } from '../../utils/validate-object.dto';
 import { SeedType } from '../seeds.type';
+import { applySeeds } from '../util/util';
 
 export const ministrySeeds: SeedType<CreateMinistryInput> = {
   upsert: [
@@ -71,34 +69,14 @@ export const ministrySeeds: SeedType<CreateMinistryInput> = {
 };
 
 export const applyMinistrySeeds = async (commandBus: CommandBus<ICommand>, eventStore: EventStoreDBClient) => {
-  const { upsert, remove } = ministrySeeds;
-
-  for await (const seed of upsert) {
-    validateObject(seed, CreateMinistryInput);
-
-    // Check if the stream exists
-    const events = handleEmpty(
-      eventStore.readStream(`ministry-${seed.id}`, {
-        direction: FORWARDS,
-        fromRevision: START,
-        maxCount: 1,
-      }),
-    );
-
-    const { value } = await events.next();
-    if (value == null) {
-      // Stream doesn't exist -- create it
-      const command = new CreateMinistryCommand(seed, { created_by: SYSTEM_USER_ID });
-      await commandBus.execute(command);
-    } else {
-      // Stream exists -- update it
-      const command = new UpdateMinistryCommand(seed, { created_by: SYSTEM_USER_ID });
-      await commandBus.execute(command);
-    }
-  }
-
-  for await (const seed of remove) {
-    const command = new DeleteMinistryCommand(seed, { created_by: SYSTEM_USER_ID });
-    await commandBus.execute(command);
-  }
+  await applySeeds(
+    ministrySeeds,
+    commandBus,
+    eventStore,
+    CreateMinistryInput,
+    CreateMinistryCommand,
+    UpdateMinistryCommand,
+    DeleteMinistryCommand,
+    'ministry',
+  );
 };

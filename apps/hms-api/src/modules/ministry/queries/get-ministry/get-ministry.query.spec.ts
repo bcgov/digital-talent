@@ -2,6 +2,6 @@ import { GetMinistryQuery } from './get-ministry.query';
 
 describe('GetMinistryQuery', () => {
   it('should be defined', () => {
-    expect(new GetMinistryQuery()).toBeDefined();
+    expect(new GetMinistryQuery('id')).toBeDefined();
   });
 });

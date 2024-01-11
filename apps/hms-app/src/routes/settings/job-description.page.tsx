@@ -1,4 +1,5 @@
 import { Space, Table } from 'antd';
+import dayjs from 'dayjs';
 import { useGetJobDescriptionsQuery } from '../../redux/services/graphql-api/job-description-api.service';
 
 export const JobDescriptionPage = () => {
@@ -47,6 +48,30 @@ export const JobDescriptionPage = () => {
         return (
           <span>
             {formatCurrency(Math.min(...salaries))} - {formatCurrency(Math.max(...salaries))}
+          </span>
+        );
+      },
+    },
+    {
+      title: 'Created Date',
+      dataIndex: 'created_at',
+      key: 'created_at',
+      render: (value?: string) => {
+        return (
+          <span title={value != null ? dayjs(value).format('MMM D, YYYY @ h:mm:ss.SSS A') : ''}>
+            {value != null ? dayjs(value).format('MMM D, YYYY') : ''}
+          </span>
+        );
+      },
+    },
+    {
+      title: 'Updated Date',
+      dataIndex: 'updated_at',
+      key: 'updated_at',
+      render: (value?: string) => {
+        return (
+          <span title={value != null ? dayjs(value).format('MMM D, YYYY @ h:mm:ss.SSS A') : ''}>
+            {value != null ? dayjs(value).format('MMM D, YYYY') : ''}
           </span>
         );
       },

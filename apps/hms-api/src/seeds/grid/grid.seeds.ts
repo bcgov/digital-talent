@@ -1,14 +1,12 @@
 /* eslint-disable max-classes-per-file */
-import { EventStoreDBClient, FORWARDS, START } from '@eventstore/db-client';
+import { EventStoreDBClient } from '@eventstore/db-client';
 import { CommandBus, ICommand } from '@nestjs/cqrs';
-import { SYSTEM_USER_ID } from '../../modules/auth/auth.constants';
-import { handleEmpty } from '../../modules/event-store/utils/create-command-handler.util';
 import { CreateGridCommand } from '../../modules/grid/commands/create-grid/create-grid.command';
 import { DeleteGridCommand } from '../../modules/grid/commands/delete-grid/delete-grid.command';
 import { UpdateGridCommand } from '../../modules/grid/commands/update-grid/update-grid.command';
 import { CreateGridInput } from '../../modules/grid/inputs/create-grid.input';
-import { validateObject } from '../../utils/validate-object.dto';
 import { SeedType } from '../seeds.type';
+import { applySeeds } from '../util/util';
 
 export const gridSeeds: SeedType<CreateGridInput> = {
   upsert: [
@@ -242,34 +240,14 @@ export const gridSeeds: SeedType<CreateGridInput> = {
 };
 
 export const applyGridSeeds = async (commandBus: CommandBus<ICommand>, eventStore: EventStoreDBClient) => {
-  const { upsert, remove } = gridSeeds;
-
-  for await (const seed of upsert) {
-    validateObject(seed, CreateGridInput);
-
-    // Check if the stream exists
-    const events = handleEmpty(
-      eventStore.readStream(`grid-${seed.id}`, {
-        direction: FORWARDS,
-        fromRevision: START,
-        maxCount: 1,
-      }),
-    );
-
-    const { value } = await events.next();
-    if (value == null) {
-      // Stream doesn't exist -- create its
-      const command = new CreateGridCommand(seed, { created_by: SYSTEM_USER_ID });
-      await commandBus.execute(command);
-    } else {
-      // Stream exists -- update it
-      const command = new UpdateGridCommand(seed, { created_by: SYSTEM_USER_ID });
-      await commandBus.execute(command);
-    }
-  }
-
-  for await (const seed of remove) {
-    const command = new DeleteGridCommand(seed, { created_by: SYSTEM_USER_ID });
-    await commandBus.execute(command);
-  }
+  await applySeeds(
+    gridSeeds,
+    commandBus,
+    eventStore,
+    CreateGridInput,
+    CreateGridCommand,
+    UpdateGridCommand,
+    DeleteGridCommand,
+    'grid',
+  );
 };

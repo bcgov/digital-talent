@@ -11,7 +11,12 @@ export class UpdateElistOfferInput {
   @Field((type) => GraphQLUUID)
   @IsUUID()
   @IsOptional()
-  elistId?: string;
+  elist_id?: string;
+
+  @Field((type) => GraphQLUUID)
+  @IsUUID()
+  @IsOptional()
+  opportunity_id?: string;
 
   @IsBoolean()
   @IsOptional()
