@@ -19,9 +19,11 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
+    // ***
     // Note: smooth scrolling introduces a scroll bug where it doesn't scroll all the way to the top of the page
     // when navigatingd between internal links. This is addressed in header component by temporarily disabling smooth scroll when
     // navigating between pages
+    // ***
     <html className="scroll-smooth " lang="en">
       <body
         className={`${montserrat.variable} ${notoSans.variable} ${notoSansMono.variable} ${notoSerif.variable} font-sans`}
