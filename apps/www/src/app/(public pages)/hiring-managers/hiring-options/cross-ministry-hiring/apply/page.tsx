@@ -24,26 +24,6 @@ export default function Page() {
           <Heading className="text-bcgov-blue-dark" level={2}>
             Consider joining us for the competitions below!
           </Heading>
-
-          <p className="my-2">
-            Selecting one of the options below sends hiring managers to our Hiring Intake form. Hiring managers should
-            be ready to sign our Service Agreement.
-          </p>
-          <div className="rounded-sm border bg-gray-50 text-card-foreground shadow-sm mt-6 mb-8 p-4">
-            <span className="text-lg">No upcoming competitions</span>
-            <p className="pt-2">
-              Unfortunately there are no competitions to join at this time. Though the deadline for our open
-              competitions have passed, we are happy to connect and discuss the Cross-Ministry Hiring Program. Send us
-              an email at{' '}
-              <a className="text-bcgov-blue-dark underline" href="mailto:digital.talent@gov.bc.ca">
-                digital.talent@gov.bc.ca
-              </a>
-              .
-            </p>
-          </div>
-          <Heading className="text-bcgov-blue-dark" level={2}>
-            Open competitions
-          </Heading>
           <CompetitionList />
         </div>
         <div className="bg-bcgov-blue-light py-6 mb-10">
