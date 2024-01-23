@@ -86,8 +86,7 @@ const competitions: Competition[] = [
   },
   {
     id: '2',
-    form_url:
-      'https://submit.digital.gov.bc.ca/app/form/preview?f=cd363b50-6cbc-4f3f-bf65-6228407de78f&v=3acdc1b6-438f-4399-bb80-c0269c8d60ad',
+    form_url: 'https://submit.digital.gov.bc.ca/app/form/submit?f=cd363b50-6cbc-4f3f-bf65-6228407de78f',
     classification: 'Senior Product Manager (Band 3)',
     requisition: '108091',
     opportunity_submission_period: ['2024-01-22T17:30:00Z', '2024-02-02T07:59:59.999Z'],
