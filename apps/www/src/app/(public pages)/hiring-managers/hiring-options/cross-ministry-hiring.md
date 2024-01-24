@@ -8,7 +8,7 @@ navigation: true
 
 The Cross-Ministry Hiring Program uses one job profile to fill many positions across BC Public Service. The outcome of the CMHP is an [Eligibility List (E-list)](hiring-managers/hiring-options) of pre-qualified candidates. We match hiring managers and candidates based on candidate preferences.
 
-Our team gives administrative support. With dedicated Public Service Agency (PSA) resources, we have shorter wait times. For hiring managers, they get candidates quicker without spending hours of labour. For candidates, they do not need to apply to similar position, and they save time.
+Our team gives administrative support. With dedicated Public Service Agency (PSA) resources, we have shorter wait times. For hiring managers, they get candidates quicker without spending hours of labour. Candidates can apply to multiple positions with just one application, saving time.
 
 Candidates' experience with BC Public Service hiring becomes better.
 
