@@ -103,9 +103,9 @@ const competitions: Competition[] = [
 ];
 
 export default function CompetitionList() {
-  const upcomingCompetitions = competitions.filter((competition: Competition) =>
-    dayjs().isBefore(dayjs(competition.opportunity_submission_period[0])),
-  );
+  // const upcomingCompetitions = competitions.filter((competition: Competition) =>
+  //   dayjs().isBefore(dayjs(competition.opportunity_submission_period[0])),
+  // );
 
   const currentCompetitions = competitions.filter((competition: Competition) => {
     return (
@@ -137,7 +137,7 @@ export default function CompetitionList() {
         </>
       )}
 
-      <div>
+      {/* <div>
         <Heading className="text-bcgov-blue-dark" level={2}>
           Upcoming competitions
         </Heading>
@@ -161,7 +161,7 @@ export default function CompetitionList() {
             </p>
           </div>
         )}
-      </div>
+      </div> */}
       {previousCompetitions.length > 0 && (
         <>
           <Heading className="text-bcgov-blue-dark" level={2}>
