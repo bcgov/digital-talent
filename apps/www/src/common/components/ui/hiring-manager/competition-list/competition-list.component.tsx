@@ -89,7 +89,7 @@ const competitions: Competition[] = [
     form_url: 'https://submit.digital.gov.bc.ca/app/form/submit?f=cd363b50-6cbc-4f3f-bf65-6228407de78f',
     classification: 'Senior Product Manager (Band 3)',
     requisition: '108091',
-    opportunity_submission_period: ['2024-01-22T17:30:00Z', '2024-02-02T23:59:59.999Z'],
+    opportunity_submission_period: ['2024-01-22T17:30:00Z', '2024-02-05T23:59:59.999Z'],
     application_submission_period: ['2024-02-09T16:00:00Z', '2024-02-25T23:59:59.999Z'],
   },
   {
@@ -97,7 +97,7 @@ const competitions: Competition[] = [
     form_url: 'https://submit.digital.gov.bc.ca/app/form/submit?f=6d7a9541-17d6-4cf2-a984-20d157f2fd3b',
     classification: 'User Experience Designer (IS 24)',
     requisition: '109806',
-    opportunity_submission_period: ['2024-01-22T17:30:00Z', '2024-02-02T23:59:59.999Z'],
+    opportunity_submission_period: ['2024-01-22T17:30:00Z', '2024-02-05T23:59:59.999Z'],
     application_submission_period: ['2024-02-09T16:00:00Z', '2024-02-25T23:59:59.999Z'],
   },
 ];
