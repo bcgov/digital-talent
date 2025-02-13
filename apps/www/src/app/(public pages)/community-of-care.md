@@ -1,15 +1,16 @@
-Social equity creates an inclusive society. One where everyone has the same chances and a high standard of life. To create this society, we meet marginalized communities where they are. Then we have initiatives to bring them to same place where the social dominant groups are.
-BC Gov supports 5 primary social equity initiatives: 
+Reconciliation, Equity, Acessibility, Diversity and Inclusion (READI) creates an inclusive society. One where everyone has the same chances and a high standard of life. To create this society, we meet marginalized communities where they are. Then we have initiatives to bring them to same place where the social dominant groups are.
+
+BC Gov supports 5 primary initiatives: 
 - Reconciliation
 - Anti-Racism 
 - Accessibility
 - Gender Equity 
 - Equity, Diversity, and Inclusion in the BC Public Service
 
-Though social equity includes Reconciliation, Reconciliation is about Indigenous sovereignty. 
+Although READI includes Reconciliation, Reconciliation supports Indigenous sovereignty. 
 
 The [Where we all belong: Diversity & Inclusion Strategy](https://www2.gov.bc.ca/assets/gov/careers/about-the-bc-public-service/diversity-inclusion-respect/di_roadmap.pdf) outlines a 3 year strategy to have a public service that reflects our province.    
-Over 36, 000 employees work in our organization and our diversity informs our work. We start and finish tasks with a social equity lens. We call this process intersectional analysis, a term that comes from Intersectionality.
+Over 36, 000 employees work in our organization and our diversity informs our work. We start and finish tasks with a READI lens. We call this process intersectional analysis, a term that comes from Intersectionality.
 
 Intersectionality means considering different demographic characteristics together instead of separately. Kimberlé Crenshaw used the term in [“Demarginalizing the Intersection of Race and Sex”](https://chicagounbound.uchicago.edu/cgi/viewcontent.cgi?article=1052&context=uclf). She argued Black women experienced legal inequity on race and gender discrimination. 
 
@@ -19,7 +20,7 @@ Now, intersectionality includes more characteristics.
 
 Our process of intersectional analysis starts with socially locating ourselves. Social location means a person’s combination of demographic characteristics, like race, gender, ability, and age. Everyone’s combination will likely be different. Once we become aware of our social location, we understand how we interact with systems of power and marginalization. 
 
-Social locating helps us to know where unconscious bias plays a role, and where and how we can stop the bias. By doing this analysis, we ensure our services benefit all B.C. residents. 
+Social locating helps us to know where unconscious bias plays a role, and where and how we can stop the bias. By doing this analysis, we ensure our services benefit all BC residents. 
 
 ![Wheel of power and privilege](https://github.com/bcgov/digital-talent/blob/develop/apps/www/src/app/(public%20pages)/ebf281ff-a3b2-4a59-9771-47b16f828dbb.jpg)
 
@@ -54,7 +55,7 @@ Colonization is complex. Intersectional analysis transforms a colonial mindset. 
 
 Though the MACIW offered settlers the Guiding Principles, only Indigenous Peoples can use IGBA+ authentically. This happens because IGBA+ needs Indigeneity for full understanding.
 
-All toolkits based on social equity are effective after socially locating. Doing so takes BC Gov one step closer to decolonization. 
+All toolkits based on READI are effective after socially locating. Doing so takes BC Gov one step closer to decolonization. 
 
 ## Accessibility Directorate 
 
@@ -101,12 +102,16 @@ To help the committee, BC Stats recently launched the [BC Demographic Survey](ht
 
 ## Gender Equity
 
+The Gender Equity Office (GEO) within the Ministry of Finance looks at removing barriers for sexual orientation and gender identity. Equity means fair treatment based on an individual’s needs, and equity happens before equality. 
 
+Initiatives the GEO engage work towards advancing the rights and freedoms for all sexual orientations and gender identities (SOGI). They take an intersectional approach when planning and implementing their initiatives, such as: 
 
+-	Ending Gender-based Violence
+-	Addressing system gaps in healthcare services experienced by women, trans, and non-binary peoples
+-	The Pay Transparency Act
 
 ## Equity, Diversity and Inclusion 
 
-Equity, Diversity, and Inclusion
 The BC Public Service strives to create a public sector that is reflective of our province. This means being inclusive of Indigenous Peoples, minorities communities, newcomers, People with Disabilities and 2SLGBTQIA+ communities. 
 
 The Public Service Agency (PSA) creates the plan and supports government leaders to action. We call the plan the Diversity & Inclusion Strategy. It shows our mandate, vision, values, diversity and inclusion goals, areas of focus and outcomes.
